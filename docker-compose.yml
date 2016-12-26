@@ -1,0 +1,173 @@
+version: '2'
+services:
+    plex:
+        container_name: plex
+        environment:
+            TZ: "EST"
+            PUID: "1000"
+            PGID: "1001"
+        image: "plexinc/pms-docker"
+        ports:
+            - "32400:32400/tcp"
+            - "3005:3005/tcp"
+            - "8324:8324/tcp"
+            - "32469:32469/tcp"
+            - "1900:1900/udp"
+            - "32410:32410/udp"
+            - "32412:32412/udp"
+            - "32413:32413/udp"
+            - "32414:32414/udp"
+        restart: unless-stopped
+        volumes:
+            - /etc/localtime:/etc/localtime:ro
+            - /dev/rtc:/dev/rtc:ro
+            - configs/plex:/config
+            - volumes/plex/tv:/tv
+            - volumes/plex/movies:/movies
+            - volumes/plex/transcode:/transcode
+    nzbget:
+        container_name: nzbget
+        environment:
+            TZ: "EST"
+            PUID: "1000"
+            PGID: "1001"
+        expose:
+            - "6789"
+        image: "linuxserver/nzbget"
+        restart: unless-stopped
+        volumes:
+            - /etc/localtime:/etc/localtime:ro
+            - /dev/rtc:/dev/rtc:ro
+            - configs/nzbget:/config
+            - volumes/nzbget:/downloads
+    sonarr:
+        container_name: sonarr
+        environment:
+            TZ: "EST"
+            PUID: "1000"
+            PGID: "1001"
+        expose:
+            - "8989"
+        image: "linuxserver/sonarr"
+        restart: unless-stopped
+        volumes:
+            - /etc/localtime:/etc/localtime:ro
+            - /dev/rtc:/dev/rtc:ro
+            - configs/sonarr:/config
+            - volumes/nzbget:/downloads
+            - volumes/plex/tv:/tv
+    couchpotato:
+        container_name: couchpotato
+        environment:
+            TZ: "EST"
+            PUID: "1000"
+            PGID: "1001"
+        expose:
+            - "5050"
+        image: "linuxserver/couchpotato"
+        restart: unless-stopped
+        volumes:
+            - /etc/localtime:/etc/localtime:ro
+            - /dev/rtc:/dev/rtc:ro
+            - configs/couchpotato:/config
+            - volumes/nzbget:/downloads
+            - volumes/plex/movies:/movies
+    plexpy:
+        container_name: plexpy
+        environment:
+            TZ: "EST"
+            PUID: "1000"
+            PGID: "1001"
+        expose:
+            - "8181"
+        image: "linuxserver/plexpy"
+        restart: unless-stopped
+        volumes:
+            - /etc/localtime:/etc/localtime:ro
+            - /dev/rtc:/dev/rtc:ro
+            - configs/plexpy:/config
+            - volumes/plex/logs:/logs:ro
+    transmission:
+        container_name: transmission
+        environment:
+            TZ: "EST"
+            PUID: "1000"
+            PGID: "1001"
+        expose:
+            - "9091"
+        image: "linuxserver/transmission"
+        ports:
+            - "51413:51413/tcp"
+            - "51413:51413/udp"
+        restart: unless-stopped
+        volumes:
+            - /etc/localtime:/etc/localtime:ro
+            - /dev/rtc:/dev/rtc:ro
+            - configs/transmission:/config
+            - volumes/transmission:/downloads
+    netdata:
+        container_name: netdata
+        cap_add:
+            - SYS_PTRACE
+        environment:
+            TZ: "EST"
+            PUID: "1000"
+            PGID: "1001"
+        expose:
+            - "19999"
+        image: "titpetric/netdata"
+        restart: unless-stopped
+        volumes:
+            - /etc/localtime:/etc/localtime:ro
+            - /dev/rtc:/dev/rtc:ro
+            - configs/netdata:/config
+            - /var/run/docker.sock:/var/run/docker.sock
+            - /proc:/host/proc:ro
+            - /sys:/host/sys:ro
+    dockerui:
+        container_name: dockerui
+        environment:
+            TZ: "EST"
+            PUID: "1000"
+            PGID: "1001"
+        expose:
+            - "9000"
+        image: "uifd/ui-for-docker"
+        restart: unless-stopped
+        volumes:
+            - /etc/localtime:/etc/localtime:ro
+            - /dev/rtc:/dev/rtc:ro
+            - configs/dockerui:/config
+            - /var/run/docker.sock:/var/run/docker.sock
+    hydra:
+        container_name: hydra
+        environment:
+            TZ: "EST"
+            PUID: "1000"
+            PGID: "1001"
+        expose:
+            - "5075"
+        image: "linuxserver/hydra"
+        restart: unless-stopped
+        volumes:
+            - /etc/localtime:/etc/localtime:ro
+            - /dev/rtc:/dev/rtc:ro
+            - configs/hydra:/config
+            - volumes/hydra:/downloads
+    nginx:
+        container_name: nginx
+        environment:
+            TZ: "EST"
+            PUID: "1000"
+            PGID: "1001"
+        expose:
+            - "5075"
+        image: "linuxserver/nginx"
+        ports:
+            - "80:80/tcp"
+            - "443:443/tcp"
+        restart: unless-stopped
+        volumes:
+            - /etc/localtime:/etc/localtime:ro
+            - /dev/rtc:/dev/rtc:ro
+            - configs/nginx:/config
