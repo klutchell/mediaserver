@@ -6,9 +6,11 @@
 
 ### How do I get set up? ###
 
-`git clone git@github.com:klutchell/docker.git ~/.docker
+```bash
+git clone git@github.com:klutchell/docker.git ~/.docker
 cd ~/.docker
-docker-compose up -d`
+docker-compose up -d
+```
 
 ### Contribution guidelines ###
 
