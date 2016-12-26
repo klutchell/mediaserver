@@ -1,0 +1,12 @@
+version: '2'
+services:
+    common:
+        build: .
+        environment:
+            TZ: "EST"
+            PUID: "1000"
+            PGID: "1001"
+        restart: unless-stopped
+        volumes:
+            - /etc/localtime:/etc/localtime:ro
+            - /dev/rtc:/dev/rtc:ro
