@@ -96,16 +96,16 @@ services:
             - /var/run/docker.sock:/var/run/docker.sock
             - /proc:/host/proc:ro
             - /sys:/host/sys:ro
-    dockerui:
-        container_name: dockerui
+    portainer:
+        container_name: portainer
         extends:
             file: common.yml
             service: common
-        expose:
-            - "9000"
-        image: "uifd/ui-for-docker"
+        image: "portainer/portainer"
+        ports:
+            - "9000:9000/tcp"
         volumes:
-            - ./configs/dockerui:/config
+            - ./configs/portainer:/data
             - /var/run/docker.sock:/var/run/docker.sock
     hydra:
         container_name: hydra
