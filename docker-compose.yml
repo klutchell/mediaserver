@@ -17,7 +17,7 @@ services:
             - "32413:32413/udp"
             - "32414:32414/udp"
         volumes:
-            - ./configs/plex:/config
+            - ./volumes/plex:/config
             - ./volumes/plex/tv:/tv
             - ./volumes/plex/movies:/movies
             - ./volumes/plex/transcode:/transcode
@@ -30,8 +30,8 @@ services:
             - "6789"
         image: "linuxserver/nzbget"
         volumes:
-            - ./configs/nzbget:/config
-            - ./volumes/nzbget:/downloads
+            - ./volumes/nzbget/config:/config
+            - ./volumes/nzbget/downloads:/downloads
     sonarr:
         container_name: sonarr
         extends:
@@ -41,8 +41,8 @@ services:
             - "8989"
         image: "linuxserver/sonarr"
         volumes:
-            - ./configs/sonarr:/config
-            - ./volumes/nzbget:/downloads
+            - ./volumes/sonarr/config:/config
+            - ./volumes/nzbget/downloads:/downloads
             - ./volumes/plex/tv:/tv
     couchpotato:
         container_name: couchpotato
@@ -53,8 +53,8 @@ services:
             - "5050"
         image: "linuxserver/couchpotato"
         volumes:
-            - ./configs/couchpotato:/config
-            - ./volumes/nzbget:/downloads
+            - ./volumes/couchpotato/config:/config
+            - ./volumes/nzbget/downloads:/downloads
             - ./volumes/plex/movies:/movies
     plexpy:
         container_name: plexpy
@@ -65,8 +65,8 @@ services:
             - "8181"
         image: "linuxserver/plexpy"
         volumes:
-            - ./configs/plexpy:/config
-            - ./configs/plex/logs:/logs:ro
+            - ./volumes/plexpy/config:/config
+            - ./volumes/plex/config/logs:/logs:ro
     transmission:
         container_name: transmission
         extends:
@@ -79,8 +79,8 @@ services:
             - "51413:51413/tcp"
             - "51413:51413/udp"
         volumes:
-            - ./configs/transmission:/config
-            - ./volumes/transmission:/downloads
+            - ./volumes/transmission/config:/config
+            - ./volumes/transmission/downloads:/downloads
     netdata:
         container_name: netdata
         cap_add:
@@ -92,7 +92,7 @@ services:
             - "19999"
         image: "titpetric/netdata"
         volumes:
-            - ./configs/netdata:/config
+            - ./volumes/netdata/config:/config
             - /var/run/docker.sock:/var/run/docker.sock
             - /proc:/host/proc:ro
             - /sys:/host/sys:ro
@@ -105,7 +105,7 @@ services:
         ports:
             - "9000:9000/tcp"
         volumes:
-            - ./configs/portainer:/data
+            - ./volumes/portainer/data:/data
             - /var/run/docker.sock:/var/run/docker.sock
     hydra:
         container_name: hydra
@@ -116,8 +116,8 @@ services:
             - "5075"
         image: "linuxserver/hydra"
         volumes:
-            - ./configs/hydra:/config
-            - ./volumes/hydra:/downloads
+            - ./volumes/hydra/config:/config
+            - ./volumes/hydra/downloads:/downloads
     nginx:
         container_name: nginx
         extends:
@@ -128,4 +128,4 @@ services:
             - "80:80/tcp"
             - "443:443/tcp"
         volumes:
-            - ./configs/nginx:/config
+            - ./volumes/nginx/config:/config
