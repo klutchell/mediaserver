@@ -8,8 +8,7 @@
 
 ```bash
 git clone git@github.com:klutchell/docker.git ~/.docker
-cd ~/.docker
-docker-compose up -d --no-build --remove-orphans
+~/.docker/bin/docker-pull
 ```
 
 ### Contribution guidelines ###
