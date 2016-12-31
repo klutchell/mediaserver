@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+
+# redirect output to log
+[ -t 1 ] || exec &> >(ts >> /tmp/docker-clean.tmp)
+
+# set verbose
+set -v
+
+# http://blog.yohanliyanage.com/2015/05/docker-clean-up-after-yourself/
+# remove existed containers
+docker rm -v $(docker ps -a -q -f status=exited)
+
+# remove dangling images
+docker rmi $(docker images -f "dangling=true" -q)
+
+# remove dangling volumes
+docker volume rm $(docker volume ls -f "dangling=true" -q)
+
