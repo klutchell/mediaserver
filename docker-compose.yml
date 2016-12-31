@@ -81,6 +81,7 @@ services:
         volumes:
             - ./volumes/transmission/config:/config
             - ./volumes/transmission/downloads:/downloads
+            - ./volumes/transmission/watch:/watch
     netdata:
         container_name: netdata
         cap_add:
