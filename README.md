@@ -9,13 +9,13 @@
 ```bash
 git clone git@github.com:klutchell/docker.git ~/.docker
 cd ~/.docker
-docker-compose up -d
+docker-compose up -d --no-build --remove-orphans
 ```
 
 ### Contribution guidelines ###
 
-* N/A
+* n/a
 
 ### Who do I talk to? ###
 
-* Repo owner or admin
+* repo owner or admin
