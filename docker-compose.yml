@@ -124,9 +124,13 @@ services:
         extends:
             file: common.yml
             service: common
-        image: "linuxserver/nginx"
+        image: "nginx"
         ports:
             - "80:80/tcp"
             - "443:443/tcp"
         volumes:
-            - ./volumes/nginx/config:/config
+            - ./volumes/nginx/config/conf.d:/etc/nginx/conf.d:ro
+            - ./volumes/nginx/config/include.d:/etc/nginx/include.d:ro
+            - ./volumes/nginx/config/nginx.conf:/etc/nginx/nginx.conf:ro
+            - ./volumes/nginx/keys:/keys:ro
+            - ./volumes/nginx/logs:/logs
