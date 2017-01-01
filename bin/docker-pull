@@ -1,13 +1,10 @@
 #!/usr/bin/env bash
 
-# redirect output to log
-[ -t 1 ] || exec &> >(ts >> /tmp/docker-pull.tmp)
-
 # set verbose
 set -v
 
 # pull latest images
-docker-compose -f ~/.docker/docker-compose.yml pull
+/usr/local/bin/docker-compose -f ~/.docker/docker-compose.yml pull
 
 # recreate containers if required
-docker-compose -f ~/.docker/docker-compose.yml up -d --no-build --remove-orphans
+/usr/local/bin/docker-compose -f ~/.docker/docker-compose.yml up -d --no-build --remove-orphans
