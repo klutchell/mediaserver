@@ -104,9 +104,9 @@ services:
         extends:
             file: common.yml
             service: common
+        expose:
+            - "9000"
         image: "portainer/portainer"
-        ports:
-            - "9000:9000/tcp"
         volumes:
             - ./volumes/portainer/data:/data
             - /var/run/docker.sock:/var/run/docker.sock
