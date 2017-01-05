@@ -43,6 +43,7 @@ services:
         volumes:
             - ./volumes/sonarr/config:/config
             - ./volumes/nzbget/downloads:/downloads
+            - ./volumes/transmission/downloads:/transmission
             - ./volumes/plex/tv:/tv
     couchpotato:
         container_name: couchpotato
@@ -55,6 +56,7 @@ services:
         volumes:
             - ./volumes/couchpotato/config:/config
             - ./volumes/nzbget/downloads:/downloads
+            - ./volumes/transmission/downloads:/transmission
             - ./volumes/plex/movies:/movies
     plexpy:
         container_name: plexpy
