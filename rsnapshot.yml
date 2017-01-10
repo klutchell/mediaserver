@@ -1,0 +1,12 @@
+version: '2'
+services:
+    # https://bitbucket.org/scandio/docker-rsnapshot
+    rsnapshot:
+        container_name: rsnapshot
+        image: "scandio/rsnapshot"
+        volumes:
+            - ./volumes/rsnapshot/config:/config
+            - ./volumes/rsnapshot/target:/target
+            - /:/source:ro
+            - /etc/localtime:/etc/localtime:ro
+            - /dev/rtc:/dev/rtc:ro
