@@ -4,7 +4,7 @@
 set -v
 
 # http://blog.yohanliyanage.com/2015/05/docker-clean-up-after-yourself/
-# remove existed containers
+# remove exited containers
 /usr/bin/docker rm -v $(docker ps -a -q -f status=exited)
 
 # remove dangling images
