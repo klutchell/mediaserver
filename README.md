@@ -1,20 +1,20 @@
 # docker #
 
-### What is this repository for? ###
+### Description ###
 
 * my docker compose configuration files
 
-### How do I get set up? ###
+### Usage ###
 
 ```bash
 git clone git@github.com:klutchell/docker.git ~/.docker
-~/.docker/bin/docker-pull
+~/.docker/bin/compose-pull
 ```
 
-### Contribution guidelines ###
+### Contributing ###
 
 * n/a
 
-### Who do I talk to? ###
+### Author ###
 
-* repo owner or admin
+* Kyle Harding <kylemharding@gmail.com>
