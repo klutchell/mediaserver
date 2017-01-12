@@ -5,6 +5,3 @@ set -v
 
 # pull latest images
 /usr/local/bin/docker-compose -f ~/.docker/docker-compose.yml pull
-
-# recreate containers if required
-/usr/local/bin/docker-compose -f ~/.docker/docker-compose.yml up -d --no-build --remove-orphans

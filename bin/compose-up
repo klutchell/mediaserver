@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+# set verbose
+set -v
+
+# recreate containers if required
+/usr/local/bin/docker-compose -f ~/.docker/docker-compose.yml up -d --no-build --remove-orphans
