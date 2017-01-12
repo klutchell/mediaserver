@@ -45,19 +45,33 @@ services:
             - ./volumes/nzbget/downloads:/downloads
             - ./volumes/transmission/downloads:/transmission
             - ./volumes/plex/tv:/tv
-    couchpotato:
-        container_name: couchpotato
+    radarr:
+        # https://hub.docker.com/r/linuxserver/radarr/
+        container_name: radarr
         extends:
             file: common.yml
             service: common
         expose:
-            - "5050"
-        image: "linuxserver/couchpotato"
+            - "7878"
+        image: "linuxserver/radarr"
         volumes:
-            - ./volumes/couchpotato/config:/config
+            - ./volumes/radarr/config:/config
             - ./volumes/nzbget/downloads:/downloads
             - ./volumes/transmission/downloads:/transmission
             - ./volumes/plex/movies:/movies
+    # couchpotato:
+        # container_name: couchpotato
+        # extends:
+            # file: common.yml
+            # service: common
+        # expose:
+            # - "5050"
+        # image: "linuxserver/couchpotato"
+        # volumes:
+            # - ./volumes/couchpotato/config:/config
+            # - ./volumes/nzbget/downloads:/downloads
+            # - ./volumes/transmission/downloads:/transmission
+            # - ./volumes/plex/movies:/movies
     plexpy:
         container_name: plexpy
         extends:
