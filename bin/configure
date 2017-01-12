@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+
+# set verbose
+set -v
+
+# add user
+usermod -aG docker "kyle"
+
+# copy config file to change storage location
+sudo cp ~/.docker/graph.conf /etc/systemd/system/docker.service.d/graph.conf
+
+# reload systemctl
+sudo systemctl daemon-reload
+
+# enable docker service
+sudo systemctl enable docker
+
+# restart docker service
+sudo systemctl restart docker

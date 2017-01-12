@@ -8,8 +8,8 @@
 
 ```bash
 git clone git@github.com:klutchell/docker.git ~/.docker
-sudo cp ~/.docker/graph.conf /etc/systemd/system/docker.service.d/graph.conf
-sudo systemctl daemon-reload && sudo systemctl restart docker
+sudo ~/.docker/bin/install
+sudo ~/.docker/bin/configure
 ~/.docker/bin/compose-pull
 ~/.docker/bin/compose-up
 ```
