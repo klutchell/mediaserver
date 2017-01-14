@@ -1,27 +1,21 @@
 version: '2'
 services:
     plex:
+        # https://github.com/plexinc/pms-docker
         container_name: plex
         extends:
             file: common.yml
             service: common
+        expose:
+            - "32400"
         image: "plexinc/pms-docker"
-        ports:
-            - "32400:32400/tcp"
-            - "3005:3005/tcp"
-            - "8324:8324/tcp"
-            - "32469:32469/tcp"
-            - "1900:1900/udp"
-            - "32410:32410/udp"
-            - "32412:32412/udp"
-            - "32413:32413/udp"
-            - "32414:32414/udp"
         volumes:
             - ./volumes/plex/config:/config
             - ./volumes/plex/tv:/tv
             - ./volumes/plex/movies:/movies
             - ./volumes/plex/transcode:/transcode
     nzbget:
+        # https://github.com/linuxserver/docker-nzbget
         container_name: nzbget
         extends:
             file: common.yml
@@ -33,6 +27,7 @@ services:
             - ./volumes/nzbget/config:/config
             - ./volumes/nzbget/downloads:/downloads
     sonarr:
+        # https://github.com/linuxserver/docker-sonarr
         container_name: sonarr
         extends:
             file: common.yml
@@ -46,7 +41,7 @@ services:
             - ./volumes/transmission/downloads:/transmission
             - ./volumes/plex/tv:/tv
     radarr:
-        # https://hub.docker.com/r/linuxserver/radarr/
+        # https://github.com/linuxserver/docker-radarr
         container_name: radarr
         extends:
             file: common.yml
@@ -59,20 +54,8 @@ services:
             - ./volumes/nzbget/downloads:/downloads
             - ./volumes/transmission/downloads:/transmission
             - ./volumes/plex/movies:/movies
-    # couchpotato:
-        # container_name: couchpotato
-        # extends:
-            # file: common.yml
-            # service: common
-        # expose:
-            # - "5050"
-        # image: "linuxserver/couchpotato"
-        # volumes:
-            # - ./volumes/couchpotato/config:/config
-            # - ./volumes/nzbget/downloads:/downloads
-            # - ./volumes/transmission/downloads:/transmission
-            # - ./volumes/plex/movies:/movies
     plexpy:
+        # https://github.com/linuxserver/docker-plexpy
         container_name: plexpy
         extends:
             file: common.yml
@@ -84,6 +67,7 @@ services:
             - ./volumes/plexpy/config:/config
             - ./volumes/plex/config/logs:/logs:ro
     transmission:
+        # https://github.com/linuxserver/docker-transmission
         container_name: transmission
         extends:
             file: common.yml
@@ -99,6 +83,7 @@ services:
             - ./volumes/transmission/downloads:/downloads
             - ./volumes/transmission/watch:/watch
     netdata:
+        # https://github.com/titpetric/netdata
         container_name: netdata
         cap_add:
             - SYS_PTRACE
@@ -115,6 +100,7 @@ services:
             - /proc:/host/proc:ro
             - /sys:/host/sys:ro
     portainer:
+        # https://github.com/portainer/portainer
         container_name: portainer
         extends:
             file: common.yml
@@ -126,6 +112,7 @@ services:
             - ./volumes/portainer/data:/data
             - /var/run/docker.sock:/var/run/docker.sock
     hydra:
+        # https://github.com/linuxserver/docker-hydra
         container_name: hydra
         extends:
             file: common.yml
@@ -136,22 +123,8 @@ services:
         volumes:
             - ./volumes/hydra/config:/config
             - ./volumes/hydra/downloads:/downloads
-    # nginx:
-        # container_name: nginx
-        # extends:
-            # file: common.yml
-            # service: common
-        # image: "nginx"
-        # ports:
-            # - "80:80/tcp"
-            # - "443:443/tcp"
-        # volumes:
-            # - ./volumes/nginx/config/conf.d:/etc/nginx/conf.d:ro
-            # - ./volumes/nginx/config/include.d:/etc/nginx/include.d:ro
-            # - ./volumes/nginx/config/nginx.conf:/etc/nginx/nginx.conf:ro
-            # - ./volumes/nginx/keys:/keys:ro
-            # - ./volumes/nginx/logs:/logs
     letsencrypt:
+        # https://github.com/linuxserver/docker-letsencrypt
         container_name: letsencrypt
         environment:
             EMAIL: "kylemharding@gmail.com"
