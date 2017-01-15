@@ -141,3 +141,14 @@ services:
         privileged: true
         volumes:
             - ./volumes/letsencrypt/config:/config
+    muximux:
+        # https://github.com/linuxserver/docker-muximux
+        container_name: muximux
+        extends:
+            file: common.yml
+            service: common
+        expose:
+            - "80"
+        image: "linuxserver/muximux"
+        volumes:
+            - ./volumes/muximux/config:/config
