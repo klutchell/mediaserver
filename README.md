@@ -1,4 +1,4 @@
-# plexms-config #
+# pms-config #
 
 ### Description ###
 
@@ -7,11 +7,11 @@
 ### Usage ###
 
 ```bash
-git clone git@github.com:klutchell/plexms-config.git ~/plexms
-sudo ~/plexms/bin/install
-sudo ~/plexms/bin/configure
-~/plexms/bin/pull
-~/plexms/bin/up
+git clone git@github.com:klutchell/pms-config.git ~/pms
+sudo ~/pms/bin/install
+sudo ~/pms/bin/configure
+~/pms/bin/pull
+~/pms/bin/up
 ```
 
 ### Contributing ###
