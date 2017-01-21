@@ -4,4 +4,4 @@
 set -v
 
 # recreate containers if required
-/usr/local/bin/docker-compose -f ~/.docker/docker-compose.yml up -d --no-build --remove-orphans
+/usr/local/bin/docker-compose -f "$(dirname "$0")"/../docker-compose.yml up -d --no-build --remove-orphans
