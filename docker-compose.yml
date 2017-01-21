@@ -2,6 +2,7 @@ version: '2'
 services:
     plex:
         # https://github.com/plexinc/pms-docker
+        # https://hub.docker.com/r/plexinc/pms-docker/
         container_name: plex
         extends:
             file: common.yml
@@ -16,6 +17,7 @@ services:
             - ./volumes/plex/transcode:/transcode
     nzbget:
         # https://github.com/linuxserver/docker-nzbget
+        # https://hub.docker.com/r/linuxserver/nzbget/
         container_name: nzbget
         extends:
             file: common.yml
@@ -28,6 +30,7 @@ services:
             - ./volumes/nzbget/downloads:/downloads
     sonarr:
         # https://github.com/linuxserver/docker-sonarr
+        # https://hub.docker.com/r/linuxserver/sonarr/
         container_name: sonarr
         extends:
             file: common.yml
@@ -42,6 +45,7 @@ services:
             - ./volumes/plex/tv:/tv
     radarr:
         # https://github.com/linuxserver/docker-radarr
+        # https://hub.docker.com/r/linuxserver/radarr/
         container_name: radarr
         extends:
             file: common.yml
@@ -56,6 +60,7 @@ services:
             - ./volumes/plex/movies:/movies
     plexpy:
         # https://github.com/linuxserver/docker-plexpy
+        # https://hub.docker.com/r/linuxserver/plexpy/
         container_name: plexpy
         extends:
             file: common.yml
@@ -68,6 +73,7 @@ services:
             - ./volumes/plex/config/logs:/logs:ro
     transmission:
         # https://github.com/linuxserver/docker-transmission
+        # https://hub.docker.com/r/linuxserver/transmission/
         container_name: transmission
         extends:
             file: common.yml
@@ -84,6 +90,7 @@ services:
             - ./volumes/transmission/watch:/watch
     netdata:
         # https://github.com/titpetric/netdata
+        # https://hub.docker.com/r/titpetric/netdata/
         container_name: netdata
         cap_add:
             - SYS_PTRACE
@@ -101,6 +108,7 @@ services:
             - /sys:/host/sys:ro
     portainer:
         # https://github.com/portainer/portainer
+        # https://hub.docker.com/r/portainer/portainer/
         container_name: portainer
         extends:
             file: common.yml
@@ -113,6 +121,7 @@ services:
             - /var/run/docker.sock:/var/run/docker.sock
     hydra:
         # https://github.com/linuxserver/docker-hydra
+        # https://hub.docker.com/r/linuxserver/hydra/
         container_name: hydra
         extends:
             file: common.yml
@@ -125,6 +134,7 @@ services:
             - ./volumes/hydra/downloads:/downloads
     letsencrypt:
         # https://github.com/linuxserver/docker-letsencrypt
+        # https://hub.docker.com/r/linuxserver/letsencrypt/
         container_name: letsencrypt
         environment:
             EMAIL: "kylemharding@gmail.com"
@@ -143,6 +153,7 @@ services:
             - ./volumes/letsencrypt/config:/config
     muximux:
         # https://github.com/linuxserver/docker-muximux
+        # https://hub.docker.com/r/linuxserver/muximux/
         container_name: muximux
         extends:
             file: common.yml
