@@ -10,11 +10,17 @@ curl -sSL get.docker.com | sh
 # install docker-compose
 # https://docs.docker.com/compose/install/
 # https://github.com/docker/compose/releases
-pushd "$(dirname "$0")"
-easy_install pip
-pip install virtualenv
-virtualenv env
-env/bin/pip install docker-compose
-cp env/bin/docker-compose /usr/local/bin/docker-compose
-chmod +x /usr/local/bin/docker-compose
-popd
+
+# if rpi, install via virtualenv and pip
+if [ "$(uname -m)" = "armv7l" ]; then
+	pushd "$(dirname "$0")"
+	easy_install virtualenv
+	virtualenv env
+	env/bin/pip install docker-compose
+	cp env/bin/docker-compose /usr/local/bin/docker-compose
+	chmod +x /usr/local/bin/docker-compose
+	popd
+else
+	curl -L "https://github.com/docker/compose/releases/download/1.10.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+	chmod +x /usr/local/bin/docker-compose
+fi
