@@ -7,13 +7,10 @@ set -v
 usermod -aG docker "kyle"
 
 # copy config file to change storage location
-sudo cp "$(dirname "$0")"/../graph.conf /etc/systemd/system/docker.service.d/graph.conf
+cp "$(dirname "$0")"/../graph.conf /etc/systemd/system/docker.service.d/graph.conf
 
 # reload systemctl
-sudo systemctl daemon-reload
-
-# enable docker service
-sudo systemctl enable docker
+systemctl daemon-reload
 
 # restart docker service
-sudo systemctl restart docker
+systemctl restart docker

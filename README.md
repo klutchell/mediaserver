@@ -1,17 +1,17 @@
-# docker #
+# plexms-config #
 
 ### Description ###
 
-* my docker compose configuration files
+* my plex media server configuration for ubuntu
 
 ### Usage ###
 
 ```bash
-git clone git@github.com:klutchell/docker.git ~/.docker
-sudo ~/.docker/bin/install
-sudo ~/.docker/bin/configure
-~/.docker/bin/compose-pull
-~/.docker/bin/compose-up
+git clone git@github.com:klutchell/plexms-config.git ~/plexms
+sudo ~/plexms/bin/install
+sudo ~/plexms/bin/configure
+~/plexms/bin/pull
+~/plexms/bin/up
 ```
 
 ### Contributing ###
