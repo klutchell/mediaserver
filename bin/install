@@ -1,18 +1,14 @@
 #!/usr/bin/env bash
 
-# set verbose
-set -v
-
 # install docker
 # https://docs.docker.com/engine/installation/linux/ubuntulinux/
 curl -sSL get.docker.com | sh
 
-# install docker-compose
 # https://docs.docker.com/compose/install/
 # https://github.com/docker/compose/releases
 
-# if rpi, install via virtualenv and pip
 if [ "$(uname -m)" = "armv7l" ]; then
+	# install docker-compose via virtualenv and pip
 	pushd "$(dirname "$0")"
 	easy_install virtualenv
 	virtualenv env
@@ -21,6 +17,13 @@ if [ "$(uname -m)" = "armv7l" ]; then
 	chmod +x /usr/local/bin/docker-compose
 	popd
 else
-	curl -L "https://github.com/docker/compose/releases/download/1.10.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+	# install docker-compose as a binary
+	latest_url="$(curl -s https://api.github.com/repos/docker/compose/releases | grep browser_download_url | grep "docker-compose-$(uname -s)-$(uname -m)" | head -n 1 | cut -d '"' -f 4)"
+	curl -L "$latest_url" > /usr/local/bin/docker-compose
 	chmod +x /usr/local/bin/docker-compose
 fi
+
+# install docker-compose as a container
+# latest_url="$(curl -s https://api.github.com/repos/docker/compose/releases | grep browser_download_url | grep "run.sh" | head -n 1 | cut -d '"' -f 4)"
+# curl -L "$latest_url" > /usr/local/bin/docker-compose
+# chmod +x /usr/local/bin/docker-compose
