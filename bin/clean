@@ -12,4 +12,4 @@ set -v
 
 docker system df
 
-docker system prune --force
+docker system prune --all --force
