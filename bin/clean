@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
 
 # WARNING! This will remove:
-#        - all stopped containers
-#        - all volumes not used by at least one container
-#        - all networks not used by at least one container
-#        - all dangling images
+        # - all stopped containers
+        # - all volumes not used by at least one container
+        # - all networks not used by at least one container
+        # - all images without at least one container associated to them
 # requires docker 1.13
 
 # set verbose
