@@ -88,24 +88,6 @@ services:
             - ./volumes/transmission/config:/config
             - ./volumes/transmission/downloads:/downloads
             - ./volumes/transmission/watch:/watch
-    netdata:
-        # https://github.com/titpetric/netdata
-        # https://hub.docker.com/r/titpetric/netdata/
-        container_name: netdata
-        cap_add:
-            - SYS_PTRACE
-        extends:
-            file: common.yml
-            service: common
-        expose:
-            - "19999"
-        image: "titpetric/netdata"
-        privileged: true
-        volumes:
-            - ./volumes/netdata/config:/config
-            - /var/run/docker.sock:/var/run/docker.sock
-            - /proc:/host/proc:ro
-            - /sys:/host/sys:ro
     portainer:
         # https://github.com/portainer/portainer
         # https://hub.docker.com/r/portainer/portainer/
@@ -151,15 +133,3 @@ services:
         privileged: true
         volumes:
             - ./volumes/letsencrypt/config:/config
-    muximux:
-        # https://github.com/linuxserver/docker-muximux
-        # https://hub.docker.com/r/linuxserver/muximux/
-        container_name: muximux
-        extends:
-            file: common.yml
-            service: common
-        expose:
-            - "80"
-        image: "linuxserver/muximux"
-        volumes:
-            - ./volumes/muximux/config:/config

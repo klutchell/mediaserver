@@ -16,14 +16,6 @@ upstream portainer {
 	server	portainer:9000;
 }
 
-upstream netdata {
-	server	netdata:19999;
-}
-
-upstream muximux {
-	server	muximux:80;
-}
-
 # main server block
 server {
 	listen 443 ssl http2 default_server;
@@ -53,21 +45,8 @@ server {
 		proxy_pass				http://portainer/ws/;
 	}
 
-	location /netdata {
-		proxy_pass			http://netdata/;
-		include				/config/nginx/proxy.conf;
-		include				/config/nginx/auth.conf;
-	}
-
 	location /hydra {
 		proxy_pass			http://hydra:5075;
-		include				/config/nginx/proxy.conf;
-	}
-
-	location /muximux {
-		proxy_pass			http://muximux/;
-		include				/config/nginx/proxy.conf;
-		include				/config/nginx/auth.conf;
 	}
 
 	location /sonarr {
