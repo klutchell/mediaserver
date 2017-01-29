@@ -42,5 +42,8 @@ Network Trash Folder
 Temporary Items
 .apdisk
 
-# Exclude volumes by default
+# volumes that should be private by default
 volumes
+
+# personal environment file
+compose.env

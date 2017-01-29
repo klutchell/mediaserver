@@ -119,10 +119,10 @@ services:
         # https://hub.docker.com/r/linuxserver/letsencrypt/
         container_name: letsencrypt
         environment:
-            EMAIL: "kylemharding@gmail.com"
-            URL: "klutchell.com"
-            SUBDOMAINS: "plex,app"
-            ONLY_SUBDOMAINS: "true"
+            EMAIL: "${LETSENCRYPT_EMAIL}"
+            URL: "${LETSENCRYPT_URL}"
+            SUBDOMAINS: "${LETSENCRYPT_SUBDOMAINS}"
+            ONLY_SUBDOMAINS: "${LETSENCRYPT_ONLY_SUBDOMAINS}"
         extends:
             file: common.yml
             service: common

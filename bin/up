@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
-# set verbose
-set -v
+# source environment variables required for containers
+. "$(dirname "$0")"/../compose.env
 
-# recreate containers if required
+# compose up (recreate if required, no build, remove orphans, disconnected)
 /usr/local/bin/docker-compose -f "$(dirname "$0")"/../docker-compose.yml up -d --no-build --remove-orphans

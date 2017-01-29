@@ -3,9 +3,9 @@ services:
     common:
         build: .
         environment:
-            TZ: "EST"
-            PUID: "1000"
-            PGID: "1001"
+            TZ: "${COMMON_TZ}"
+            PUID: "${COMMON_PUID}"
+            PGID: "${COMMON_PGID}"
         restart: unless-stopped
         volumes:
             - /etc/localtime:/etc/localtime:ro
