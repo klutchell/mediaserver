@@ -24,7 +24,14 @@ install_compose()
 		# install docker-compose as a container
 		# https://docs.docker.com/compose/install
 		# https://github.com/docker/compose
-		latest_url="$(curl -s https://api.github.com/repos/docker/compose/releases | grep browser_download_url | grep "run.sh" | head -n 1 | cut -d '"' -f 4)"
+		# latest_url="$(curl -s https://api.github.com/repos/docker/compose/releases | grep browser_download_url | grep "run.sh" | head -n 1 | cut -d '"' -f 4)"
+		# curl -L "$latest_url" > /usr/local/bin/docker-compose
+		# chmod +x /usr/local/bin/docker-compose
+		
+		# install docker-compose as a binary
+		# https://docs.docker.com/compose/install
+		# https://github.com/docker/compose
+		latest_url="$(curl -s https://api.github.com/repos/docker/compose/releases | grep browser_download_url | grep "docker-compose-$(uname -s)-$(uname -m)" | head -n 1 | cut -d '"' -f 4)"
 		curl -L "$latest_url" > /usr/local/bin/docker-compose
 		chmod +x /usr/local/bin/docker-compose
 	fi
@@ -48,11 +55,6 @@ usage()
 util="${1}"
 [ -n "${util}" ] || util="all"
 eval "install_${1}" || usage
-
-# # install docker-compose as a binary
-# latest_url="$(curl -s https://api.github.com/repos/docker/compose/releases | grep browser_download_url | grep "docker-compose-$(uname -s)-$(uname -m)" | head -n 1 | cut -d '"' -f 4)"
-# curl -L "$latest_url" > /usr/local/bin/docker-compose
-# chmod +x /usr/local/bin/docker-compose
 
 # # install docker-compose via virtualenv and pip
 # pushd "$(dirname "$0")"

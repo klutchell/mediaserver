@@ -4,17 +4,22 @@ services:
         # https://github.com/plexinc/pms-docker
         # https://hub.docker.com/r/plexinc/pms-docker/
         container_name: plex
-        extends:
-            file: common.yml
-            service: common
+        restart: unless-stopped
         expose:
             - "32400"
-        image: "plexinc/pms-docker"
+        image: "plexinc/pms-docker:latest"
         volumes:
             - ./volumes/plex/config:/config
             - ./volumes/plex/tv:/tv
             - ./volumes/plex/movies:/movies
             - ./volumes/plex/transcode:/transcode
+            - /etc/localtime:/etc/localtime:ro
+            - /dev/rtc:/dev/rtc:ro
+        environment:
+            TZ: "${COMMON_TZ}"
+            PLEX_UID: "${COMMON_PUID}"
+            PLEX_GID: "${COMMON_PGID}"
+            PLEX_CLAIM: "${PLEX_CLAIM}"
     nzbget:
         # https://github.com/linuxserver/docker-nzbget
         # https://hub.docker.com/r/linuxserver/nzbget/
