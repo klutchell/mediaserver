@@ -7,6 +7,8 @@
         # - all images without at least one container associated to them
 # requires docker 1.13
 
+docker --version
+
 docker system df
 
 docker system prune --all --force
