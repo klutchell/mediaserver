@@ -1,3 +1,4 @@
 [submodule "bin"]
 	path = bin
 	url = git@github.com:klutchell/docker-bin.git
+	branch = master
