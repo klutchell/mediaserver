@@ -20,7 +20,7 @@ Image | Size | Version
 ## Installing ##
 
 ```bash
-git clone git@github.com:klutchell/docker-mediaserver.git ~/mediaserver
+git clone git@github.com:klutchell/compose-mediaserver.git ~/mediaserver
 sudo ~/mediaserver/bin/install
 ~/mediaserver/bin/configure
 ```
