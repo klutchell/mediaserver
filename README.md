@@ -17,11 +17,16 @@ Image | Size | Version
 [linuxserver/hydra](https://hub.docker.com/r/linuxserver/hydra/) | [![](https://images.microbadger.com/badges/image/linuxserver/hydra.svg)](https://microbadger.com/images/linuxserver/hydra) | [![](https://images.microbadger.com/badges/version/linuxserver/hydra.svg)](https://microbadger.com/images/linuxserver/hydra)
 [linuxserver/letsencrypt](https://hub.docker.com/r/linuxserver/letsencrypt/) | [![](https://images.microbadger.com/badges/image/linuxserver/letsencrypt.svg)](https://microbadger.com/images/linuxserver/letsencrypt "linuxserver/letsencrypt") | [![](https://images.microbadger.com/badges/version/linuxserver/letsencrypt.svg)](https://microbadger.com/images/linuxserver/letsencrypt)
 
+## Dependencies
+
+The following utilities will need to be installed first:
+* [docker engine](https://docs.docker.com/engine/installation/)
+* [docker-compose](https://docs.docker.com/compose/install/)
+
 ## Installing
 
 ```bash
 git clone git@github.com:klutchell/compose-mediaserver.git ~/mediaserver
-sudo ~/mediaserver/bin/install all
 ```
 
 ## Running
