@@ -1,6 +1,6 @@
 # Docker Media Server #
 
-## Description ##
+## Description
 
 This is a docker-based plex media server for ubuntu using pre-built public images.
 It pulls and runs the following docker images via [docker-compose](https://github.com/docker/compose):
@@ -17,15 +17,14 @@ Image | Size | Version
 [linuxserver/hydra](https://hub.docker.com/r/linuxserver/hydra/) | [![](https://images.microbadger.com/badges/image/linuxserver/hydra.svg)](https://microbadger.com/images/linuxserver/hydra) | [![](https://images.microbadger.com/badges/version/linuxserver/hydra.svg)](https://microbadger.com/images/linuxserver/hydra)
 [linuxserver/letsencrypt](https://hub.docker.com/r/linuxserver/letsencrypt/) | [![](https://images.microbadger.com/badges/image/linuxserver/letsencrypt.svg)](https://microbadger.com/images/linuxserver/letsencrypt "linuxserver/letsencrypt") | [![](https://images.microbadger.com/badges/version/linuxserver/letsencrypt.svg)](https://microbadger.com/images/linuxserver/letsencrypt)
 
-## Installing ##
+## Installing
 
 ```bash
 git clone git@github.com:klutchell/compose-mediaserver.git ~/mediaserver
 sudo ~/mediaserver/bin/install
-~/mediaserver/bin/configure
 ```
 
-## Running ##
+## Running
 
 ```bash
 cp ~/mediaserver/compose.env.sample ~/mediaserver/compose.env
@@ -33,15 +32,11 @@ cp ~/mediaserver/compose.env.sample ~/mediaserver/compose.env
 ~/mediaserver/bin/up
 ```
 
-## Contributing ##
-
-n/a
-
-## Author ##
+## Author
 
 Kyle Harding <kylemharding@gmail.com>
 
-## Credit ##
+## Credit
 
 I give credit where it's due and would like to give a shoutout to the creators of the docker images used in this project:
 * [portainer.io](http://portainer.io/)
