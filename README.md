@@ -21,7 +21,7 @@ Image | Size | Version
 
 ```bash
 git clone git@github.com:klutchell/compose-mediaserver.git ~/mediaserver
-sudo ~/mediaserver/bin/install
+sudo ~/mediaserver/bin/install all
 ```
 
 ## Running
