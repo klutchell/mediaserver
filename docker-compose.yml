@@ -1,4 +1,4 @@
-version: '2'
+version: '3'
 services:
     plex:
         # https://github.com/plexinc/pms-docker
@@ -7,7 +7,7 @@ services:
         restart: unless-stopped
         expose:
             - "32400"
-        image: "plexinc/pms-docker:latest"
+        image: "plexinc/pms-docker:plexpass"
         volumes:
             - ./volumes/plex/config:/config
             - ./volumes/plex/tv:/tv
@@ -15,11 +15,9 @@ services:
             - ./volumes/plex/transcode:/transcode
             - /etc/localtime:/etc/localtime:ro
             - /dev/rtc:/dev/rtc:ro
-        environment:
-            TZ: "${TZ}"
-            PLEX_UID: "${PUID}"
-            PLEX_GID: "${PGID}"
-            PLEX_CLAIM: "${PLEX_CLAIM}"
+        env_file:
+            - ./common.env
+            - ./plex.env
     nzbget:
         # https://github.com/linuxserver/docker-nzbget
         # https://hub.docker.com/r/linuxserver/nzbget/
@@ -32,10 +30,8 @@ services:
             - ./volumes/nzbget/downloads:/downloads
             - /etc/localtime:/etc/localtime:ro
             - /dev/rtc:/dev/rtc:ro
-        environment:
-            TZ: "${TZ}"
-            PUID: "${PUID}"
-            PGID: "${PGID}"
+        env_file:
+            - ./common.env
         restart: unless-stopped
     sonarr:
         # https://github.com/linuxserver/docker-sonarr
@@ -51,11 +47,11 @@ services:
             - ./volumes/plex/tv:/tv
             - /etc/localtime:/etc/localtime:ro
             - /dev/rtc:/dev/rtc:ro
-        environment:
-            TZ: "${TZ}"
-            PUID: "${PUID}"
-            PGID: "${PGID}"
+        env_file:
+            - ./common.env
         restart: unless-stopped
+        depends_on:
+            - nzbget
     radarr:
         # https://github.com/linuxserver/docker-radarr
         # https://hub.docker.com/r/linuxserver/radarr/
@@ -70,11 +66,11 @@ services:
             - ./volumes/plex/movies:/movies
             - /etc/localtime:/etc/localtime:ro
             - /dev/rtc:/dev/rtc:ro
-        environment:
-            TZ: "${TZ}"
-            PUID: "${PUID}"
-            PGID: "${PGID}"
+        env_file:
+            - ./common.env
         restart: unless-stopped
+        depends_on:
+            - nzbget
     plexpy:
         # https://github.com/linuxserver/docker-plexpy
         # https://hub.docker.com/r/linuxserver/plexpy/
@@ -84,14 +80,14 @@ services:
         image: "linuxserver/plexpy"
         volumes:
             - ./volumes/plexpy/config:/config
-            - ./volumes/plex/config/logs:/logs:ro
+            - ./volumes/plex/config/Library/Application Support/Plex Media Server/Logs:/logs:ro
             - /etc/localtime:/etc/localtime:ro
             - /dev/rtc:/dev/rtc:ro
-        environment:
-            TZ: "${TZ}"
-            PUID: "${PUID}"
-            PGID: "${PGID}"
+        env_file:
+            - ./common.env
         restart: unless-stopped
+        depends_on:
+            - plex
     transmission:
         # https://github.com/linuxserver/docker-transmission
         # https://hub.docker.com/r/linuxserver/transmission/
@@ -108,10 +104,8 @@ services:
             - ./volumes/transmission/watch:/watch
             - /etc/localtime:/etc/localtime:ro
             - /dev/rtc:/dev/rtc:ro
-        environment:
-            TZ: "${TZ}"
-            PUID: "${PUID}"
-            PGID: "${PGID}"
+        env_file:
+            - ./common.env
         restart: unless-stopped
     portainer:
         # https://github.com/portainer/portainer
@@ -135,23 +129,16 @@ services:
             - ./volumes/hydra/downloads:/downloads
             - /etc/localtime:/etc/localtime:ro
             - /dev/rtc:/dev/rtc:ro
-        environment:
-            TZ: "${TZ}"
-            PUID: "${PUID}"
-            PGID: "${PGID}"
+        env_file:
+            - ./common.env
         restart: unless-stopped
     letsencrypt:
         # https://github.com/linuxserver/docker-letsencrypt
         # https://hub.docker.com/r/linuxserver/letsencrypt/
         container_name: letsencrypt
-        environment:
-            EMAIL: "${LETSENCRYPT_EMAIL}"
-            URL: "${LETSENCRYPT_URL}"
-            SUBDOMAINS: "${LETSENCRYPT_SUBDOMAINS}"
-            ONLY_SUBDOMAINS: "${LETSENCRYPT_ONLY_SUBDOMAINS}"
-            TZ: "${TZ}"
-            PUID: "${PUID}"
-            PGID: "${PGID}"
+        env_file:
+            - ./common.env
+            - ./letsencrypt.env
         image: "linuxserver/letsencrypt"
         ports:
             - "80:80/tcp"
@@ -162,3 +149,12 @@ services:
             - /etc/localtime:/etc/localtime:ro
             - /dev/rtc:/dev/rtc:ro
         restart: unless-stopped
+        depends_on:
+            - plex
+            - nzbget
+            - sonarr
+            - radarr
+            - plexpy
+            - transmission
+            - portainer
+            - hydra
