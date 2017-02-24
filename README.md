@@ -23,18 +23,42 @@ The following utilities will need to be installed first:
 * [docker engine](https://docs.docker.com/engine/installation/)
 * [docker-compose](https://docs.docker.com/compose/install/)
 
+I have a bash script on GitHub to automate the installation of Docker and Docker-Compose. Please read it carefully before blindly running these commands.
+
+https://raw.githubusercontent.com/klutchell/dotfiles/master/bin/bin/install
+```bash
+$ curl https://raw.githubusercontent.com/klutchell/dotfiles/master/bin/bin/install | sudo bash -s docker compose
+```
+
 ## Installing
 
+Clone the repo to somewhere convenient with reasonable storage available.
 ```bash
 git clone git@github.com:klutchell/compose-mediaserver.git ~/mediaserver
 ```
 
-## Running
+## Configuration
+
+Edit `docker-compose.yml` with desired volume paths. Symlinks are allowed and it makes it easier to point some volumes to large mount points.
 
 ```bash
-cp ~/mediaserver/compose.env.sample ~/mediaserver/compose.env
-~/mediaserver/bin/pull
-~/mediaserver/bin/up
+$ nano ~/mediaserver/docker-compose.yml`
+```
+
+Copy the `*.env.sample` files to `*.env` before editing each of them with desired values.
+
+https://docs.docker.com/compose/compose-file/#/envfile
+```bash
+$ for env in ~/mediaserver/*.env.sample; do cp "${env}" "${env%.sample}"; done
+$ nano ~/mediaserver/*.env
+```
+
+## Running
+
+Pull the latest images from docker hub and start them with compose.
+```bash
+$ ~/mediaserver/bin/pull
+$ ~/mediaserver/bin/up
 ```
 
 ## Author
