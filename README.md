@@ -34,7 +34,7 @@ $ curl https://raw.githubusercontent.com/klutchell/dotfiles/master/bin/bin/insta
 
 Clone the repo to somewhere convenient with reasonable storage available.
 ```bash
-git clone git@github.com:klutchell/compose-mediaserver.git ~/mediaserver
+git clone --recursive -j8 git@github.com:klutchell/compose-mediaserver.git ~/mediaserver
 ```
 
 ## Configuration
