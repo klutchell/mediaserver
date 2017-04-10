@@ -36,19 +36,19 @@ PATHS+=" /home/kyle/no_snapshot/plex/movies/:/home/ubuntu/mediaserver/plex/media
 PATHS+=" /home/kyle/no_snapshot/plex/tv/:/home/ubuntu/mediaserver/plex/media/tv/"
 mysync "$PATHS"
 
-# PATHS=
-# PATHS+=" /home/kyle/no_snapshot/nzbget/:/home/ubuntu/mediaserver/nzbget/downloads/"
-# PATHS+=" /home/kyle/no_snapshot/transmission/:/home/ubuntu/mediaserver/transmission/downloads/"
-# mysync "$PATHS"
+PATHS=
+PATHS+=" /home/kyle/no_snapshot/nzbget/:/home/ubuntu/mediaserver/nzbget/downloads/"
+PATHS+=" /home/kyle/no_snapshot/transmission/:/home/ubuntu/mediaserver/transmission/downloads/"
+mysync "$PATHS"
 
-# PATHS=
-# PATHS+=" /home/kyle/mediaserver/volumes/hydra/config/:/home/ubuntu/mediaserver/hydra/config/"
-# PATHS+=" /home/kyle/mediaserver/volumes/letsencrypt/config/:/home/ubuntu/mediaserver/letsencrypt/config/"
-# PATHS+=" /home/kyle/mediaserver/volumes/nzbget/config/:/home/ubuntu/mediaserver/nzbget/config/"
-# PATHS+=" /home/kyle/mediaserver/volumes/plex/config/:/home/ubuntu/mediaserver/plex/config/"
-# PATHS+=" /home/kyle/mediaserver/volumes/plexpy/config/:/home/ubuntu/mediaserver/plexpy/config/"
-# PATHS+=" /home/kyle/mediaserver/volumes/portainer/data/:/home/ubuntu/mediaserver/portainer/config/"
-# PATHS+=" /home/kyle/mediaserver/volumes/radarr/config/:/home/ubuntu/mediaserver/radarr/config/"
-# PATHS+=" /home/kyle/mediaserver/volumes/sonarr/config/:/home/ubuntu/mediaserver/sonarr/config/"
-# PATHS+=" /home/kyle/mediaserver/volumes/transmission/config/:/home/ubuntu/mediaserver/transmission/config/"
-# mysync "$PATHS"
+PATHS=
+PATHS+=" /home/kyle/mediaserver/volumes/hydra/config/:/home/ubuntu/mediaserver/hydra/config/"
+PATHS+=" /home/kyle/mediaserver/volumes/letsencrypt/config/:/home/ubuntu/mediaserver/letsencrypt/config/"
+PATHS+=" /home/kyle/mediaserver/volumes/nzbget/config/:/home/ubuntu/mediaserver/nzbget/config/"
+PATHS+=" /home/kyle/mediaserver/volumes/plex/config/:/home/ubuntu/mediaserver/plex/config/"
+PATHS+=" /home/kyle/mediaserver/volumes/plexpy/config/:/home/ubuntu/mediaserver/plexpy/config/"
+PATHS+=" /home/kyle/mediaserver/volumes/portainer/data/:/home/ubuntu/mediaserver/portainer/config/"
+PATHS+=" /home/kyle/mediaserver/volumes/radarr/config/:/home/ubuntu/mediaserver/radarr/config/"
+PATHS+=" /home/kyle/mediaserver/volumes/sonarr/config/:/home/ubuntu/mediaserver/sonarr/config/"
+PATHS+=" /home/kyle/mediaserver/volumes/transmission/config/:/home/ubuntu/mediaserver/transmission/config/"
+mysync "$PATHS"
