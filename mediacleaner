@@ -1,0 +1,92 @@
+#!/usr/bin/env bash
+set -euo pipefail
+IFS=$'\n\t'
+
+usage()
+{
+	cat << EOF
+usage: $(basename "$0") [--help] [dir1] [dir2]
+example: $(basename "$0") /data/plex/tv /data/plex/movies
+EOF
+	exit 0
+}
+
+expr "$*" : ".*--help" > /dev/null && usage
+
+readonly LOG_FILE="/tmp/$(basename "$0").log"
+info()    { echo "$(date) [INFO]    $*" ; }
+warning() { echo "$(date) [WARNING] $*" ; }
+error()   { echo "$(date) [ERROR]   $*" ; }
+fatal()   { echo "$(date) [FATAL]   $*" ; exit 1 ; }
+exec >  >(tee -ia "$LOG_FILE")
+exec 2> >(tee -ia "$LOG_FILE" >&2)
+
+cleanup() {
+	info "cleaning up..."
+	# Remove temporary files, etc...
+	# Restart services, etc...
+	info "finished"
+}
+
+# exit here if this script was sourced
+[[ "${BASH_SOURCE[0]:-$0}" != "$0" ]] && exit 0
+
+trap cleanup EXIT
+
+[ -n "$1" ] || usage
+
+info "cleaning $*..."
+
+ask() {
+	# http://djm.me/ask
+	local prompt default REPLY
+
+	while true; do
+
+		if [ "${2:-}" = "Y" ]; then
+			prompt="Y/n"
+			default=Y
+		elif [ "${2:-}" = "N" ]; then
+			prompt="y/N"
+			default=N
+		else
+			prompt="y/n"
+			default=
+		fi
+
+		# Ask the question (not using "read -p" as it uses stderr not stdout)
+		echo -n "$1 [$prompt] "
+
+		# Read the answer (use /dev/tty in case stdin is redirected from somewhere else)
+		read REPLY </dev/tty
+
+		# Default?
+		if [ -z "$REPLY" ]; then
+			REPLY=$default
+		fi
+
+		# Check if the reply is valid
+		case "$REPLY" in
+			Y*|y*) return 0 ;;
+			N*|n*) return 1 ;;
+		esac
+
+	done
+}
+
+for rootpath in $@; do
+	if [[ -z "$(find $rootpath -maxdepth 3 -type f \( -name "*.mkv" -or -name "*.mp4" \))" ]]; then
+		error "no media files found in '$rootpath'"
+		usage
+	fi
+	
+	for path in $(find $rootpath -mindepth 1 -type d); do
+		if [[ -z "$(find $path -maxdepth 1 -type f \( -name "*.mkv" -or -name "*.mp4" \))" ]]; then
+			info "no media files found in '$path':"
+			ls -lh $path/
+			if ask "do you want to remove it?" Y; then
+				rm -rf $path
+			fi
+		fi
+	done
+done

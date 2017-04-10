@@ -9,10 +9,10 @@ services:
             - "32400"
         image: "plexinc/pms-docker:plexpass"
         volumes:
-            - ./volumes/plex/config:/config
-            - ./volumes/plex/tv:/tv
-            - ./volumes/plex/movies:/movies
-            - ./volumes/plex/transcode:/transcode
+            - ./plex/config:/config
+            - ./plex/media/tv:/tv
+            - ./plex/media/movies:/movies
+            - /tmp:/transcode
             - /etc/localtime:/etc/localtime:ro
             - /dev/rtc:/dev/rtc:ro
         env_file:
@@ -26,8 +26,8 @@ services:
             - "6789"
         image: "linuxserver/nzbget"
         volumes:
-            - ./volumes/nzbget/config:/config
-            - ./volumes/nzbget/downloads:/downloads
+            - ./nzbget/config:/config
+            - ./nzbget/downloads:/downloads
             - /etc/localtime:/etc/localtime:ro
             - /dev/rtc:/dev/rtc:ro
         env_file:
@@ -41,10 +41,10 @@ services:
             - "8989"
         image: "linuxserver/sonarr"
         volumes:
-            - ./volumes/sonarr/config:/config
-            - ./volumes/nzbget/downloads:/downloads
-            - ./volumes/transmission/downloads:/transmission
-            - ./volumes/plex/tv:/tv
+            - ./sonarr/config:/config
+            - ./nzbget/downloads:/downloads
+            - ./transmission/downloads:/transmission
+            - ./plex/media/tv:/tv
             - /etc/localtime:/etc/localtime:ro
             - /dev/rtc:/dev/rtc:ro
         env_file:
@@ -60,10 +60,10 @@ services:
             - "7878"
         image: "linuxserver/radarr"
         volumes:
-            - ./volumes/radarr/config:/config
-            - ./volumes/nzbget/downloads:/downloads
-            - ./volumes/transmission/downloads:/transmission
-            - ./volumes/plex/movies:/movies
+            - ./radarr/config:/config
+            - ./nzbget/downloads:/downloads
+            - ./transmission/downloads:/transmission
+            - ./plex/media/movies:/movies
             - /etc/localtime:/etc/localtime:ro
             - /dev/rtc:/dev/rtc:ro
         env_file:
@@ -79,8 +79,8 @@ services:
             - "8181"
         image: "linuxserver/plexpy"
         volumes:
-            - ./volumes/plexpy/config:/config
-            - ./volumes/plex/config/Library/Application Support/Plex Media Server/Logs:/logs:ro
+            - ./plexpy/config:/config
+            - ./plex/config/Library/Application Support/Plex Media Server/Logs:/logs:ro
             - /etc/localtime:/etc/localtime:ro
             - /dev/rtc:/dev/rtc:ro
         env_file:
@@ -99,9 +99,9 @@ services:
             - "51413:51413/tcp"
             - "51413:51413/udp"
         volumes:
-            - ./volumes/transmission/config:/config
-            - ./volumes/transmission/downloads:/downloads
-            - ./volumes/transmission/watch:/watch
+            - ./transmission/config:/config
+            - ./transmission/downloads:/downloads
+            - ./transmission/watch:/watch
             - /etc/localtime:/etc/localtime:ro
             - /dev/rtc:/dev/rtc:ro
         env_file:
@@ -115,7 +115,7 @@ services:
             - "9000"
         image: "portainer/portainer"
         volumes:
-            - ./volumes/portainer/data:/data
+            - ./portainer/config:/data
             - /var/run/docker.sock:/var/run/docker.sock
     hydra:
         # https://github.com/linuxserver/docker-hydra
@@ -125,8 +125,8 @@ services:
             - "5075"
         image: "linuxserver/hydra"
         volumes:
-            - ./volumes/hydra/config:/config
-            - ./volumes/hydra/downloads:/downloads
+            - ./hydra/config:/config
+            - ./hydra/downloads:/downloads
             - /etc/localtime:/etc/localtime:ro
             - /dev/rtc:/dev/rtc:ro
         env_file:
@@ -145,7 +145,7 @@ services:
             - "443:443/tcp"
         privileged: true
         volumes:
-            - ./volumes/letsencrypt/config:/config
+            - ./letsencrypt/config:/config
             - /etc/localtime:/etc/localtime:ro
             - /dev/rtc:/dev/rtc:ro
         restart: unless-stopped
