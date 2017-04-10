@@ -1,0 +1,54 @@
+#!/bin/bash
+SOURCE=$1
+DRYRUN=$2
+
+if [ "$DRYRUN" = "dry" ]; then
+	DRYRUNCMD="--dry-run"
+	echo "Dry run initiated..."
+fi
+
+# mysync()
+# {
+	# for path in $1; do
+		# sourcepath="${path%:*}"
+		# destpath="${path#*:}"
+		# [ -d "$destpath" ] || mkdir -p "$destpath"
+		# rsync -avz -e "ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null" --progress $DRYRUNCMD --files-from=<(\
+		# ssh $SOURCE "find $sourcepath $2 -type f | sed 's|$sourcepath||'") \
+		# $SOURCE:/$sourcepath $destpath/
+	# done
+# }
+# mysync "$PATHS" "-mtime -84"	# 12 weeks
+
+mysync()
+{
+	for path in $1; do
+		sourcepath="${path%:*}"
+		destpath="${path#*:}"
+		[ -d "$destpath" ] || mkdir -p "$destpath"
+		rsync -avz -e "ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null" --progress --delete $DRYRUNCMD $SOURCE:/$sourcepath $destpath/
+	done
+}
+
+
+PATHS=
+PATHS+=" /home/kyle/no_snapshot/plex/movies/:/home/ubuntu/mediaserver/plex/media/movies/"
+PATHS+=" /home/kyle/no_snapshot/plex/tv/:/home/ubuntu/mediaserver/plex/media/tv/"
+mysync "$PATHS"
+
+# PATHS=
+# PATHS+=" /home/kyle/no_snapshot/nzbget/:/home/ubuntu/mediaserver/nzbget/downloads/"
+# PATHS+=" /home/kyle/no_snapshot/transmission/:/home/ubuntu/mediaserver/transmission/downloads/"
+# mysync "$PATHS"
+
+# PATHS=
+# PATHS+=" /home/kyle/mediaserver/volumes/hydra/config/:/home/ubuntu/mediaserver/hydra/config/"
+# PATHS+=" /home/kyle/mediaserver/volumes/letsencrypt/config/:/home/ubuntu/mediaserver/letsencrypt/config/"
+# PATHS+=" /home/kyle/mediaserver/volumes/nzbget/config/:/home/ubuntu/mediaserver/nzbget/config/"
+# PATHS+=" /home/kyle/mediaserver/volumes/plex/config/:/home/ubuntu/mediaserver/plex/config/"
+# PATHS+=" /home/kyle/mediaserver/volumes/plexpy/config/:/home/ubuntu/mediaserver/plexpy/config/"
+# PATHS+=" /home/kyle/mediaserver/volumes/portainer/data/:/home/ubuntu/mediaserver/portainer/config/"
+# PATHS+=" /home/kyle/mediaserver/volumes/radarr/config/:/home/ubuntu/mediaserver/radarr/config/"
+# PATHS+=" /home/kyle/mediaserver/volumes/sonarr/config/:/home/ubuntu/mediaserver/sonarr/config/"
+# PATHS+=" /home/kyle/mediaserver/volumes/transmission/config/:/home/ubuntu/mediaserver/transmission/config/"
+# mysync "$PATHS"
