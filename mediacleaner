@@ -81,9 +81,9 @@ for rootpath in $@; do
 	fi
 	
 	for path in $(find $rootpath -mindepth 1 -type d); do
-		if [[ -z "$(find $path -maxdepth 1 -type f \( -name "*.mkv" -or -name "*.mp4" \))" ]]; then
+		if [[ -z "$(find $path -type f \( -name "*.mkv" -or -name "*.mp4" \))" ]]; then
 			info "no media files found in '$path':"
-			ls -lh $path/
+			du -ckh "$path"/*
 			if ask "do you want to remove it?" Y; then
 				rm -rf $path
 			fi
