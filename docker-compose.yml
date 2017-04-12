@@ -90,6 +90,7 @@ services:
         restart: unless-stopped
         depends_on:
             - plex
+            - autoheal
         labels:
             com.github.mcasimir.autoheal.check.cmd: "tail -n10 plexpy.log | grep 'Unable to retrieve data for get_activity' && false"
             com.github.mcasimir.autoheal.check.grace: "60000"
@@ -164,6 +165,7 @@ services:
             - transmission
             - portainer
             - hydra
+            - autoheal
         labels:
             com.github.mcasimir.autoheal.check.cmd: "curl -f -I http://127.0.0.1"
             com.github.mcasimir.autoheal.check.grace: "60000"
