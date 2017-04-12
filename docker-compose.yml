@@ -91,9 +91,9 @@ services:
         depends_on:
             - plex
         labels:
-            com.github.mcasimir.autoheal.check.cmd: "tail -n10 plexpy.log | grep 'Unable to retrieve data for get_current_activity' && false"
-            com.github.mcasimir.autoheal.check.grace: "15000"
-            com.github.mcasimir.autoheal.check.frequency: "10000"
+            com.github.mcasimir.autoheal.check.cmd: "tail -n10 plexpy.log | grep 'Unable to retrieve data for get_activity' && false"
+            com.github.mcasimir.autoheal.check.grace: "60000"
+            com.github.mcasimir.autoheal.check.frequency: "60000"
     transmission:
         # https://github.com/linuxserver/docker-transmission
         # https://hub.docker.com/r/linuxserver/transmission/
@@ -166,8 +166,8 @@ services:
             - hydra
         labels:
             com.github.mcasimir.autoheal.check.cmd: "curl -f -I http://127.0.0.1"
-            com.github.mcasimir.autoheal.check.grace: "15000"
-            com.github.mcasimir.autoheal.check.frequency: "10000"
+            com.github.mcasimir.autoheal.check.grace: "60000"
+            com.github.mcasimir.autoheal.check.frequency: "60000"
     autoheal:
         # https://github.com/mcasimir/docker-autoheal
         container_name: autoheal
