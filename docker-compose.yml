@@ -52,6 +52,7 @@ services:
         restart: unless-stopped
         depends_on:
             - nzbget
+            - hydra
     radarr:
         # https://github.com/linuxserver/docker-radarr
         # https://hub.docker.com/r/linuxserver/radarr/
@@ -71,6 +72,7 @@ services:
         restart: unless-stopped
         depends_on:
             - nzbget
+            - hydra
     plexpy:
         # https://github.com/linuxserver/docker-plexpy
         # https://hub.docker.com/r/linuxserver/plexpy/
@@ -88,6 +90,10 @@ services:
         restart: unless-stopped
         depends_on:
             - plex
+        labels:
+            com.github.mcasimir.autoheal.check.cmd: "tail -n10 plexpy.log | grep 'Unable to retrieve data for get_current_activity' && false"
+            com.github.mcasimir.autoheal.check.grace: "15000"
+            com.github.mcasimir.autoheal.check.frequency: "10000"
     transmission:
         # https://github.com/linuxserver/docker-transmission
         # https://hub.docker.com/r/linuxserver/transmission/
@@ -158,3 +164,13 @@ services:
             - transmission
             - portainer
             - hydra
+        labels:
+            com.github.mcasimir.autoheal.check.cmd: "curl -f -I http://127.0.0.1"
+            com.github.mcasimir.autoheal.check.grace: "15000"
+            com.github.mcasimir.autoheal.check.frequency: "10000"
+    autoheal:
+        # https://github.com/mcasimir/docker-autoheal
+        container_name: autoheal
+        image: "mcasimir/docker-autoheal"
+        volumes:
+            - /var/run/docker.sock:/var/run/docker.sock

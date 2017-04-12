@@ -32,23 +32,23 @@ mysync()
 
 
 PATHS=
-PATHS+=" /home/kyle/no_snapshot/plex/movies/:/home/ubuntu/mediaserver/plex/media/movies/"
-PATHS+=" /home/kyle/no_snapshot/plex/tv/:/home/ubuntu/mediaserver/plex/media/tv/"
+PATHS+=" /home/ubuntu/mediaserver/plex/media/movies/:/data/plex/media/movies/"
+PATHS+=" /home/ubuntu/mediaserver/plex/media/tv/:/data/plex/media/tv/"
 mysync "$PATHS"
 
 PATHS=
-PATHS+=" /home/kyle/no_snapshot/nzbget/:/home/ubuntu/mediaserver/nzbget/downloads/"
-PATHS+=" /home/kyle/no_snapshot/transmission/:/home/ubuntu/mediaserver/transmission/downloads/"
+PATHS+=" /home/ubuntu/mediaserver/nzbget/downloads/:/data/nzbget/downloads/"
+PATHS+=" /home/ubuntu/mediaserver/transmission/downloads/:/data/transmission/downloads/"
 mysync "$PATHS"
 
 PATHS=
-PATHS+=" /home/kyle/mediaserver/volumes/hydra/config/:/home/ubuntu/mediaserver/hydra/config/"
-PATHS+=" /home/kyle/mediaserver/volumes/letsencrypt/config/:/home/ubuntu/mediaserver/letsencrypt/config/"
-PATHS+=" /home/kyle/mediaserver/volumes/nzbget/config/:/home/ubuntu/mediaserver/nzbget/config/"
-PATHS+=" /home/kyle/mediaserver/volumes/plex/config/:/home/ubuntu/mediaserver/plex/config/"
-PATHS+=" /home/kyle/mediaserver/volumes/plexpy/config/:/home/ubuntu/mediaserver/plexpy/config/"
-PATHS+=" /home/kyle/mediaserver/volumes/portainer/data/:/home/ubuntu/mediaserver/portainer/config/"
-PATHS+=" /home/kyle/mediaserver/volumes/radarr/config/:/home/ubuntu/mediaserver/radarr/config/"
-PATHS+=" /home/kyle/mediaserver/volumes/sonarr/config/:/home/ubuntu/mediaserver/sonarr/config/"
-PATHS+=" /home/kyle/mediaserver/volumes/transmission/config/:/home/ubuntu/mediaserver/transmission/config/"
+PATHS+=" /home/ubuntu/mediaserver/hydra/config/:/data/hydra/config/"
+PATHS+=" /home/ubuntu/mediaserver/letsencrypt/config/:/data/letsencrypt/config/"
+PATHS+=" /home/ubuntu/mediaserver/nzbget/config/:/data/nzbget/config/"
+# PATHS+=" /home/ubuntu/mediaserver/plex/config/:/data/plex/config/"
+PATHS+=" /home/ubuntu/mediaserver/plexpy/config/:/data/plexpy/config/"
+PATHS+=" /home/ubuntu/mediaserver/portainer/config/:/data/portainer/config/"
+PATHS+=" /home/ubuntu/mediaserver/radarr/config/:/data/radarr/config/"
+PATHS+=" /home/ubuntu/mediaserver/sonarr/config/:/data/sonarr/config/"
+PATHS+=" /home/ubuntu/mediaserver/transmission/config/:/data/transmission/config/"
 mysync "$PATHS"
