@@ -5,7 +5,7 @@ services:
         # https://hub.docker.com/r/plexinc/pms-docker/
         deploy:
            restart_policy:
-             condition: on-failure
+             condition: any
              delay: 5s
              max_attempts: 3
              window: 120s
@@ -38,7 +38,7 @@ services:
             - ./common.env
         deploy:
            restart_policy:
-             condition: on-failure
+             condition: any
              delay: 5s
              max_attempts: 3
              window: 120s
@@ -62,7 +62,7 @@ services:
             - ./common.env
         deploy:
            restart_policy:
-             condition: on-failure
+             condition: any
              delay: 5s
              max_attempts: 3
              window: 120s
@@ -89,7 +89,7 @@ services:
             - ./common.env
         deploy:
            restart_policy:
-             condition: on-failure
+             condition: any
              delay: 5s
              max_attempts: 3
              window: 120s
@@ -114,7 +114,7 @@ services:
             - ./common.env
         deploy:
            restart_policy:
-             condition: on-failure
+             condition: any
              delay: 5s
              max_attempts: 3
              window: 120s
@@ -142,7 +142,7 @@ services:
             - ./common.env
         deploy:
            restart_policy:
-             condition: on-failure
+             condition: any
              delay: 5s
              max_attempts: 3
              window: 120s
@@ -160,7 +160,7 @@ services:
             - /var/run/docker.sock:/var/run/docker.sock
         deploy:
            restart_policy:
-             condition: on-failure
+             condition: any
              delay: 5s
              max_attempts: 3
              window: 120s
@@ -179,7 +179,7 @@ services:
             - ./common.env
         deploy:
            restart_policy:
-             condition: on-failure
+             condition: any
              delay: 5s
              max_attempts: 3
              window: 120s
@@ -204,7 +204,7 @@ services:
             - /dev/rtc:/dev/rtc:ro
         deploy:
            restart_policy:
-             condition: on-failure
+             condition: any
              delay: 5s
              max_attempts: 3
              window: 120s

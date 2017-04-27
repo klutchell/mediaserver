@@ -16,40 +16,43 @@ Image | Size | Version
 [linuxserver/hydra](https://hub.docker.com/r/linuxserver/hydra/) | [![](https://images.microbadger.com/badges/image/linuxserver/hydra.svg)](https://microbadger.com/images/linuxserver/hydra) | [![](https://images.microbadger.com/badges/version/linuxserver/hydra.svg)](https://microbadger.com/images/linuxserver/hydra)
 [linuxserver/letsencrypt](https://hub.docker.com/r/linuxserver/letsencrypt/) | [![](https://images.microbadger.com/badges/image/linuxserver/letsencrypt.svg)](https://microbadger.com/images/linuxserver/letsencrypt "linuxserver/letsencrypt") | [![](https://images.microbadger.com/badges/version/linuxserver/letsencrypt.svg)](https://microbadger.com/images/linuxserver/letsencrypt)
 
-## Dependencies
+## Install Dependencies
 
 Install [docker engine](https://docs.docker.com/engine/installation/):
 ```bash
 $ curl -sSL get.docker.com | sh
 ```
 
-## Installing
+## Clone Repo
 
 Clone the repo to somewhere convenient with reasonable storage available:
 ```bash
 $ git clone git@github.com:klutchell/mediaserver.git ~/mediaserver
 ```
 
-## Configuration
+## Configure Compose
 
-Edit `docker-compose.yml` with desired volume paths. Symlinks are allowed and it makes it easier to point some volumes to large mount points.
+Edit `docker-compose.yml` with desired volume paths:
 ```bash
-$ nano ~/mediaserver/docker-compose.yml`
+$ nano ~/mediaserver/docker-compose.yml
 ```
+Symlinks are allowed and it makes it easier to point some volumes to large mount points.
+
+## Set Environment
 
 Copy the `*.env.sample` files to `*.env` before editing each of them with desired values.
-https://docs.docker.com/compose/compose-file/#/envfile
 ```bash
 $ for env in ~/mediaserver/*.env.sample; do cp "${env}" "${env%.sample}"; done
 $ nano ~/mediaserver/*.env
 ```
+https://docs.docker.com/compose/compose-file/#/envfile
 
-## Running
+## Deploy Stack
 
 Pull the latest images from docker hub and start them with docker stack deploy:
 ```bash
 $ docker stack init
-$ docker stack deploy --compose-file docker-compose.yml STACK
+$ docker stack deploy --compose-file ~/mediaserver/docker-compose.yml STACK
 ```
 
 ## Author
