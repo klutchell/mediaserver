@@ -1,9 +1,8 @@
-# Docker Media Server #
+# Docker Plex & Usenet Media Server #
 
 ## Description
 
 This is a docker-based plex media server for ubuntu using pre-built public images.
-It pulls and runs the following docker images via [docker-compose](https://github.com/docker/compose):
 
 Image | Size | Version
 --- | --- | ---
@@ -19,34 +18,26 @@ Image | Size | Version
 
 ## Dependencies
 
-The following utilities will need to be installed first:
-* [docker engine](https://docs.docker.com/engine/installation/)
-* [docker-compose](https://docs.docker.com/compose/install/)
-
-I have a bash script on GitHub to automate the installation of Docker and Docker-Compose. Please read it carefully before blindly running these commands.
-
-https://raw.githubusercontent.com/klutchell/dotfiles/master/bin/bin/install
+Install [docker engine](https://docs.docker.com/engine/installation/):
 ```bash
-$ curl https://raw.githubusercontent.com/klutchell/dotfiles/master/bin/bin/install | sudo bash -s docker compose
+$ curl -sSL get.docker.com | sh
 ```
 
 ## Installing
 
-Clone the repo to somewhere convenient with reasonable storage available.
+Clone the repo to somewhere convenient with reasonable storage available:
 ```bash
-git clone --recursive -j8 git@github.com:klutchell/compose-mediaserver.git ~/mediaserver
+$ git clone --recursive -j8 git@github.com:klutchell/compose-mediaserver.git ~/mediaserver
 ```
 
 ## Configuration
 
 Edit `docker-compose.yml` with desired volume paths. Symlinks are allowed and it makes it easier to point some volumes to large mount points.
-
 ```bash
 $ nano ~/mediaserver/docker-compose.yml`
 ```
 
 Copy the `*.env.sample` files to `*.env` before editing each of them with desired values.
-
 https://docs.docker.com/compose/compose-file/#/envfile
 ```bash
 $ for env in ~/mediaserver/*.env.sample; do cp "${env}" "${env%.sample}"; done
@@ -55,10 +46,10 @@ $ nano ~/mediaserver/*.env
 
 ## Running
 
-Pull the latest images from docker hub and start them with compose.
+Pull the latest images from docker hub and start them with docker stack deploy:
 ```bash
-$ ~/mediaserver/bin/pull
-$ ~/mediaserver/bin/up
+$ docker stack init
+$ docker stack deploy --compose-file docker-compose.yml STACK
 ```
 
 ## Author

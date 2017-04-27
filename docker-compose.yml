@@ -3,10 +3,12 @@ services:
     plex:
         # https://github.com/plexinc/pms-docker
         # https://hub.docker.com/r/plexinc/pms-docker/
-        container_name: plex
-        restart: unless-stopped
-        expose:
-            - "32400"
+        deploy:
+           restart_policy:
+             condition: on-failure
+             delay: 5s
+             max_attempts: 3
+             window: 120s
         image: "plexinc/pms-docker:plexpass"
         volumes:
             - ./plex/config:/config
@@ -18,12 +20,14 @@ services:
         env_file:
             - ./common.env
             - ./plex.env
+        healthcheck:
+            test: ["CMD", "curl", "-f", "http://localhost:32400/web"]
+            interval: 1m
+            timeout: 10s
+            retries: 3
     nzbget:
         # https://github.com/linuxserver/docker-nzbget
         # https://hub.docker.com/r/linuxserver/nzbget/
-        container_name: nzbget
-        expose:
-            - "6789"
         image: "linuxserver/nzbget"
         volumes:
             - ./nzbget/config:/config
@@ -32,13 +36,20 @@ services:
             - /dev/rtc:/dev/rtc:ro
         env_file:
             - ./common.env
-        restart: unless-stopped
+        deploy:
+           restart_policy:
+             condition: on-failure
+             delay: 5s
+             max_attempts: 3
+             window: 120s
+        healthcheck:
+            test: ["CMD", "curl", "-f", "http://localhost:6789/nzbget"]
+            interval: 1m
+            timeout: 10s
+            retries: 3
     sonarr:
         # https://github.com/linuxserver/docker-sonarr
         # https://hub.docker.com/r/linuxserver/sonarr/
-        container_name: sonarr
-        expose:
-            - "8989"
         image: "linuxserver/sonarr"
         volumes:
             - ./sonarr/config:/config
@@ -49,16 +60,23 @@ services:
             - /dev/rtc:/dev/rtc:ro
         env_file:
             - ./common.env
-        restart: unless-stopped
+        deploy:
+           restart_policy:
+             condition: on-failure
+             delay: 5s
+             max_attempts: 3
+             window: 120s
         depends_on:
             - nzbget
             - hydra
+        healthcheck:
+            test: ["CMD", "curl", "-f", "http://localhost:8989/sonarr"]
+            interval: 1m
+            timeout: 10s
+            retries: 3
     radarr:
         # https://github.com/linuxserver/docker-radarr
         # https://hub.docker.com/r/linuxserver/radarr/
-        container_name: radarr
-        expose:
-            - "7878"
         image: "linuxserver/radarr"
         volumes:
             - ./radarr/config:/config
@@ -69,16 +87,23 @@ services:
             - /dev/rtc:/dev/rtc:ro
         env_file:
             - ./common.env
-        restart: unless-stopped
+        deploy:
+           restart_policy:
+             condition: on-failure
+             delay: 5s
+             max_attempts: 3
+             window: 120s
         depends_on:
             - nzbget
             - hydra
+        healthcheck:
+            test: ["CMD", "curl", "-f", "http://localhost:7878/radarr"]
+            interval: 1m
+            timeout: 10s
+            retries: 3
     plexpy:
         # https://github.com/linuxserver/docker-plexpy
         # https://hub.docker.com/r/linuxserver/plexpy/
-        container_name: plexpy
-        expose:
-            - "8181"
         image: "linuxserver/plexpy"
         volumes:
             - ./plexpy/config:/config
@@ -87,20 +112,22 @@ services:
             - /dev/rtc:/dev/rtc:ro
         env_file:
             - ./common.env
-        restart: unless-stopped
+        deploy:
+           restart_policy:
+             condition: on-failure
+             delay: 5s
+             max_attempts: 3
+             window: 120s
         depends_on:
             - plex
-            - autoheal
-        labels:
-            com.github.mcasimir.autoheal.check.cmd: "/config/healthcheck"
-            com.github.mcasimir.autoheal.check.grace: "45000"
-            com.github.mcasimir.autoheal.check.frequency: "45000"
+        healthcheck:
+            test: ["CMD", "curl", "-f", "http://localhost:8181/plexpy"]
+            interval: 1m
+            timeout: 10s
+            retries: 3
     transmission:
         # https://github.com/linuxserver/docker-transmission
         # https://hub.docker.com/r/linuxserver/transmission/
-        container_name: transmission
-        expose:
-            - "9091"
         image: "linuxserver/transmission"
         ports:
             - "51413:51413/tcp"
@@ -113,23 +140,35 @@ services:
             - /dev/rtc:/dev/rtc:ro
         env_file:
             - ./common.env
-        restart: unless-stopped
+        deploy:
+           restart_policy:
+             condition: on-failure
+             delay: 5s
+             max_attempts: 3
+             window: 120s
+        healthcheck:
+            test: ["CMD", "curl", "-f", "http://localhost:9091/transmission"]
+            interval: 1m
+            timeout: 10s
+            retries: 3
     portainer:
         # https://github.com/portainer/portainer
         # https://hub.docker.com/r/portainer/portainer/
-        container_name: portainer
-        expose:
-            - "9000"
         image: "portainer/portainer"
         volumes:
             - ./portainer/config:/data
             - /var/run/docker.sock:/var/run/docker.sock
+        deploy:
+           restart_policy:
+             condition: on-failure
+             delay: 5s
+             max_attempts: 3
+             window: 120s
+        healthcheck:
+            disable: true
     hydra:
         # https://github.com/linuxserver/docker-hydra
         # https://hub.docker.com/r/linuxserver/hydra/
-        container_name: hydra
-        expose:
-            - "5075"
         image: "linuxserver/hydra"
         volumes:
             - ./hydra/config:/config
@@ -138,11 +177,20 @@ services:
             - /dev/rtc:/dev/rtc:ro
         env_file:
             - ./common.env
-        restart: unless-stopped
+        deploy:
+           restart_policy:
+             condition: on-failure
+             delay: 5s
+             max_attempts: 3
+             window: 120s
+        healthcheck:
+            test: ["CMD", "curl", "-f", "http://localhost:5075/hydra"]
+            interval: 1m
+            timeout: 10s
+            retries: 3
     letsencrypt:
         # https://github.com/linuxserver/docker-letsencrypt
         # https://hub.docker.com/r/linuxserver/letsencrypt/
-        container_name: letsencrypt
         env_file:
             - ./common.env
             - ./letsencrypt.env
@@ -150,29 +198,21 @@ services:
         ports:
             - "80:80/tcp"
             - "443:443/tcp"
-        privileged: true
         volumes:
             - ./letsencrypt/config:/config
             - /etc/localtime:/etc/localtime:ro
             - /dev/rtc:/dev/rtc:ro
-        restart: unless-stopped
+        deploy:
+           restart_policy:
+             condition: on-failure
+             delay: 5s
+             max_attempts: 3
+             window: 120s
         depends_on:
             - plex
-            - nzbget
-            - sonarr
-            - radarr
-            - plexpy
-            - transmission
             - portainer
-            - hydra
-            - autoheal
-        labels:
-            com.github.mcasimir.autoheal.check.cmd: "/config/healthcheck"
-            com.github.mcasimir.autoheal.check.grace: "45000"
-            com.github.mcasimir.autoheal.check.frequency: "45000"
-    autoheal:
-        # https://github.com/mcasimir/docker-autoheal
-        container_name: autoheal
-        image: "mcasimir/docker-autoheal"
-        volumes:
-            - /var/run/docker.sock:/var/run/docker.sock
+        healthcheck:
+            test: ["CMD", "curl", "-f", "http://localhost"]
+            interval: 1m
+            timeout: 10s
+            retries: 3
