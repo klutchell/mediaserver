@@ -27,7 +27,7 @@ $ curl -sSL get.docker.com | sh
 
 Clone the repo to somewhere convenient with reasonable storage available:
 ```bash
-$ git clone --recursive -j8 git@github.com:klutchell/compose-mediaserver.git ~/mediaserver
+$ git clone git@github.com:klutchell/mediaserver.git ~/mediaserver
 ```
 
 ## Configuration

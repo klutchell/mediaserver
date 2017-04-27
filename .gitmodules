@@ -1,4 +1,0 @@
-[submodule "bin"]
-	path = bin
-	url = git@github.com:klutchell/compose-bin.git
-	branch = master
