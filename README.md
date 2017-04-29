@@ -52,7 +52,34 @@ https://docs.docker.com/compose/compose-file/#/envfile
 Pull the latest images from docker hub and start them with docker stack deploy:
 ```bash
 $ docker stack init
-$ docker stack deploy --compose-file ~/mediaserver/docker-compose.yml STACK
+$ docker stack deploy --compose-file docker-compose.yml STACK
+```
+
+## Update All Services
+
+```bash
+$ docker stack deploy --compose-file docker-compose.yml STACK
+```
+
+## Update A Service
+
+As an example, this will pull the latest letsencrypt image and update the service:
+```bash
+$ docker service update --force --image linuxserver/letsencrypt STACK_letsencrypt
+```
+
+## Stop A Service
+
+As an example, this will stop the letsencrypt service:
+```bash
+$ docker service scale STACK_letsencrypt=0
+```
+
+## Start A Service
+
+As an example, this will start the letsencrypt service:
+```bash
+$ docker service scale STACK_letsencrypt=1
 ```
 
 ## Author

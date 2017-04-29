@@ -1,5 +1,20 @@
 version: '3'
 services:
+    portainer:
+        # https://github.com/portainer/portainer
+        # https://hub.docker.com/r/portainer/portainer/
+        image: "portainer/portainer"
+        volumes:
+            - ./portainer/config:/data
+            - /var/run/docker.sock:/var/run/docker.sock
+        deploy:
+           restart_policy:
+             condition: any
+             delay: 5s
+             max_attempts: 3
+             window: 120s
+        healthcheck:
+            disable: true
     plex:
         # https://github.com/plexinc/pms-docker
         # https://hub.docker.com/r/plexinc/pms-docker/
@@ -151,21 +166,6 @@ services:
             interval: 1m
             timeout: 10s
             retries: 3
-    portainer:
-        # https://github.com/portainer/portainer
-        # https://hub.docker.com/r/portainer/portainer/
-        image: "portainer/portainer"
-        volumes:
-            - ./portainer/config:/data
-            - /var/run/docker.sock:/var/run/docker.sock
-        deploy:
-           restart_policy:
-             condition: any
-             delay: 5s
-             max_attempts: 3
-             window: 120s
-        healthcheck:
-            disable: true
     hydra:
         # https://github.com/linuxserver/docker-hydra
         # https://hub.docker.com/r/linuxserver/hydra/
