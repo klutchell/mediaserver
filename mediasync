@@ -7,19 +7,6 @@ if [ "$DRYRUN" = "dry" ]; then
 	echo "Dry run initiated..."
 fi
 
-# mysync()
-# {
-	# for path in $1; do
-		# sourcepath="${path%:*}"
-		# destpath="${path#*:}"
-		# [ -d "$destpath" ] || mkdir -p "$destpath"
-		# rsync -avz -e "ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null" --progress $DRYRUNCMD --files-from=<(\
-		# ssh $SOURCE "find $sourcepath $2 -type f | sed 's|$sourcepath||'") \
-		# $SOURCE:/$sourcepath $destpath/
-	# done
-# }
-# mysync "$PATHS" "-mtime -84"	# 12 weeks
-
 mysync()
 {
 	for path in $1; do
@@ -30,25 +17,14 @@ mysync()
 	done
 }
 
-
 PATHS=
-PATHS+=" /home/ubuntu/mediaserver/plex/media/movies/:/data/plex/media/movies/"
-PATHS+=" /home/ubuntu/mediaserver/plex/media/tv/:/data/plex/media/tv/"
-mysync "$PATHS"
-
-PATHS=
-PATHS+=" /home/ubuntu/mediaserver/nzbget/downloads/:/data/nzbget/downloads/"
-PATHS+=" /home/ubuntu/mediaserver/transmission/downloads/:/data/transmission/downloads/"
-mysync "$PATHS"
-
-PATHS=
-PATHS+=" /home/ubuntu/mediaserver/hydra/config/:/data/hydra/config/"
-PATHS+=" /home/ubuntu/mediaserver/letsencrypt/config/:/data/letsencrypt/config/"
-PATHS+=" /home/ubuntu/mediaserver/nzbget/config/:/data/nzbget/config/"
-# PATHS+=" /home/ubuntu/mediaserver/plex/config/:/data/plex/config/"
-PATHS+=" /home/ubuntu/mediaserver/plexpy/config/:/data/plexpy/config/"
-PATHS+=" /home/ubuntu/mediaserver/portainer/config/:/data/portainer/config/"
-PATHS+=" /home/ubuntu/mediaserver/radarr/config/:/data/radarr/config/"
-PATHS+=" /home/ubuntu/mediaserver/sonarr/config/:/data/sonarr/config/"
-PATHS+=" /home/ubuntu/mediaserver/transmission/config/:/data/transmission/config/"
+PATHS+=" /home/ubuntu/mediaserver/hydra/:/home/ubuntu/mediaserver/hydra/"
+PATHS+=" /home/ubuntu/mediaserver/letsencrypt/:/home/ubuntu/mediaserver/letsencrypt/"
+PATHS+=" /home/ubuntu/mediaserver/nzbget/:/home/ubuntu/mediaserver/nzbget/"
+PATHS+=" /home/ubuntu/mediaserver/plex/:/home/ubuntu/mediaserver/plex/"
+PATHS+=" /home/ubuntu/mediaserver/plexpy/:/home/ubuntu/mediaserver/plexpy/"
+PATHS+=" /home/ubuntu/mediaserver/portainer/:/home/ubuntu/mediaserver/portainer/"
+PATHS+=" /home/ubuntu/mediaserver/radarr/:/home/ubuntu/mediaserver/radarr/"
+PATHS+=" /home/ubuntu/mediaserver/sonarr/:/home/ubuntu/mediaserver/sonarr/"
+PATHS+=" /home/ubuntu/mediaserver/transmission/:/home/ubuntu/mediaserver/transmission/"
 mysync "$PATHS"
