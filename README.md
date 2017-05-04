@@ -2,7 +2,7 @@
 
 ## Description
 
-This is a docker-based plex media server for ubuntu using pre-built public images.
+This is a Docker-based Plex Media Server setup for ubuntu using public images from Docker Hub.
 
 Image | Size | Version
 --- | --- | ---
@@ -19,17 +19,18 @@ Image | Size | Version
 ## Installation
 ### Install Dependencies
 
-Install [docker engine](https://docs.docker.com/engine/installation/):
+Install [docker engine](https://docs.docker.com/engine/installation/).
 ```bash
 $ curl -sSL get.docker.com | sh
 ```
 
 ### Clone Repo
 
-Clone the repo to somewhere convenient with reasonable storage available:
+Clone the repo to somewhere convenient with reasonable storage available.
 ```bash
 $ git clone git@github.com:klutchell/mediaserver.git ~/mediaserver
 ```
+You can change data and media paths in a later step.
 
 ### Initialize Swarm
 
@@ -42,11 +43,40 @@ $ docker swarm init
 ## Configuration
 ### Configure Compose File
 
-Edit the compose file with desired volume paths:
+By default, most volume mounts are pointing to subdirectories of the project root. Here's the folder structure as defined by `docker-compose.yml`.
+```
+mediaserver
+├── docker-compose.yml
+├── common.env
+├── letsencrypt.env
+├── plex.env
+├── hydra
+|   ├── config
+|   └── downloads
+├── letsencrypt
+|   └── config
+├── nzbget
+|   ├── config
+|   └── downloads
+├── plex
+|   ├── config
+|   └── media
+|       ├── movies
+|       └── tv
+├── plexpy
+|   └── config
+├── radarr
+|   └── config
+├── sonarr
+|   └── config
+├── transmission
+|   ├── config
+|   └── downloads
+```
+Feel free to edit the compose file with different volume mount paths. Symlinks are allowed and it makes it easier to point some volumes to large mount points.
 ```bash
 $ nano ~/mediaserver/docker-compose.yml
 ```
-Symlinks are allowed and it makes it easier to point some volumes to large mount points.
 
 ### Create Environment Files
 
