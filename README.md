@@ -31,12 +31,12 @@ Clone the repo to somewhere convenient with reasonable storage available:
 $ git clone git@github.com:klutchell/mediaserver.git ~/mediaserver
 ```
 
-### Initialize Stack
+### Initialize Swarm
 
 I've switched to [docker stack](https://docs.docker.com/engine/reference/commandline/stack/) where I was previously using docker-compose.
-It requires we initialize a master node before adding services. I haven't tried multiple nodes yet.
+It requires we initialize a master swarm node before adding services to the stack. I haven't tried multiple nodes yet.
 ```bash
-$ docker stack init
+$ docker swarm init
 ```
 
 ## Configuration
