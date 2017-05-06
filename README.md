@@ -41,9 +41,30 @@ $ docker swarm init
 ```
 
 ## Configuration
-### Configure Compose File
+### Configure Environment Parameters
 
-By default, most volume mounts are pointing to subdirectories of the project root. Here's the folder structure as defined by `docker-compose.yml`.
+Some environment files are in the project root to provide configurable parameters to the docker services.
+https://docs.docker.com/compose/compose-file/#/envfile
+Things you'll want to change in these files before first run:
+* `common.env`
+  * PUID (*run `id -u` to find the ID of your current user*)
+  * PGID (*run `id -g` to find the ID of your current user*)
+* `letsencrypt.env` (see https://github.com/linuxserver/docker-letsencrypt)
+  * EMAIL
+  * URL
+  * SUBDOMAINS
+  * ONLY_SUBDOMAINS
+* `plex.env` (see https://github.com/plexinc/pms-docker)
+  * PLEX_UID
+  * PLEX_GID
+  * PLEX_CLAIM
+
+### Configure Folder Structure
+ 
+The docker-compose file in the project root defines the services that will be created.
+https://docs.docker.com/compose/compose-file/
+The only thing I recommend changing in here are the local volume paths, especially if the plex/media folder needs to be on an external drive. Symlinks are allowed and it makes it easier to point some volumes to large mount points.
+By default, most volumes are mounted to subdirectories of the project root. Here's the current folder structure as defined by `docker-compose.yml`.
 ```
 mediaserver
 ├── docker-compose.yml
@@ -73,19 +94,6 @@ mediaserver
 |   ├── config
 |   └── downloads
 ```
-Feel free to edit the compose file with different volume mount paths. Symlinks are allowed and it makes it easier to point some volumes to large mount points.
-```bash
-$ nano ~/mediaserver/docker-compose.yml
-```
-
-### Create Environment Files
-
-Create environment files from the sample environment files before editing each of them with desired values:
-```bash
-$ for env in ~/mediaserver/*.env.sample; do cp "${env}" "${env%.sample}"; done
-$ nano ~/mediaserver/*.env
-```
-https://docs.docker.com/compose/compose-file/#/envfile
 
 ### Manual Configuration
 
@@ -104,6 +112,7 @@ sonarr | `sonarr/config/config.xml` | `<UrlBase>/sonarr</UrlBase>`
 transmission | `transmission/config/settings.json` | `"rpc-url": "/transmission/"`
 plex | `plex/config/Library/Application Support/Plex Media Server/Preferences.xml` | `ManualPortMappingPort="443"` 
 plex | `plex/config/Library/Application Support/Plex Media Server/Preferences.xml` | `customConnections="https://plex.your-domain.com:443"`
+letsencrypt | `letsencrypt/config/nginx/site-confs/default` | `server_name plex.your-domain.com`
 
 Other manual configuration that should be done via the webui:
 * sonarr & radarr: configure indexer to `http://hydra:5075/hydra`
