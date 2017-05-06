@@ -117,25 +117,18 @@ Create a new stack with all of our configured services in the compose file.
 $ docker stack deploy --compose-file docker-compose.yml STACK
 ```
 
+### Update Stack
+
+The same deploy command will pull the latest images and update containers as needed.
+```bash
+$ docker stack deploy --compose-file docker-compose.yml STACK
+```
+
 ### Remove Stack
 
 This will stop all containers and remove the stack. Useful for modifying multiple configuration files as described above.
 ```bash
 $ docker stack rm STACK
-```
-
-### Update Stack
-
-The deploy command should rebuild all the containers if required.
-```bash
-$ docker stack deploy --compose-file docker-compose.yml STACK
-```
-
-### Update A Service
-
-As an example, this will pull the latest letsencrypt image and update the service.
-```bash
-$ docker service update --force --image linuxserver/letsencrypt STACK_letsencrypt
 ```
 
 ### Stop A Service
@@ -150,6 +143,13 @@ $ docker service scale STACK_letsencrypt=0
 As an example, this will start the letsencrypt service.
 ```bash
 $ docker service scale STACK_letsencrypt=1
+```
+
+### Update A Service
+
+As an example, this will pull the latest letsencrypt image and update the service.
+```bash
+$ docker service update --force --image linuxserver/letsencrypt STACK_letsencrypt
 ```
 
 ## Author
