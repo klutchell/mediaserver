@@ -45,6 +45,7 @@ $ docker swarm init
 
 Some environment files are in the project root to provide configurable parameters to the docker services.
 https://docs.docker.com/compose/compose-file/#/envfile
+
 Things you'll want to change in these files before first run:
 * `common.env`
   * PUID (*run `id -u` to find the ID of your current user*)
@@ -63,6 +64,7 @@ Things you'll want to change in these files before first run:
  
 The docker-compose file in the project root defines the services that will be created.
 https://docs.docker.com/compose/compose-file/
+
 The only thing I recommend changing in here are the local volume paths, especially if the plex/media folder needs to be on an external drive. Symlinks are allowed and it makes it easier to point some volumes to large mount points.
 By default, most volumes are mounted to subdirectories of the project root. Here's the current folder structure as defined by `docker-compose.yml`.
 ```
