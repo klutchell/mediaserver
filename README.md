@@ -48,17 +48,17 @@ https://docs.docker.com/compose/compose-file/#/envfile
 
 Things you'll want to change in these files before first run:
 * `common.env`
-  * PUID (*run `id -u` to find the ID of your current user*)
-  * PGID (*run `id -g` to find the ID of your current user*)
+  * `PUID` (*run `id -u` to find the ID of your current user*)
+  * `PGID` (*run `id -g` to find the ID of your current user*)
 * `letsencrypt.env` (see https://github.com/linuxserver/docker-letsencrypt)
-  * EMAIL
-  * URL
-  * SUBDOMAINS
-  * ONLY_SUBDOMAINS
+  * `EMAIL`
+  * `URL`
+  * `SUBDOMAINS`
+  * `ONLY_SUBDOMAINS`
 * `plex.env` (see https://github.com/plexinc/pms-docker)
-  * PLEX_UID
-  * PLEX_GID
-  * PLEX_CLAIM
+  * `PLEX_UID`
+  * `PLEX_GID`
+  * `PLEX_CLAIM`
 
 ### Configure Folder Structure
  
