@@ -61,7 +61,7 @@ Things you'll want to change in these files before first run:
   * `PLEX_CLAIM`
 
 ### Configure Folder Structure
- 
+
 The docker-compose file in the project root defines the services that will be created.
 https://docs.docker.com/compose/compose-file/
 
@@ -112,7 +112,7 @@ plexpy | `plexpy/config/config.ini` | `pms_port = 32400`
 radarr | `radarr/config/config.xml` | `<UrlBase>/radarr</UrlBase>`
 sonarr | `sonarr/config/config.xml` | `<UrlBase>/sonarr</UrlBase>`
 transmission | `transmission/config/settings.json` | `"rpc-url": "/transmission/"`
-plex | `plex/config/Library/Application Support/Plex Media Server/Preferences.xml` | `ManualPortMappingPort="443"` 
+plex | `plex/config/Library/Application Support/Plex Media Server/Preferences.xml` | `ManualPortMappingPort="443"`
 plex | `plex/config/Library/Application Support/Plex Media Server/Preferences.xml` | `customConnections="https://plex.your-domain.com:443"`
 letsencrypt | `letsencrypt/config/nginx/site-confs/default` | `server_name plex.your-domain.com`
 
@@ -125,42 +125,42 @@ Other manual configuration that should be done via the webui:
 
 Create a new stack with all of our configured services in the compose file.
 ```bash
-$ docker stack deploy --compose-file docker-compose.yml STACK
+$ docker stack deploy --compose-file docker-compose.yml mediaserver
 ```
 
 ### Update Stack
 
 The same deploy command will pull the latest images and update containers as needed.
 ```bash
-$ docker stack deploy --compose-file docker-compose.yml STACK
+$ docker stack deploy --compose-file docker-compose.yml mediaserver
 ```
 
 ### Remove Stack
 
 This will stop all containers and remove the stack. Useful for modifying multiple configuration files as described above.
 ```bash
-$ docker stack rm STACK
+$ docker stack rm mediaserver
 ```
 
 ### Stop A Service
 
 As an example, this will stop the letsencrypt service.
 ```bash
-$ docker service scale STACK_letsencrypt=0
+$ docker service scale mediaserver_letsencrypt=0
 ```
 
 ### Start A Service
 
 As an example, this will start the letsencrypt service.
 ```bash
-$ docker service scale STACK_letsencrypt=1
+$ docker service scale mediaserver_letsencrypt=1
 ```
 
 ### Update A Service
 
 As an example, this will pull the latest letsencrypt image and update the service.
 ```bash
-$ docker service update --force --image linuxserver/letsencrypt STACK_letsencrypt
+$ docker service update --force --image linuxserver/letsencrypt mediaserver_letsencrypt
 ```
 
 ## Author
