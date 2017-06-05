@@ -25,10 +25,14 @@ services:
              max_attempts: 3
              window: 120s
         image: "plexinc/pms-docker:plexpass"
+        ports:
+            - "32400:32400/tcp"
+            - "32400:32400/udp"
         volumes:
             - ./plex/config:/config
             - ./plex/media/tv:/tv
             - ./plex/media/movies:/movies
+            - ./letsencrypt/config:/letsencrypt
             - /tmp:/transcode
             - /etc/localtime:/etc/localtime:ro
             - /dev/rtc:/dev/rtc:ro
