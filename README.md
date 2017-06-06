@@ -3,6 +3,7 @@
 ## Description
 
 This is a Docker-based Plex Media Server setup for ubuntu using public images from Docker Hub.
+I didn't create any of these docker images myself, so credit goes to the linked authors.
 
 Image | Size | Version
 --- | --- | ---
@@ -123,10 +124,11 @@ sonarr | `sonarr/config/config.xml` | `<UrlBase>/sonarr</UrlBase>`
 transmission | `transmission/config/settings.json` | `"rpc-url": "/transmission/"`
 plex | `plex/config/Library/Application Support/Plex Media Server/Preferences.xml` | `ManualPortMappingPort="443"`
 plex | `plex/config/Library/Application Support/Plex Media Server/Preferences.xml` | `customConnections="https://plex.your-domain.com:443"`
-letsencrypt | `letsencrypt/config/nginx/site-confs/default` | `server_name plex.your-domain.com`
+letsencrypt | `letsencrypt/config/nginx/site-confs/plex.conf` | `server_name plex.your-domain.com`
 
 Other manual configuration that should be done via the webui:
-* sonarr & radarr: configure indexer to `http://hydra:5075/hydra`
+* sonarr & radarr: add indexer `Type: newsnab` `URL: http://hydra:5075/hydra`
+* sonarr & radarr: add download client `Type: nzbget` `Host: nzbget` `Port: 6789`
 * *tbd*
 
 ## Usage
@@ -142,6 +144,10 @@ $ docker stack deploy --compose-file docker-compose.yml mediaserver
 The same deploy command will pull the latest images and update containers as needed.
 ```bash
 $ docker stack deploy --compose-file docker-compose.yml mediaserver
+```
+This step will leave the old containers and images behind. You can cleanup with the following command.
+```bash
+$ docker system prune
 ```
 
 ### Remove Stack
@@ -176,9 +182,9 @@ $ docker service update --force --image linuxserver/letsencrypt mediaserver_lets
 
 Kyle Harding <kylemharding@gmail.com>
 
-## Credit
+## References
 
-I give credit where it's due and would like to give a shoutout to the creators of the docker images used in this project:
+* [plex-nginx-reverseproxy](https://github.com/toomuchio/plex-nginx-reverseproxy)
 * [portainer.io](http://portainer.io/)
 * [plex.tv](https://www.plex.tv/)
 * [linuxserver.io](https://www.linuxserver.io/)
