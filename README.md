@@ -5,17 +5,25 @@
 This is a Docker-based Plex Media Server setup for ubuntu using public images from Docker Hub.
 I didn't create any of these docker images myself, so credit goes to the linked authors.
 
-Image | Size | Version
---- | --- | ---
-[plexinc/pms-docker](https://hub.docker.com/r/plexinc/pms-docker/) | [![](https://images.microbadger.com/badges/image/plexinc/pms-docker.svg)](https://microbadger.com/images/plexinc/pms-docker) | [![](https://images.microbadger.com/badges/version/plexinc/pms-docker.svg)](https://microbadger.com/images/plexinc/pms-docker)
-[portainer/portainer](https://hub.docker.com/r/portainer/portainer/) | [![](https://images.microbadger.com/badges/image/portainer/portainer.svg)](https://microbadger.com/images/portainer/portainer) | [![](https://images.microbadger.com/badges/version/portainer/portainer.svg)](https://microbadger.com/images/portainer/portainer)
-[linuxserver/nzbget](https://hub.docker.com/r/linuxserver/nzbget/) | [![](https://images.microbadger.com/badges/image/linuxserver/nzbget.svg)](https://microbadger.com/images/linuxserver/nzbget) | [![](https://images.microbadger.com/badges/version/linuxserver/nzbget.svg)](https://microbadger.com/images/linuxserver/nzbget)
-[linuxserver/sonarr](https://hub.docker.com/r/linuxserver/sonarr/) | [![](https://images.microbadger.com/badges/image/linuxserver/sonarr.svg)](https://microbadger.com/images/linuxserver/sonarr) | [![](https://images.microbadger.com/badges/version/linuxserver/sonarr.svg)](https://microbadger.com/images/linuxserver/sonarr)
-[linuxserver/radarr](https://hub.docker.com/r/linuxserver/radarr/) | [![](https://images.microbadger.com/badges/image/linuxserver/radarr.svg)](https://microbadger.com/images/linuxserver/radarr) | [![](https://images.microbadger.com/badges/version/linuxserver/radarr.svg)](https://microbadger.com/images/linuxserver/radarr)
-[linuxserver/plexpy](https://hub.docker.com/r/linuxserver/plexpy/) | [![](https://images.microbadger.com/badges/image/linuxserver/plexpy.svg)](https://microbadger.com/images/linuxserver/plexpy) | [![](https://images.microbadger.com/badges/version/linuxserver/plexpy.svg)](https://microbadger.com/images/linuxserver/plexpy)
-[linuxserver/transmission](https://hub.docker.com/r/linuxserver/transmission/) | [![](https://images.microbadger.com/badges/image/linuxserver/transmission.svg)](https://microbadger.com/images/linuxserver/transmission) | [![](https://images.microbadger.com/badges/version/linuxserver/transmission.svg)](https://microbadger.com/images/linuxserver/transmission)
-[linuxserver/hydra](https://hub.docker.com/r/linuxserver/hydra/) | [![](https://images.microbadger.com/badges/image/linuxserver/hydra.svg)](https://microbadger.com/images/linuxserver/hydra) | [![](https://images.microbadger.com/badges/version/linuxserver/hydra.svg)](https://microbadger.com/images/linuxserver/hydra)
-[linuxserver/letsencrypt](https://hub.docker.com/r/linuxserver/letsencrypt/) | [![](https://images.microbadger.com/badges/image/linuxserver/letsencrypt.svg)](https://microbadger.com/images/linuxserver/letsencrypt "linuxserver/letsencrypt") | [![](https://images.microbadger.com/badges/version/linuxserver/letsencrypt.svg)](https://microbadger.com/images/linuxserver/letsencrypt)
+* [plexinc/pms-docker](https://hub.docker.com/r/plexinc/pms-docker/)
+* [portainer/portainer](https://hub.docker.com/r/portainer/portainer/)
+* [linuxserver/nzbget](https://hub.docker.com/r/linuxserver/nzbget/)
+* [linuxserver/sonarr](https://hub.docker.com/r/linuxserver/sonarr/)
+* [linuxserver/radarr](https://hub.docker.com/r/linuxserver/radarr/)
+* [linuxserver/plexpy](https://hub.docker.com/r/linuxserver/plexpy/)
+* [linuxserver/transmission](https://hub.docker.com/r/linuxserver/transmission/)
+* [linuxserver/hydra](https://hub.docker.com/r/linuxserver/hydra/)
+* [linuxserver/letsencrypt](https://hub.docker.com/r/linuxserver/letsencrypt/)
+
+## Benefits
+
+While the advantages/disadvantages of using docker containers for web services
+are covered in detail elsewhere, here's why I prefer this setup for my media server.
+
+* only one application to install (docker engine)
+* all my config and databases are stored in one place (or more if I prefer)
+* migrating to a new server is painless
+* uptime is reliable with docker stack
 
 ## Requirements
 
@@ -29,27 +37,32 @@ These instructions assume you own a custom domain with `plex.` and `app.` as sub
 
 The idea is that once configured, all your services will be available at the
 following urls:
-* plex: `plex.<your-domain>.com`
-* plexpy: `app.<your-domain>.com/plexpy`
-* hydra: `app.<your-domain>.com/hydra`
-* sonarr: `app.<your-domain>.com/sonarr`
-* radarr: `app.<your-domain>.com/radarr`
-* nzbget: `app.<your-domain>.com/nzbget`
-* transmission: `app.<your-domain>.com/transmission`
-* portainer: `app.<your-domain>.com/portainer`
-
-I'm also using [CloudFlare](cloudflare.com), but that should be considered optional.
+* `plex.<your-domain>.com`
+* `app.<your-domain>.com/plexpy`
+* `app.<your-domain>.com/hydra`
+* `app.<your-domain>.com/sonarr`
+* `app.<your-domain>.com/radarr`
+* `app.<your-domain>.com/nzbget`
+* `app.<your-domain>.com/transmission`
+* `app.<your-domain>.com/portainer`
 
 If you want to avoid this you can still use most of the project features, but you
-will have to adjust the letsencrypt configuration a little bit.
+will have to adjust the [letsencrypt configuration](#letsencrypt) a bit.
+
+### CloudFlare
+
+I'm also using [CloudFlare](https://cloudflare.com) to improve plex performance,
+but that should be considered optional.
 
 ## Installation
 ### Install Docker
 
-Install [docker engine](https://docs.docker.com/engine/installation/).
+Install docker engine.
 ```bash
 $ curl -sSL get.docker.com | sh
+$ sudo usermod -aG docker "$(who am i | awk '{print $1}')"
 ```
+_See https://docs.docker.com/engine/installation/ for additional installation options._
 
 ### Clone Repo
 
@@ -57,16 +70,18 @@ Clone the repo to somewhere convenient with reasonable storage available.
 ```bash
 $ git clone git@github.com:klutchell/mediaserver.git ~/mediaserver
 ```
-You can change data and media paths in a later step.
+_You can change data and media paths in a later step._
 
 ### Initialize Swarm
 
-I've switched to [docker stack](https://docs.docker.com/engine/reference/commandline/stack/) where I was previously using docker-compose.
+I've switched to docker stack where I was previously using docker-compose.
 It requires we initialize a master swarm node before adding services to the stack.
 I haven't tried multiple nodes yet.
 ```bash
 $ docker swarm init
 ```
+_See https://docs.docker.com/engine/reference/commandline/stack/ for additonal
+command line options._
 
 ## Configuration
 
@@ -83,7 +98,7 @@ By default, most volumes are mounted to subdirectories of the project root.
 
 _See https://docs.docker.com/compose/compose-file/ for supported values._
 
-### User ID
+### User/Group
 Provide the desired id that the containers should use when running.
 This is helpful to maintain ownership of the config files and databases.
 * `common.env`
@@ -103,6 +118,18 @@ Provide the environment variables required by the letsencrypt image.
 
 _See https://github.com/linuxserver/docker-letsencrypt for a description of
 each field._
+
+Hopefully you don't have to change these if you are using the expected sub-domains,
+but here they are just in case.
+* `./letsencrypt/config/nginx/site-confs/default`
+* `./letsencrypt/config/nginx/site-confs/plex.conf`
+* `./letsencrypt/config/nginx/auth.conf`
+* `./letsencrypt/config/nginx/nginx.conf`
+* `./letsencrypt/config/nginx/proxy.conf`
+* `./letsencrypt/config/nginx/ssl.conf`
+
+_See https://github.com/toomuchio/plex-nginx-reverseproxy for additional plex
+reverse-proxy suggestions._
 
 ### Plex
 Provide the environment variables required by the plex image.
@@ -268,8 +295,23 @@ Kyle Harding <kylemharding@gmail.com>
 
 ## References
 
-* [compose-file](https://docs.docker.com/compose/compose-file/)
-* [plex-nginx-reverseproxy](https://github.com/toomuchio/plex-nginx-reverseproxy)
-* [portainer.io](http://portainer.io/)
-* [plex.tv](https://www.plex.tv/)
-* [linuxserver.io](https://www.linuxserver.io/)
+* http://portainer.io/
+* https://www.plex.tv/
+* https://www.linuxserver.io/
+* https://nginx.com
+* https://cloudflare.com
+* https://docs.docker.com/engine/installation/
+* https://docs.docker.com/engine/reference/commandline/stack/
+* https://docs.docker.com/compose/compose-file/
+* https://github.com/plexinc/pms-docker
+* https://github.com/linuxserver/docker-letsencrypt
+* https://github.com/toomuchio/plex-nginx-reverseproxy
+* https://hub.docker.com/r/plexinc/pms-docker/
+* https://hub.docker.com/r/portainer/portainer/
+* https://hub.docker.com/r/linuxserver/nzbget/
+* https://hub.docker.com/r/linuxserver/sonarr/
+* https://hub.docker.com/r/linuxserver/radarr/
+* https://hub.docker.com/r/linuxserver/plexpy/
+* https://hub.docker.com/r/linuxserver/transmission/
+* https://hub.docker.com/r/linuxserver/hydra/
+* https://hub.docker.com/r/linuxserver/letsencrypt/
