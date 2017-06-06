@@ -94,7 +94,9 @@ if the plex/media folder needs to be on an external drive. Symlinks are allowed
 and it makes it easier to point some volumes to large mount points.
 By default, most volumes are mounted to subdirectories of the project root.
 
-`docker-compose.yml`
+```bash
+$ nano ./docker-compose.yml
+```
 
 _See https://docs.docker.com/compose/compose-file/ for supported values._
 
@@ -102,7 +104,9 @@ _See https://docs.docker.com/compose/compose-file/ for supported values._
 Provide the desired id that the containers should use when running.
 This is helpful to maintain ownership of the config files and databases.
 
-`common.env`
+```bash
+$ nano ./common.env
+```
 * `PUID=<your-usr-id>`
 * `PGID=<your-grp-id>`
 
@@ -111,7 +115,9 @@ _Run `id -u` and `id -g` to find the ID of your current user and group._
 ### Letsencrypt
 Provide the environment variables required by the letsencrypt image.
 
-`letsencrypt.env`
+```bash
+$ nano ./letsencrypt.env
+```
 * `EMAIL=<your-email>.com`
 * `URL=<your-domain>.com`
 * `SUBDOMAINS=plex,app`
@@ -135,7 +141,9 @@ reverse-proxy suggestions._
 ### Plex
 Provide the environment variables required by the plex image.
 
-`plex.env`
+```bash
+$ nano ./plex.env
+```
 * `PLEX_UID=<your-usr-id>`
 * `PLEX_GID=<your-grp-id>`
 * `PLEX_CLAIM=<your-claim-token>`
@@ -144,7 +152,9 @@ _See https://github.com/plexinc/pms-docker for a description of each field._
 
 Set the remote mapping port to 443 and set secure connections to preferred.
 
-`./plex/config/Library/Application Support/Plex Media Server/Preferences.xml`
+```bash
+$ nano ./plex/config/Library/Application Support/Plex Media Server/Preferences.xml
+```
 * `ManualPortMappingMode="1"`
 * `ManualPortMappingPort="443"`
 * `customConnections="https://plex.<your-domain>.com:443"`
@@ -160,7 +170,9 @@ If the web interface is available you can change some settings from there.
 ### Plexpy
 Set the base-url so it can be used with our nginx proxy. Also set the plex server details.
 
-`./plexpy/config/config.ini`
+```bash
+$ nano ./plexpy/config/config.ini
+```
 * `http_root = /plexpy`
 * `pms_ip = plex`
 * `pms_port = 32400`
@@ -177,7 +189,9 @@ If the web interface is available you can change some settings from there.
 ### Hydra
 Set the base-url so it can be used with our nginx proxy.
 
-`./hydra/config/hydra/settings.cfg`
+```bash
+$ nano ./hydra/config/hydra/settings.cfg
+```
 * `"urlBase": "/hydra"`
 * `"externalUrl": "https://app.<your-domain>.com/hydra"`
 
@@ -190,7 +204,9 @@ If the web interface is available you can change some settings from there.
 ### Sonarr
 Set the base-url so it can be used with our nginx proxy.
 
-`./sonarr/config/config.xml`
+```bash
+$ nano ./sonarr/config/config.xml
+```
 * `<UrlBase>/sonarr</UrlBase>`
 
 _[Create](#create-stack) the stack once in order to have this config file generated._
@@ -203,7 +219,9 @@ If the web interface is available you can change some settings from there.
 ### Radarr
 Set the base-url so it can be used with our nginx proxy.
 
-`./radarr/config/config.xml`
+```bash
+$ nano ./radarr/config/config.xml
+```
 * `<UrlBase>/radarr</UrlBase>`
 
 _[Create](#create-stack) the stack once in order to have this config file generated._
@@ -216,17 +234,21 @@ If the web interface is available you can change some settings from there.
 ### Transmission
 Set the base-url so it can be used with our nginx proxy.
 
-`./transmission/config/settings.json`
+```bash
+$ nano ./transmission/config/settings.json
+```
 * `"rpc-url": "/transmission/"`
 
 _[Create](#create-stack) the stack once in order to have this config file generated._
 
 ### Nzbget
 
-Nzbget manages to be reachable even without changing the base-url, but here's the
-config location.
+Nzbget manages to be reachable even without changing the base-url,
+but here's how to edit the config in case you need it.
 
-`./nzbget/config/nzbget.conf`
+```bash
+$ nano ./nzbget/config/nzbget.conf
+```
 
 _[Create](#create-stack) the stack once in order to have this config file generated._
 
