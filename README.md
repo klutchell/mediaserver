@@ -120,8 +120,8 @@ Set the remote mapping port to 443 and set secure connections to preferred.
   * `customConnections="https://plex.<your-domain>.com:443"`
   * `secureConnections="1"`
 
-_[Create](#Create Stack) the stack once in order to have this config file generated,
-then [remove](#Remove Stack) it to make the required edits._
+_[Create](#Create-Stack) the stack once in order to have this config file generated,
+then [remove](#Remove-Stack) it to make the required edits._
 
 If the web interface is available you can change some settings from there.
 * Settings -> Server -> Remote Access -> Manually specify public port = `443`
@@ -136,8 +136,8 @@ Set the base-url so it can be used with our nginx proxy. Also set the plex serve
   * `pms_port = 32400`
   * `pms_ssl = 1`
 
-_[Create](#Create Stack) the stack once in order to have this config file generated,
-then [remove](#Remove Stack) it to make the required edits._
+_[Create](#Create-Stack) the stack once in order to have this config file generated,
+then [remove](#Remove-Stack) it to make the required edits._
 
 If the web interface is available you can change some settings from there.
 * Settings -> Web Interface -> HTTP Root = `/plexpy`
@@ -151,8 +151,8 @@ Set the base-url so it can be used with our nginx proxy.
   * `"urlBase": "/hydra"`
   * `"externalUrl": "https://app.<your-domain>.com/hydra"`
 
-_[Create](#Create Stack) the stack once in order to have this config file generated,
-then [remove](#Remove Stack) it to make the required edits._
+_[Create](#Create-Stack) the stack once in order to have this config file generated,
+then [remove](#Remove-Stack) it to make the required edits._
 
 If the web interface is available you can change some settings from there.
 * Config -> URL base = `/hydra`
@@ -163,8 +163,8 @@ Set the base-url so it can be used with our nginx proxy.
 * `./sonarr/config/config.xml`
   * `<UrlBase>/sonarr</UrlBase>`
 
-_[Create](#Create Stack) the stack once in order to have this config file generated,
-then [remove](#Remove Stack) it to make the required edits._
+_[Create](#Create-Stack) the stack once in order to have this config file generated,
+then [remove](#Remove-Stack) it to make the required edits._
 
 If the web interface is available you can change some settings from there.
 * Settings -> General -> URL Base = `/sonarr`
@@ -176,8 +176,8 @@ Set the base-url so it can be used with our nginx proxy.
 * `./radarr/config/config.xml`
   * `<UrlBase>/radarr</UrlBase>`
 
-_[Create](#Create Stack) the stack once in order to have this config file generated,
-then [remove](#Remove Stack) it to make the required edits._
+_[Create](#Create-Stack) the stack once in order to have this config file generated,
+then [remove](#Remove-Stack) it to make the required edits._
 
 If the web interface is available you can change some settings from there.
 * Settings -> General -> URL Base = `/radarr`
@@ -189,15 +189,15 @@ Set the base-url so it can be used with our nginx proxy.
 * `./transmission/config/settings.json`
   * `"rpc-url": "/transmission/"`
 
-_[Create](#Create Stack) the stack once in order to have this config file generated,
-then [remove](#Remove Stack) it to make the required edits._
+_[Create](#Create-Stack) the stack once in order to have this config file generated,
+then [remove](#Remove-Stack) it to make the required edits._
 
 ### Nzbget
 
 * `./nzbget/config/nzbget.conf`
 
-_[Create](#Create Stack) the stack once in order to have this config file generated,
-then [remove](#Remove Stack) it to make the required edits._
+_[Create](#Create-Stack) the stack once in order to have this config file generated,
+then [remove](#Remove-Stack) it to make the required edits._
 
 ### Portainer
 
