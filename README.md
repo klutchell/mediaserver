@@ -102,11 +102,10 @@ _See https://docs.docker.com/compose/compose-file/ for supported values._
 Provide the desired id that the containers should use when running.
 This is helpful to maintain ownership of the config files and databases.
 * `common.env`
-  * `PUID=1000`
-  * `PGID=1000`
+  * `PUID=<your-usr-id>`
+  * `PGID=<your-grp-id>`
 
-_Run `id -u` to find the ID of your current user._
-_Run `id -g` to find the ID of your current group._
+_Run `id -u` and `id -g` to find the ID of your current user and group._
 
 ### Letsencrypt
 Provide the environment variables required by the letsencrypt image.
@@ -119,7 +118,7 @@ Provide the environment variables required by the letsencrypt image.
 _See https://github.com/linuxserver/docker-letsencrypt for a description of
 each field._
 
-Hopefully you don't have to change these if you are using the expected sub-domains,
+Hopefully you don't have to change these if you are using the [expected sub-domains](#custom-domain),
 but here they are just in case.
 * `./letsencrypt/config/nginx/site-confs/default`
 * `./letsencrypt/config/nginx/site-confs/plex.conf`
@@ -134,8 +133,8 @@ reverse-proxy suggestions._
 ### Plex
 Provide the environment variables required by the plex image.
 * `plex.env`
-  * `PLEX_UID=1000`
-  * `PLEX_GID=1000`
+  * `PLEX_UID=<your-usr-id>`
+  * `PLEX_GID=<your-grp-id>`
   * `PLEX_CLAIM=<your-claim-token>`
 
 _See https://github.com/plexinc/pms-docker for a description of each field._
@@ -147,8 +146,7 @@ Set the remote mapping port to 443 and set secure connections to preferred.
   * `customConnections="https://plex.<your-domain>.com:443"`
   * `secureConnections="1"`
 
-_[Create](#create-stack) the stack once in order to have this config file generated,
-then [remove](#remove-stack) it to make the required edits._
+_[Create](#create-stack) the stack once in order to have this config file generated._
 
 If the web interface is available you can change some settings from there.
 * Settings -> Server -> Remote Access -> Manually specify public port = `443`
@@ -163,8 +161,7 @@ Set the base-url so it can be used with our nginx proxy. Also set the plex serve
   * `pms_port = 32400`
   * `pms_ssl = 1`
 
-_[Create](#create-stack) the stack once in order to have this config file generated,
-then [remove](#remove-stack) it to make the required edits._
+_[Create](#create-stack) the stack once in order to have this config file generated._
 
 If the web interface is available you can change some settings from there.
 * Settings -> Web Interface -> HTTP Root = `/plexpy`
@@ -178,8 +175,7 @@ Set the base-url so it can be used with our nginx proxy.
   * `"urlBase": "/hydra"`
   * `"externalUrl": "https://app.<your-domain>.com/hydra"`
 
-_[Create](#create-stack) the stack once in order to have this config file generated,
-then [remove](#remove-stack) it to make the required edits._
+_[Create](#create-stack) the stack once in order to have this config file generated._
 
 If the web interface is available you can change some settings from there.
 * Config -> URL base = `/hydra`
@@ -190,8 +186,7 @@ Set the base-url so it can be used with our nginx proxy.
 * `./sonarr/config/config.xml`
   * `<UrlBase>/sonarr</UrlBase>`
 
-_[Create](#create-stack) the stack once in order to have this config file generated,
-then [remove](#remove-stack) it to make the required edits._
+_[Create](#create-stack) the stack once in order to have this config file generated._
 
 If the web interface is available you can change some settings from there.
 * Settings -> General -> URL Base = `/sonarr`
@@ -203,8 +198,7 @@ Set the base-url so it can be used with our nginx proxy.
 * `./radarr/config/config.xml`
   * `<UrlBase>/radarr</UrlBase>`
 
-_[Create](#create-stack) the stack once in order to have this config file generated,
-then [remove](#remove-stack) it to make the required edits._
+_[Create](#create-stack) the stack once in order to have this config file generated._
 
 If the web interface is available you can change some settings from there.
 * Settings -> General -> URL Base = `/radarr`
@@ -216,15 +210,13 @@ Set the base-url so it can be used with our nginx proxy.
 * `./transmission/config/settings.json`
   * `"rpc-url": "/transmission/"`
 
-_[Create](#create-stack) the stack once in order to have this config file generated,
-then [remove](#remove-stack) it to make the required edits._
+_[Create](#create-stack) the stack once in order to have this config file generated._
 
 ### Nzbget
 
 * `./nzbget/config/nzbget.conf`
 
-_[Create](#create-stack) the stack once in order to have this config file generated,
-then [remove](#remove-stack) it to make the required edits._
+_[Create](#create-stack) the stack once in order to have this config file generated._
 
 ### Portainer
 
