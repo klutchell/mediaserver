@@ -40,6 +40,15 @@ It requires we initialize a master swarm node before adding services to the stac
 $ docker swarm init
 ```
 
+### Open Firewall
+
+Although docker will automatically add some firewall rules, I find some services still work better
+if http/https traffic is allowed manually through UFW.
+```bash
+$ sudo ufw allow http
+$ sudo ufw allow https
+```
+
 ## Configuration
 ### Configure Environment Parameters
 
