@@ -25,9 +25,6 @@ services:
              max_attempts: 3
              window: 120s
         image: "plexinc/pms-docker:plexpass"
-        # ports:
-        #     - "32400:32400/tcp"
-        #     - "32400:32400/udp"
         volumes:
             - ./plex/config:/config
             - ./plex/media/tv:/tv
@@ -199,7 +196,6 @@ services:
             - ./letsencrypt.env
         image: "linuxserver/letsencrypt"
         ports:
-            - "80:80/tcp"
             - "443:443/tcp"
         volumes:
             - ./letsencrypt/config:/config
@@ -215,7 +211,7 @@ services:
             - plex
             - portainer
         healthcheck:
-            test: ["CMD", "curl", "-f", "http://localhost"]
+            test: ["CMD", "curl", "-f", "-k", "https://localhost:443"]
             interval: 1m
             timeout: 10s
             retries: 3

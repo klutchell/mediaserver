@@ -1,6 +1,6 @@
 
-# redirect all HTTP requests to HTTPS with a 301 Moved Permanently response.
-# let cloudflare handle this for now
+# listening on port 80 disabled by default, remove the "#" signs to enable
+# redirect all traffic to https
 # server {
 # 	listen 80;
 # 	server_name _;
@@ -15,62 +15,78 @@ upstream portainer {
 # main server block
 server {
 	listen 443 ssl http2 default_server;
-	# server_name _;
+	server_name _;
 
-	include		/config/nginx/ssl.conf;
-
-	client_max_body_size	0;
+	include /config/nginx/ssl.conf;
 
 	# default root redirect
+	# location / {
+	# 	return 404;
+	# }
+
+	root /config/www;
+	index index.html index.htm index.php;
+
 	location / {
-		return 404;
+		try_files $uri $uri/ /index.html /index.php?$args =404;
 	}
+
+	# location ~ \.php$ {
+	# 	fastcgi_split_path_info ^(.+\.php)(/.+)$;
+	# 	# With php7-cgi alone:
+	# 	fastcgi_pass 127.0.0.1:9000;
+	# 	# With php7-fpm:
+	# 	#fastcgi_pass unix:/var/run/php7-fpm.sock;
+	# 	fastcgi_index index.php;
+	# 	include /etc/nginx/fastcgi_params;
+	# }
 
 	# https://portainer.readthedocs.io/en/stable/faq.html#how-can-i-configure-my-reverse-proxy-to-serve-portainer
 	location /portainer/ {
-		proxy_http_version		1.1;
-		proxy_set_header		Connection "";
-		proxy_pass				http://portainer/;
+		proxy_http_version 1.1;
+		proxy_set_header Connection "";
+		proxy_pass http://portainer/;
 	}
 
 	location /portainer/ws/ {
-		proxy_http_version		1.1;
-		proxy_set_header		Upgrade $http_upgrade;
-		proxy_set_header		Connection "upgrade";
-		proxy_pass				http://portainer/ws/;
+		proxy_http_version 1.1;
+		proxy_set_header Upgrade $http_upgrade;
+		proxy_set_header Connection "upgrade";
+		proxy_pass http://portainer/ws/;
 	}
 
 	location /hydra {
-		proxy_pass			http://hydra:5075;
+		include /config/nginx/proxy.conf;
+		proxy_pass http://hydra:5075;
 	}
 
 	location /sonarr {
-		proxy_pass			http://sonarr:8989;
-		include				/config/nginx/proxy.conf;
-		include				/config/nginx/auth.conf;
+		include /config/nginx/proxy.conf;
+		include /config/nginx/auth.conf;
+		proxy_pass http://sonarr:8989;
 	}
 
 	location /radarr {
-		proxy_pass			http://radarr:7878;
-		include				/config/nginx/proxy.conf;
-		include				/config/nginx/auth.conf;
+		include /config/nginx/proxy.conf;
+		include /config/nginx/auth.conf;
+		proxy_pass http://radarr:7878;
 	}
 
 	location /plexpy/ {
-		proxy_pass			http://plexpy:8181;
-		include				/config/nginx/proxy.conf;
-		include				/config/nginx/auth.conf;
+		include /config/nginx/proxy.conf;
+		include /config/nginx/auth.conf;
+		proxy_pass http://plexpy:8181;
 	}
 
 	location /nzbget {
-		proxy_pass			http://nzbget:6789;
-		include				/config/nginx/proxy.conf;
-		include				/config/nginx/auth.conf;
+		include /config/nginx/proxy.conf;
+		include /config/nginx/auth.conf;
+		proxy_pass http://nzbget:6789;
 	}
 
 	location /transmission {
-		proxy_pass			http://transmission:9091;
-		include				/config/nginx/proxy.conf;
-		include				/config/nginx/auth.conf;
+		include /config/nginx/proxy.conf;
+		include /config/nginx/auth.conf;
+		proxy_pass http://transmission:9091;
 	}
 }
