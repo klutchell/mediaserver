@@ -83,6 +83,7 @@ for rootpath in $@; do
 
 	for path in $(find "$rootpath" -mindepth 1 -type d)
 	do
+		[ -d "$path" ] || continue
 		if [[ -z "$(find "$path" -type f \( -name "*.mkv" -or -name "*.mp4" \))" ]]
 		then
 			info "no media files found in '$path':"
