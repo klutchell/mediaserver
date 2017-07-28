@@ -1,8 +1,9 @@
 version: '3'
 services:
+
+    # https://github.com/portainer/portainer
+    # https://hub.docker.com/r/portainer/portainer/
     portainer:
-        # https://github.com/portainer/portainer
-        # https://hub.docker.com/r/portainer/portainer/
         image: "portainer/portainer"
         volumes:
             - ./portainer/config:/data
@@ -16,9 +17,9 @@ services:
                 max_attempts: 3
                 window: 120s
 
+    # https://github.com/plexinc/pms-docker
+    # https://hub.docker.com/r/plexinc/pms-docker/
     plex:
-        # https://github.com/plexinc/pms-docker
-        # https://hub.docker.com/r/plexinc/pms-docker/
         image: "plexinc/pms-docker:plexpass"
         volumes:
             - ./plex/config:/config
@@ -36,9 +37,9 @@ services:
                 max_attempts: 3
                 window: 120s
 
+    # https://github.com/linuxserver/docker-nzbget
+    # https://hub.docker.com/r/linuxserver/nzbget/
     nzbget:
-        # https://github.com/linuxserver/docker-nzbget
-        # https://hub.docker.com/r/linuxserver/nzbget/
         image: "linuxserver/nzbget"
         volumes:
             - ./nzbget/config:/config
@@ -54,9 +55,9 @@ services:
                 max_attempts: 3
                 window: 120s
 
+    # https://github.com/linuxserver/docker-sonarr
+    # https://hub.docker.com/r/linuxserver/sonarr/
     sonarr:
-        # https://github.com/linuxserver/docker-sonarr
-        # https://hub.docker.com/r/linuxserver/sonarr/
         image: "linuxserver/sonarr"
         volumes:
             - ./sonarr/config:/config
@@ -77,9 +78,9 @@ services:
             - nzbget
             - hydra
 
+    # https://github.com/linuxserver/docker-radarr
+    # https://hub.docker.com/r/linuxserver/radarr/
     radarr:
-        # https://github.com/linuxserver/docker-radarr
-        # https://hub.docker.com/r/linuxserver/radarr/
         image: "linuxserver/radarr"
         volumes:
             - ./radarr/config:/config
@@ -100,9 +101,9 @@ services:
             - nzbget
             - hydra
 
+    # https://github.com/linuxserver/docker-plexpy
+    # https://hub.docker.com/r/linuxserver/plexpy/
     plexpy:
-        # https://github.com/linuxserver/docker-plexpy
-        # https://hub.docker.com/r/linuxserver/plexpy/
         image: "linuxserver/plexpy"
         volumes:
             - ./plexpy/config:/config
@@ -120,9 +121,9 @@ services:
         depends_on:
             - plex
 
+    # https://github.com/linuxserver/docker-transmission
+    # https://hub.docker.com/r/linuxserver/transmission/
     transmission:
-        # https://github.com/linuxserver/docker-transmission
-        # https://hub.docker.com/r/linuxserver/transmission/
         image: "linuxserver/transmission"
         ports:
             - "51413:51413/tcp"
@@ -142,9 +143,9 @@ services:
                 max_attempts: 3
                 window: 120s
 
+    # https://github.com/linuxserver/docker-hydra
+    # https://hub.docker.com/r/linuxserver/hydra/
     hydra:
-        # https://github.com/linuxserver/docker-hydra
-        # https://hub.docker.com/r/linuxserver/hydra/
         image: "linuxserver/hydra"
         volumes:
             - ./hydra/config:/config
@@ -160,6 +161,7 @@ services:
                 max_attempts: 3
                 window: 120s
 
+    # https://hub.docker.com/_/nginx/
     nginx:
         image: nginx
         labels:
@@ -180,6 +182,8 @@ services:
                 max_attempts: 3
                 window: 120s
 
+    # https://github.com/jwilder/docker-gen
+    # https://hub.docker.com/r/jwilder/docker-gen/
     nginx-gen:
         image: jwilder/docker-gen
         labels:
@@ -199,7 +203,11 @@ services:
                 delay: 5s
                 max_attempts: 3
                 window: 120s
+        depends_on:
+            - nginx
 
+    # https://github.com/JrCs/docker-letsencrypt-nginx-proxy-companion
+    # https://hub.docker.com/r/jrcs/letsencrypt-nginx-proxy-companion/
     nginx-letsencrypt:
         image: jrcs/letsencrypt-nginx-proxy-companion
         volumes:
@@ -209,12 +217,13 @@ services:
             - ./nginx/certs:/etc/nginx/certs:rw
             - ./nginx/htpasswd:/etc/nginx/htpasswd:ro
             - /var/run/docker.sock:/var/run/docker.sock:ro
+        env_file:
+            - ./nginx/letsencrypt.env
         deploy:
             restart_policy:
                 condition: any
                 delay: 5s
                 max_attempts: 3
                 window: 120s
-        environment:
-            - "DEBUG=true"
-            # - "ACME_CA_URI=https://acme-staging.api.letsencrypt.org/directory"
+        depends_on:
+            - nginx-gen
