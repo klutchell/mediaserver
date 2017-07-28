@@ -7,23 +7,18 @@ services:
         volumes:
             - ./portainer/config:/data
             - /var/run/docker.sock:/var/run/docker.sock
+        env_file:
+            - ./portainer/portainer.env
         deploy:
-           restart_policy:
-             condition: any
-             delay: 5s
-             max_attempts: 3
-             window: 120s
-        healthcheck:
-            disable: true
+            restart_policy:
+                condition: any
+                delay: 5s
+                max_attempts: 3
+                window: 120s
+
     plex:
         # https://github.com/plexinc/pms-docker
         # https://hub.docker.com/r/plexinc/pms-docker/
-        deploy:
-           restart_policy:
-             condition: any
-             delay: 5s
-             max_attempts: 3
-             window: 120s
         image: "plexinc/pms-docker:plexpass"
         volumes:
             - ./plex/config:/config
@@ -33,13 +28,14 @@ services:
             - /etc/localtime:/etc/localtime:ro
             - /dev/rtc:/dev/rtc:ro
         env_file:
-            - ./common.env
-            - ./plex.env
-        healthcheck:
-            test: ["CMD", "curl", "-f", "http://localhost:32400/web"]
-            interval: 1m
-            timeout: 10s
-            retries: 3
+            - ./plex/plex.env
+        deploy:
+            restart_policy:
+                condition: any
+                delay: 5s
+                max_attempts: 3
+                window: 120s
+
     nzbget:
         # https://github.com/linuxserver/docker-nzbget
         # https://hub.docker.com/r/linuxserver/nzbget/
@@ -50,18 +46,14 @@ services:
             - /etc/localtime:/etc/localtime:ro
             - /dev/rtc:/dev/rtc:ro
         env_file:
-            - ./common.env
+            - ./nzbget/nzbget.env
         deploy:
-           restart_policy:
-             condition: any
-             delay: 5s
-             max_attempts: 3
-             window: 120s
-        healthcheck:
-            test: ["CMD", "curl", "-f", "http://localhost:6789/nzbget"]
-            interval: 1m
-            timeout: 10s
-            retries: 3
+            restart_policy:
+                condition: any
+                delay: 5s
+                max_attempts: 3
+                window: 120s
+
     sonarr:
         # https://github.com/linuxserver/docker-sonarr
         # https://hub.docker.com/r/linuxserver/sonarr/
@@ -74,21 +66,17 @@ services:
             - /etc/localtime:/etc/localtime:ro
             - /dev/rtc:/dev/rtc:ro
         env_file:
-            - ./common.env
+            - ./sonarr/sonarr.env
         deploy:
-           restart_policy:
-             condition: any
-             delay: 5s
-             max_attempts: 3
-             window: 120s
+            restart_policy:
+                condition: any
+                delay: 5s
+                max_attempts: 3
+                window: 120s
         depends_on:
             - nzbget
             - hydra
-        healthcheck:
-            test: ["CMD", "curl", "-f", "http://localhost:8989/sonarr"]
-            interval: 1m
-            timeout: 10s
-            retries: 3
+
     radarr:
         # https://github.com/linuxserver/docker-radarr
         # https://hub.docker.com/r/linuxserver/radarr/
@@ -101,21 +89,17 @@ services:
             - /etc/localtime:/etc/localtime:ro
             - /dev/rtc:/dev/rtc:ro
         env_file:
-            - ./common.env
+            - ./radarr/radarr.env
         deploy:
-           restart_policy:
-             condition: any
-             delay: 5s
-             max_attempts: 3
-             window: 120s
+            restart_policy:
+                condition: any
+                delay: 5s
+                max_attempts: 3
+                window: 120s
         depends_on:
             - nzbget
             - hydra
-        healthcheck:
-            test: ["CMD", "curl", "-f", "http://localhost:7878/radarr"]
-            interval: 1m
-            timeout: 10s
-            retries: 3
+
     plexpy:
         # https://github.com/linuxserver/docker-plexpy
         # https://hub.docker.com/r/linuxserver/plexpy/
@@ -126,20 +110,16 @@ services:
             - /etc/localtime:/etc/localtime:ro
             - /dev/rtc:/dev/rtc:ro
         env_file:
-            - ./common.env
+            - ./plexpy/plexpy.env
         deploy:
-           restart_policy:
-             condition: any
-             delay: 5s
-             max_attempts: 3
-             window: 120s
+            restart_policy:
+                condition: any
+                delay: 5s
+                max_attempts: 3
+                window: 120s
         depends_on:
             - plex
-        healthcheck:
-            test: ["CMD", "curl", "-f", "http://localhost:8181/plexpy"]
-            interval: 1m
-            timeout: 10s
-            retries: 3
+
     transmission:
         # https://github.com/linuxserver/docker-transmission
         # https://hub.docker.com/r/linuxserver/transmission/
@@ -154,18 +134,14 @@ services:
             - /etc/localtime:/etc/localtime:ro
             - /dev/rtc:/dev/rtc:ro
         env_file:
-            - ./common.env
+            - ./transmission/transmission.env
         deploy:
-           restart_policy:
-             condition: any
-             delay: 5s
-             max_attempts: 3
-             window: 120s
-        healthcheck:
-            test: ["CMD", "curl", "-f", "http://localhost:9091/transmission"]
-            interval: 1m
-            timeout: 10s
-            retries: 3
+            restart_policy:
+                condition: any
+                delay: 5s
+                max_attempts: 3
+                window: 120s
+
     hydra:
         # https://github.com/linuxserver/docker-hydra
         # https://hub.docker.com/r/linuxserver/hydra/
@@ -176,42 +152,69 @@ services:
             - /etc/localtime:/etc/localtime:ro
             - /dev/rtc:/dev/rtc:ro
         env_file:
-            - ./common.env
+            - ./hydra/hydra.env
         deploy:
-           restart_policy:
-             condition: any
-             delay: 5s
-             max_attempts: 3
-             window: 120s
-        healthcheck:
-            test: ["CMD", "curl", "-f", "http://localhost:5075/hydra"]
-            interval: 1m
-            timeout: 10s
-            retries: 3
-    letsencrypt:
-        # https://github.com/linuxserver/docker-letsencrypt
-        # https://hub.docker.com/r/linuxserver/letsencrypt/
-        env_file:
-            - ./common.env
-            - ./letsencrypt.env
-        image: "linuxserver/letsencrypt"
+            restart_policy:
+                condition: any
+                delay: 5s
+                max_attempts: 3
+                window: 120s
+
+    nginx:
+        image: nginx
+        labels:
+            com.github.jrcs.letsencrypt_nginx_proxy_companion.nginx_proxy: "true"
         ports:
-            - "443:443/tcp"
+            - "80:80"
+            - "443:443"
         volumes:
-            - ./letsencrypt/config:/config
-            - /etc/localtime:/etc/localtime:ro
-            - /dev/rtc:/dev/rtc:ro
+            - ./nginx/conf.d:/etc/nginx/conf.d
+            - ./nginx/vhost.d:/etc/nginx/vhost.d
+            - ./nginx/html:/usr/share/nginx/html
+            - ./nginx/certs:/etc/nginx/certs:ro
+            - ./nginx/htpasswd:/etc/nginx/htpasswd:ro
         deploy:
-           restart_policy:
-             condition: any
-             delay: 5s
-             max_attempts: 3
-             window: 120s
-        depends_on:
-            - plex
-            - portainer
-        healthcheck:
-            test: ["CMD", "curl", "-f", "-k", "https://localhost:443"]
-            interval: 1m
-            timeout: 10s
-            retries: 3
+            restart_policy:
+                condition: any
+                delay: 5s
+                max_attempts: 3
+                window: 120s
+
+    nginx-gen:
+        image: jwilder/docker-gen
+        labels:
+            com.github.jrcs.letsencrypt_nginx_proxy_companion.docker_gen: "true"
+        command: -notify-sighup nginx -watch -wait 5s:30s /etc/docker-gen/templates/nginx.tmpl /etc/nginx/conf.d/default.conf
+        volumes:
+            - ./nginx/conf.d:/etc/nginx/conf.d
+            - ./nginx/vhost.d:/etc/nginx/vhost.d
+            - ./nginx/html:/usr/share/nginx/html
+            - ./nginx/certs:/etc/nginx/certs:ro
+            - ./nginx/htpasswd:/etc/nginx/htpasswd:ro
+            - ./nginx/nginx.tmpl:/etc/docker-gen/templates/nginx.tmpl:ro
+            - /var/run/docker.sock:/tmp/docker.sock:ro
+        deploy:
+            restart_policy:
+                condition: any
+                delay: 5s
+                max_attempts: 3
+                window: 120s
+
+    nginx-letsencrypt:
+        image: jrcs/letsencrypt-nginx-proxy-companion
+        volumes:
+            - ./nginx/conf.d:/etc/nginx/conf.d
+            - ./nginx/vhost.d:/etc/nginx/vhost.d
+            - ./nginx/html:/usr/share/nginx/html
+            - ./nginx/certs:/etc/nginx/certs:rw
+            - ./nginx/htpasswd:/etc/nginx/htpasswd:ro
+            - /var/run/docker.sock:/var/run/docker.sock:ro
+        deploy:
+            restart_policy:
+                condition: any
+                delay: 5s
+                max_attempts: 3
+                window: 120s
+        environment:
+            - "DEBUG=true"
+            # - "ACME_CA_URI=https://acme-staging.api.letsencrypt.org/directory"

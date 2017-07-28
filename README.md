@@ -13,7 +13,9 @@ I didn't create any of these docker images myself, so credit goes to the linked 
 * [linuxserver/plexpy](https://hub.docker.com/r/linuxserver/plexpy/)
 * [linuxserver/transmission](https://hub.docker.com/r/linuxserver/transmission/)
 * [linuxserver/hydra](https://hub.docker.com/r/linuxserver/hydra/)
-* [linuxserver/letsencrypt](https://hub.docker.com/r/linuxserver/letsencrypt/)
+* [jwilder/docker-gen](https://hub.docker.com/r/jwilder/docker-gen/)
+* [jrcs/letsencrypt-nginx-proxy-companion](https://hub.docker.com/r/jrcs/letsencrypt-nginx-proxy-companion/)
+* [nginx](https://hub.docker.com/_/nginx/)
 
 ## Benefits
 
@@ -33,25 +35,22 @@ These instructions assume you are using **Ubuntu x64 16.04** or later.
 It may work on other distros but this is what I'm running :)
 
 ### Custom domain
-These instructions assume you own a custom domain with `plex.` and `app.` as subdomains.
+These instructions assume you own a custom domain with configurable sub-domains.
 
 The idea is that once configured, all your services will be available at the
 following urls:
 * `plex.<your-domain>.com`
-* `app.<your-domain>.com/plexpy`
-* `app.<your-domain>.com/hydra`
-* `app.<your-domain>.com/sonarr`
-* `app.<your-domain>.com/radarr`
-* `app.<your-domain>.com/nzbget`
-* `app.<your-domain>.com/transmission`
-* `app.<your-domain>.com/portainer`
-
-If you want to avoid this you can still use most of the project features, but you
-will have to adjust the [letsencrypt configuration](#letsencrypt) a bit.
+* `plexpy.<your-domain>.com`
+* `hydra.<your-domain>.com`
+* `sonarr.<your-domain>.com`
+* `radarr.<your-domain>.com`
+* `nzbget.<your-domain>.com`
+* `transmission.<your-domain>.com`
+* `portainer.<your-domain>.com`
 
 ### CloudFlare
 
-I'm also using [CloudFlare](https://cloudflare.com) to improve plex performance,
+I'm also using [CloudFlare](https://cloudflare.com) to improve performance,
 but that should be considered optional.
 
 ## Installation
