@@ -197,7 +197,11 @@ LETSENCRYPT_EMAIL=kylemharding@gmail.com
 ### Plex Settings
 
 Set the remote mapping port to 443 and set secure connections to preferred.
+* Settings -> Server -> Remote Access -> Manually specify public port = `443`
+* Settings -> Server -> Network -> Custom server access URLs = `https://plex.<your-domain>:443`
+* Settings -> Server -> Network -> Secure connections = `Preferred`
 
+If the web interface isn't available, here are the same settings in the config file.
 * `./plex/config/Library/Application Support/Plex Media Server/Preferences.xml`
   * `ManualPortMappingMode="1"`
   * `ManualPortMappingPort="443"`
@@ -205,11 +209,6 @@ Set the remote mapping port to 443 and set secure connections to preferred.
   * `secureConnections="1"`
 
 _[Create](#create-stack) the stack once in order to have this config file generated._
-
-If the web interface is available you can change some settings from there.
-* Settings -> Server -> Remote Access -> Manually specify public port = `443`
-* Settings -> Server -> Network -> Custom server access URLs = `https://plex.<your-domain>:443`
-* Settings -> Server -> Network -> Secure connections = `Preferred`
 
 ### Plexpy Settings
 
@@ -239,7 +238,7 @@ Add the local hydra indexer connection details.
 Add the local nzbget download client connection details.
 * Settings -> Download Client -> Add = `Type: nzbget` `Host: nzbget` `Port: 6789`
 
-### UFW Settings
+### Firewall Settings
 
 Although docker will automatically add some firewall rules, I find some services still work better
 if http/https traffic is allowed manually through UFW.
