@@ -1,4 +1,4 @@
-# Docker Plex & Usenet Media Server #
+yourdomain# Docker Plex & Usenet Media Server #
 
 ## Description
 
@@ -124,7 +124,7 @@ TZ=America/New_York
 # Provide the public-facing domain to use for this service.
 # Specify multiple hosts with a comma delimiter.
 # See https://github.com/jwilder/nginx-proxy
-VIRTUAL_HOST=radarr.klutchell.com
+VIRTUAL_HOST=radarr.yourdomain.com
 
 # Provide the internal container service port to forward traffic via proxy
 # This port will not be public-facing, it is used by nginx for reverse-proxy.
@@ -135,8 +135,8 @@ VIRTUAL_PORT=7878
 # the VIRTUAL_HOST variable and must be publicly reachable domains.
 # Specify multiple hosts with a comma delimiter.
 # See https://github.com/JrCs/docker-letsencrypt-nginx-proxy-companion
-LETSENCRYPT_HOST=radarr.klutchell.com
-LETSENCRYPT_EMAIL=kylemharding@gmail.com
+LETSENCRYPT_HOST=radarr.yourdomain.com
+LETSENCRYPT_EMAIL=youremail@gmail.com
 ```
 
 #### Example 2
@@ -179,7 +179,7 @@ PLEX_CLAIM=
 # Provide the public-facing domain to use for this service.
 # Specify multiple hosts with a comma delimiter.
 # See https://github.com/jwilder/nginx-proxy
-VIRTUAL_HOST=plex.klutchell.com
+VIRTUAL_HOST=plex.yourdomain.com
 
 # Provide the internal container service port to forward traffic via proxy
 # This port will not be public-facing, it is used by nginx for reverse-proxy.
@@ -190,22 +190,22 @@ VIRTUAL_PORT=32400
 # the VIRTUAL_HOST variable and must be publicly reachable domains.
 # Specify multiple hosts with a comma delimiter.
 # See https://github.com/JrCs/docker-letsencrypt-nginx-proxy-companion
-LETSENCRYPT_HOST=plex.klutchell.com
-LETSENCRYPT_EMAIL=kylemharding@gmail.com
+LETSENCRYPT_HOST=plex.yourdomain.com
+LETSENCRYPT_EMAIL=youremail@gmail.com
 ```
 
 ### Plex Settings
 
 Set the remote mapping port to 443 and set secure connections to preferred.
 * Settings -> Server -> Remote Access -> Manually specify public port = `443`
-* Settings -> Server -> Network -> Custom server access URLs = `https://plex.<your-domain>:443`
+* Settings -> Server -> Network -> Custom server access URLs = `https://plex.yourdomain:443`
 * Settings -> Server -> Network -> Secure connections = `Preferred`
 
 If the web interface isn't available, here are the same settings in the config file.
 * `./plex/config/Library/Application Support/Plex Media Server/Preferences.xml`
   * `ManualPortMappingMode="1"`
   * `ManualPortMappingPort="443"`
-  * `customConnections="https://plex.<your-domain>.com:443"`
+  * `customConnections="https://plex.yourdomain.com:443"`
   * `secureConnections="1"`
 
 _[Create](#create-stack) the stack once in order to have this config file generated._
@@ -220,7 +220,7 @@ Add the local plex media server connection details.
 ### Hydra Settings
 
 Set the public url so remote api commands don't return an unreachable link.
-* Config -> External URL = `https://hydra.<your-domain>.com`
+* Config -> External URL = `https://hydra.yourdomain.com`
 
 ### Sonarr Settings
 
@@ -252,14 +252,14 @@ $ sudo ufw allow https
 * Crypto->SSL = `Full (strict)`
 * Firewall disabled if an abnormal amount of load is expected
 * Forward the following A-level domains to your server public IP address:
-  * `plex.<your-domain>.com`
-  * `plexpy.<your-domain>.com`
-  * `hydra.<your-domain>.com`
-  * `sonarr.<your-domain>.com`
-  * `radarr.<your-domain>.com`
-  * `nzbget.<your-domain>.com`
-  * `transmission.<your-domain>.com`
-  * `portainer.<your-domain>.com`
+  * `plex.yourdomain.com`
+  * `plexpy.yourdomain.com`
+  * `hydra.yourdomain.com`
+  * `sonarr.yourdomain.com`
+  * `radarr.yourdomain.com`
+  * `nzbget.yourdomain.com`
+  * `transmission.yourdomain.com`
+  * `portainer.yourdomain.com`
 
 ## Usage
 ### Create Stack
