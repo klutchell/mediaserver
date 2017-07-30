@@ -225,7 +225,7 @@ Set the public url so remote api commands don't return an unreachable link.
 ### Sonarr Settings
 
 Add the local hydra indexer connection details.
-* Settings -> Indexers -> Add = `Type: newsnab` `URL: http://hydra:5075/hydra`
+* Settings -> Indexers -> Add = `Type: newsnab` `URL: http://hydra:5075`
 
 Add the local nzbget download client connection details.
 * Settings -> Download Client -> Add = `Type: nzbget` `Host: nzbget` `Port: 6789`
@@ -233,7 +233,7 @@ Add the local nzbget download client connection details.
 ### Radarr Settings
 
 Add the local hydra indexer connection details.
-* Settings -> Indexers -> Add = `Type: newsnab` `URL: http://hydra:5075/hydra`
+* Settings -> Indexers -> Add = `Type: newsnab` `URL: http://hydra:5075`
 
 Add the local nzbget download client connection details.
 * Settings -> Download Client -> Add = `Type: nzbget` `Host: nzbget` `Port: 6789`
