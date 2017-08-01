@@ -1,4 +1,4 @@
-yourdomain# Docker Plex & Usenet Media Server #
+# Docker Plex & Usenet Media Server #
 
 ## Description
 
