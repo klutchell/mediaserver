@@ -1,4 +1,4 @@
-version: '3'
+version: '3.2'
 services:
 
     # https://github.com/portainer/portainer
@@ -8,6 +8,8 @@ services:
         volumes:
             - ./portainer/config:/data
             - /var/run/docker.sock:/var/run/docker.sock
+            - /etc/localtime:/etc/localtime:ro
+            - /dev/rtc:/dev/rtc:ro
         env_file:
             - ./portainer/portainer.env
         deploy:
@@ -165,7 +167,7 @@ services:
     nginx:
         image: nginx
         labels:
-            com.github.jrcs.letsencrypt_nginx_proxy_companion.nginx_proxy: "true"
+            - com.github.jrcs.letsencrypt_nginx_proxy_companion.nginx_proxy
         ports:
             - "80:80"
             - "443:443"
@@ -175,6 +177,8 @@ services:
             - ./nginx/html:/usr/share/nginx/html
             - ./nginx/certs:/etc/nginx/certs:ro
             - ./nginx/htpasswd:/etc/nginx/htpasswd:ro
+            - /etc/localtime:/etc/localtime:ro
+            - /dev/rtc:/dev/rtc:ro
         deploy:
             restart_policy:
                 condition: any
@@ -187,7 +191,7 @@ services:
     nginx-gen:
         image: jwilder/docker-gen
         labels:
-            com.github.jrcs.letsencrypt_nginx_proxy_companion.docker_gen: "true"
+            - com.github.jrcs.letsencrypt_nginx_proxy_companion.docker_gen
         command: -notify-sighup nginx -watch -wait 5s:30s /etc/docker-gen/templates/nginx.tmpl /etc/nginx/conf.d/default.conf
         volumes:
             - ./nginx/conf.d:/etc/nginx/conf.d
@@ -197,6 +201,8 @@ services:
             - ./nginx/htpasswd:/etc/nginx/htpasswd:ro
             - ./nginx/nginx.tmpl:/etc/docker-gen/templates/nginx.tmpl:ro
             - /var/run/docker.sock:/tmp/docker.sock:ro
+            - /etc/localtime:/etc/localtime:ro
+            - /dev/rtc:/dev/rtc:ro
         deploy:
             restart_policy:
                 condition: any
@@ -217,6 +223,8 @@ services:
             - ./nginx/certs:/etc/nginx/certs:rw
             - ./nginx/htpasswd:/etc/nginx/htpasswd:ro
             - /var/run/docker.sock:/var/run/docker.sock:ro
+            - /etc/localtime:/etc/localtime:ro
+            - /dev/rtc:/dev/rtc:ro
         env_file:
             - ./nginx/letsencrypt.env
         deploy:
