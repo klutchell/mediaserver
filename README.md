@@ -262,57 +262,41 @@ $ sudo ufw allow https
   * `portainer.yourdomain.com`
 
 ## Usage
-### Create Stack
+### Create/Update Stack
 
-Create a new stack with all of our configured services in the compose file.
+Create a new stack or update an existing stack with all of our configured services in the compose file.
 ```bash
 $ docker stack deploy --compose-file docker-compose.yml mediaserver
-```
-
-### Update Stack
-
-The same deploy command will pull the latest images and update containers as needed.
-```bash
-$ docker stack deploy --compose-file docker-compose.yml mediaserver
-```
-This step will leave the old containers and images behind. You can cleanup with the following command.
-```bash
-$ docker system prune
 ```
 
 ### Remove Stack
 
-This will stop all containers and remove the stack. Useful for modifying multiple configuration files as described above.
+This will stop all services and remove the stack. Useful for modifying multiple configuration files as described above.
 ```bash
 $ docker stack rm mediaserver
 ```
 
-### Stop A Service
+### Stop/Start A Service
 
-As an example, this will stop the nzbget service.
+You can start and stop services by scaling the instances to 0 then back to 1.
+As an example, this will stop then restart the nzbget service.
 ```bash
-$ docker service scale mediaserver_nzbget=0
-```
-
-### Start A Service
-
-As an example, this will start the nzbget service.
-```bash
-$ docker service scale mediaserver_nzbget=1
+$ docker service scale mediaserver_plex=0
+$ docker service scale mediaserver_plex=1
 ```
 
 ### Update A Service
 
-As an example, this will pull the latest nzbget image and update the service.
+As an example, this will force update and restart the plex service.
 ```bash
-$ docker service update --force --image linuxserver/nzbget mediaserver_nzbget
+$ docker service update --force mediaserver_plex
 ```
 
 ### View Service Logs
 
 As an example, this will tail the nzbget service logs.
 ```bash
-$ docker service logs -f mediaserver_nzbget
+$ docker service logs -f mediaserver_plex
 ```
 
 ## Author
