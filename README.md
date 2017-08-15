@@ -27,22 +27,45 @@ are covered in detail elsewhere, here's why I prefer this setup for my media ser
 * migrating to a new server is painless
 * uptime is reliable with docker stack
 
-## Requirements
+## Warnings
 
-### Operating system
+I haven't started a new server from scratch recently, so this guide may be missing a step or two.
+
+If you have issues or comments, I'll update the README and source files as necessary.
+
+## Suggested Prerequisites
+
+### Dedicated server
+
+Since obviously PLEX requires a ton of space for media, I'm using a dedicated server with 4TB of storage.
+
+You could also use an old PC, or a VPS with mounted storage. PLEX Cloud is now an option as well if you are
+comfortable with your media on a cloud provider.
+
+This guide **does not** work on any ARM platform (including Raspberry PI) because the images I've included are not
+compiled for ARM.
+
+This guide **does not** cover mounting external storage (FUSE or otherwise) or initial OS setup.
+That's on you to sort out.
+
+### Debian/Ubuntu
+
 These instructions assume you are using **Ubuntu x64 16.04** or later.
 
-It may work on other distros but this is what I'm running :)
+It will likely work on other x86/x64 Debian distros but this is what I'm running.
 
 ### Custom domain
 
 These instructions assume you own a custom domain with configurable sub-domains.
-A domain isn't expensive, and I'm using one from [namecheap](namecheap.com). Free subdomain
-services can also be used but the configuration would have to be adjusted a bit.
+
+A domain isn't expensive, and I'm using one from [namecheap](namecheap.com).
+
+Free subdomain services can also be used but the configuration would have to be adjusted a bit
+to use url sub-paths instead of unique sub-domains.
 
 ### CloudFlare
 
-I'm also using [CloudFlare](https://cloudflare.com) to improve performance,
+I'm also using [CloudFlare](https://cloudflare.com) for my DNS provider,
 but that should be considered optional.
 
 ## Installation
@@ -67,7 +90,7 @@ _You can change data and media paths in a later step._
 
 I've switched to docker stack where I was previously using docker-compose.
 It requires we initialize a master swarm node before adding services to the stack.
-I haven't tried multiple nodes yet.
+I haven't tried multiple nodes yet but it would be tricky with all the media storage.
 ```bash
 $ docker swarm init
 ```
