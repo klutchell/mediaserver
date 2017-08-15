@@ -208,6 +208,8 @@ $ htpasswd -c ./nginx/htpasswd/transmission.yourdomain.com username password
 Portainer, Plex, and Hydra all work better if built-in authentication is used
 rather than http basic auth.
 
+_See https://github.com/jwilder/nginx-proxy#basic-authentication-support for more info._
+
 ### Plex Settings
 
 Set the remote mapping port to 443 and set secure connections to preferred.
