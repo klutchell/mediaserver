@@ -172,10 +172,10 @@ services:
             - "80:80"
             - "443:443"
         volumes:
-            - ./nginx/conf.d:/etc/nginx/conf.d
-            - ./nginx/vhost.d:/etc/nginx/vhost.d
-            - ./nginx/html:/usr/share/nginx/html
-            - ./nginx/certs:/etc/nginx/certs:ro
+            - nginx_conf.d:/etc/nginx/conf.d
+            - nginx_vhost.d:/etc/nginx/vhost.d
+            - nginx_html:/usr/share/nginx/html
+            - nginx_certs:/etc/nginx/certs:ro
             - ./nginx/htpasswd:/etc/nginx/htpasswd:ro
             - /etc/localtime:/etc/localtime:ro
             - /dev/rtc:/dev/rtc:ro
@@ -186,18 +186,18 @@ services:
                 max_attempts: 3
                 window: 120s
 
-    # https://github.com/jwilder/docker-gen
-    # https://hub.docker.com/r/jwilder/docker-gen/
+    # https://github.com/helderco/docker-gen
+    # https://hub.docker.com/r/helder/docker-gen/
     nginx-gen:
-        image: jwilder/docker-gen
+        image: helder/docker-gen
         labels:
             - com.github.jrcs.letsencrypt_nginx_proxy_companion.docker_gen
-        command: -notify-sighup nginx -watch -wait 5s:30s /etc/docker-gen/templates/nginx.tmpl /etc/nginx/conf.d/default.conf
+        command: -notify "docker-label-sighup com.github.jrcs.letsencrypt_nginx_proxy_companion.nginx_proxy" -watch -wait 5s:30s /etc/docker-gen/templates/nginx.tmpl /etc/nginx/conf.d/default.conf
         volumes:
-            - ./nginx/conf.d:/etc/nginx/conf.d
-            - ./nginx/vhost.d:/etc/nginx/vhost.d
-            - ./nginx/html:/usr/share/nginx/html
-            - ./nginx/certs:/etc/nginx/certs:ro
+            - nginx_conf.d:/etc/nginx/conf.d
+            - nginx_vhost.d:/etc/nginx/vhost.d
+            - nginx_html:/usr/share/nginx/html
+            - nginx_certs:/etc/nginx/certs:ro
             - ./nginx/htpasswd:/etc/nginx/htpasswd:ro
             - ./nginx/nginx.tmpl:/etc/docker-gen/templates/nginx.tmpl:ro
             - /var/run/docker.sock:/tmp/docker.sock:ro
@@ -209,18 +209,16 @@ services:
                 delay: 5s
                 max_attempts: 3
                 window: 120s
-        depends_on:
-            - nginx
-
+    
     # https://github.com/JrCs/docker-letsencrypt-nginx-proxy-companion
     # https://hub.docker.com/r/jrcs/letsencrypt-nginx-proxy-companion/
     nginx-letsencrypt:
         image: jrcs/letsencrypt-nginx-proxy-companion
         volumes:
-            - ./nginx/conf.d:/etc/nginx/conf.d
-            - ./nginx/vhost.d:/etc/nginx/vhost.d
-            - ./nginx/html:/usr/share/nginx/html
-            - ./nginx/certs:/etc/nginx/certs:rw
+            - nginx_conf.d:/etc/nginx/conf.d
+            - nginx_vhost.d:/etc/nginx/vhost.d
+            - nginx_html:/usr/share/nginx/html
+            - nginx_certs:/etc/nginx/certs:rw
             - ./nginx/htpasswd:/etc/nginx/htpasswd:ro
             - /var/run/docker.sock:/var/run/docker.sock:ro
             - /etc/localtime:/etc/localtime:ro
@@ -234,4 +232,10 @@ services:
                 max_attempts: 3
                 window: 120s
         depends_on:
-            - nginx-gen
+            - nginx
+
+volumes:
+    nginx_conf.d:
+    nginx_vhost.d:
+    nginx_html:
+    nginx_certs:

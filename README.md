@@ -13,7 +13,7 @@ I didn't create any of these docker images myself, so credit goes to the linked 
 * [linuxserver/plexpy](https://hub.docker.com/r/linuxserver/plexpy/)
 * [linuxserver/transmission](https://hub.docker.com/r/linuxserver/transmission/)
 * [linuxserver/hydra](https://hub.docker.com/r/linuxserver/hydra/)
-* [jwilder/docker-gen](https://hub.docker.com/r/jwilder/docker-gen/)
+* [helder/docker-gen](https://hub.docker.com/r/helder/docker-gen/)
 * [jrcs/letsencrypt-nginx-proxy-companion](https://hub.docker.com/r/jrcs/letsencrypt-nginx-proxy-companion/)
 * [nginx](https://hub.docker.com/_/nginx/)
 
@@ -194,6 +194,20 @@ LETSENCRYPT_HOST=plex.yourdomain.com
 LETSENCRYPT_EMAIL=youremail@gmail.com
 ```
 
+### Nginx Settings
+
+It would be wise to protect your web services with http basic auth.
+Create a htpasswd file for each web service you want to protect.
+```bash
+$ htpasswd -c ./nginx/htpasswd/plex.yourdomain.com username password
+$ htpasswd -c ./nginx/htpasswd/plexpy.yourdomain.com username password
+$ htpasswd -c ./nginx/htpasswd/sonarr.yourdomain.com username password
+$ htpasswd -c ./nginx/htpasswd/radarr.yourdomain.com username password
+$ htpasswd -c ./nginx/htpasswd/nzbget.yourdomain.com username password
+$ htpasswd -c ./nginx/htpasswd/transmission.yourdomain.com username password
+```
+Portainer and Hydra both work better if built-in authentication is used.
+
 ### Plex Settings
 
 Set the remote mapping port to 443 and set secure connections to preferred.
@@ -220,7 +234,11 @@ Add the local plex media server connection details.
 ### Hydra Settings
 
 Set the public url so remote api commands don't return an unreachable link.
-* Config -> External URL = `https://hydra.yourdomain.com`
+* Config -> Main -> External URL = `https://hydra.yourdomain.com`
+
+Enable built-in authorization so services using the API key still have full access
+and are not blocked by HTTP basic auth.
+* Config -> Authorization -> Auth Type = `Login form`
 
 ### Sonarr Settings
 
@@ -250,7 +268,8 @@ $ sudo ufw allow https
 ### CloudFlare Settings
 
 * Crypto->SSL = `Full (strict)`
-* Firewall disabled if an abnormal amount of load is expected
+  * Certificates may not generate on the first run if services are started out-of-order.
+  * If this is the case, set Crypto->SSL to `Flexible` for a few hours so your services are reachable.
 * Forward the following A-level domains to your server public IP address:
   * `plex.yourdomain.com`
   * `plexpy.yourdomain.com`
@@ -317,3 +336,4 @@ Kyle Harding <kylemharding@gmail.com>
 * https://github.com/linuxserver/docker-radarr
 * https://github.com/linuxserver/docker-sonarr
 * https://github.com/linuxserver/docker-transmission
+* https://github.com/helderco/docker-gen
