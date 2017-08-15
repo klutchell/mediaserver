@@ -196,17 +196,17 @@ LETSENCRYPT_EMAIL=youremail@gmail.com
 
 ### Nginx Settings
 
-It would be wise to protect your web services with http basic auth.
+It would be wise to protect most of your web services with http basic auth.
 Create a htpasswd file for each web service you want to protect.
 ```bash
-$ htpasswd -c ./nginx/htpasswd/plex.yourdomain.com username password
 $ htpasswd -c ./nginx/htpasswd/plexpy.yourdomain.com username password
 $ htpasswd -c ./nginx/htpasswd/sonarr.yourdomain.com username password
 $ htpasswd -c ./nginx/htpasswd/radarr.yourdomain.com username password
 $ htpasswd -c ./nginx/htpasswd/nzbget.yourdomain.com username password
 $ htpasswd -c ./nginx/htpasswd/transmission.yourdomain.com username password
 ```
-Portainer and Hydra both work better if built-in authentication is used.
+Portainer, Plex, and Hydra all work better if built-in authentication is used
+rather than http basic auth.
 
 ### Plex Settings
 
