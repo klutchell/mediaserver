@@ -14,10 +14,12 @@ services:
             - ./portainer/portainer.env
         deploy:
             restart_policy:
-                condition: any
+                condition: on-failure
                 delay: 5s
                 max_attempts: 3
                 window: 120s
+        # healthcheck:
+            # test: curl --fail http://localhost:9000/ && echo 'OK'
 
     # https://github.com/plexinc/pms-docker
     # https://hub.docker.com/r/plexinc/pms-docker/
@@ -56,6 +58,8 @@ services:
                 delay: 5s
                 max_attempts: 3
                 window: 120s
+        healthcheck:
+            test: curl --fail http://localhost:6789/ && echo 'OK'
 
     # https://github.com/linuxserver/docker-sonarr
     # https://hub.docker.com/r/linuxserver/sonarr/
@@ -76,9 +80,8 @@ services:
                 delay: 5s
                 max_attempts: 3
                 window: 120s
-        depends_on:
-            - nzbget
-            - hydra
+        healthcheck:
+            test: curl --fail http://localhost:8989/ && echo 'OK'
 
     # https://github.com/linuxserver/docker-radarr
     # https://hub.docker.com/r/linuxserver/radarr/
@@ -99,9 +102,8 @@ services:
                 delay: 5s
                 max_attempts: 3
                 window: 120s
-        depends_on:
-            - nzbget
-            - hydra
+        healthcheck:
+            test: curl --fail http://localhost:7878/ && echo 'OK'
 
     # https://github.com/linuxserver/docker-plexpy
     # https://hub.docker.com/r/linuxserver/plexpy/
@@ -120,8 +122,8 @@ services:
                 delay: 5s
                 max_attempts: 3
                 window: 120s
-        depends_on:
-            - plex
+        healthcheck:
+            test: curl --fail http://localhost:8181/ && echo 'OK'
 
     # https://github.com/linuxserver/docker-transmission
     # https://hub.docker.com/r/linuxserver/transmission/
@@ -144,6 +146,8 @@ services:
                 delay: 5s
                 max_attempts: 3
                 window: 120s
+        healthcheck:
+            test: curl --fail http://localhost:9091/ && echo 'OK'
 
     # https://github.com/linuxserver/docker-hydra
     # https://hub.docker.com/r/linuxserver/hydra/
@@ -162,6 +166,8 @@ services:
                 delay: 5s
                 max_attempts: 3
                 window: 120s
+        healthcheck:
+            test: curl --fail http://localhost:5075/ && echo 'OK'
 
     # https://hub.docker.com/_/nginx/
     nginx:
@@ -185,15 +191,6 @@ services:
                 delay: 5s
                 max_attempts: 3
                 window: 120s
-        depends_on:
-            - portainer
-            - plex
-            - plexpy
-            - nzbget
-            - sonarr
-            - radarr
-            - transmission
-            - hydra
 
     # https://github.com/helderco/docker-gen
     # https://hub.docker.com/r/helder/docker-gen/
@@ -218,8 +215,6 @@ services:
                 delay: 5s
                 max_attempts: 3
                 window: 120s
-        depends_on:
-            - nginx
 
     # https://github.com/JrCs/docker-letsencrypt-nginx-proxy-companion
     # https://hub.docker.com/r/jrcs/letsencrypt-nginx-proxy-companion/
@@ -242,8 +237,6 @@ services:
                 delay: 5s
                 max_attempts: 3
                 window: 120s
-        depends_on:
-            - nginx-gen
 
 volumes:
     nginx_conf.d:

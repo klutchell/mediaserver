@@ -212,7 +212,7 @@ If the web interface isn't available, here are the same settings in the config f
   * `secureConnections="1"`
   * `allowedNetworks="127.0.0.1/255.255.255.255"`
 
-_[Create](#create-stack) the stack once in order to have this config file generated._
+_[Create](#createupdate-stack) the stack once in order to have this config file generated._
 
 ### Plexpy Settings
 
