@@ -37,26 +37,26 @@ Contact me if you have issues or comments, I'll update the README and source fil
 
 ### Dedicated server
 
-Since obviously PLEX requires a ton of space for media, I'm using a dedicated server with 4TB of storage.
+Since obviously PLEX requires a ton of space for media, I'm using a dedicated server with 2TB of storage.
 
 You could also use an old PC, or a VPS with mounted storage. PLEX Cloud is now an option as well if you are
 comfortable with your media on a cloud provider.
 
-This guide **does not** work on any ARM platform (including Raspberry PI) because the images I've included are not
-compiled for ARM.
+This guide does not work on any ARM platform (including Raspberry PI) because the images I've included are not
+compiled for ARM. In the future I may make a branch with arm images substituted.
 
-This guide **does not** cover mounting external storage (FUSE or otherwise) or initial OS setup.
+This guide does not cover mounting external storage (FUSE or otherwise) or initial OS setup.
 That's on you to sort out.
 
-### Debian/Ubuntu
+### Debian OS
 
-These instructions assume you are using **Ubuntu x64 16.04** or later.
+This guide assumes you are using **Ubuntu Server x64 16.04** or later.
 
 It will likely work on other x86/x64 Debian distros but this is what I'm running.
 
 ### Custom domain
 
-These instructions assume you own a custom domain with configurable sub-domains similar to the following.
+This guide assumes you own a custom domain with configurable sub-domains similar to the following.
 
   * `plex.yourdomain.com`
   * `plexpy.yourdomain.com`
@@ -70,11 +70,11 @@ These instructions assume you own a custom domain with configurable sub-domains 
 A custom domain isn't expensive, and I'm using one from [namecheap](namecheap.com).
 
 Free subdomain services could also be used but the configuration would have to be adjusted
-to use url sub-paths instead of unique sub-domains. This is not the route I've taken in the guide.
+to use url sub-paths instead of unique sub-domains. Sub-paths are not covered in this guide.
 
 Example:
-  *  `mediaserver.freedomain.com/plex`
-  *  `mediaserver.freedomain.com/plexpy`
+  *  `myserver.freedomain.com/plex`
+  *  `myserver.freedomain.com/plexpy`
   * ...
 
 ### CloudFlare
@@ -85,7 +85,7 @@ but that should be considered optional.
 ## Installation
 ### Install Docker
 
-Install docker engine.
+Install docker engine if you don't already have it.
 ```bash
 $ curl -sSL get.docker.com | sh
 $ sudo usermod -aG docker "$(who am i | awk '{print $1}')"
@@ -100,18 +100,52 @@ $ git clone git@github.com:klutchell/mediaserver.git ~/mediaserver
 ```
 _You can change data and media paths in a later step._
 
-### Initialize Swarm
-
-I've switched to docker stack where I was previously using docker-compose.
-It requires we initialize a master swarm node before adding services to the stack.
-I haven't tried multiple nodes yet but it would be tricky with all the media storage.
-```bash
-$ docker swarm init
-```
-_See https://docs.docker.com/engine/reference/commandline/stack/ for additonal
-command line options._
-
 ## Configuration
+
+### Firewall Settings
+
+Although docker will automatically add some firewall rules, I find some services still work better
+if http/https traffic is allowed manually through UFW.
+```bash
+$ sudo ufw allow http
+$ sudo ufw allow https
+```
+
+### CloudFlare Settings
+
+I'm using CloudFlare for my DNS, since it's free and offers some features that you wouldn't
+normally get with your domain registrar.
+
+#### DNS
+
+Forward the following A-level domains to your server public IP address (where `12.34.56.78` is your
+server public-facing address).
+
+* DNS->DNS Records
+
+|Type|Name|Value|TTL|Status|
+|---|---|---|---|---|
+|`A`|`plex`|`12.34.56.78`|`Automatic`|`DNS and HTTP proxy (CDN)`|
+|`A`|`plexpy`|`12.34.56.78`|`Automatic`|`DNS and HTTP proxy (CDN)`|
+|`A`|`hydra`|`12.34.56.78`|`Automatic`|`DNS and HTTP proxy (CDN)`|
+|`A`|`sonarr`|`12.34.56.78`|`Automatic`|`DNS and HTTP proxy (CDN)`|
+|`A`|`radarr`|`12.34.56.78`|`Automatic`|`DNS and HTTP proxy (CDN)`|
+|`A`|`nzbget`|`12.34.56.78`|`Automatic`|`DNS and HTTP proxy (CDN)`|
+|`A`|`transmission`|`12.34.56.78`|`Automatic`|`DNS and HTTP proxy (CDN)`|
+|`A`|`portainer`|`12.34.56.78`|`Automatic`|`DNS and HTTP proxy (CDN)`|
+
+#### Crypto
+
+I've found that on first run, you'll want to set SSL to `Flexible` for up to 2 hours.
+
+* Crypto->SSL = `Flexible`
+
+Once all the services are online and the local certificates have been created, then you can change it to `Full (strict)`.
+
+* Crypto->SSL = `Full (strict)`
+
+If you view the letsencrypt logs and see there was an issue creating certificates, setting CloudFlare back to
+`Flexible` will at least make your services reachable, albiet less secure.
 
 ### Compose File
 
@@ -129,6 +163,7 @@ $ nano ./docker-compose.yml
 _See https://docs.docker.com/compose/compose-file/ for supported values._
 
 ### Environment Files
+
 Most of the services have environment files that are sourced by the compose file.
 Some of the fields are required and are populated with fake data so be sure to
 review and update them as necessary.
@@ -143,93 +178,8 @@ review and update them as necessary.
 * `./nzbget/nzbget.env`
 * `./sonarr/sonarr.env`
 
-#### Example 1
-
-```bash
-# https://github.com/linuxserver/docker-radarr
-
-# Provide the desired id that the container should use when running.
-# This is helpful to maintain ownership of the config files and databases.
-# Run id `whoami` to find the ID of your current user and group.
-PUID=1000
-PGID=1000
-
-# Set the desired timezone for the container.
-# Run `cat /etc/timezone` to find the timezone of the host os.
-TZ=America/New_York
-
-# Provide the public-facing domain to use for this service.
-# Specify multiple hosts with a comma delimiter.
-# See https://github.com/jwilder/nginx-proxy
-VIRTUAL_HOST=radarr.yourdomain.com
-
-# Provide the internal container service port to forward traffic via proxy
-# This port will not be public-facing, it is used by nginx for reverse-proxy.
-# See https://github.com/jwilder/nginx-proxy
-VIRTUAL_PORT=7878
-
-# The LETSENCRYPT_HOST variable most likely needs to be the same as
-# the VIRTUAL_HOST variable and must be publicly reachable domains.
-# Specify multiple hosts with a comma delimiter.
-# See https://github.com/JrCs/docker-letsencrypt-nginx-proxy-companion
-LETSENCRYPT_HOST=radarr.yourdomain.com
-LETSENCRYPT_EMAIL=youremail@gmail.com
-```
-
-#### Example 2
-
-```bash
-# https://github.com/plexinc/pms-docker
-
-# Change ownership of config directory to the plex user. Defaults to true.
-# If you are certain permissions are already set such that the plex user within
-# the container can read/write data in it's config directory, you can set this
-# to false to speed up the first run of the container.
-#CHANGE_CONFIG_DIR_OWNERSHIP=true
-
-# IP/netmask entries which allow access to the server without requiring authorization.
-# We recommend you set this only if you do not sign in your server.
-# For example 192.168.1.0/24,172.16.0.0/16 will allow access to the
-# entire 192.168.1.x range and the 172.16.x.x range.
-#ALLOWED_NETWORKS=192.168.1.0/24,172.16.0.0/16
-
-# The user id of the plex user created inside the container.
-# Run id `whoami` to find the ID of your current user and group.
-PLEX_UID=1000
-
-# The group id of the plex group created inside the container
-# Run id `whoami` to find the ID of your current user and group.
-PLEX_GID=1000
-
-# Set the timezone inside the container.
-# For example: Europe/London.
-# The complete list can be found here: https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
-# Run `cat /etc/timezone` to find the timezone of the host os.
-TZ=America/New_York
-
-# The claim token for the server to obtain a real server token.
-# If not provided, server is will not be automatically logged in.
-# If server is already logged in, this parameter is ignored.
-# You can obtain a claim token to login your server to your plex account by visiting https://www.plex.tv/claim.
-PLEX_CLAIM=
-
-# Provide the public-facing domain to use for this service.
-# Specify multiple hosts with a comma delimiter.
-# See https://github.com/jwilder/nginx-proxy
-VIRTUAL_HOST=plex.yourdomain.com
-
-# Provide the internal container service port to forward traffic via proxy
-# This port will not be public-facing, it is used by nginx for reverse-proxy.
-# See https://github.com/jwilder/nginx-proxy
-VIRTUAL_PORT=32400
-
-# The LETSENCRYPT_HOST variable most likely needs to be the same as
-# the VIRTUAL_HOST variable and must be publicly reachable domains.
-# Specify multiple hosts with a comma delimiter.
-# See https://github.com/JrCs/docker-letsencrypt-nginx-proxy-companion
-LETSENCRYPT_HOST=plex.yourdomain.com
-LETSENCRYPT_EMAIL=youremail@gmail.com
-```
+If you don't update these environment files with your domain and email at the very least,
+letsencrypt will not be able to register your SSL certificates.
 
 ### Nginx Settings
 
@@ -251,15 +201,16 @@ _See https://github.com/jwilder/nginx-proxy#basic-authentication-support for mor
 
 Set the remote mapping port to 443 and set secure connections to preferred.
 * Settings -> Server -> Remote Access -> Manually specify public port = `443`
-* Settings -> Server -> Network -> Custom server access URLs = `https://plex.yourdomain:443`
+* Settings -> Server -> Network -> Custom server access URLs = `https://plex.yourdomain:443,https://plex.yourdomain.com:80`
 * Settings -> Server -> Network -> Secure connections = `Preferred`
 
 If the web interface isn't available, here are the same settings in the config file.
 * `./plex/config/Library/Application Support/Plex Media Server/Preferences.xml`
   * `ManualPortMappingMode="1"`
   * `ManualPortMappingPort="443"`
-  * `customConnections="https://plex.yourdomain.com:443"`
+  * `customConnections="https://plex.yourdomain.com:443,https://plex.yourdomain.com:80"`
   * `secureConnections="1"`
+  * `allowedNetworks="127.0.0.1/255.255.255.255"`
 
 _[Create](#create-stack) the stack once in order to have this config file generated._
 
@@ -295,31 +246,21 @@ Add the local hydra indexer connection details.
 Add the local nzbget download client connection details.
 * Settings -> Download Client -> Add = `Type: nzbget` `Host: nzbget` `Port: 6789`
 
-### Firewall Settings
-
-Although docker will automatically add some firewall rules, I find some services still work better
-if http/https traffic is allowed manually through UFW.
-```bash
-$ sudo ufw allow http
-$ sudo ufw allow https
-```
-
-### CloudFlare Settings
-
-* Crypto->SSL = `Full (strict)`
-  * Certificates may not generate on the first run if services are started out-of-order.
-  * If this is the case, set Crypto->SSL to `Flexible` for a few hours so your services are reachable.
-* Forward the following A-level domains to your server public IP address:
-  * `plex.yourdomain.com`
-  * `plexpy.yourdomain.com`
-  * `hydra.yourdomain.com`
-  * `sonarr.yourdomain.com`
-  * `radarr.yourdomain.com`
-  * `nzbget.yourdomain.com`
-  * `transmission.yourdomain.com`
-  * `portainer.yourdomain.com`
-
 ## Usage
+
+### Initialize Swarm
+
+This step only needs to be performed once per server.
+
+I've switched to docker stack where I was previously using docker-compose.
+It requires we initialize a master swarm node before adding services to the stack.
+I haven't tried multiple nodes yet but it would be tricky with all the media storage.
+```bash
+$ docker swarm init
+```
+_See https://docs.docker.com/engine/reference/commandline/stack/ for additonal
+command line options._
+
 ### Create/Update Stack
 
 Create a new stack or update an existing stack with all of our configured services in the compose file.

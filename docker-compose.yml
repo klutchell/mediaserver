@@ -185,6 +185,15 @@ services:
                 delay: 5s
                 max_attempts: 3
                 window: 120s
+        depends_on:
+            - portainer
+            - plex
+            - plexpy
+            - nzbget
+            - sonarr
+            - radarr
+            - transmission
+            - hydra
 
     # https://github.com/helderco/docker-gen
     # https://hub.docker.com/r/helder/docker-gen/
@@ -209,7 +218,9 @@ services:
                 delay: 5s
                 max_attempts: 3
                 window: 120s
-    
+        depends_on:
+            - nginx
+
     # https://github.com/JrCs/docker-letsencrypt-nginx-proxy-companion
     # https://hub.docker.com/r/jrcs/letsencrypt-nginx-proxy-companion/
     nginx-letsencrypt:
@@ -232,7 +243,7 @@ services:
                 max_attempts: 3
                 window: 120s
         depends_on:
-            - nginx
+            - nginx-gen
 
 volumes:
     nginx_conf.d:
