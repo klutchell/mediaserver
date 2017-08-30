@@ -140,9 +140,7 @@ if the plex/media folder needs to be on an external drive. Symlinks are allowed
 and it makes it easier to point some volumes to large mount points.
 By default, most volumes are mounted to subdirectories of the project root.
 
-```bash
-$ nano ./docker-compose.yml
-```
+* `./docker-compose.yml`
 
 _See https://docs.docker.com/compose/compose-file/ for supported values._
 
