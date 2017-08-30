@@ -100,23 +100,12 @@ $ git clone git@github.com:klutchell/mediaserver.git ~/mediaserver
 ```
 _You can change data and media paths in a later step._
 
-## Configuration
-
-### Firewall Settings
-
-Although docker will automatically add some firewall rules, I find some services still work better
-if http/https traffic is allowed manually through UFW.
-```bash
-$ sudo ufw allow http
-$ sudo ufw allow https
-```
-
-### CloudFlare Settings
+## CloudFlare Configuration
 
 I'm using CloudFlare for my DNS, since it's free and offers some features that you wouldn't
 normally get with your domain registrar.
 
-#### DNS
+### DNS
 
 Forward the following A-level domains to your server public IP address (where `12.34.56.78` is your
 server public-facing address).
@@ -134,7 +123,7 @@ server public-facing address).
 |`A`|`transmission`|`12.34.56.78`|`Automatic`|`DNS and HTTP proxy (CDN)`|
 |`A`|`portainer`|`12.34.56.78`|`Automatic`|`DNS and HTTP proxy (CDN)`|
 
-#### Crypto
+### Crypto
 
 I've found that on first run, you'll want to set SSL to `Flexible` for up to 2 hours.
 
@@ -146,6 +135,17 @@ Once all the services are online and the local certificates have been created, t
 
 If you view the letsencrypt logs and see there was an issue creating certificates, setting CloudFlare back to
 `Flexible` will at least make your services reachable, albiet less secure.
+
+## Server Configuration
+
+### Firewall
+
+Although docker will automatically add some firewall rules, I find some services still work better
+if http/https traffic is allowed manually through UFW.
+```bash
+$ sudo ufw allow http
+$ sudo ufw allow https
+```
 
 ### Compose File
 
@@ -181,7 +181,7 @@ review and update them as necessary.
 If you don't update these environment files with your domain and email at the very least,
 letsencrypt will not be able to register your SSL certificates.
 
-### Nginx Settings
+### HTTP Auth
 
 It would be wise to protect most of your web services with http basic auth.
 Create a htpasswd file for each web service you want to protect.
@@ -196,55 +196,6 @@ Portainer, Plex, and Hydra all work better if built-in authentication is used
 rather than http basic auth.
 
 _See https://github.com/jwilder/nginx-proxy#basic-authentication-support for more info._
-
-### Plex Settings
-
-Set the remote mapping port to 443 and set secure connections to preferred.
-* Settings -> Server -> Remote Access -> Manually specify public port = `443`
-* Settings -> Server -> Network -> Custom server access URLs = `https://plex.yourdomain:443,https://plex.yourdomain.com:80`
-* Settings -> Server -> Network -> Secure connections = `Preferred`
-
-If the web interface isn't available, here are the same settings in the config file.
-* `./plex/config/Library/Application Support/Plex Media Server/Preferences.xml`
-  * `ManualPortMappingMode="1"`
-  * `ManualPortMappingPort="443"`
-  * `customConnections="https://plex.yourdomain.com:443,https://plex.yourdomain.com:80"`
-  * `secureConnections="1"`
-  * `allowedNetworks="127.0.0.1/255.255.255.255"`
-
-_[Create](#createupdate-stack) the stack once in order to have this config file generated._
-
-### Plexpy Settings
-
-Add the local plex media server connection details.
-* Settings -> Plex Media Server -> Plex IP or Hostname = `plex`
-* Settings -> Plex Media Server -> Plex Port = `32400`
-* Settings -> Plex Media Server -> Use SSL = `true`
-
-### Hydra Settings
-
-Set the public url so remote api commands don't return an unreachable link.
-* Config -> Main -> External URL = `https://hydra.yourdomain.com`
-
-Enable built-in authorization so services using the API key still have full access
-and are not blocked by HTTP basic auth.
-* Config -> Authorization -> Auth Type = `Login form`
-
-### Sonarr Settings
-
-Add the local hydra indexer connection details.
-* Settings -> Indexers -> Add = `Type: newsnab` `URL: http://hydra:5075`
-
-Add the local nzbget download client connection details.
-* Settings -> Download Client -> Add = `Type: nzbget` `Host: nzbget` `Port: 6789`
-
-### Radarr Settings
-
-Add the local hydra indexer connection details.
-* Settings -> Indexers -> Add = `Type: newsnab` `URL: http://hydra:5075`
-
-Add the local nzbget download client connection details.
-* Settings -> Download Client -> Add = `Type: nzbget` `Host: nzbget` `Port: 6789`
 
 ## Usage
 
@@ -297,6 +248,46 @@ As an example, this will tail the nzbget service logs.
 ```bash
 $ docker service logs -f mediaserver_plex
 ```
+
+## Additional Settings
+
+### Plex
+
+Set the remote mapping port to 443 and set secure connections to preferred.
+* Settings -> Server -> Remote Access -> Manually specify public port = `443`
+* Settings -> Server -> Network -> Secure connections = `Preferred`
+
+### Plexpy
+
+Add the local plex media server connection details.
+* Settings -> Plex Media Server -> Plex IP or Hostname = `plex`
+* Settings -> Plex Media Server -> Plex Port = `32400`
+* Settings -> Plex Media Server -> Use SSL = `true`
+
+### Hydra
+
+Set the public url so remote api commands don't return an unreachable link.
+* Config -> Main -> External URL = `https://hydra.yourdomain.com`
+
+Enable built-in authorization so services using the API key still have full access
+and are not blocked by HTTP basic auth.
+* Config -> Authorization -> Auth Type = `Login form`
+
+### Sonarr
+
+Add the local hydra indexer connection details.
+* Settings -> Indexers -> Add = `Type: newsnab` `URL: http://hydra:5075`
+
+Add the local nzbget download client connection details.
+* Settings -> Download Client -> Add = `Type: nzbget` `Host: nzbget` `Port: 6789`
+
+### Radarr
+
+Add the local hydra indexer connection details.
+* Settings -> Indexers -> Add = `Type: newsnab` `URL: http://hydra:5075`
+
+Add the local nzbget download client connection details.
+* Settings -> Download Client -> Add = `Type: nzbget` `Host: nzbget` `Port: 6789`
 
 ## Author
 
