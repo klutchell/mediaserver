@@ -69,14 +69,6 @@ This guide assumes you own a custom domain with configurable sub-domains similar
 
 A custom domain isn't expensive, and I'm using one from [namecheap](namecheap.com).
 
-Free subdomain services could also be used but the configuration would have to be adjusted
-to use url sub-paths instead of unique sub-domains. Sub-paths are not covered in this guide.
-
-Example:
-  *  `myserver.freedomain.com/plex`
-  *  `myserver.freedomain.com/plexpy`
-  * ...
-
 ### CloudFlare
 
 I'm also using [CloudFlare](https://cloudflare.com) (free) for my DNS provider,
@@ -110,8 +102,6 @@ normally get with your domain registrar.
 Forward the following A-level domains to your server public IP address (where `12.34.56.78` is your
 server public-facing address).
 
-* DNS->DNS Records
-
 |Type|Name|Value|TTL|Status|
 |---|---|---|---|---|
 |`A`|`plex`|`12.34.56.78`|`Automatic`|`DNS and HTTP proxy (CDN)`|
@@ -125,27 +115,21 @@ server public-facing address).
 
 ### Crypto
 
-I've found that on first run, you'll want to set SSL to `Flexible` for up to 2 hours.
+I've found that on first run, you'll want to set SSL to `Flexible` for up to 2 hours
+while letsencrypt sorts out your certificates.
 
-* Crypto->SSL = `Flexible`
+Once all the services are online and the local certificates signed,
+then you can change it to `Full (strict)`.
 
-Once all the services are online and the local certificates have been created, then you can change it to `Full (strict)`.
-
-* Crypto->SSL = `Full (strict)`
-
-If you view the letsencrypt logs and see there was an issue creating certificates, setting CloudFlare back to
-`Flexible` will at least make your services reachable, albiet less secure.
+If you view the letsencrypt logs and see there was an issue creating certificates,
+setting CloudFlare back to `Flexible` will at least make your services reachable,
+albiet less secure.
 
 ## Server Configuration
 
 ### Firewall
 
-Although docker will automatically add some firewall rules, I find some services still work better
-if http/https traffic is allowed manually through UFW.
-```bash
-$ sudo ufw allow http
-$ sudo ufw allow https
-```
+Allow HTTP (80) and HTTPS (443) through your firewall.
 
 ### Compose File
 
