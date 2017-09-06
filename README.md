@@ -27,12 +27,6 @@ are covered in detail elsewhere, here's why I prefer this setup for my media ser
 * migrating to a new server is painless
 * uptime is reliable with docker stack
 
-## Disclaimer
-
-I haven't started a new server from scratch recently, so this guide may be missing a step or two.
-
-Contact me if you have issues or comments, I'll update the README and source files as necessary.
-
 ## Suggested Prerequisites
 
 ### Dedicated server
