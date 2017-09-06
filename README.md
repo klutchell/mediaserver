@@ -231,22 +231,16 @@ As an example, this will tail the nzbget service logs.
 $ docker service logs -f mediaserver_plex
 ```
 
-## Additional Settings
+### Connect Services
 
-### Plex
-
-Set the remote mapping port to 443 and set secure connections to preferred.
-* Settings -> Server -> Remote Access -> Manually specify public port = `443`
-* Settings -> Server -> Network -> Secure connections = `Preferred`
-
-### Plexpy
+#### Plexpy
 
 Add the local plex media server connection details.
 * Settings -> Plex Media Server -> Plex IP or Hostname = `plex`
 * Settings -> Plex Media Server -> Plex Port = `32400`
 * Settings -> Plex Media Server -> Use SSL = `true`
 
-### Hydra
+#### Hydra
 
 Set the public url so remote api commands don't return an unreachable link.
 * Config -> Main -> External URL = `https://hydra.yourdomain.com`
@@ -255,7 +249,7 @@ Enable built-in authorization so services using the API key still have full acce
 and are not blocked by HTTP basic auth.
 * Config -> Authorization -> Auth Type = `Login form`
 
-### Sonarr
+#### Sonarr
 
 Add the local hydra indexer connection details.
 * Settings -> Indexers -> Add = `Type: newsnab` `URL: http://hydra:5075`
@@ -263,7 +257,7 @@ Add the local hydra indexer connection details.
 Add the local nzbget download client connection details.
 * Settings -> Download Client -> Add = `Type: nzbget` `Host: nzbget` `Port: 6789`
 
-### Radarr
+#### Radarr
 
 Add the local hydra indexer connection details.
 * Settings -> Indexers -> Add = `Type: newsnab` `URL: http://hydra:5075`
