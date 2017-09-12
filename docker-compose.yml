@@ -19,7 +19,7 @@ services:
                 max_attempts: 3
                 window: 120s
         # healthcheck:
-            # test: curl --fail http://localhost:9000/ && echo 'OK'
+            # test: curl --fail http://localhost:9000/ || exit 1
 
     # https://github.com/plexinc/pms-docker
     # https://hub.docker.com/r/plexinc/pms-docker/
@@ -59,7 +59,7 @@ services:
                 max_attempts: 3
                 window: 120s
         healthcheck:
-            test: curl --fail http://localhost:6789/ && echo 'OK'
+            test: curl --fail http://localhost:6789/ || exit 1
 
     # https://github.com/linuxserver/docker-sonarr
     # https://hub.docker.com/r/linuxserver/sonarr/
@@ -81,7 +81,7 @@ services:
                 max_attempts: 3
                 window: 120s
         healthcheck:
-            test: curl --fail http://localhost:8989/ && echo 'OK'
+            test: curl --fail http://localhost:8989/ || exit 1
 
     # https://github.com/linuxserver/docker-radarr
     # https://hub.docker.com/r/linuxserver/radarr/
@@ -103,7 +103,7 @@ services:
                 max_attempts: 3
                 window: 120s
         healthcheck:
-            test: curl --fail http://localhost:7878/ && echo 'OK'
+            test: curl --fail http://localhost:7878/ || exit 1
 
     # https://github.com/linuxserver/docker-plexpy
     # https://hub.docker.com/r/linuxserver/plexpy/
@@ -123,7 +123,7 @@ services:
                 max_attempts: 3
                 window: 120s
         healthcheck:
-            test: curl --fail http://localhost:8181/ && echo 'OK'
+            test: curl --fail http://localhost:8181/ || exit 1
 
     # https://github.com/linuxserver/docker-transmission
     # https://hub.docker.com/r/linuxserver/transmission/
@@ -147,7 +147,7 @@ services:
                 max_attempts: 3
                 window: 120s
         healthcheck:
-            test: curl --fail http://localhost:9091/ && echo 'OK'
+            test: curl --fail http://localhost:9091/ || exit 1
 
     # https://github.com/linuxserver/docker-hydra
     # https://hub.docker.com/r/linuxserver/hydra/
@@ -167,7 +167,7 @@ services:
                 max_attempts: 3
                 window: 120s
         healthcheck:
-            test: curl --fail http://localhost:5075/ && echo 'OK'
+            test: curl --fail http://localhost:5075/ || exit 1
 
     # https://hub.docker.com/_/nginx/
     nginx:
