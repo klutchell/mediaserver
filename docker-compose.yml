@@ -238,6 +238,24 @@ services:
                 max_attempts: 3
                 window: 120s
 
+    # https://github.com/firehol/netdata
+    # https://hub.docker.com/r/firehol/netdata/
+    netdata:
+        image: firehol/netdata
+        volumes:
+            - /proc:/host/proc:ro
+            - /sys:/host/sys:ro
+        env_file:
+            - ./netdata/netdata.env
+        deploy:
+            restart_policy:
+                condition: any
+                delay: 5s
+                max_attempts: 3
+                window: 120s
+        healthcheck:
+            test: curl --fail http://localhost:19999/ || exit 1
+
 volumes:
     nginx_conf.d:
     nginx_vhost.d:

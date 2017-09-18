@@ -16,6 +16,7 @@ I didn't create any of these docker images myself, so credit goes to the linked 
 * [helder/docker-gen](https://hub.docker.com/r/helder/docker-gen/)
 * [jrcs/letsencrypt-nginx-proxy-companion](https://hub.docker.com/r/jrcs/letsencrypt-nginx-proxy-companion/)
 * [nginx](https://hub.docker.com/_/nginx/)
+* [netdata](https://hub.docker.com/r/firehol/netdata/)
 
 ## Benefits
 
@@ -60,6 +61,7 @@ This guide assumes you own a custom domain with configurable sub-domains similar
   * `nzbget.yourdomain.com`
   * `transmission.yourdomain.com`
   * `portainer.yourdomain.com`
+  * `netdata.yourdomain.com`
 
 A custom domain isn't expensive, and I'm using one from [namecheap](namecheap.com).
 
@@ -106,6 +108,7 @@ server public-facing address).
 |`A`|`nzbget`|`12.34.56.78`|`Automatic`|`DNS and HTTP proxy (CDN)`|
 |`A`|`transmission`|`12.34.56.78`|`Automatic`|`DNS and HTTP proxy (CDN)`|
 |`A`|`portainer`|`12.34.56.78`|`Automatic`|`DNS and HTTP proxy (CDN)`|
+|`A`|`netdata`|`12.34.56.78`|`Automatic`|`DNS and HTTP proxy (CDN)`|
 
 ### Crypto
 
@@ -153,6 +156,7 @@ review and update them as necessary.
 * `./plex/plex.env`
 * `./nzbget/nzbget.env`
 * `./sonarr/sonarr.env`
+* `./netdata/netdata.env`
 
 If you don't update these environment files with your domain and email at the very least,
 letsencrypt will not be able to register your SSL certificates.
@@ -162,11 +166,12 @@ letsencrypt will not be able to register your SSL certificates.
 It would be wise to protect most of your web services with http basic auth.
 Create a htpasswd file for each web service you want to protect.
 ```bash
-$ htpasswd -c ./nginx/htpasswd/plexpy.yourdomain.com username password
-$ htpasswd -c ./nginx/htpasswd/sonarr.yourdomain.com username password
-$ htpasswd -c ./nginx/htpasswd/radarr.yourdomain.com username password
-$ htpasswd -c ./nginx/htpasswd/nzbget.yourdomain.com username password
-$ htpasswd -c ./nginx/htpasswd/transmission.yourdomain.com username password
+$ htpasswd -bc ./nginx/htpasswd/plexpy.yourdomain.com username password
+$ htpasswd -bc ./nginx/htpasswd/sonarr.yourdomain.com username password
+$ htpasswd -bc ./nginx/htpasswd/radarr.yourdomain.com username password
+$ htpasswd -bc ./nginx/htpasswd/nzbget.yourdomain.com username password
+$ htpasswd -bc ./nginx/htpasswd/transmission.yourdomain.com username password
+$ htpasswd -bc ./nginx/htpasswd/netdata.yourdomain.com username password
 ```
 Portainer, Plex, and Hydra all work better if built-in authentication is used
 rather than http basic auth.
@@ -277,4 +282,5 @@ Kyle Harding <kylemharding@gmail.com>
 * https://github.com/linuxserver/docker-radarr
 * https://github.com/linuxserver/docker-sonarr
 * https://github.com/linuxserver/docker-transmission
+* https://github.com/firehol/netdata/wiki
 * https://github.com/helderco/docker-gen
