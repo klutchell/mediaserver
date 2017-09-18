@@ -112,15 +112,11 @@ server public-facing address).
 
 ### Crypto
 
-I've found that on first run, you'll want to set SSL to `Flexible` for up to 2 hours
-while letsencrypt sorts out your certificates.
+I haven't been able to get letsencrypt to renew certificates while `Full (strict)`
+SSL is enabled on CloudFlare, so for first run or when adding new services set it
+to `Flexible` until the certs have been obtained.
 
-Once all the services are online and the local certificates signed,
-then you can change it to `Full (strict)`.
-
-If you view the letsencrypt logs and see there was an issue creating certificates,
-setting CloudFlare back to `Flexible` will at least make your services reachable,
-albiet less secure.
+Any tips or workarounds for this are appreciated!
 
 ## Server Configuration
 
