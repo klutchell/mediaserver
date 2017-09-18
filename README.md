@@ -16,7 +16,7 @@ I didn't create any of these docker images myself, so credit goes to the linked 
 * [helder/docker-gen](https://hub.docker.com/r/helder/docker-gen/)
 * [jrcs/letsencrypt-nginx-proxy-companion](https://hub.docker.com/r/jrcs/letsencrypt-nginx-proxy-companion/)
 * [nginx](https://hub.docker.com/_/nginx/)
-* [netdata](https://hub.docker.com/r/firehol/netdata/)
+* [firehol/netdata](https://hub.docker.com/r/firehol/netdata/)
 
 ## Benefits
 
