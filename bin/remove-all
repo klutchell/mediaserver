@@ -4,15 +4,14 @@ IFS=$'\n\t'
 
 #/
 #/ Usage:
-#/              deploy-all
+#/              remove-all
 #/ Description:
-#/              deploy entire stack defined by docker-compose.yml;
-#/              if services already exist, they will be updated;
+#/              remove entire stack defined by docker-compose.yml;
+#/              if stack does not exist, no action will be taken;
 #/ Commands Used:
-#/              docker swarm init
-#/              docker stack deploy
+#/              docker stack rm
 #/ Examples:
-#/              deploy-all
+#/              remove-all
 #/ Flags:
 #/              --help: display this help message
 #/
@@ -52,16 +51,7 @@ trap cleanup INT TERM EXIT
 # start a new pid
 echo $$ > "${PID_FILE}"
 
-if ! docker node ls | grep -q Active
-then
-	info "initializing swarm ..."
-	docker swarm init
-	info "... done!"
-else
-	info "swarm node is active"
-fi
-
-info "deploying stack ..."
-docker stack deploy --compose-file "${BIN_DIR}/../docker-compose.yml" mediaserver
+info "removing stack ..."
+docker stack rm mediaserver
 info "... task is running in background"
 info "check status with 'docker service ls' and 'docker ps'

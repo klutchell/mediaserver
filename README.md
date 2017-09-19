@@ -183,36 +183,6 @@ Deploy a new stack or update an existing stack with all of our configured servic
 $ bin/deploy-all
 ```
 
-### Remove Stack
-
-This will stop all services and remove the stack. Useful for modifying multiple configuration files as described above.
-```bash
-$ docker stack rm mediaserver
-```
-
-### Scale A Service
-
-You can start and stop services by scaling the instances to 0 then back to 1.
-As an example, this will stop then restart the nzbget service.
-```bash
-$ docker service scale mediaserver_plex=0
-$ docker service scale mediaserver_plex=1
-```
-
-### Update A Service
-
-As an example, this will force update and restart the plex service.
-```bash
-$ docker service update --force mediaserver_plex
-```
-
-### View Service Logs
-
-As an example, this will tail the nzbget service logs.
-```bash
-$ docker service logs -f mediaserver_plex
-```
-
 ### Connect Services
 
 #### Plexpy
