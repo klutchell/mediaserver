@@ -62,4 +62,4 @@ docker service ls | grep -q "${SERVICE_NAME}" || fatal "service ${SERVICE_NAME} 
 info "updating service ${SERVICE_NAME} ..."
 docker service update --detach=true --force ${SERVICE_NAME}
 info "... task is running in background"
-info "check status with 'docker service ls' and 'docker ps'
+info "check status with 'docker service ls' and 'docker ps'"

@@ -64,4 +64,4 @@ fi
 info "deploying stack ..."
 docker stack deploy --compose-file "${BIN_DIR}/../docker-compose.yml" mediaserver
 info "... task is running in background"
-info "check status with 'docker service ls' and 'docker ps'
+info "check status with 'docker service ls' and 'docker ps'"

@@ -54,4 +54,4 @@ echo $$ > "${PID_FILE}"
 info "removing stack ..."
 docker stack rm mediaserver
 info "... task is running in background"
-info "check status with 'docker service ls' and 'docker ps'
+info "check status with 'docker service ls' and 'docker ps'"

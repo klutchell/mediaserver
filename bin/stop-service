@@ -62,4 +62,4 @@ docker service ls | grep -q "${SERVICE_NAME}" || fatal "service ${SERVICE_NAME} 
 info "stopping service ${SERVICE_NAME} ..."
 docker service scale --detach=true ${SERVICE_NAME}=0
 info "... task is running in background"
-info "check status with 'docker service ls' and 'docker ps'
+info "check status with 'docker service ls' and 'docker ps'"
