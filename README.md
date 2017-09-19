@@ -176,24 +176,11 @@ _See https://github.com/jwilder/nginx-proxy#basic-authentication-support for mor
 
 ## Usage
 
-### Initialize Swarm
+### Deploy Stack
 
-This step only needs to be performed once per server.
-
-I've switched to docker stack where I was previously using docker-compose.
-It requires we initialize a master swarm node before adding services to the stack.
-I haven't tried multiple nodes yet but it would be tricky with all the media storage.
+Deploy a new stack or update an existing stack with all of our configured services in the compose file.
 ```bash
-$ docker swarm init
-```
-_See https://docs.docker.com/engine/reference/commandline/stack/ for additonal
-command line options._
-
-### Create/Update Stack
-
-Create a new stack or update an existing stack with all of our configured services in the compose file.
-```bash
-$ docker stack deploy --compose-file docker-compose.yml mediaserver
+$ bin/deploy-all
 ```
 
 ### Remove Stack
@@ -203,7 +190,7 @@ This will stop all services and remove the stack. Useful for modifying multiple 
 $ docker stack rm mediaserver
 ```
 
-### Stop/Start A Service
+### Scale A Service
 
 You can start and stop services by scaling the instances to 0 then back to 1.
 As an example, this will stop then restart the nzbget service.
