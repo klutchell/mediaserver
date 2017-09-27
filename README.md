@@ -1,24 +1,31 @@
 # Docker Plex & Usenet Media Server #
 
 This is a Docker-based Plex Media Server setup for ubuntu using public images from Docker Hub.
-I didn't create any of these docker images myself, so credit goes to the linked authors.
 
-* [plexinc/pms-docker](https://hub.docker.com/r/plexinc/pms-docker/)
-* [portainer/portainer](https://hub.docker.com/r/portainer/portainer/)
-* [linuxserver/nzbget](https://hub.docker.com/r/linuxserver/nzbget/)
-* [linuxserver/sonarr](https://hub.docker.com/r/linuxserver/sonarr/)
-* [linuxserver/radarr](https://hub.docker.com/r/linuxserver/radarr/)
-* [linuxserver/plexpy](https://hub.docker.com/r/linuxserver/plexpy/)
-* [linuxserver/transmission](https://hub.docker.com/r/linuxserver/transmission/)
-* [linuxserver/hydra](https://hub.docker.com/r/linuxserver/hydra/)
-* [helder/docker-gen](https://hub.docker.com/r/helder/docker-gen/)
-* [jrcs/letsencrypt-nginx-proxy-companion](https://hub.docker.com/r/jrcs/letsencrypt-nginx-proxy-companion/)
-* [nginx](https://hub.docker.com/_/nginx/)
-* [firehol/netdata](https://hub.docker.com/r/firehol/netdata/)
+The following services are enabled by default:
+
+|service|published url|
+|---|---|
+|[plex](plex.tv)|`plex.yourdomain.com`|
+|[plexpy](jonnywong16.github.io/plexpy/)|`plexpy.yourdomain.com`|
+|[hydra](github.com/theotherp/nzbhydra)|`hydra.yourdomain.com`|
+|[sonarr](sonarr.tv)|`sonarr.yourdomain.com`|
+|[radarr](radarr.video)|`radarr.yourdomain.com`|
+|[nzbget](nzbget.net)|`nzbget.yourdomain.com`|
+|[transmission](transmissionbt.com)|`transmission.yourdomain.com`|
+|[portainer](portainer.io)|`portainer.yourdomain.com`|
+|[netdata](github.com/firehol/netdata)|`netdata.yourdomain.com`|
 
 ## Getting Started
 
 ### Prerequisites
+
+#### Custom domain
+
+This guide assumes you own a custom domain (eg. `yourdomain.com`) with configurable
+sub-domains (eg. `plex.yourdomain.com`).
+
+A custom domain isn't expensive, and I'm using one from [namecheap](namecheap.com).
 
 #### Dedicated server
 
@@ -39,22 +46,6 @@ This guide assumes you are using **Ubuntu Server x64 16.04** or later.
 
 It will likely work on other x86/x64 Debian distros but this is what I'm running.
 
-#### Custom domain
-
-This guide assumes you own a custom domain with configurable sub-domains similar to the following.
-
-  * `plex.yourdomain.com`
-  * `plexpy.yourdomain.com`
-  * `hydra.yourdomain.com`
-  * `sonarr.yourdomain.com`
-  * `radarr.yourdomain.com`
-  * `nzbget.yourdomain.com`
-  * `transmission.yourdomain.com`
-  * `portainer.yourdomain.com`
-  * `netdata.yourdomain.com`
-
-A custom domain isn't expensive, and I'm using one from [namecheap](namecheap.com).
-
 ### Installation
 
 #### 1. Clone Repo
@@ -74,10 +65,12 @@ $ sudo usermod -aG docker "$(who am i | awk '{print $1}')"
 ```
 _See https://docs.docker.com/engine/installation/ for additional installation options._
 
-#### 3. Configure DNS
+### Configuration
+
+#### 1. Forward DNS
 
 I'm using CloudFlare for my DNS, since it's free and offers some features that you wouldn't
-normally get with your domain registrar. These steps should be similar for other DNS providers.
+normally get with your domain registrar. These steps should be similar for other DNS providers though.
 
 Forward the following A-level domains to your server public IP address (where `12.34.56.78` is your
 server public-facing address).
@@ -94,23 +87,23 @@ server public-facing address).
 |`A`|`portainer`|`12.34.56.78`|`Automatic`|`DNS and HTTP proxy (CDN)`|
 |`A`|`netdata`|`12.34.56.78`|`Automatic`|`DNS and HTTP proxy (CDN)`|
 
-**Note for CloudFlare**
+**_Note for CloudFlare users_**
 
-I haven't been able to get letsencrypt to renew certificates while `Full (strict)`
+_I haven't been able to get letsencrypt to renew certificates while `Full (strict)`
 SSL is enabled on CloudFlare, so for first run or when adding new services set it
 to `Flexible` until the certs have been obtained.
-Any tips or workarounds for this are appreciated!
+Any tips or workarounds for this are appreciated!_
 
-#### 4. Open Firewall Ports
+#### 2. Open Firewall Ports
 
-Allow HTTP (80) and HTTPS (443) through your firewall. For ufw, it can be done with
+Allow HTTP (80) and HTTPS (443) through your firewall. For UFW, it can be done with
 this command.
 
 ```bash
 $ sudo ufw allow http https
 ```
 
-#### 5. Adjust Data Paths
+#### 3. Adjust Data Paths
 
 The docker-compose file in the project root defines the services that will be created.
 
@@ -123,7 +116,7 @@ By default, most volumes are mounted to subdirectories of the project root.
 
 _See https://docs.docker.com/compose/compose-file/ for supported values._
 
-#### 6. Set Environment Files
+#### 4. Set Environment Parameters
 
 Most of the services have environment files that are sourced by the compose file.
 Some of the fields are required and are populated with fake data so be sure to
@@ -140,10 +133,10 @@ review and update them as necessary.
 * `./sonarr/sonarr.env`
 * `./netdata/netdata.env`
 
-If you don't update these environment files with your domain and email at the very least,
-letsencrypt will not be able to register your SSL certificates.
+_If you don't update these environment files with your domain and email at the very least,
+letsencrypt will not be able to register your SSL certificates!_
 
-#### 7. Enable HTTP Auth
+#### 5. Enable HTTP Auth
 
 It would be wise to protect most of your web services with http basic auth.
 Create a htpasswd file for each web service you want to protect.
@@ -155,8 +148,9 @@ $ htpasswd -bc ./nginx/htpasswd/nzbget.yourdomain.com username password
 $ htpasswd -bc ./nginx/htpasswd/transmission.yourdomain.com username password
 $ htpasswd -bc ./nginx/htpasswd/netdata.yourdomain.com username password
 ```
-Portainer, Plex, and Hydra all work better if built-in authentication is used
-rather than http basic auth.
+
+_Portainer, Plex, and Hydra all work better if built-in authentication is used
+rather than http basic auth._
 
 _See https://github.com/jwilder/nginx-proxy#basic-authentication-support for more info._
 
@@ -209,23 +203,34 @@ Kyle Harding <kylemharding@gmail.com>
 
 ## License
 
-## Reference
-
-* https://docs.docker.com/engine/installation/
-* https://docs.docker.com/engine/reference/commandline/stack/
-* https://docs.docker.com/compose/compose-file/
-* https://github.com/plexinc/pms-docker
-* https://github.com/JrCs/docker-letsencrypt-nginx-proxy-companion
-* https://github.com/linuxserver/docker-hydra
-* https://github.com/linuxserver/docker-nzbget
-* https://github.com/linuxserver/docker-plexpy
-* https://github.com/portainer/portainer
-* https://github.com/linuxserver/docker-radarr
-* https://github.com/linuxserver/docker-sonarr
-* https://github.com/linuxserver/docker-transmission
-* https://github.com/firehol/netdata/wiki
-* https://github.com/helderco/docker-gen
+_tbd_
 
 ## Acknowledgments
 
-*
+I didn't create any of these docker images myself, so credit goes to the
+maintainers, and the app creators themselves.
+
+### Services
+* [plex](plex.tv)
+* [plexpy](jonnywong16.github.io/plexpy/)
+* [hydra](github.com/theotherp/nzbhydra)
+* [sonarr](sonarr.tv)
+* [radarr](radarr.video)
+* [nzbget](nzbget.net)
+* [transmission](transmissionbt.com)
+* [portainer](portainer.io)
+* [netdata](github.com/firehol/netdata)
+
+### Images
+* [plexinc/pms-docker](https://hub.docker.com/r/plexinc/pms-docker/)
+* [portainer/portainer](https://hub.docker.com/r/portainer/portainer/)
+* [linuxserver/nzbget](https://hub.docker.com/r/linuxserver/nzbget/)
+* [linuxserver/sonarr](https://hub.docker.com/r/linuxserver/sonarr/)
+* [linuxserver/radarr](https://hub.docker.com/r/linuxserver/radarr/)
+* [linuxserver/plexpy](https://hub.docker.com/r/linuxserver/plexpy/)
+* [linuxserver/transmission](https://hub.docker.com/r/linuxserver/transmission/)
+* [linuxserver/hydra](https://hub.docker.com/r/linuxserver/hydra/)
+* [helder/docker-gen](https://hub.docker.com/r/helder/docker-gen/)
+* [jrcs/letsencrypt-nginx-proxy-companion](https://hub.docker.com/r/jrcs/letsencrypt-nginx-proxy-companion/)
+* [nginx](https://hub.docker.com/_/nginx/)
+* [firehol/netdata](https://hub.docker.com/r/firehol/netdata/)
