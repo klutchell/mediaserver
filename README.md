@@ -1,7 +1,5 @@
 # Docker Plex & Usenet Media Server #
 
-## Description
-
 This is a Docker-based Plex Media Server setup for ubuntu using public images from Docker Hub.
 I didn't create any of these docker images myself, so credit goes to the linked authors.
 
@@ -18,19 +16,11 @@ I didn't create any of these docker images myself, so credit goes to the linked 
 * [nginx](https://hub.docker.com/_/nginx/)
 * [firehol/netdata](https://hub.docker.com/r/firehol/netdata/)
 
-## Benefits
+## Getting Started
 
-While the advantages/disadvantages of using docker containers for web services
-are covered in detail elsewhere, here's why I prefer this setup for my media server.
+### Prerequisites
 
-* only one application to install (docker engine)
-* all my config and databases are stored in one place (or more if I prefer)
-* migrating to a new server is painless
-* uptime is reliable with docker stack
-
-## Suggested Prerequisites
-
-### Dedicated server
+#### Dedicated server
 
 Since obviously PLEX requires a ton of space for media, I'm using a dedicated server with 2TB of storage.
 
@@ -43,13 +33,13 @@ compiled for ARM. In the future I may make a branch with arm images substituted.
 This guide does not cover mounting external storage (FUSE or otherwise) or initial OS setup.
 That's on you to sort out.
 
-### Debian OS
+#### Debian OS
 
 This guide assumes you are using **Ubuntu Server x64 16.04** or later.
 
 It will likely work on other x86/x64 Debian distros but this is what I'm running.
 
-### Custom domain
+#### Custom domain
 
 This guide assumes you own a custom domain with configurable sub-domains similar to the following.
 
@@ -65,13 +55,17 @@ This guide assumes you own a custom domain with configurable sub-domains similar
 
 A custom domain isn't expensive, and I'm using one from [namecheap](namecheap.com).
 
-### CloudFlare
+### Installation
 
-I'm also using [CloudFlare](https://cloudflare.com) (free) for my DNS provider,
-but that should be considered optional.
+#### 1. Clone Repo
 
-## Installation
-### Install Docker
+Clone the repo to somewhere convenient with reasonable storage available.
+```bash
+$ git clone git@github.com:klutchell/mediaserver.git ~/mediaserver
+```
+_You can change data and media paths in a later step._
+
+#### 2. Install Docker
 
 Install docker engine if you don't already have it.
 ```bash
@@ -80,20 +74,10 @@ $ sudo usermod -aG docker "$(who am i | awk '{print $1}')"
 ```
 _See https://docs.docker.com/engine/installation/ for additional installation options._
 
-### Clone Repo
-
-Clone the repo to somewhere convenient with reasonable storage available.
-```bash
-$ git clone git@github.com:klutchell/mediaserver.git ~/mediaserver
-```
-_You can change data and media paths in a later step._
-
-## CloudFlare Configuration
+#### 3. Configure DNS
 
 I'm using CloudFlare for my DNS, since it's free and offers some features that you wouldn't
-normally get with your domain registrar.
-
-### DNS
+normally get with your domain registrar. These steps should be similar for other DNS providers.
 
 Forward the following A-level domains to your server public IP address (where `12.34.56.78` is your
 server public-facing address).
@@ -110,21 +94,23 @@ server public-facing address).
 |`A`|`portainer`|`12.34.56.78`|`Automatic`|`DNS and HTTP proxy (CDN)`|
 |`A`|`netdata`|`12.34.56.78`|`Automatic`|`DNS and HTTP proxy (CDN)`|
 
-### Crypto
+**Note for CloudFlare**
 
 I haven't been able to get letsencrypt to renew certificates while `Full (strict)`
 SSL is enabled on CloudFlare, so for first run or when adding new services set it
 to `Flexible` until the certs have been obtained.
-
 Any tips or workarounds for this are appreciated!
 
-## Server Configuration
+#### 4. Open Firewall Ports
 
-### Firewall
+Allow HTTP (80) and HTTPS (443) through your firewall. For ufw, it can be done with
+this command.
 
-Allow HTTP (80) and HTTPS (443) through your firewall.
+```bash
+$ sudo ufw allow http https
+```
 
-### Compose File
+#### 5. Adjust Data Paths
 
 The docker-compose file in the project root defines the services that will be created.
 
@@ -137,7 +123,7 @@ By default, most volumes are mounted to subdirectories of the project root.
 
 _See https://docs.docker.com/compose/compose-file/ for supported values._
 
-### Environment Files
+#### 6. Set Environment Files
 
 Most of the services have environment files that are sourced by the compose file.
 Some of the fields are required and are populated with fake data so be sure to
@@ -157,7 +143,7 @@ review and update them as necessary.
 If you don't update these environment files with your domain and email at the very least,
 letsencrypt will not be able to register your SSL certificates.
 
-### HTTP Auth
+#### 7. Enable HTTP Auth
 
 It would be wise to protect most of your web services with http basic auth.
 Create a htpasswd file for each web service you want to protect.
@@ -174,7 +160,7 @@ rather than http basic auth.
 
 _See https://github.com/jwilder/nginx-proxy#basic-authentication-support for more info._
 
-## Usage
+## Deployment
 
 ### Deploy Stack
 
@@ -221,7 +207,9 @@ Add the local nzbget download client connection details.
 
 Kyle Harding <kylemharding@gmail.com>
 
-## References
+## License
+
+## Reference
 
 * https://docs.docker.com/engine/installation/
 * https://docs.docker.com/engine/reference/commandline/stack/
@@ -237,3 +225,7 @@ Kyle Harding <kylemharding@gmail.com>
 * https://github.com/linuxserver/docker-transmission
 * https://github.com/firehol/netdata/wiki
 * https://github.com/helderco/docker-gen
+
+## Acknowledgments
+
+*
