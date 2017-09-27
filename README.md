@@ -205,23 +205,8 @@ Kyle Harding <kylemharding@gmail.com>
 
 _tbd_
 
-## Acknowledgments
+## Public Images Used
 
-I didn't create any of these docker images myself, so credit goes to the
-maintainers, and the app creators themselves.
-
-### Services
-* [plex](plex.tv)
-* [plexpy](jonnywong16.github.io/plexpy/)
-* [hydra](github.com/theotherp/nzbhydra)
-* [sonarr](sonarr.tv)
-* [radarr](radarr.video)
-* [nzbget](nzbget.net)
-* [transmission](transmissionbt.com)
-* [portainer](portainer.io)
-* [netdata](github.com/firehol/netdata)
-
-### Images
 * [plexinc/pms-docker](https://hub.docker.com/r/plexinc/pms-docker/)
 * [portainer/portainer](https://hub.docker.com/r/portainer/portainer/)
 * [linuxserver/nzbget](https://hub.docker.com/r/linuxserver/nzbget/)
@@ -234,3 +219,8 @@ maintainers, and the app creators themselves.
 * [jrcs/letsencrypt-nginx-proxy-companion](https://hub.docker.com/r/jrcs/letsencrypt-nginx-proxy-companion/)
 * [nginx](https://hub.docker.com/_/nginx/)
 * [firehol/netdata](https://hub.docker.com/r/firehol/netdata/)
+
+## Acknowledgments
+
+I didn't create any of these docker images myself, so credit goes to the
+maintainers, and the app creators themselves.
