@@ -207,18 +207,18 @@ _tbd_
 
 ## Public Images Used
 
-* [plexinc/pms-docker](https://hub.docker.com/r/plexinc/pms-docker/)
-* [portainer/portainer](https://hub.docker.com/r/portainer/portainer/)
-* [linuxserver/nzbget](https://hub.docker.com/r/linuxserver/nzbget/)
-* [linuxserver/sonarr](https://hub.docker.com/r/linuxserver/sonarr/)
-* [linuxserver/radarr](https://hub.docker.com/r/linuxserver/radarr/)
-* [linuxserver/plexpy](https://hub.docker.com/r/linuxserver/plexpy/)
-* [linuxserver/transmission](https://hub.docker.com/r/linuxserver/transmission/)
-* [linuxserver/hydra](https://hub.docker.com/r/linuxserver/hydra/)
-* [helder/docker-gen](https://hub.docker.com/r/helder/docker-gen/)
-* [jrcs/letsencrypt-nginx-proxy-companion](https://hub.docker.com/r/jrcs/letsencrypt-nginx-proxy-companion/)
-* [nginx](https://hub.docker.com/_/nginx/)
-* [firehol/netdata](https://hub.docker.com/r/firehol/netdata/)
+* https://hub.docker.com/r/plexinc/pms-docker/
+* https://hub.docker.com/r/portainer/portainer/
+* https://hub.docker.com/r/linuxserver/nzbget/
+* https://hub.docker.com/r/linuxserver/sonarr/
+* https://hub.docker.com/r/linuxserver/radarr/
+* https://hub.docker.com/r/linuxserver/plexpy/
+* https://hub.docker.com/r/linuxserver/transmission/
+* https://hub.docker.com/r/linuxserver/hydra/
+* https://hub.docker.com/r/helder/docker-gen/
+* https://hub.docker.com/r/jrcs/letsencrypt-nginx-proxy-companion/
+* https://hub.docker.com/_/nginx/
+* https://hub.docker.com/r/firehol/netdata/
 
 ## Acknowledgments
 
