@@ -81,7 +81,7 @@ services:
                 max_attempts: 3
                 window: 120s
         healthcheck:
-            test: curl --fail http://localhost:8989/ || exit 1
+            test: if curl -f http://localhost:8989/ && curl -f http://mediaserver_nzbget:6789/ && curl -f http://mediaserver_hydra:5075/ ; then exit 0 ; else exit 1 ; fi
 
     # https://github.com/linuxserver/docker-radarr
     # https://hub.docker.com/r/linuxserver/radarr/
@@ -103,7 +103,7 @@ services:
                 max_attempts: 3
                 window: 120s
         healthcheck:
-            test: curl --fail http://localhost:7878/ || exit 1
+            test: if curl -f http://localhost:7878/ && curl -f http://mediaserver_nzbget:6789/ && curl -f http://mediaserver_hydra:5075/ ; then exit 0 ; else exit 1 ; fi
 
     # https://github.com/linuxserver/docker-plexpy
     # https://hub.docker.com/r/linuxserver/plexpy/
@@ -123,7 +123,7 @@ services:
                 max_attempts: 3
                 window: 120s
         healthcheck:
-            test: curl --fail http://localhost:8181/ || exit 1
+            test: if curl -f http://localhost:8181/ && curl -f http://mediaserver_plex:32400/web/ ; then exit 0 ; else exit 1 ; fi
 
     # https://github.com/linuxserver/docker-transmission
     # https://hub.docker.com/r/linuxserver/transmission/
