@@ -6,7 +6,7 @@ services:
     portainer:
         image: "portainer/portainer"
         volumes:
-            - ./portainer/config:/data
+            - portainer_config:/data
             - /var/run/docker.sock:/var/run/docker.sock
             - /etc/localtime:/etc/localtime:ro
             - /dev/rtc:/dev/rtc:ro
@@ -18,8 +18,6 @@ services:
                 delay: 5s
                 max_attempts: 3
                 window: 120s
-        # healthcheck:
-            # test: curl --fail http://localhost:9000/ || exit 1
 
     # https://github.com/plexinc/pms-docker
     # https://hub.docker.com/r/plexinc/pms-docker/
@@ -260,6 +258,7 @@ services:
             test: curl --fail http://localhost:19999/ || exit 1
 
 volumes:
+    portainer_config:
     nginx_conf.d:
     nginx_vhost.d:
     nginx_html:
