@@ -1,56 +1,68 @@
 #!/usr/bin/env bash
+
 set -euo pipefail
-IFS=$'\n\t'
 
-#/
-#/ Usage:
-#/              deploy-all
-#/ Description:
-#/              deploy entire stack defined by docker-compose.yml;
-#/              if services already exist, they will be updated;
-#/ Commands Used:
-#/              docker swarm init
-#/              docker stack deploy
-#/ Examples:
-#/              deploy-all
-#/ Flags:
-#/              --help: display this help message
-#/
+# capture script exit
+cleanup()
+{
+	local rc=$?
+	info "exited with error level ${rc}"
+	exit ${rc}
+}
 
-abs()     { echo "$(cd "$(dirname "${1}")" && pwd)/$(basename "${1}")"; }
-usage()   { grep '^#/' "$0" | cut -c4- ; exit 0 ; }
-info()    { echo "[INFO]    $*" ; }
-warning() { echo "[WARNING] $*" ; }
-error()   { echo "[ERROR]   $*" ; }
-fatal()   { echo "[FATAL]   $*" ; exit 1 ; }
+# get the command name without path
+cmd()	{ basename "${0}" ; }
 
-expr "$*" : ".*--help" > /dev/null && usage
+# determine absolute path to a provided file/folder
+abs()	{ echo "$(cd "$(dirname "${1}")" && pwd)/$(basename "${1}")"; }
 
-readonly THIS_FILE="$(basename "$0")"
-readonly BIN_DIR="$(dirname "$(abs "${BASH_SOURCE[0]}")")"
-readonly PID_FILE="/tmp/${THIS_FILE%.*}.pid"
-readonly LOG_FILE="/tmp/${THIS_FILE%.*}.log"
-readonly SCRATCH_DIR="$(mktemp -d -t tmp.XXXXXXXXXX)"
+# append timestamp and loglevel prints
+debug()		{ if [ "${debug_enabled:-}" == "true" ]; then 
+			  echo "$(date)  [DEBUG]   $*" ; fi ; }
+info()		{ echo "$(date)  [INFO]    $*" ; }
+warning()	{ echo "$(date)  [WARNING] $*" ; }
+error()		{ echo "$(date)  [ERROR]   $*" ; }
+fatal()		{ echo "$(date)  [FATAL]   $*" ; exit 1 ; }
 
-cleanup() {
-        info "cleaning up ..."
-        rm "${PID_FILE}" 2>/dev/null
-	rm -rf "${SCRATCH_DIR}" 2>/dev/null
+usage()
+{
+    cat <<EOF
+
+Usage:
+                $(cmd)
+Description:
+                deploy entire stack defined by docker-compose.yml;
+                if services already exist, they will be updated;
+Examples:
+                $(cmd)
+                $(cmd) --debug
+                $(cmd) --help
+Parameters:
+                --help      display this help message
+
+                --debug     enable debug logs
+
+EOF
+exit 2
 }
 
 # exit here if this script was sourced
-[[ "${BASH_SOURCE[0]:-$0}" != "$0" ]] && exit 0
+[[ "${BASH_SOURCE[0]:-${0}}" != "${0}" ]] && return
 
+# trap any exit code beyond this point
 trap cleanup INT TERM EXIT
 
-# redirect output to log
-[ -t 1 ] || exec &> >(ts >>"${LOG_FILE}")
+# set defaults
+debug_enabled="false"
 
-# exit if pid exists
-[ -f "${PID_FILE}" ] && fatal "$THIS_FILE is already running!"
+# catch help param
+expr "$*" : ".*--help" > /dev/null && usage
 
-# start a new pid
-echo $$ > "${PID_FILE}"
+# catch debug param
+expr "$*" : ".*--debug" > /dev/null && debug_enabled="true"
+
+readonly bin_dir="$(dirname "$(abs "${0}")")"
+debug "bin_dir: ${bin_dir}"
 
 if ! docker node ls | grep -q Active
 then
@@ -61,7 +73,10 @@ else
 	info "swarm node is active"
 fi
 
+info "getting latest nginx.tmpl from github.com/jwilder/docker-gen ..."
+curl -# -o "${bin_dir}/../nginx/nginx.tmpl" "https://raw.githubusercontent.com/jwilder/docker-gen/master/templates/nginx.tmpl"
+
 info "deploying stack ..."
-docker stack deploy --compose-file "${BIN_DIR}/../docker-compose.yml" mediaserver
+docker stack deploy --compose-file "${bin_dir}/../docker-compose.yml" mediaserver
 info "... task is running in background"
-info "check status with 'docker service ls' and 'docker ps'"
+info "check status with 'watch docker service ls' or 'watch docker ps'"
