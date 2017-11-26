@@ -119,7 +119,7 @@ services:
                 condition: any
                 delay: 5s
                 max_attempts: 3
-                window: 120s
+                window: 240s
         healthcheck:
             test: if curl -f http://localhost:8181/ && curl -f http://mediaserver_plex:32400/web/ ; then exit 0 ; else exit 1 ; fi
 
