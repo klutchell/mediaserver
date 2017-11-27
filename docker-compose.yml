@@ -159,7 +159,7 @@ services:
 
     # https://github.com/helderco/docker-gen
     # https://hub.docker.com/r/helder/docker-gen/
-    nginx-gen:
+    docker-gen:
         image: helder/docker-gen
         labels:
             - com.github.jrcs.letsencrypt_nginx_proxy_companion.docker_gen
@@ -175,13 +175,13 @@ services:
             - /etc/localtime:/etc/localtime:ro
             - /dev/rtc:/dev/rtc:ro
         env_file:
-            - ./nginx/gen.env
+            - ./docker-gen/docker-gen.env
         networks:
             - overlay_net
 
     # https://github.com/JrCs/docker-letsencrypt-nginx-proxy-companion
     # https://hub.docker.com/r/jrcs/letsencrypt-nginx-proxy-companion/
-    nginx-letsencrypt:
+    letsencrypt:
         image: jrcs/letsencrypt-nginx-proxy-companion
         volumes:
             - nginx_conf.d_vol:/etc/nginx/conf.d
@@ -193,7 +193,7 @@ services:
             - /etc/localtime:/etc/localtime:ro
             - /dev/rtc:/dev/rtc:ro
         env_file:
-            - ./nginx/letsencrypt.env
+            - ./letsencrypt/letsencrypt.env
         networks:
             - overlay_net
 
