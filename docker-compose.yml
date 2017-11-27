@@ -1,4 +1,4 @@
-version: '3.2'
+version: '3.4'
 services:
 
     # https://github.com/portainer/portainer
@@ -6,18 +6,14 @@ services:
     portainer:
         image: "portainer/portainer"
         volumes:
-            - portainer_config:/data
+            - portainer_config_vol:/data
             - /var/run/docker.sock:/var/run/docker.sock
             - /etc/localtime:/etc/localtime:ro
             - /dev/rtc:/dev/rtc:ro
         env_file:
             - ./portainer/portainer.env
-        deploy:
-            restart_policy:
-                condition: on-failure
-                delay: 5s
-                max_attempts: 3
-                window: 120s
+        networks:
+            - overlay_net
 
     # https://github.com/plexinc/pms-docker
     # https://hub.docker.com/r/plexinc/pms-docker/
@@ -32,12 +28,8 @@ services:
             - /dev/rtc:/dev/rtc:ro
         env_file:
             - ./plex/plex.env
-        deploy:
-            restart_policy:
-                condition: any
-                delay: 5s
-                max_attempts: 3
-                window: 120s
+        networks:
+            - overlay_net
 
     # https://github.com/linuxserver/docker-nzbget
     # https://hub.docker.com/r/linuxserver/nzbget/
@@ -50,14 +42,10 @@ services:
             - /dev/rtc:/dev/rtc:ro
         env_file:
             - ./nzbget/nzbget.env
-        deploy:
-            restart_policy:
-                condition: any
-                delay: 5s
-                max_attempts: 3
-                window: 120s
         healthcheck:
             test: curl --fail http://localhost:6789/ || exit 1
+        networks:
+            - overlay_net
 
     # https://github.com/linuxserver/docker-sonarr
     # https://hub.docker.com/r/linuxserver/sonarr/
@@ -72,14 +60,10 @@ services:
             - /dev/rtc:/dev/rtc:ro
         env_file:
             - ./sonarr/sonarr.env
-        deploy:
-            restart_policy:
-                condition: any
-                delay: 5s
-                max_attempts: 3
-                window: 120s
         healthcheck:
             test: if curl -f http://localhost:8989/ && curl -f http://mediaserver_nzbget:6789/ && curl -f http://mediaserver_hydra:5075/ ; then exit 0 ; else exit 1 ; fi
+        networks:
+            - overlay_net
 
     # https://github.com/linuxserver/docker-radarr
     # https://hub.docker.com/r/linuxserver/radarr/
@@ -94,14 +78,10 @@ services:
             - /dev/rtc:/dev/rtc:ro
         env_file:
             - ./radarr/radarr.env
-        deploy:
-            restart_policy:
-                condition: any
-                delay: 5s
-                max_attempts: 3
-                window: 120s
         healthcheck:
             test: if curl -f http://localhost:7878/ && curl -f http://mediaserver_nzbget:6789/ && curl -f http://mediaserver_hydra:5075/ ; then exit 0 ; else exit 1 ; fi
+        networks:
+            - overlay_net
 
     # https://github.com/linuxserver/docker-plexpy
     # https://hub.docker.com/r/linuxserver/plexpy/
@@ -114,14 +94,11 @@ services:
             - /dev/rtc:/dev/rtc:ro
         env_file:
             - ./plexpy/plexpy.env
-        deploy:
-            restart_policy:
-                condition: any
-                delay: 5s
-                max_attempts: 3
-                window: 240s
         healthcheck:
             test: if curl -f http://localhost:8181/ && curl -f http://mediaserver_plex:32400/web/ ; then exit 0 ; else exit 1 ; fi
+            start_period: 300s
+        networks:
+            - overlay_net
 
     # https://github.com/linuxserver/docker-transmission
     # https://hub.docker.com/r/linuxserver/transmission/
@@ -138,14 +115,10 @@ services:
             - /dev/rtc:/dev/rtc:ro
         env_file:
             - ./transmission/transmission.env
-        deploy:
-            restart_policy:
-                condition: any
-                delay: 5s
-                max_attempts: 3
-                window: 120s
         healthcheck:
             test: curl --fail http://localhost:9091/ || exit 1
+        networks:
+            - overlay_net
 
     # https://github.com/linuxserver/docker-hydra
     # https://hub.docker.com/r/linuxserver/hydra/
@@ -158,14 +131,10 @@ services:
             - /dev/rtc:/dev/rtc:ro
         env_file:
             - ./hydra/hydra.env
-        deploy:
-            restart_policy:
-                condition: any
-                delay: 5s
-                max_attempts: 3
-                window: 120s
         healthcheck:
             test: curl --fail http://localhost:5075/ || exit 1
+        networks:
+            - overlay_net
 
     # https://hub.docker.com/_/nginx/
     nginx:
@@ -176,19 +145,17 @@ services:
             - "80:80"
             - "443:443"
         volumes:
-            - nginx_conf.d:/etc/nginx/conf.d
-            - nginx_vhost.d:/etc/nginx/vhost.d
-            - nginx_html:/usr/share/nginx/html
-            - nginx_certs:/etc/nginx/certs:ro
+            - nginx_conf.d_vol:/etc/nginx/conf.d
+            - nginx_vhost.d_vol:/etc/nginx/vhost.d
+            - nginx_html_vol:/usr/share/nginx/html
+            - nginx_certs_vol:/etc/nginx/certs:ro
             - ./nginx/htpasswd:/etc/nginx/htpasswd:ro
             - /etc/localtime:/etc/localtime:ro
             - /dev/rtc:/dev/rtc:ro
-        deploy:
-            restart_policy:
-                condition: any
-                delay: 5s
-                max_attempts: 3
-                window: 120s
+        logging:
+            driver: syslog
+        networks:
+            - overlay_net
 
     # https://github.com/helderco/docker-gen
     # https://hub.docker.com/r/helder/docker-gen/
@@ -198,43 +165,37 @@ services:
             - com.github.jrcs.letsencrypt_nginx_proxy_companion.docker_gen
         command: -notify "docker-label-sighup com.github.jrcs.letsencrypt_nginx_proxy_companion.nginx_proxy" -watch -wait 5s:30s /etc/docker-gen/templates/nginx.tmpl /etc/nginx/conf.d/default.conf
         volumes:
-            - nginx_conf.d:/etc/nginx/conf.d
-            - nginx_vhost.d:/etc/nginx/vhost.d
-            - nginx_html:/usr/share/nginx/html
-            - nginx_certs:/etc/nginx/certs:ro
+            - nginx_conf.d_vol:/etc/nginx/conf.d
+            - nginx_vhost.d_vol:/etc/nginx/vhost.d
+            - nginx_html_vol:/usr/share/nginx/html
+            - nginx_certs_vol:/etc/nginx/certs:ro
             - ./nginx/htpasswd:/etc/nginx/htpasswd:ro
             - ./nginx/nginx.tmpl:/etc/docker-gen/templates/nginx.tmpl:ro
             - /var/run/docker.sock:/tmp/docker.sock:ro
             - /etc/localtime:/etc/localtime:ro
             - /dev/rtc:/dev/rtc:ro
-        deploy:
-            restart_policy:
-                condition: any
-                delay: 5s
-                max_attempts: 3
-                window: 120s
+        env_file:
+            - ./nginx/gen.env
+        networks:
+            - overlay_net
 
     # https://github.com/JrCs/docker-letsencrypt-nginx-proxy-companion
     # https://hub.docker.com/r/jrcs/letsencrypt-nginx-proxy-companion/
     nginx-letsencrypt:
         image: jrcs/letsencrypt-nginx-proxy-companion
         volumes:
-            - nginx_conf.d:/etc/nginx/conf.d
-            - nginx_vhost.d:/etc/nginx/vhost.d
-            - nginx_html:/usr/share/nginx/html
-            - nginx_certs:/etc/nginx/certs:rw
+            - nginx_conf.d_vol:/etc/nginx/conf.d
+            - nginx_vhost.d_vol:/etc/nginx/vhost.d
+            - nginx_html_vol:/usr/share/nginx/html
+            - nginx_certs_vol:/etc/nginx/certs:rw
             - ./nginx/htpasswd:/etc/nginx/htpasswd:ro
             - /var/run/docker.sock:/var/run/docker.sock:ro
             - /etc/localtime:/etc/localtime:ro
             - /dev/rtc:/dev/rtc:ro
         env_file:
             - ./nginx/letsencrypt.env
-        deploy:
-            restart_policy:
-                condition: any
-                delay: 5s
-                max_attempts: 3
-                window: 120s
+        networks:
+            - overlay_net
 
     # https://github.com/firehol/netdata
     # https://hub.docker.com/r/firehol/netdata/
@@ -248,18 +209,18 @@ services:
             - /dev/rtc:/dev/rtc:ro
         env_file:
             - ./netdata/netdata.env
-        deploy:
-            restart_policy:
-                condition: any
-                delay: 5s
-                max_attempts: 3
-                window: 120s
         healthcheck:
             test: curl --fail http://localhost:19999/ || exit 1
+        networks:
+            - overlay_net
 
 volumes:
-    portainer_config:
-    nginx_conf.d:
-    nginx_vhost.d:
-    nginx_html:
-    nginx_certs:
+    portainer_config_vol:
+    nginx_conf.d_vol:
+    nginx_vhost.d_vol:
+    nginx_html_vol:
+    nginx_certs_vol:
+
+networks:
+    overlay_net:
+        driver: overlay
