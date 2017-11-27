@@ -170,7 +170,7 @@ services:
             - nginx_html_vol:/usr/share/nginx/html
             - nginx_certs_vol:/etc/nginx/certs:ro
             - ./nginx/htpasswd:/etc/nginx/htpasswd:ro
-            - ./nginx/nginx.tmpl:/etc/docker-gen/templates/nginx.tmpl:ro
+            - ./docker-gen/templates/nginx.tmpl:/etc/docker-gen/templates/nginx.tmpl:ro
             - /var/run/docker.sock:/tmp/docker.sock:ro
             - /etc/localtime:/etc/localtime:ro
             - /dev/rtc:/dev/rtc:ro

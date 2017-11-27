@@ -74,7 +74,7 @@ else
 fi
 
 info "getting latest nginx.tmpl from github.com/jwilder/docker-gen ..."
-curl -# -o "${bin_dir}/../nginx/nginx.tmpl" "https://raw.githubusercontent.com/jwilder/nginx-proxy/master/nginx.tmpl"
+curl -# -o "${bin_dir}/../docker-gen/templates/nginx.tmpl" "https://raw.githubusercontent.com/jwilder/nginx-proxy/master/nginx.tmpl"
 
 info "deploying stack ..."
 docker stack deploy --compose-file "${bin_dir}/../docker-compose.yml" mediaserver
