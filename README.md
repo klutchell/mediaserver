@@ -6,15 +6,15 @@ The following services are enabled by default:
 
 |service|published url|
 |---|---|
-|[plex](plex.tv)|`plex.yourdomain.com`|
-|[plexpy](jonnywong16.github.io/plexpy/)|`plexpy.yourdomain.com`|
-|[hydra](github.com/theotherp/nzbhydra)|`hydra.yourdomain.com`|
-|[sonarr](sonarr.tv)|`sonarr.yourdomain.com`|
-|[radarr](radarr.video)|`radarr.yourdomain.com`|
-|[nzbget](nzbget.net)|`nzbget.yourdomain.com`|
-|[transmission](transmissionbt.com)|`transmission.yourdomain.com`|
-|[portainer](portainer.io)|`portainer.yourdomain.com`|
-|[netdata](github.com/firehol/netdata)|`netdata.yourdomain.com`|
+|[plex](plex.tv)|`plex.exampledomain.com`|
+|[plexpy](jonnywong16.github.io/plexpy/)|`plexpy.exampledomain.com`|
+|[hydra](github.com/theotherp/nzbhydra)|`hydra.exampledomain.com`|
+|[sonarr](sonarr.tv)|`sonarr.exampledomain.com`|
+|[radarr](radarr.video)|`radarr.exampledomain.com`|
+|[nzbget](nzbget.net)|`nzbget.exampledomain.com`|
+|[transmission](transmissionbt.com)|`transmission.exampledomain.com`|
+|[portainer](portainer.io)|`portainer.exampledomain.com`|
+|[netdata](github.com/firehol/netdata)|`netdata.exampledomain.com`|
 
 ## Getting Started
 
@@ -22,8 +22,8 @@ The following services are enabled by default:
 
 #### Custom domain
 
-This guide assumes you own a custom domain (eg. `yourdomain.com`) with configurable
-sub-domains (eg. `plex.yourdomain.com`).
+This guide assumes you own a custom domain (eg. `exampledomain.com`) with configurable
+sub-domains (eg. `plex.exampledomain.com`).
 
 A custom domain isn't expensive, and I'm using one from [namecheap](namecheap.com).
 
@@ -42,28 +42,27 @@ That's on you to sort out.
 
 #### Debian OS
 
-This guide assumes you are using **Ubuntu Server x64 16.04** or later.
+This guide assumes you are using a recent Debian-based OS.
 
-It will likely work on other x86/x64 Debian distros but this is what I'm running.
+_Tested with Ubuntu Server x64 16.04._
 
 ### Installation
 
 #### 1. Clone Repo
 
 Clone the repo to somewhere convenient with reasonable storage available.
+
 ```bash
 $ git clone git@github.com:klutchell/mediaserver.git ~/mediaserver
 ```
+
 _You can change data and media paths in a later step._
 
 #### 2. Install Docker
 
-Install docker engine if you don't already have it.
-```bash
-$ curl -sSL get.docker.com | sh
-$ sudo usermod -aG docker "$(who am i | awk '{print $1}')"
-```
-_See https://docs.docker.com/engine/installation/ for additional installation options._
+See https://docs.docker.com/engine/installation/ for installation options.
+
+_Tested with Docker version 17.09.0-ce._
 
 ### Configuration
 
@@ -103,50 +102,44 @@ this command.
 $ sudo ufw allow http https
 ```
 
-#### 3. Adjust Data Paths
+#### 3. Edit Compose File
 
 The docker-compose file in the project root defines the services that will be created.
 
-The only thing I recommend changing in here are the local volume paths, especially
-if the plex/media folder needs to be on an external drive. Symlinks are allowed
-and it makes it easier to point some volumes to large mount points.
-By default, most volumes are mounted to subdirectories of the project root.
+```bash
+$ nano ./docker-compose.yml
+```
 
-* `./docker-compose.yml`
+From here you can:
+* change volume paths (softlinks are allowed)
+* remove unwanted services (keep nginx + docker-gen + letsencrypt)
+* add new services
 
 _See https://docs.docker.com/compose/compose-file/ for supported values._
 
 #### 4. Set Environment Parameters
 
-Most of the services have environment files that are sourced by the compose file.
-Some of the fields are required and are populated with fake data so be sure to
-review and update them as necessary.
+Most of the services require environment (.env) files that are sourced by the compose file.
+I've included .env.example files for each of the default services.
 
-* `./radarr/radarr.env`
-* `./portainer/portainer.env`
-* `./transmission/transmission.env`
-* `./plexpy/plexpy.env`
-* `./hydra/hydra.env`
-* `./nginx/letsencrypt.env`
-* `./plex/plex.env`
-* `./nzbget/nzbget.env`
-* `./sonarr/sonarr.env`
-* `./netdata/netdata.env`
+For convenience, this script will iterate over the .env.example files and prompt for new values.
 
-_If you don't update these environment files with your domain and email at the very least,
-letsencrypt will not be able to register your SSL certificates!_
+```bash
+$ ./bin/set-env
+```
 
 #### 5. Enable HTTP Auth
 
 It would be wise to protect most of your web services with http basic auth.
 Create a htpasswd file for each web service you want to protect.
+
 ```bash
-$ htpasswd -bc ./nginx/htpasswd/plexpy.yourdomain.com username password
-$ htpasswd -bc ./nginx/htpasswd/sonarr.yourdomain.com username password
-$ htpasswd -bc ./nginx/htpasswd/radarr.yourdomain.com username password
-$ htpasswd -bc ./nginx/htpasswd/nzbget.yourdomain.com username password
-$ htpasswd -bc ./nginx/htpasswd/transmission.yourdomain.com username password
-$ htpasswd -bc ./nginx/htpasswd/netdata.yourdomain.com username password
+$ htpasswd -bc ./nginx/htpasswd/plexpy.exampledomain.com username password
+$ htpasswd -bc ./nginx/htpasswd/sonarr.exampledomain.com username password
+$ htpasswd -bc ./nginx/htpasswd/radarr.exampledomain.com username password
+$ htpasswd -bc ./nginx/htpasswd/nzbget.exampledomain.com username password
+$ htpasswd -bc ./nginx/htpasswd/transmission.exampledomain.com username password
+$ htpasswd -bc ./nginx/htpasswd/netdata.exampledomain.com username password
 ```
 
 _Portainer, Plex, and Hydra all work better if built-in authentication is used
@@ -159,8 +152,9 @@ _See https://github.com/jwilder/nginx-proxy#basic-authentication-support for mor
 ### Deploy Stack
 
 Deploy a new stack or update an existing stack with all of our configured services in the compose file.
+
 ```bash
-$ bin/deploy-all
+$ ./bin/deploy-all
 ```
 
 ### Connect Services
@@ -175,7 +169,7 @@ Add the local plex media server connection details.
 #### Hydra
 
 Set the public url so remote api commands don't return an unreachable link.
-* Config -> Main -> External URL = `https://hydra.yourdomain.com`
+* Config -> Main -> External URL = `https://hydra.exampledomain.com`
 
 Enable built-in authorization so services using the API key still have full access
 and are not blocked by HTTP basic auth.
@@ -201,11 +195,10 @@ Add the local nzbget download client connection details.
 
 Kyle Harding <kylemharding@gmail.com>
 
-## License
+## Acknowledgments
 
-_tbd_
-
-## Public Images Used
+I didn't create any of these docker images myself, so credit goes to the
+maintainers, and the app creators themselves.
 
 * https://hub.docker.com/r/plexinc/pms-docker/
 * https://hub.docker.com/r/portainer/portainer/
@@ -220,7 +213,6 @@ _tbd_
 * https://hub.docker.com/_/nginx/
 * https://hub.docker.com/r/firehol/netdata/
 
-## Acknowledgments
+## License
 
-I didn't create any of these docker images myself, so credit goes to the
-maintainers, and the app creators themselves.
+MIT License

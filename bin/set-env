@@ -34,6 +34,7 @@ Usage:
 Description:
 				set environment variables used by docker containers;
 				each associated .env file will be updated with the values provided;
+				if .env files don't exist, new ones will be created from .env.example files;
 				this script is for convenience, the files can be updated manually
 Examples:
 				$(cmd)
