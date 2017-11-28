@@ -96,7 +96,8 @@ services:
             - ./plexpy/plexpy.env
         healthcheck:
             test: if curl -f http://localhost:8181/ && curl -f http://mediaserver_plex:32400/web/ ; then exit 0 ; else exit 1 ; fi
-            start_period: 300s
+            interval: 10s
+            retries: 24 # plex takes 3 minutes, so give plexpy lots of retries at a short interval
         networks:
             - overlay_net
 

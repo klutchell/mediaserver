@@ -73,8 +73,11 @@ else
 	info "swarm node is active"
 fi
 
+# if we fail to download latest nginx.tmpl,
+# do git checkout of the source controlled version to revert to something stable
 info "getting latest nginx.tmpl from github.com/jwilder/docker-gen ..."
-curl -# -o "${bin_dir}/../docker-gen/templates/nginx.tmpl" "https://raw.githubusercontent.com/jwilder/nginx-proxy/master/nginx.tmpl"
+curl -# -o "${bin_dir}/../docker-gen/templates/nginx.tmpl" "https://raw.githubusercontent.com/jwilder/nginx-proxy/master/nginx.tmpl" ||
+    git checkout "${bin_dir}/../docker-gen/templates/nginx.tmpl"
 
 info "deploying stack ..."
 docker stack deploy --compose-file "${bin_dir}/../docker-compose.yml" mediaserver
