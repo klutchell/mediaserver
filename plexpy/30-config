@@ -1,0 +1,10 @@
+#!/usr/bin/with-contenv bash
+
+# change to beta branch
+rm -rf /app/plexpy && \
+git clone --depth 1 -b beta https://github.com/JonnyWong16/plexpy /app/plexpy
+
+# permissions
+chown -R abc:abc \
+	/app \
+	/config
