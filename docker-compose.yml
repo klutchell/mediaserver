@@ -1,20 +1,6 @@
 version: '3.4'
 services:
 
-    # https://github.com/portainer/portainer
-    # https://hub.docker.com/r/portainer/portainer/
-    portainer:
-        image: "portainer/portainer"
-        volumes:
-            - portainer_config_vol:/data
-            - /var/run/docker.sock:/var/run/docker.sock
-            - /etc/localtime:/etc/localtime:ro
-            - /dev/rtc:/dev/rtc:ro
-        env_file:
-            - ./portainer/portainer.env
-        networks:
-            - overlay_net
-
     # https://github.com/plexinc/pms-docker
     # https://hub.docker.com/r/plexinc/pms-docker/
     plex:
@@ -200,25 +186,7 @@ services:
         networks:
             - overlay_net
 
-    # https://github.com/firehol/netdata
-    # https://hub.docker.com/r/firehol/netdata/
-    netdata:
-        image: firehol/netdata
-        volumes:
-            - /proc:/host/proc:ro
-            - /sys:/host/sys:ro
-            - /var/run/docker.sock:/var/run/docker.sock:ro
-            - /etc/localtime:/etc/localtime:ro
-            - /dev/rtc:/dev/rtc:ro
-        env_file:
-            - ./netdata/netdata.env
-        healthcheck:
-            test: curl --fail http://localhost:19999/ || exit 1
-        networks:
-            - overlay_net
-
 volumes:
-    portainer_config_vol:
     nginx_conf.d_vol:
     nginx_vhost.d_vol:
     nginx_html_vol:
