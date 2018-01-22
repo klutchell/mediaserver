@@ -51,7 +51,7 @@ _Tested with Ubuntu Server x64 16.04._
 Clone the repo to somewhere convenient with reasonable storage available.
 
 ```bash
-$ git clone git@github.com:klutchell/mediaserver.git ~/mediaserver
+git clone git@github.com:klutchell/mediaserver.git ~/mediaserver
 ```
 
 _You can change data and media paths in a later step._
@@ -95,7 +95,7 @@ Allow HTTP (80) and HTTPS (443) through your firewall. For UFW, it can be done w
 this command.
 
 ```bash
-$ sudo ufw allow http https
+sudo ufw allow http https
 ```
 
 #### 3. Edit Compose File
@@ -103,7 +103,7 @@ $ sudo ufw allow http https
 The docker-compose file in the project root defines the services that will be created.
 
 ```bash
-$ nano ./docker-compose.yml
+nano ./docker-compose.yml
 ```
 
 From here you can:
@@ -121,23 +121,28 @@ I've included .env.example files for each of the default services.
 For convenience, this script will iterate over the .env.example files and prompt for new values.
 
 ```bash
-$ ./bin/set-env
+./bin/set-env
 ```
 
 #### 5. Enable HTTP Auth
 
 It would be wise to protect most of your web services with http basic auth.
-Create a htpasswd file for each web service you want to protect.
+Create an htpasswd file for each web service you want to protect.
 
 ```bash
-$ htpasswd -bc ./nginx/htpasswd/sonarr.exampledomain.com username password
-$ htpasswd -bc ./nginx/htpasswd/radarr.exampledomain.com username password
-$ htpasswd -bc ./nginx/htpasswd/nzbget.exampledomain.com username password
-$ htpasswd -bc ./nginx/htpasswd/transmission.exampledomain.com username password
-```
+# these services include auth features but it's easier and safer to protect
+# them at the nginx level
+htpasswd -bc ./nginx/htpasswd/sonarr.exampledomain.com username password
+htpasswd -bc ./nginx/htpasswd/radarr.exampledomain.com username password
+htpasswd -bc ./nginx/htpasswd/nzbget.exampledomain.com username password
+htpasswd -bc ./nginx/htpasswd/transmission.exampledomain.com username password
 
-_Tautulli, Plex, and Hydra all work better if built-in authentication is used
-rather than http basic auth._
+# plex, tautulli, and hydra expose APIs that use tokens so I use the included
+# auth features for those services
+#htpasswd -bc ./nginx/htpasswd/plex.exampledomain.com username password
+#htpasswd -bc ./nginx/htpasswd/tautulli.exampledomain.com username password
+#htpasswd -bc ./nginx/htpasswd/hydra.exampledomain.com username password
+```
 
 _See https://github.com/jwilder/nginx-proxy#basic-authentication-support for more info._
 
@@ -148,7 +153,7 @@ _See https://github.com/jwilder/nginx-proxy#basic-authentication-support for mor
 Deploy a new stack or update an existing stack with all of our configured services in the compose file.
 
 ```bash
-$ ./bin/deploy-all
+./bin/deploy-all
 ```
 
 ### Connect Services
@@ -156,18 +161,22 @@ $ ./bin/deploy-all
 #### Tautulli
 
 Add the local plex media server connection details.
-* Settings -> Plex Media Server -> Plex IP or Hostname = `plex`
-* Settings -> Plex Media Server -> Plex Port = `32400`
+* Settings -> Plex Media Server -> Plex IP or Hostname = `plex.exampledomain.com`
+* Settings -> Plex Media Server -> Plex Port = `443`
+* Settings -> Plex Media Server -> Remote Server = `true`
 * Settings -> Plex Media Server -> Use SSL = `true`
+* Settings -> Plex Media Server -> Manual Connection = `true`
+
+Enable basic authorization.
+* Settings -> Access Control -> Use Basic Authentication = `true`
 
 #### Hydra
 
 Set the public url so remote api commands don't return an unreachable link.
 * Config -> Main -> External URL = `https://hydra.exampledomain.com`
 
-Enable built-in authorization so services using the API key still have full access
-and are not blocked by HTTP basic auth.
-* Config -> Authorization -> Auth Type = `Login form`
+Enable basic authorization.
+* Config -> Authorization -> Auth Type = `HTTP Basic auth`
 
 #### Sonarr
 
