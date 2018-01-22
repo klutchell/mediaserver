@@ -4,15 +4,18 @@ This is a Docker-based Plex Media Server setup for ubuntu using public images fr
 
 The following services are enabled by default:
 
-|service|published url|
-|---|---|
-|[plex](plex.tv)|`plex.exampledomain.com`|
-|[tautulli](jonnywong16.github.io/plexpy/)|`tautulli.exampledomain.com`|
-|[hydra](github.com/theotherp/nzbhydra)|`hydra.exampledomain.com`|
-|[sonarr](sonarr.tv)|`sonarr.exampledomain.com`|
-|[radarr](radarr.video)|`radarr.exampledomain.com`|
-|[nzbget](nzbget.net)|`nzbget.exampledomain.com`|
-|[transmission](transmissionbt.com)|`transmission.exampledomain.com`|
+|service|image|example url|
+|---|---|---|
+|[plex](plex.tv)|[plexinc/pms-docker](https://hub.docker.com/r/plexinc/pms-docker/)|`plex.exampledomain.com`|
+|[tautulli](jonnywong16.github.io/plexpy/)|[shiggins8/tautulli](https://hub.docker.com/r/shiggins8/tautulli/)|`tautulli.exampledomain.com`|
+|[hydra](github.com/theotherp/nzbhydra)|[linuxserver/hydra](https://hub.docker.com/r/linuxserver/hydra/)|`hydra.exampledomain.com`|
+|[sonarr](sonarr.tv)|[linuxserver/sonarr](https://hub.docker.com/r/linuxserver/sonarr/)|`sonarr.exampledomain.com`|
+|[radarr](radarr.video)|[linuxserver/radarr](https://hub.docker.com/r/linuxserver/radarr/)|`radarr.exampledomain.com`|
+|[nzbget](nzbget.net)|[linuxserver/nzbget](https://hub.docker.com/r/linuxserver/nzbget/)|`nzbget.exampledomain.com`|
+|[transmission](transmissionbt.com)|[linuxserver/transmission](https://hub.docker.com/r/linuxserver/transmission/)|`transmission.exampledomain.com`|
+|[docker-gen](https://github.com/helderco/docker-gen)|[helder/docker-gen](https://hub.docker.com/r/helder/docker-gen/)|n/a|
+|[letsencrypt](https://letsencrypt.org/)|[jrcs/letsencrypt-nginx-proxy-companion](https://hub.docker.com/r/jrcs/letsencrypt-nginx-proxy-companion)|n/a|
+|[nginx](https://www.nginx.com/)|[nginx](https://hub.docker.com/_/nginx/)|n/a|
 
 ## Getting Started
 
@@ -23,26 +26,19 @@ The following services are enabled by default:
 This guide assumes you own a custom domain (eg. `exampledomain.com`) with configurable
 sub-domains (eg. `plex.exampledomain.com`).
 
-A custom domain isn't expensive, and I'm using one from [namecheap](namecheap.com).
-
-#### Dedicated server
-
-Since obviously PLEX requires a ton of space for media, I'm using a dedicated server with 2TB of storage.
-
-You could also use an old PC, or a VPS with mounted storage. PLEX Cloud is now an option as well if you are
-comfortable with your media on a cloud provider.
-
-This guide does not work on any ARM platform (including Raspberry PI) because the images I've included are not
-compiled for ARM. In the future I may make a branch with arm images substituted.
-
-This guide does not cover mounting external storage (FUSE or otherwise) or initial OS setup.
-That's on you to sort out.
+_Tested with [namecheap](https://www.namecheap.com/) and [cloudflare](https://www.cloudflare.com/)._
 
 #### Debian OS
 
 This guide assumes you are using a recent Debian-based OS.
 
 _Tested with Ubuntu Server x64 16.04._
+
+#### Docker
+
+See https://docs.docker.com/engine/installation/ for installation options.
+
+_Tested with Docker version 17.09.0-ce and higher._
 
 ### Installation
 
@@ -56,40 +52,17 @@ git clone git@github.com:klutchell/mediaserver.git ~/mediaserver
 
 _You can change data and media paths in a later step._
 
-#### 2. Install Docker
+#### 2. Forward DNS
 
-See https://docs.docker.com/engine/installation/ for installation options.
+Forward any desired A-level domains to your server public IP address. Suggested services
+and domains are listed in the description.
 
-_Tested with Docker version 17.09.0-ce._
+**Example:**
+Type A : plex.exampledomain.com -> [server public ip]
+Type A : tautulli.exampledomain.com -> [server public ip]
+etc...
 
-### Configuration
-
-#### 1. Forward DNS
-
-I'm using CloudFlare for my DNS, since it's free and offers some features that you wouldn't
-normally get with your domain registrar. These steps should be similar for other DNS providers though.
-
-Forward the following A-level domains to your server public IP address (where `12.34.56.78` is your
-server public-facing address).
-
-|Type|Name|Value|TTL|Status|
-|---|---|---|---|---|
-|`A`|`plex`|`12.34.56.78`|`Automatic`|`DNS and HTTP proxy (CDN)`|
-|`A`|`tautulli`|`12.34.56.78`|`Automatic`|`DNS and HTTP proxy (CDN)`|
-|`A`|`hydra`|`12.34.56.78`|`Automatic`|`DNS and HTTP proxy (CDN)`|
-|`A`|`sonarr`|`12.34.56.78`|`Automatic`|`DNS and HTTP proxy (CDN)`|
-|`A`|`radarr`|`12.34.56.78`|`Automatic`|`DNS and HTTP proxy (CDN)`|
-|`A`|`nzbget`|`12.34.56.78`|`Automatic`|`DNS and HTTP proxy (CDN)`|
-|`A`|`transmission`|`12.34.56.78`|`Automatic`|`DNS and HTTP proxy (CDN)`|
-
-**_Note for CloudFlare users_**
-
-_I haven't been able to get letsencrypt to renew certificates while `Full (strict)`
-SSL is enabled on CloudFlare, so for first run or when adding new services set it
-to `Flexible` until the certs have been obtained.
-Any tips or workarounds for this are appreciated!_
-
-#### 2. Open Firewall Ports
+#### 3. Open Firewall Ports
 
 Allow HTTP (80) and HTTPS (443) through your firewall. For UFW, it can be done with
 this command.
@@ -98,7 +71,7 @@ this command.
 sudo ufw allow http https
 ```
 
-#### 3. Edit Compose File
+#### 4. Edit Compose File
 
 The docker-compose file in the project root defines the services that will be created.
 
@@ -113,7 +86,7 @@ From here you can:
 
 _See https://docs.docker.com/compose/compose-file/ for supported values._
 
-#### 4. Set Environment Parameters
+#### 5. Set Environment Parameters
 
 Most of the services require environment (.env) files that are sourced by the compose file.
 I've included .env.example files for each of the default services.
@@ -124,25 +97,22 @@ For convenience, this script will iterate over the .env.example files and prompt
 ./bin/set-env
 ```
 
-#### 5. Enable HTTP Auth
+#### 6. Enable HTTP Auth
 
-It would be wise to protect most of your web services with http basic auth.
-Create an htpasswd file for each web service you want to protect.
+Either enable authentication on each service manually, or use nginx to prompt for
+basic http authentication (safer).
 
 ```bash
-# these services include auth features but it's easier and safer to protect
-# them at the nginx level
+# create an htpasswd file for each web service you want to protect at the nginx level
 htpasswd -bc ./nginx/htpasswd/sonarr.exampledomain.com username password
 htpasswd -bc ./nginx/htpasswd/radarr.exampledomain.com username password
 htpasswd -bc ./nginx/htpasswd/nzbget.exampledomain.com username password
 htpasswd -bc ./nginx/htpasswd/transmission.exampledomain.com username password
-
-# plex, tautulli, and hydra expose APIs that use tokens so I use the included
-# auth features for those services
-#htpasswd -bc ./nginx/htpasswd/plex.exampledomain.com username password
-#htpasswd -bc ./nginx/htpasswd/tautulli.exampledomain.com username password
-#htpasswd -bc ./nginx/htpasswd/hydra.exampledomain.com username password
+# etc...
 ```
+
+Plex, tautulli, and hydra expose APIs that use tokens so I use the included
+auth features for those services.
 
 _See https://github.com/jwilder/nginx-proxy#basic-authentication-support for more info._
 
@@ -203,16 +173,10 @@ Kyle Harding <kylemharding@gmail.com>
 I didn't create any of these docker images myself, so credit goes to the
 maintainers, and the app creators themselves.
 
-* https://hub.docker.com/r/plexinc/pms-docker/
-* https://hub.docker.com/r/linuxserver/nzbget/
-* https://hub.docker.com/r/linuxserver/sonarr/
-* https://hub.docker.com/r/linuxserver/radarr/
-* https://hub.docker.com/r/shiggins8/tautulli/
-* https://hub.docker.com/r/linuxserver/transmission/
-* https://hub.docker.com/r/linuxserver/hydra/
-* https://hub.docker.com/r/helder/docker-gen/
-* https://hub.docker.com/r/jrcs/letsencrypt-nginx-proxy-companion/
-* https://hub.docker.com/_/nginx/
+* https://www.plex.tv
+* https://www.linuxserver.io
+* https://github.com/helderco/docker-gen
+* https://github.com/JrCs/docker-letsencrypt-nginx-proxy-companion
 
 ## License
 
