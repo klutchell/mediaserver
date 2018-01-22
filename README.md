@@ -57,10 +57,11 @@ _You can change data and media paths in a later step._
 Forward any desired A-level domains to your server public IP address. Suggested services
 and domains are listed in the description.
 
-**Example:**
-Type A : plex.exampledomain.com -> [server public ip]
-Type A : tautulli.exampledomain.com -> [server public ip]
-etc...
+|type|domain|address|
+|---|---|---|
+|Type A|plex.exampledomain.com|[server public ip]|
+|Type A|tautulli.exampledomain.com|[server public ip]|
+|etc...|etc...|etc...|
 
 #### 3. Open Firewall Ports
 
