@@ -17,6 +17,25 @@ services:
         networks:
             - overlay_net
 
+    # https://github.com/shiggins8/docker-tautulli
+    # https://hub.docker.com/r/shiggins8/tautulli/
+    tautulli:
+        image: "shiggins8/tautulli"
+        volumes:
+            - ./tautulli/config:/config
+            - ./plex/config/Library/Application Support/Plex Media Server/Logs:/logs:ro
+            - /etc/localtime:/etc/localtime:ro
+            - /dev/rtc:/dev/rtc:ro
+        env_file:
+            - ./tautulli/tautulli.env
+        healthcheck:
+            # test: if curl -f http://localhost:8181/ && curl -f http://mediaserver_plex:32400/web/ ; then exit 0 ; else exit 1 ; fi
+            test: if curl -f http://mediaserver_plex:32400/web/ ; then exit 0 ; else exit 1 ; fi
+            interval: 10s
+            retries: 24 # plex takes 3 minutes, so give tautulli lots of retries at a short interval
+        networks:
+            - overlay_net
+
     # https://github.com/linuxserver/docker-nzbget
     # https://hub.docker.com/r/linuxserver/nzbget/
     nzbget:
@@ -66,26 +85,6 @@ services:
             - ./radarr/radarr.env
         healthcheck:
             test: if curl -f http://localhost:7878/ && curl -f http://mediaserver_nzbget:6789/ && curl -f http://mediaserver_hydra:5075/ ; then exit 0 ; else exit 1 ; fi
-        networks:
-            - overlay_net
-
-    # https://github.com/linuxserver/docker-plexpy
-    # https://hub.docker.com/r/linuxserver/plexpy/
-    plexpy:
-        image: "linuxserver/plexpy"
-        volumes:
-            - ./plexpy/config:/config
-            - ./plex/config/Library/Application Support/Plex Media Server/Logs:/logs:ro
-            - /etc/localtime:/etc/localtime:ro
-            - /dev/rtc:/dev/rtc:ro
-            - ./plexpy/30-config:/etc/cont-init.d/30-config
-        env_file:
-            - ./plexpy/plexpy.env
-        healthcheck:
-            # test: if curl -f http://localhost:8181/ && curl -f http://mediaserver_plex:32400/web/ ; then exit 0 ; else exit 1 ; fi
-            test: if curl -f http://mediaserver_plex:32400/web/ ; then exit 0 ; else exit 1 ; fi
-            interval: 10s
-            retries: 24 # plex takes 3 minutes, so give plexpy lots of retries at a short interval
         networks:
             - overlay_net
 

@@ -7,14 +7,12 @@ The following services are enabled by default:
 |service|published url|
 |---|---|
 |[plex](plex.tv)|`plex.exampledomain.com`|
-|[plexpy](jonnywong16.github.io/plexpy/)|`plexpy.exampledomain.com`|
+|[tautulli](jonnywong16.github.io/plexpy/)|`tautulli.exampledomain.com`|
 |[hydra](github.com/theotherp/nzbhydra)|`hydra.exampledomain.com`|
 |[sonarr](sonarr.tv)|`sonarr.exampledomain.com`|
 |[radarr](radarr.video)|`radarr.exampledomain.com`|
 |[nzbget](nzbget.net)|`nzbget.exampledomain.com`|
 |[transmission](transmissionbt.com)|`transmission.exampledomain.com`|
-|[portainer](portainer.io)|`portainer.exampledomain.com`|
-|[netdata](github.com/firehol/netdata)|`netdata.exampledomain.com`|
 
 ## Getting Started
 
@@ -77,14 +75,12 @@ server public-facing address).
 |Type|Name|Value|TTL|Status|
 |---|---|---|---|---|
 |`A`|`plex`|`12.34.56.78`|`Automatic`|`DNS and HTTP proxy (CDN)`|
-|`A`|`plexpy`|`12.34.56.78`|`Automatic`|`DNS and HTTP proxy (CDN)`|
+|`A`|`tautulli`|`12.34.56.78`|`Automatic`|`DNS and HTTP proxy (CDN)`|
 |`A`|`hydra`|`12.34.56.78`|`Automatic`|`DNS and HTTP proxy (CDN)`|
 |`A`|`sonarr`|`12.34.56.78`|`Automatic`|`DNS and HTTP proxy (CDN)`|
 |`A`|`radarr`|`12.34.56.78`|`Automatic`|`DNS and HTTP proxy (CDN)`|
 |`A`|`nzbget`|`12.34.56.78`|`Automatic`|`DNS and HTTP proxy (CDN)`|
 |`A`|`transmission`|`12.34.56.78`|`Automatic`|`DNS and HTTP proxy (CDN)`|
-|`A`|`portainer`|`12.34.56.78`|`Automatic`|`DNS and HTTP proxy (CDN)`|
-|`A`|`netdata`|`12.34.56.78`|`Automatic`|`DNS and HTTP proxy (CDN)`|
 
 **_Note for CloudFlare users_**
 
@@ -134,15 +130,13 @@ It would be wise to protect most of your web services with http basic auth.
 Create a htpasswd file for each web service you want to protect.
 
 ```bash
-$ htpasswd -bc ./nginx/htpasswd/plexpy.exampledomain.com username password
 $ htpasswd -bc ./nginx/htpasswd/sonarr.exampledomain.com username password
 $ htpasswd -bc ./nginx/htpasswd/radarr.exampledomain.com username password
 $ htpasswd -bc ./nginx/htpasswd/nzbget.exampledomain.com username password
 $ htpasswd -bc ./nginx/htpasswd/transmission.exampledomain.com username password
-$ htpasswd -bc ./nginx/htpasswd/netdata.exampledomain.com username password
 ```
 
-_Portainer, Plex, and Hydra all work better if built-in authentication is used
+_Tautulli, Plex, and Hydra all work better if built-in authentication is used
 rather than http basic auth._
 
 _See https://github.com/jwilder/nginx-proxy#basic-authentication-support for more info._
@@ -159,7 +153,7 @@ $ ./bin/deploy-all
 
 ### Connect Services
 
-#### Plexpy
+#### Tautulli
 
 Add the local plex media server connection details.
 * Settings -> Plex Media Server -> Plex IP or Hostname = `plex`
@@ -201,17 +195,15 @@ I didn't create any of these docker images myself, so credit goes to the
 maintainers, and the app creators themselves.
 
 * https://hub.docker.com/r/plexinc/pms-docker/
-* https://hub.docker.com/r/portainer/portainer/
 * https://hub.docker.com/r/linuxserver/nzbget/
 * https://hub.docker.com/r/linuxserver/sonarr/
 * https://hub.docker.com/r/linuxserver/radarr/
-* https://hub.docker.com/r/linuxserver/plexpy/
+* https://hub.docker.com/r/shiggins8/tautulli/
 * https://hub.docker.com/r/linuxserver/transmission/
 * https://hub.docker.com/r/linuxserver/hydra/
 * https://hub.docker.com/r/helder/docker-gen/
 * https://hub.docker.com/r/jrcs/letsencrypt-nginx-proxy-companion/
 * https://hub.docker.com/_/nginx/
-* https://hub.docker.com/r/firehol/netdata/
 
 ## License
 
