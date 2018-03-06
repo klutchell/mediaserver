@@ -11,7 +11,6 @@ services:
             - ./plex/media/movies:/movies
             - /tmp:/transcode
             - /etc/localtime:/etc/localtime:ro
-            - /dev/rtc:/dev/rtc:ro
         env_file:
             - ./plex/plex.env
         networks:
@@ -25,7 +24,6 @@ services:
             - ./tautulli/config:/config
             - ./plex/config/Library/Application Support/Plex Media Server/Logs:/logs:ro
             - /etc/localtime:/etc/localtime:ro
-            - /dev/rtc:/dev/rtc:ro
         env_file:
             - ./tautulli/tautulli.env
         healthcheck:
@@ -44,7 +42,6 @@ services:
             - ./nzbget/config:/config
             - ./nzbget/downloads:/downloads
             - /etc/localtime:/etc/localtime:ro
-            - /dev/rtc:/dev/rtc:ro
         env_file:
             - ./nzbget/nzbget.env
         healthcheck:
@@ -62,7 +59,6 @@ services:
             - ./transmission/downloads:/transmission
             - ./plex/media/tv:/tv
             - /etc/localtime:/etc/localtime:ro
-            - /dev/rtc:/dev/rtc:ro
         env_file:
             - ./sonarr/sonarr.env
         healthcheck:
@@ -80,7 +76,6 @@ services:
             - ./transmission/downloads:/transmission
             - ./plex/media/movies:/movies
             - /etc/localtime:/etc/localtime:ro
-            - /dev/rtc:/dev/rtc:ro
         env_file:
             - ./radarr/radarr.env
         healthcheck:
@@ -100,7 +95,6 @@ services:
             - ./transmission/downloads:/downloads
             - ./transmission/watch:/watch
             - /etc/localtime:/etc/localtime:ro
-            - /dev/rtc:/dev/rtc:ro
         env_file:
             - ./transmission/transmission.env
         healthcheck:
@@ -116,7 +110,6 @@ services:
             - ./hydra/config:/config
             - ./hydra/downloads:/downloads
             - /etc/localtime:/etc/localtime:ro
-            - /dev/rtc:/dev/rtc:ro
         env_file:
             - ./hydra/hydra.env
         healthcheck:
@@ -139,7 +132,6 @@ services:
             - nginx_certs_vol:/etc/nginx/certs:ro
             - ./nginx/htpasswd:/etc/nginx/htpasswd:ro
             - /etc/localtime:/etc/localtime:ro
-            - /dev/rtc:/dev/rtc:ro
         logging:
             driver: syslog
         networks:
@@ -161,7 +153,6 @@ services:
             - ./docker-gen/templates/nginx.tmpl:/etc/docker-gen/templates/nginx.tmpl:ro
             - /var/run/docker.sock:/tmp/docker.sock:ro
             - /etc/localtime:/etc/localtime:ro
-            - /dev/rtc:/dev/rtc:ro
         env_file:
             - ./docker-gen/docker-gen.env
         networks:
@@ -179,7 +170,6 @@ services:
             - ./nginx/htpasswd:/etc/nginx/htpasswd:ro
             - /var/run/docker.sock:/var/run/docker.sock:ro
             - /etc/localtime:/etc/localtime:ro
-            - /dev/rtc:/dev/rtc:ro
         env_file:
             - ./letsencrypt/letsencrypt.env
         networks:
