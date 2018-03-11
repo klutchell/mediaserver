@@ -16,10 +16,10 @@ services:
         networks:
             - overlay_net
 
-    # https://github.com/shiggins8/docker-tautulli
-    # https://hub.docker.com/r/shiggins8/tautulli/
+    # https://github.com/Tautulli/Tautulli-Docker
+    # https://hub.docker.com/r/tautulli/tautulli/
     tautulli:
-        image: "shiggins8/tautulli"
+        image: "tautulli/tautulli"
         volumes:
             - ./tautulli/config:/config
             - ./plex/config/Library/Application Support/Plex Media Server/Logs:/logs:ro
