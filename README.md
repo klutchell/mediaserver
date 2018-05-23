@@ -19,15 +19,10 @@ The following services are enabled by default:
 
 ### Prerequisites
 
-**Custom domain**
-
-A custom domain (eg. `exampledomain.com`) with configurable sub-domains (eg. `plex.exampledomain.com`).
-
-_Tested with [namecheap](https://www.namecheap.com/) and [cloudflare](https://www.cloudflare.com/)._
-
-**Debian OS**
-
-_Tested with Ubuntu Server x64 16.04 on a [Kimsufi dedicated server](https://www.kimsufi.com/ca/en/servers.xml)._
+* Custom domain with configurable sub-domains
+(_tested with [namecheap](https://www.namecheap.com/) and [cloudflare](https://www.cloudflare.com/)_)
+* Debian OS but may work on other distros
+(_tested with Ubuntu Server x64 16.04 on a [Kimsufi dedicated server](https://www.kimsufi.com/ca/en/servers.xml)_)
 
 ### Install
 
@@ -126,9 +121,6 @@ Kyle Harding <kylemharding@gmail.com>
 
 I didn't create any of these docker images myself, so credit goes to the
 maintainers, and the app creators themselves.
-
-* https://www.plex.tv
-* https://www.linuxserver.io
 
 ## License
 
