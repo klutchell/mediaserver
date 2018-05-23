@@ -7,6 +7,7 @@ services:
         labels:
             caddy.address: plex.__cloudflare_domain__
             caddy.targetport: 32400
+        restart: unless-stopped
         volumes:
             - ./data/plex/config:/config
             - ./data/plex/media/tv:/tv
@@ -21,6 +22,7 @@ services:
         labels:
             caddy.address: tautulli.__cloudflare_domain__
             caddy.targetport: 8181
+        restart: unless-stopped
         volumes:
             - ./data/tautulli/config:/config
             - ./data/plex/config/Library/Application Support/Plex Media Server/Logs:/logs:ro
@@ -38,6 +40,7 @@ services:
         labels:
             caddy.address: nzbget.__cloudflare_domain__
             caddy.targetport: 6789
+        restart: unless-stopped
         volumes:
             - ./data/nzbget/config:/config
             - ./data/nzbget/downloads:/downloads
@@ -52,6 +55,7 @@ services:
         labels:
             caddy.address: sonarr.__cloudflare_domain__
             caddy.targetport: 8989
+        restart: unless-stopped
         volumes:
             - ./data/sonarr/config:/config
             - ./data/nzbget/downloads:/downloads
@@ -68,6 +72,7 @@ services:
         labels:
             caddy.address: radarr.__cloudflare_domain__
             caddy.targetport: 7878
+        restart: unless-stopped
         volumes:
             - ./data/radarr/config:/config
             - ./data/nzbget/downloads:/downloads
@@ -87,6 +92,7 @@ services:
         ports:
             - "51413:51413/tcp"
             - "51413:51413/udp"
+        restart: unless-stopped
         volumes:
             - ./data/transmission/config:/config
             - ./data/transmission/downloads:/downloads
@@ -102,6 +108,7 @@ services:
         labels:
             caddy.address: hydra.__cloudflare_domain__
             caddy.targetport: 5075
+        restart: unless-stopped
         volumes:
             - ./data/hydra/config:/config
             - ./data/hydra/downloads:/downloads
@@ -121,6 +128,7 @@ services:
         ports:
             - '80:80'
             - '443:443'
+        restart: unless-stopped
         volumes:
             - ./Caddyfile:/etc/Caddyfile
             - caddy_certs_vol:/root/.caddy
