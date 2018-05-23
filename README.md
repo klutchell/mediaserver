@@ -7,7 +7,7 @@ The following services are enabled by default:
 |service|image|example url|
 |---|---|---|
 |[plex](plex.tv)|[plexinc/pms-docker](https://hub.docker.com/r/plexinc/pms-docker/)|`plex.exampledomain.com`|
-|[tautulli](jonnywong16.github.io/plexpy/)|[shiggins8/tautulli](https://hub.docker.com/r/shiggins8/tautulli/)|`tautulli.exampledomain.com`|
+|[tautulli](http://tautulli.com/)|[tautulli/tautulli](https://hub.docker.com/r/tautulli/tautulli/)|`tautulli.exampledomain.com`|
 |[hydra](github.com/theotherp/nzbhydra)|[linuxserver/hydra](https://hub.docker.com/r/linuxserver/hydra/)|`hydra.exampledomain.com`|
 |[sonarr](sonarr.tv)|[linuxserver/sonarr](https://hub.docker.com/r/linuxserver/sonarr/)|`sonarr.exampledomain.com`|
 |[radarr](radarr.video)|[linuxserver/radarr](https://hub.docker.com/r/linuxserver/radarr/)|`radarr.exampledomain.com`|
