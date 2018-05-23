@@ -19,38 +19,33 @@ The following services are enabled by default:
 
 ### Prerequisites
 
-#### Custom domain
+**Custom domain**
 
-This guide assumes you own a custom domain (eg. `exampledomain.com`) with configurable
-sub-domains (eg. `plex.exampledomain.com`).
+A custom domain (eg. `exampledomain.com`) with configurable sub-domains (eg. `plex.exampledomain.com`).
 
 _Tested with [namecheap](https://www.namecheap.com/) and [cloudflare](https://www.cloudflare.com/)._
 
-#### Debian OS
-
-This guide assumes you are using a recent Debian-based OS with root or sudo access.
+**Debian OS**
 
 _Tested with Ubuntu Server x64 16.04 on a [Kimsufi dedicated server](https://www.kimsufi.com/ca/en/servers.xml)._
 
-#### Docker
-
-See https://docs.docker.com/engine/installation/ for installation options.
-
-_Tested with [Docker](https://docs.docker.com/install/linux/docker-ce/debian/) version 17.09.0-ce and higher._
-
-### Installation
-
-#### 1. Clone Repo
-
-Clone the repo to somewhere convenient with reasonable storage available.
+### Install
 
 ```bash
+# install docker
+curl -sSL get.docker.com | sh
+
+# install docker compose
+sudo curl -L --fail https://github.com/docker/compose/releases/download/1.21.2/run.sh -o /usr/local/bin/docker-compose
+sudo chmod +x /usr/local/bin/docker-compose
+
+# clone repo
 git clone git@github.com:klutchell/mediaserver.git ~/mediaserver
 ```
 
-_You can change data and media paths in a later step._
+### Configure
 
-#### 2. Forward DNS
+#### Forward DNS
 
 Forward any desired A-level domains to your server public IP address. Suggested services
 and domains are listed in the description.
@@ -61,7 +56,7 @@ and domains are listed in the description.
 |Type A|tautulli.exampledomain.com|xxx.xxx.xxx.xxx|
 |...|...|...|
 
-#### 3. Open Firewall Ports
+#### Open Firewall Ports
 
 Allow HTTP (80) and HTTPS (443) through your firewall. With UFW, it can be done with
 this command.
@@ -70,51 +65,24 @@ this command.
 sudo ufw allow http https
 ```
 
-#### 4. Configure Services
+#### Configure Services
 
-The docker-compose file in the project root defines the services that will be created.
+* Set your domain in `docker-compose.yml`
+* Set your email and api key in `caddy.env`
+* Set your domain and http basic auth password in `Caddyfile`
+* Set your timezone and local user details in `common.env`
+* Set your timezone and local user details in `plex.env`
+* Set your plex claim token in `plex.env`
 
-```bash
-nano ./docker-compose.yml
-```
-
-From here you can:
-* change volume paths (symlinks are allowed)
-* remove unwanted services (keep caddy)
-* add new services
-
-_See https://docs.docker.com/compose/compose-file/ for supported values._
-
-#### 5. Configure Service Parameters
-
-There are some `<service>.env.example` files in the root of the project. Each of
-these should be copied and renamed to `<service>.env` before filling in your
-custom options.
-
-#### 6. Configure Caddy
-
-Either enable authentication on each service manually, or use nginx to prompt for
-basic http authentication (safer).
-
-
-
-Plex, tautulli, and hydra expose APIs that use tokens so I use the included
-auth features for those services.
-
-
-## Deployment
-
-### Deploy Stack
-
-Deploy a new stack or update an existing stack with all of our configured services in the compose file.
+## Deploy
 
 ```bash
-./bin/deploy-all
+docker-compose up -d
 ```
 
-### Connect Services
+## Usage
 
-#### Tautulli
+### Tautulli
 
 Add the local plex media server connection details.
 * Settings -> Plex Media Server -> Plex IP or Hostname = `plex.exampledomain.com`
@@ -126,7 +94,7 @@ Add the local plex media server connection details.
 Enable basic authorization.
 * Settings -> Access Control -> Use Basic Authentication = `true`
 
-#### Hydra
+### Hydra
 
 Set the public url so remote api commands don't return an unreachable link.
 * Config -> Main -> External URL = `https://hydra.exampledomain.com`
@@ -134,7 +102,7 @@ Set the public url so remote api commands don't return an unreachable link.
 Enable basic authorization.
 * Config -> Authorization -> Auth Type = `HTTP Basic auth`
 
-#### Sonarr
+### Sonarr
 
 Add the local hydra indexer connection details.
 * Settings -> Indexers -> Add = `Type: newsnab` `URL: http://hydra:5075`
@@ -142,7 +110,7 @@ Add the local hydra indexer connection details.
 Add the local nzbget download client connection details.
 * Settings -> Download Client -> Add = `Type: nzbget` `Host: nzbget` `Port: 6789`
 
-#### Radarr
+### Radarr
 
 Add the local hydra indexer connection details.
 * Settings -> Indexers -> Add = `Type: newsnab` `URL: http://hydra:5075`
