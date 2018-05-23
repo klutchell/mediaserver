@@ -13,9 +13,7 @@ The following services are enabled by default:
 |[radarr](radarr.video)|[linuxserver/radarr](https://hub.docker.com/r/linuxserver/radarr/)|`radarr.exampledomain.com`|
 |[nzbget](nzbget.net)|[linuxserver/nzbget](https://hub.docker.com/r/linuxserver/nzbget/)|`nzbget.exampledomain.com`|
 |[transmission](transmissionbt.com)|[linuxserver/transmission](https://hub.docker.com/r/linuxserver/transmission/)|`transmission.exampledomain.com`|
-|[docker-gen](https://github.com/helderco/docker-gen)|[helder/docker-gen](https://hub.docker.com/r/helder/docker-gen/)|n/a|
-|[letsencrypt](https://letsencrypt.org/)|[jrcs/letsencrypt-nginx-proxy-companion](https://hub.docker.com/r/jrcs/letsencrypt-nginx-proxy-companion)|n/a|
-|[nginx](https://www.nginx.com/)|[nginx](https://hub.docker.com/_/nginx/)|n/a|
+|[caddy](https://caddyserver.com/)|[abiosoft/caddy-docker](https://hub.docker.com/r/abiosoft/caddy/)|n/a|
 
 ## Getting Started
 
@@ -30,15 +28,15 @@ _Tested with [namecheap](https://www.namecheap.com/) and [cloudflare](https://ww
 
 #### Debian OS
 
-This guide assumes you are using a recent Debian-based OS.
+This guide assumes you are using a recent Debian-based OS with root or sudo access.
 
-_Tested with Ubuntu Server x64 16.04._
+_Tested with Ubuntu Server x64 16.04 on a [Kimsufi dedicated server](https://www.kimsufi.com/ca/en/servers.xml)._
 
 #### Docker
 
 See https://docs.docker.com/engine/installation/ for installation options.
 
-_Tested with Docker version 17.09.0-ce and higher._
+_Tested with [Docker](https://docs.docker.com/install/linux/docker-ce/debian/) version 17.09.0-ce and higher._
 
 ### Installation
 
@@ -59,20 +57,20 @@ and domains are listed in the description.
 
 |type|domain|address|
 |---|---|---|
-|Type A|plex.exampledomain.com|[server public ip]|
-|Type A|tautulli.exampledomain.com|[server public ip]|
-|etc...|etc...|etc...|
+|Type A|plex.exampledomain.com|xxx.xxx.xxx.xxx|
+|Type A|tautulli.exampledomain.com|xxx.xxx.xxx.xxx|
+|...|...|...|
 
 #### 3. Open Firewall Ports
 
-Allow HTTP (80) and HTTPS (443) through your firewall. For UFW, it can be done with
+Allow HTTP (80) and HTTPS (443) through your firewall. With UFW, it can be done with
 this command.
 
 ```bash
 sudo ufw allow http https
 ```
 
-#### 4. Edit Compose File
+#### 4. Configure Services
 
 The docker-compose file in the project root defines the services that will be created.
 
@@ -81,41 +79,28 @@ nano ./docker-compose.yml
 ```
 
 From here you can:
-* change volume paths (softlinks are allowed)
-* remove unwanted services (keep nginx + docker-gen + letsencrypt)
+* change volume paths (symlinks are allowed)
+* remove unwanted services (keep caddy)
 * add new services
 
 _See https://docs.docker.com/compose/compose-file/ for supported values._
 
-#### 5. Set Environment Parameters
+#### 5. Configure Service Parameters
 
-Most of the services require environment (.env) files that are sourced by the compose file.
-I've included .env.example files for each of the default services.
+There are some `<service>.env.example` files in the root of the project. Each of
+these should be copied and renamed to `<service>.env` before filling in your
+custom options.
 
-For convenience, this script will iterate over the .env.example files and prompt for new values.
-
-```bash
-./bin/set-env
-```
-
-#### 6. Enable HTTP Auth
+#### 6. Configure Caddy
 
 Either enable authentication on each service manually, or use nginx to prompt for
 basic http authentication (safer).
 
-```bash
-# create an htpasswd file for each web service you want to protect at the nginx level
-htpasswd -bc ./nginx/htpasswd/sonarr.exampledomain.com username password
-htpasswd -bc ./nginx/htpasswd/radarr.exampledomain.com username password
-htpasswd -bc ./nginx/htpasswd/nzbget.exampledomain.com username password
-htpasswd -bc ./nginx/htpasswd/transmission.exampledomain.com username password
-# etc...
-```
+
 
 Plex, tautulli, and hydra expose APIs that use tokens so I use the included
 auth features for those services.
 
-_See https://github.com/jwilder/nginx-proxy#basic-authentication-support for more info._
 
 ## Deployment
 
@@ -176,8 +161,6 @@ maintainers, and the app creators themselves.
 
 * https://www.plex.tv
 * https://www.linuxserver.io
-* https://github.com/helderco/docker-gen
-* https://github.com/JrCs/docker-letsencrypt-nginx-proxy-companion
 
 ## License
 

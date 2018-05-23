@@ -1,0 +1,67 @@
+plex.__cloudflare_domain__ {
+    gzip
+    proxy / plex:32400 {
+        transparent
+    }
+    tls {
+        dns cloudflare
+    }
+}
+tautulli.__cloudflare_domain__ {
+    gzip
+    proxy / tautulli:8181 {
+        transparent
+    }
+    tls {
+        dns cloudflare
+    }
+}
+sonarr.__cloudflare_domain__ {
+    gzip
+    basicauth / admin __basic_auth_password__
+    proxy / sonarr:8989 {
+        transparent
+    }
+    tls {
+        dns cloudflare
+    }
+}
+transmission.__cloudflare_domain__ {
+    gzip
+    basicauth / admin __basic_auth_password__
+    proxy / transmission:9091 {
+        transparent
+    }
+    tls {
+        dns cloudflare
+    }
+}
+radarr.__cloudflare_domain__ {
+    gzip
+    basicauth / admin __basic_auth_password__
+    proxy / radarr:7878 {
+        transparent
+    }
+    tls {
+        dns cloudflare
+    }
+}
+nzbget.__cloudflare_domain__ {
+    gzip
+    basicauth / admin __basic_auth_password__
+    proxy / nzbget:6789 {
+        transparent
+    }
+    tls {
+        dns cloudflare
+    }
+}
+hydra.__cloudflare_domain__ {
+    gzip
+    proxy / hydra:5075 {
+        transparent
+    }
+    tls {
+        dns cloudflare
+    }
+}

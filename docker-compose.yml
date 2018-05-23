@@ -2,185 +2,130 @@ version: '3.4'
 services:
 
     # https://github.com/plexinc/pms-docker
-    # https://hub.docker.com/r/plexinc/pms-docker/
     plex:
         image: "plexinc/pms-docker:plexpass"
+        labels:
+            caddy.address: plex.__cloudflare_domain__
+            caddy.targetport: 32400
         volumes:
-            - ./plex/config:/config
-            - ./plex/media/tv:/tv
-            - ./plex/media/movies:/movies
+            - ./data/plex/config:/config
+            - ./data/plex/media/tv:/tv
+            - ./data/plex/media/movies:/movies
             - /tmp:/transcode
-            - /etc/localtime:/etc/localtime:ro
         env_file:
-            - ./plex/plex.env
-        networks:
-            - overlay_net
+            - ./plex.env
 
     # https://github.com/Tautulli/Tautulli-Docker
-    # https://hub.docker.com/r/tautulli/tautulli/
     tautulli:
         image: "tautulli/tautulli"
+        labels:
+            caddy.address: tautulli.__cloudflare_domain__
+            caddy.targetport: 8181
         volumes:
-            - ./tautulli/config:/config
-            - ./plex/config/Library/Application Support/Plex Media Server/Logs:/logs:ro
-            - /etc/localtime:/etc/localtime:ro
+            - ./data/tautulli/config:/config
+            - ./data/plex/config/Library/Application Support/Plex Media Server/Logs:/logs:ro
         env_file:
-            - ./tautulli/tautulli.env
+            - ./common.env
         healthcheck:
-            # test: if curl -f http://localhost:8181/ && curl -f http://mediaserver_plex:32400/web/ ; then exit 0 ; else exit 1 ; fi
-            test: if curl -f http://mediaserver_plex:32400/web/ ; then exit 0 ; else exit 1 ; fi
+            # test: if curl -f http://localhost:8181/ && curl -f http:/plex:32400/web/ ; then exit 0 ; else exit 1 ; fi
+            test: if curl -f http://plex:32400/web/ ; then exit 0 ; else exit 1 ; fi
             interval: 10s
             retries: 24 # plex takes 3 minutes, so give tautulli lots of retries at a short interval
-        networks:
-            - overlay_net
 
     # https://github.com/linuxserver/docker-nzbget
-    # https://hub.docker.com/r/linuxserver/nzbget/
     nzbget:
         image: "linuxserver/nzbget"
+        labels:
+            caddy.address: nzbget.__cloudflare_domain__
+            caddy.targetport: 6789
         volumes:
-            - ./nzbget/config:/config
-            - ./nzbget/downloads:/downloads
-            - /etc/localtime:/etc/localtime:ro
+            - ./data/nzbget/config:/config
+            - ./data/nzbget/downloads:/downloads
         env_file:
-            - ./nzbget/nzbget.env
+            - ./common.env
         healthcheck:
             test: curl --fail http://localhost:6789/ || exit 1
-        networks:
-            - overlay_net
 
     # https://github.com/linuxserver/docker-sonarr
-    # https://hub.docker.com/r/linuxserver/sonarr/
     sonarr:
         image: "linuxserver/sonarr"
+        labels:
+            caddy.address: sonarr.__cloudflare_domain__
+            caddy.targetport: 8989
         volumes:
-            - ./sonarr/config:/config
-            - ./nzbget/downloads:/downloads
-            - ./transmission/downloads:/transmission
-            - ./plex/media/tv:/tv
-            - /etc/localtime:/etc/localtime:ro
+            - ./data/sonarr/config:/config
+            - ./data/nzbget/downloads:/downloads
+            - ./data/transmission/downloads:/transmission
+            - ./data/plex/media/tv:/tv
         env_file:
-            - ./sonarr/sonarr.env
+            - ./common.env
         healthcheck:
-            test: if curl -f http://localhost:8989/ && curl -f http://mediaserver_nzbget:6789/ && curl -f http://mediaserver_hydra:5075/ ; then exit 0 ; else exit 1 ; fi
-        networks:
-            - overlay_net
+            test: if curl -f http://localhost:8989/ && curl -f http://nzbget:6789/ && curl -f http://hydra:5075/ ; then exit 0 ; else exit 1 ; fi
 
     # https://github.com/linuxserver/docker-radarr
-    # https://hub.docker.com/r/linuxserver/radarr/
     radarr:
         image: "linuxserver/radarr"
+        labels:
+            caddy.address: radarr.__cloudflare_domain__
+            caddy.targetport: 7878
         volumes:
-            - ./radarr/config:/config
-            - ./nzbget/downloads:/downloads
-            - ./transmission/downloads:/transmission
-            - ./plex/media/movies:/movies
-            - /etc/localtime:/etc/localtime:ro
+            - ./data/radarr/config:/config
+            - ./data/nzbget/downloads:/downloads
+            - ./data/transmission/downloads:/transmission
+            - ./data/plex/media/movies:/movies
         env_file:
-            - ./radarr/radarr.env
+            - ./common.env
         healthcheck:
-            test: if curl -f http://localhost:7878/ && curl -f http://mediaserver_nzbget:6789/ && curl -f http://mediaserver_hydra:5075/ ; then exit 0 ; else exit 1 ; fi
-        networks:
-            - overlay_net
+            test: if curl -f http://localhost:7878/ && curl -f http://nzbget:6789/ && curl -f http://hydra:5075/ ; then exit 0 ; else exit 1 ; fi
 
     # https://github.com/linuxserver/docker-transmission
-    # https://hub.docker.com/r/linuxserver/transmission/
     transmission:
         image: "linuxserver/transmission"
+        labels:
+            caddy.address: transmission.__cloudflare_domain__
+            caddy.targetport: 9091
         ports:
             - "51413:51413/tcp"
             - "51413:51413/udp"
         volumes:
-            - ./transmission/config:/config
-            - ./transmission/downloads:/downloads
-            - ./transmission/watch:/watch
-            - /etc/localtime:/etc/localtime:ro
+            - ./data/transmission/config:/config
+            - ./data/transmission/downloads:/downloads
+            - ./data/transmission/watch:/watch
         env_file:
-            - ./transmission/transmission.env
+            - ./common.env
         healthcheck:
             test: curl --fail http://localhost:9091/ || exit 1
-        networks:
-            - overlay_net
 
     # https://github.com/linuxserver/docker-hydra
-    # https://hub.docker.com/r/linuxserver/hydra/
     hydra:
         image: "linuxserver/hydra"
+        labels:
+            caddy.address: hydra.__cloudflare_domain__
+            caddy.targetport: 5075
         volumes:
-            - ./hydra/config:/config
-            - ./hydra/downloads:/downloads
-            - /etc/localtime:/etc/localtime:ro
+            - ./data/hydra/config:/config
+            - ./data/hydra/downloads:/downloads
         env_file:
-            - ./hydra/hydra.env
+            - ./common.env
         healthcheck:
             test: curl --fail http://localhost:5075/ || exit 1
-        networks:
-            - overlay_net
 
-    # https://hub.docker.com/_/nginx/
-    nginx:
-        image: nginx
-        labels:
-            - com.github.jrcs.letsencrypt_nginx_proxy_companion.nginx_proxy
+    # https://github.com/abiosoft/caddy-docker
+    caddy:
+        build:
+            context: github.com/abiosoft/caddy-docker.git
+            args:
+                plugins: "git,filemanager,cors,realip,expires,cache,cloudflare"
+        env_file:
+            - ./caddy.env
         ports:
-            - "80:80"
-            - "443:443"
+            - '80:80'
+            - '443:443'
         volumes:
-            - nginx_conf.d_vol:/etc/nginx/conf.d
-            - nginx_vhost.d_vol:/etc/nginx/vhost.d
-            - nginx_html_vol:/usr/share/nginx/html
-            - nginx_certs_vol:/etc/nginx/certs:ro
-            - ./nginx/htpasswd:/etc/nginx/htpasswd:ro
+            - ./Caddyfile:/etc/Caddyfile
+            - caddy_certs_vol:/root/.caddy
             - /etc/localtime:/etc/localtime:ro
-        logging:
-            driver: syslog
-        networks:
-            - overlay_net
-
-    # https://github.com/helderco/docker-gen
-    # https://hub.docker.com/r/helder/docker-gen/
-    docker-gen:
-        image: helder/docker-gen
-        labels:
-            - com.github.jrcs.letsencrypt_nginx_proxy_companion.docker_gen
-        command: -notify "docker-label-sighup com.github.jrcs.letsencrypt_nginx_proxy_companion.nginx_proxy" -watch -wait 5s:30s /etc/docker-gen/templates/nginx.tmpl /etc/nginx/conf.d/default.conf
-        volumes:
-            - nginx_conf.d_vol:/etc/nginx/conf.d
-            - nginx_vhost.d_vol:/etc/nginx/vhost.d
-            - nginx_html_vol:/usr/share/nginx/html
-            - nginx_certs_vol:/etc/nginx/certs:ro
-            - ./nginx/htpasswd:/etc/nginx/htpasswd:ro
-            - ./docker-gen/templates/nginx.tmpl:/etc/docker-gen/templates/nginx.tmpl:ro
-            - /var/run/docker.sock:/tmp/docker.sock:ro
-            - /etc/localtime:/etc/localtime:ro
-        env_file:
-            - ./docker-gen/docker-gen.env
-        networks:
-            - overlay_net
-
-    # https://github.com/JrCs/docker-letsencrypt-nginx-proxy-companion
-    # https://hub.docker.com/r/jrcs/letsencrypt-nginx-proxy-companion/
-    letsencrypt:
-        image: jrcs/letsencrypt-nginx-proxy-companion
-        volumes:
-            - nginx_conf.d_vol:/etc/nginx/conf.d
-            - nginx_vhost.d_vol:/etc/nginx/vhost.d
-            - nginx_html_vol:/usr/share/nginx/html
-            - nginx_certs_vol:/etc/nginx/certs:rw
-            - ./nginx/htpasswd:/etc/nginx/htpasswd:ro
-            - /var/run/docker.sock:/var/run/docker.sock:ro
-            - /etc/localtime:/etc/localtime:ro
-        env_file:
-            - ./letsencrypt/letsencrypt.env
-        networks:
-            - overlay_net
 
 volumes:
-    nginx_conf.d_vol:
-    nginx_vhost.d_vol:
-    nginx_html_vol:
-    nginx_certs_vol:
+    caddy_certs_vol:
 
-networks:
-    overlay_net:
-        driver: overlay
