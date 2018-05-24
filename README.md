@@ -19,10 +19,13 @@ The following services are enabled by default:
 
 ### Prerequisites
 
+* (recommended) Dedicated server with plenty of storage
+(_tested with [Kimsufi](https://www.kimsufi.com/ca/en/servers.xml)_)
 * Custom domain with configurable sub-domains
-(_tested with [namecheap](https://www.namecheap.com/) and [cloudflare](https://www.cloudflare.com/)_)
-* Debian OS but may work on other distros
-(_tested with Ubuntu Server x64 16.04 on a [Kimsufi dedicated server](https://www.kimsufi.com/ca/en/servers.xml)_)
+(_tested with [namecheap](https://www.namecheap.com/)_)
+* [Cloudflare DNS](https://www.cloudflare.com/)
+* (recommended) Debian OS (not ARM)
+(_tested with [Ubuntu Server](https://www.ubuntu.com/download/server) x64 16.04_)
 
 ### Install
 
@@ -62,12 +65,25 @@ sudo ufw allow http https
 
 #### Configure Services
 
-* Set your domain in `docker-compose.yml`
-* Set your email and api key in `caddy.env`
-* Set your domain and http basic auth password in `Caddyfile`
-* Set your timezone and local user details in `common.env`
-* Set your timezone and local user details in `plex.env`
-* Set your plex claim token in `plex.env`
+**common.env**
+* Set `PUID` and `PGID` to the output of `id -u` and `id -g` respectively
+* Set `TZ` to your local [unix timezone](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones)
+
+**caddy.env**
+* Set `ACME_AGREE` to `true` if you agree to the [Letsencrypt TOS](https://docs.google.com/viewer?url=https%3A%2F%2Fletsencrypt.org%2Fdocuments%2F2017.11.15-LE-SA-v1.2.pdf&pdf=true)
+* Set `CLOUDFLARE_EMAIL` to your registered Cloudflare email address
+* Set `CLOUDFLARE_API_KEY` to your [Cloudflare api key](https://support.cloudflare.com/hc/en-us/articles/200167836-Where-do-I-find-my-Cloudflare-API-key-)
+* Set `PUID` and `PGID` to the output of `id -u` and `id -g` respectively
+* Set `TZ` to your local [unix timezone](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones)
+
+**plex.env**
+* Set `ADVERTISE_IP` to `https://plex.yourdomain.com:443`
+* Set `PLEX_UID` and `PLEX_GID` to the output of `id -u` and `id -g` respectively
+* Set `TZ` to your local [unix timezone](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones)
+
+**Caddyfile**
+* Add your custom domain to each of the opening blocks above `gzip`
+* Add a password to any of the `basicauth` lines
 
 ## Deploy
 
@@ -80,11 +96,8 @@ docker-compose up -d
 ### Tautulli
 
 Add the local plex media server connection details.
-* Settings -> Plex Media Server -> Plex IP or Hostname = `plex.exampledomain.com`
-* Settings -> Plex Media Server -> Plex Port = `443`
-* Settings -> Plex Media Server -> Remote Server = `true`
-* Settings -> Plex Media Server -> Use SSL = `true`
-* Settings -> Plex Media Server -> Manual Connection = `true`
+* Settings -> Plex Media Server -> Plex IP or Hostname = `plex`
+* Settings -> Plex Media Server -> Plex Port = `32400`
 
 Enable basic authorization.
 * Settings -> Access Control -> Use Basic Authentication = `true`
@@ -92,7 +105,7 @@ Enable basic authorization.
 ### Hydra
 
 Set the public url so remote api commands don't return an unreachable link.
-* Config -> Main -> External URL = `https://hydra.exampledomain.com`
+* Config -> Main -> External URL = `https://hydra.mydomain.com`
 
 Enable basic authorization.
 * Config -> Authorization -> Auth Type = `HTTP Basic auth`

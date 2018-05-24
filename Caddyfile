@@ -1,5 +1,6 @@
-plex.__cloudflare_domain__ {
+plex.__CLOUDFLARE_DOMAIN__ {
     gzip
+    # use builtin auth so api access still works
     proxy / plex:32400 {
         transparent
     }
@@ -7,8 +8,9 @@ plex.__cloudflare_domain__ {
         dns cloudflare
     }
 }
-tautulli.__cloudflare_domain__ {
+tautulli.__CLOUDFLARE_DOMAIN__ {
     gzip
+    # use builtin auth so api access still works
     proxy / tautulli:8181 {
         transparent
     }
@@ -16,9 +18,9 @@ tautulli.__cloudflare_domain__ {
         dns cloudflare
     }
 }
-sonarr.__cloudflare_domain__ {
+sonarr.__CLOUDFLARE_DOMAIN__ {
     gzip
-    basicauth / admin __basic_auth_password__
+    basicauth / admin __BASICAUTH_PASSWORD__
     proxy / sonarr:8989 {
         transparent
     }
@@ -26,9 +28,9 @@ sonarr.__cloudflare_domain__ {
         dns cloudflare
     }
 }
-transmission.__cloudflare_domain__ {
+transmission.__CLOUDFLARE_DOMAIN__ {
     gzip
-    basicauth / admin __basic_auth_password__
+    basicauth / admin __BASICAUTH_PASSWORD__
     proxy / transmission:9091 {
         transparent
     }
@@ -36,9 +38,9 @@ transmission.__cloudflare_domain__ {
         dns cloudflare
     }
 }
-radarr.__cloudflare_domain__ {
+radarr.__CLOUDFLARE_DOMAIN__ {
     gzip
-    basicauth / admin __basic_auth_password__
+    basicauth / admin __BASICAUTH_PASSWORD__
     proxy / radarr:7878 {
         transparent
     }
@@ -46,9 +48,9 @@ radarr.__cloudflare_domain__ {
         dns cloudflare
     }
 }
-nzbget.__cloudflare_domain__ {
+nzbget.__CLOUDFLARE_DOMAIN__ {
     gzip
-    basicauth / admin __basic_auth_password__
+    basicauth / admin __BASICAUTH_PASSWORD__
     proxy / nzbget:6789 {
         transparent
     }
@@ -56,8 +58,9 @@ nzbget.__cloudflare_domain__ {
         dns cloudflare
     }
 }
-hydra.__cloudflare_domain__ {
+hydra.__CLOUDFLARE_DOMAIN__ {
     gzip
+    # use builtin auth so api access still works
     proxy / hydra:5075 {
         transparent
     }
