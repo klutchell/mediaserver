@@ -1,8 +1,8 @@
 #!/bin/sh
 
-# restore secrets in env and yml files
+# restore secrets to .env files and Caddyfile
 
-secret_files="plex.env caddy.env docker-compose.yml Caddyfile"
+secret_files="plex.env caddy.env Caddyfile"
 
 while IFS== read -r placeholder secret || [ -n "${placeholder}" ]
 do
