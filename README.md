@@ -91,37 +91,17 @@ docker-compose up -d
 
 ## Usage
 
-### Tautulli
-
-Add the local plex media server connection details.
+**Tautulli**
 * Settings -> Plex Media Server -> Plex IP or Hostname = `plex`
 * Settings -> Plex Media Server -> Plex Port = `32400`
-
-Enable basic authorization.
 * Settings -> Access Control -> Use Basic Authentication = `true`
 
-### Hydra
-
-Set the public url so remote api commands don't return an unreachable link.
+**Hydra**
 * Config -> Main -> External URL = `https://hydra.mydomain.com`
-
-Enable basic authorization.
 * Config -> Authorization -> Auth Type = `HTTP Basic auth`
 
-### Sonarr
-
-Add the local hydra indexer connection details.
+**Radarr/Sonarr**
 * Settings -> Indexers -> Add = `Type: newsnab` `URL: http://hydra:5075`
-
-Add the local nzbget download client connection details.
-* Settings -> Download Client -> Add = `Type: nzbget` `Host: nzbget` `Port: 6789`
-
-### Radarr
-
-Add the local hydra indexer connection details.
-* Settings -> Indexers -> Add = `Type: newsnab` `URL: http://hydra:5075`
-
-Add the local nzbget download client connection details.
 * Settings -> Download Client -> Add = `Type: nzbget` `Host: nzbget` `Port: 6789`
 
 ## Author
