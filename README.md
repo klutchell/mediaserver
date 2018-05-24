@@ -73,13 +73,11 @@ sudo ufw allow http https
 * Set `ACME_AGREE` to `true` if you agree to the [Letsencrypt TOS](https://docs.google.com/viewer?url=https%3A%2F%2Fletsencrypt.org%2Fdocuments%2F2017.11.15-LE-SA-v1.2.pdf&pdf=true)
 * Set `CLOUDFLARE_EMAIL` to your registered Cloudflare email address
 * Set `CLOUDFLARE_API_KEY` to your [Cloudflare api key](https://support.cloudflare.com/hc/en-us/articles/200167836-Where-do-I-find-my-Cloudflare-API-key-)
-* Set `PUID` and `PGID` to the output of `id -u` and `id -g` respectively
-* Set `TZ` to your local [unix timezone](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones)
 
 **plex.env**
 * Set `ADVERTISE_IP` to `https://plex.yourdomain.com:443`
 * Set `PLEX_UID` and `PLEX_GID` to the output of `id -u` and `id -g` respectively
-* Set `TZ` to your local [unix timezone](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones)
+* Set `PLEX_CLAIM` to a new token obtained at https://www.plex.tv/claim
 
 **Caddyfile**
 * Add your custom domain to each of the opening blocks above `gzip`

@@ -12,6 +12,7 @@ services:
             - /tmp:/transcode
         env_file:
             - ./plex.env
+            - ./common.env
 
     # https://github.com/Tautulli/Tautulli-Docker
     tautulli:
@@ -104,6 +105,7 @@ services:
                 plugins: "git,filemanager,cors,realip,expires,cache,cloudflare"
         env_file:
             - ./caddy.env
+            - ./common.env
         ports:
             - '80:80'
             - '443:443'
