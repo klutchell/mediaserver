@@ -4,9 +4,6 @@ services:
     # https://github.com/plexinc/pms-docker
     plex:
         image: "plexinc/pms-docker:plexpass"
-        labels:
-            caddy.address: plex.__cloudflare_domain__
-            caddy.targetport: 32400
         restart: unless-stopped
         volumes:
             - ./data/plex/config:/config
@@ -19,9 +16,6 @@ services:
     # https://github.com/Tautulli/Tautulli-Docker
     tautulli:
         image: "tautulli/tautulli"
-        labels:
-            caddy.address: tautulli.__cloudflare_domain__
-            caddy.targetport: 8181
         restart: unless-stopped
         volumes:
             - ./data/tautulli/config:/config
@@ -37,9 +31,6 @@ services:
     # https://github.com/linuxserver/docker-nzbget
     nzbget:
         image: "linuxserver/nzbget"
-        labels:
-            caddy.address: nzbget.__cloudflare_domain__
-            caddy.targetport: 6789
         restart: unless-stopped
         volumes:
             - ./data/nzbget/config:/config
@@ -52,9 +43,6 @@ services:
     # https://github.com/linuxserver/docker-sonarr
     sonarr:
         image: "linuxserver/sonarr"
-        labels:
-            caddy.address: sonarr.__cloudflare_domain__
-            caddy.targetport: 8989
         restart: unless-stopped
         volumes:
             - ./data/sonarr/config:/config
@@ -69,9 +57,6 @@ services:
     # https://github.com/linuxserver/docker-radarr
     radarr:
         image: "linuxserver/radarr"
-        labels:
-            caddy.address: radarr.__cloudflare_domain__
-            caddy.targetport: 7878
         restart: unless-stopped
         volumes:
             - ./data/radarr/config:/config
@@ -86,9 +71,6 @@ services:
     # https://github.com/linuxserver/docker-transmission
     transmission:
         image: "linuxserver/transmission"
-        labels:
-            caddy.address: transmission.__cloudflare_domain__
-            caddy.targetport: 9091
         ports:
             - "51413:51413/tcp"
             - "51413:51413/udp"
@@ -105,9 +87,6 @@ services:
     # https://github.com/linuxserver/docker-hydra
     hydra:
         image: "linuxserver/hydra"
-        labels:
-            caddy.address: hydra.__cloudflare_domain__
-            caddy.targetport: 5075
         restart: unless-stopped
         volumes:
             - ./data/hydra/config:/config
