@@ -1,30 +1,30 @@
 # Docker Plex & Usenet Media Server #
 
-This is a Docker-based Plex Media Server setup for ubuntu using public images from Docker Hub.
+docker-based plex media server for debian os x86/x64
 
-The following services are enabled by default:
+my goal was to use as many publicly maintained images as possible without modifications
 
 |service|image|example url|
 |---|---|---|
-|[plex](plex.tv)|[plexinc/pms-docker](https://hub.docker.com/r/plexinc/pms-docker/)|`plex.exampledomain.com`|
-|[tautulli](http://tautulli.com/)|[tautulli/tautulli](https://hub.docker.com/r/tautulli/tautulli/)|`tautulli.exampledomain.com`|
-|[hydra](github.com/theotherp/nzbhydra)|[linuxserver/hydra](https://hub.docker.com/r/linuxserver/hydra/)|`hydra.exampledomain.com`|
-|[sonarr](sonarr.tv)|[linuxserver/sonarr](https://hub.docker.com/r/linuxserver/sonarr/)|`sonarr.exampledomain.com`|
-|[radarr](radarr.video)|[linuxserver/radarr](https://hub.docker.com/r/linuxserver/radarr/)|`radarr.exampledomain.com`|
-|[nzbget](nzbget.net)|[linuxserver/nzbget](https://hub.docker.com/r/linuxserver/nzbget/)|`nzbget.exampledomain.com`|
-|[transmission](transmissionbt.com)|[linuxserver/transmission](https://hub.docker.com/r/linuxserver/transmission/)|`transmission.exampledomain.com`|
+|[plex](plex.tv)|[plexinc/pms-docker](https://hub.docker.com/r/plexinc/pms-docker/)|`plex.yourdomain.com`|
+|[tautulli](http://tautulli.com/)|[tautulli/tautulli](https://hub.docker.com/r/tautulli/tautulli/)|`tautulli.yourdomain.com`|
+|[hydra](github.com/theotherp/nzbhydra)|[linuxserver/hydra](https://hub.docker.com/r/linuxserver/hydra/)|`hydra.yourdomain.com`|
+|[sonarr](sonarr.tv)|[linuxserver/sonarr](https://hub.docker.com/r/linuxserver/sonarr/)|`sonarr.yourdomain.com`|
+|[radarr](radarr.video)|[linuxserver/radarr](https://hub.docker.com/r/linuxserver/radarr/)|`radarr.yourdomain.com`|
+|[nzbget](nzbget.net)|[linuxserver/nzbget](https://hub.docker.com/r/linuxserver/nzbget/)|`nzbget.yourdomain.com`|
+|[transmission](transmissionbt.com)|[linuxserver/transmission](https://hub.docker.com/r/linuxserver/transmission/)|`transmission.yourdomain.com`|
 |[caddy](https://caddyserver.com/)|[abiosoft/caddy-docker](https://hub.docker.com/r/abiosoft/caddy/)|n/a|
 
 ## Getting Started
 
 ### Prerequisites
 
-* (recommended) Dedicated server with plenty of storage
+* (recommended) dedicated server with plenty of storage
 (_tested with [Kimsufi](https://www.kimsufi.com/ca/en/servers.xml)_)
-* Custom domain with configurable sub-domains
+* custom domain with configurable sub-domains
 (_tested with [namecheap](https://www.namecheap.com/)_)
-* [Cloudflare DNS](https://www.cloudflare.com/)
-* (recommended) Debian OS (not ARM)
+* [cloudflare DNS](https://www.cloudflare.com/) with strict ssl
+* (recommended) debian os (not ARM)
 (_tested with [Ubuntu Server](https://www.ubuntu.com/download/server) x64 16.04_)
 
 ### Install
@@ -49,23 +49,26 @@ chmod +x wait-for-it.sh
 
 ### Configure
 
-#### Forward DNS
+#### Cloudflare
 
-Forward any desired A-level domains to your server public IP address. Suggested services
-and domains are listed in the description.
+* DNS -> DNS Records
 
-|type|domain|address|
+|Type|Name|Value|
 |---|---|---|
-|Type A|plex.exampledomain.com|xxx.xxx.xxx.xxx|
-|Type A|tautulli.exampledomain.com|xxx.xxx.xxx.xxx|
-|...|...|...|
+|`A`|`plex.yourdomain.com`|`xxx.xxx.xxx.xxx`|
+|`A`|`tautulli.yourdomain.com`|`xxx.xxx.xxx.xxx`|
+|`A`|`hydra.yourdomain.com`|`xxx.xxx.xxx.xxx`|
+|`A`|`sonarr.yourdomain.com`|`xxx.xxx.xxx.xxx`|
+|`A`|`radarr.yourdomain.com`|`xxx.xxx.xxx.xxx`|
+|`A`|`nzbget.yourdomain.com`|`xxx.xxx.xxx.xxx`|
+|`A`|`transmission.yourdomain.com`|`xxx.xxx.xxx.xxx`|
+* Crypto -> SSL = `Full (strict)`
 
 #### Open Firewall Ports
 
-Allow HTTP (80) and HTTPS (443) through your firewall. With UFW, it can be done with
-this command.
-
+* allow HTTP (80) and HTTPS (443) through your firewall
 ```bash
+# ufw example
 sudo ufw allow http https
 ```
 
