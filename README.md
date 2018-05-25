@@ -19,15 +19,19 @@ my goal was to use as many publicly maintained images as possible without modifi
 
 ### Prerequisites
 
-* (recommended) dedicated server with plenty of storage
-  * [Kimsufi](https://www.kimsufi.com/ca/en/servers.xml)
-  * [SoYouStart](https://www.soyoustart.com/ca/en/essential-servers/)
-  * [Hetzner](https://www.hetzner.com/sb?country=us)
-* (recommended) debian-based x86/x64 os (not ARM)
-  * [Ubuntu Server x64 16.04](https://www.ubuntu.com/download/server)
-* custom domain with configurable sub-domains
-  * [namecheap](https://www.namecheap.com/)
-* [cloudflare](https://www.cloudflare.com/) DNS with strict SSL
+* _(recommended)_ dedicated server with plenty of storage ( eg.
+[Kimsufi](https://www.kimsufi.com/ca/en/servers.xml),
+[SoYouStart](https://www.soyoustart.com/ca/en/essential-servers/),
+[Hetzner](https://www.hetzner.com/sb?country=us)
+)
+
+* _(recommended)_ debian-based x86/x64 os (not ARM) ( eg.
+[Ubuntu Server x64](https://www.ubuntu.com/download/server)
+)
+
+* _(required)_ custom top-level domain with cloudflare DNS ( eg.
+[namecheap](https://www.namecheap.com/) & [cloudflare](https://www.cloudflare.com/)
+)
 
 ### Install
 
@@ -69,7 +73,7 @@ chmod +x wait-for-it.sh
 
 * `Crypto` -> `SSL` = `Full (strict)`
 
-#### Open Firewall Ports
+#### Firewall
 
 * allow HTTP (80) and HTTPS (443) through your firewall
 ```bash
@@ -77,7 +81,7 @@ chmod +x wait-for-it.sh
 sudo ufw allow http https
 ```
 
-#### Configure Services
+#### Services
 
 **common.env**
 * set `PUID` and `PGID` to the output of `id -u` and `id -g` respectively
