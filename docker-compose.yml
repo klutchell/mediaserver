@@ -26,7 +26,7 @@ services:
             - ./common.env
         entrypoint: ["/usr/local/bin/wait-for-it.sh", "plex:32400", "-s", "-t", "300", "--", "/init"]
         healthcheck:
-            test: ["CMD", "curl", "-f", "http://localhost:8181/api/v2"]
+            test: ["CMD", "curl", "-f", "http://localhost:8181/"]
 
     # https://github.com/linuxserver/docker-nzbget
     nzbget:
