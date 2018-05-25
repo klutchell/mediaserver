@@ -87,7 +87,7 @@ sudo ufw allow http https
 
 **Caddyfile**
 * Add your custom domain to each of the opening blocks above `gzip`
-* Add a password to any of the `basicauth` lines
+* Add a password to all of the `basicauth` lines
 
 ## Deploy
 
@@ -100,11 +100,14 @@ docker-compose up -d
 **Tautulli**
 * Settings -> Plex Media Server -> Plex IP or Hostname = `plex`
 * Settings -> Plex Media Server -> Plex Port = `32400`
-* Settings -> Access Control -> Use Basic Authentication = `true`
+* Settings -> Web Interface -> Authentication -> HTTP Username = `admin`
+* Settings -> Web Interface -> Authentication -> HTTP Password = `xxxxxxxx`
 
 **Hydra**
 * Config -> Main -> External URL = `https://hydra.mydomain.com`
-* Config -> Authorization -> Auth Type = `HTTP Basic auth`
+* Config -> Authorization -> Auth Type = `HTTP Basic auth` or `Login form`
+* Config -> Authorization -> Username = `admin`
+* Config -> Authorization -> Password = `xxxxxxxx`
 
 **Radarr/Sonarr**
 * Settings -> Indexers -> Add = `Type: newsnab` `URL: http://hydra:5075`
