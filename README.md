@@ -8,7 +8,7 @@ my goal was to use as many publicly maintained images as possible without modifi
 |---|---|
 |[plex](https://plex.tv)|[plexinc/pms-docker](https://hub.docker.com/r/plexinc/pms-docker/)|
 |[tautulli](http://tautulli.com/)|[tautulli/tautulli](https://hub.docker.com/r/tautulli/tautulli/)|
-|[hydra](https://github.com/theotherp/nzbhydra)|[linuxserver/hydra](https://hub.docker.com/r/linuxserver/hydra/)|
+|[hydra](https://nzbhydra.com/)|[linuxserver/hydra](https://hub.docker.com/r/linuxserver/hydra/)|
 |[sonarr](https://sonarr.tv)|[linuxserver/sonarr](https://hub.docker.com/r/linuxserver/sonarr/)|
 |[radarr](https://radarr.video)|[linuxserver/radarr](https://hub.docker.com/r/linuxserver/radarr/)|
 |[nzbget](https://nzbget.net)|[linuxserver/nzbget](https://hub.docker.com/r/linuxserver/nzbget/)|
