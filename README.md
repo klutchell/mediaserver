@@ -100,14 +100,12 @@ docker-compose up -d
 **Tautulli**
 * Settings -> Plex Media Server -> Plex IP or Hostname = `plex`
 * Settings -> Plex Media Server -> Plex Port = `32400`
-* Settings -> Web Interface -> Authentication -> HTTP Username = `admin`
-* Settings -> Web Interface -> Authentication -> HTTP Password = `xxxxxxxx`
+* Settings -> Web Interface -> `HTTP Username: admin` `HTTP Password: xxxxxxxx`
 
 **Hydra**
 * Config -> Main -> External URL = `https://hydra.mydomain.com`
 * Config -> Authorization -> Auth Type = `HTTP Basic auth` or `Login form`
-* Config -> Authorization -> Username = `admin`
-* Config -> Authorization -> Password = `xxxxxxxx`
+* Config -> Authorization -> Add new user = `Username: admin` `Password: xxxxxxxx`
 
 **Radarr/Sonarr**
 * Settings -> Indexers -> Add = `Type: newsnab` `URL: http://hydra:5075`
