@@ -43,7 +43,7 @@ git clone git@github.com:klutchell/mediaserver.git .
 
 # download wait-for-it.sh from jlordiales's github fork
 # this fork allows multiple services to be tested
-curl -# -o wait-for-it.sh "https://raw.githubusercontent.com/jlordiales/wait-for-it/master/wait-for-it.sh"
+curl -o wait-for-it.sh "https://raw.githubusercontent.com/jlordiales/wait-for-it/master/wait-for-it.sh"
 chmod +x wait-for-it.sh
 ```
 
