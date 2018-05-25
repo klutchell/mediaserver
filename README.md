@@ -10,16 +10,14 @@ docker-based plex media server for debian-based x86/x64 os
 
 **services**
 
-|service|image|
-|---|---|
-|[plex](https://plex.tv)|[plexinc/pms-docker](https://hub.docker.com/r/plexinc/pms-docker/)|
-|[tautulli](http://tautulli.com/)|[tautulli/tautulli](https://hub.docker.com/r/tautulli/tautulli/)|
-|[hydra](https://nzbhydra.com/)|[linuxserver/hydra](https://hub.docker.com/r/linuxserver/hydra/)|
-|[sonarr](https://sonarr.tv)|[linuxserver/sonarr](https://hub.docker.com/r/linuxserver/sonarr/)|
-|[radarr](https://radarr.video)|[linuxserver/radarr](https://hub.docker.com/r/linuxserver/radarr/)|
-|[nzbget](https://nzbget.net)|[linuxserver/nzbget](https://hub.docker.com/r/linuxserver/nzbget/)|
-|[transmission](https://transmissionbt.com)|[linuxserver/transmission](https://hub.docker.com/r/linuxserver/transmission/)|
-|[caddy](https://caddyserver.com/)|[abiosoft/caddy-docker](https://hub.docker.com/r/abiosoft/caddy/)|
+* [plex](https://plex.tv)
+* [tautulli](http://tautulli.com/)
+* [hydra](https://nzbhydra.com/)
+* [sonarr](https://sonarr.tv)
+* [radarr](https://radarr.video)
+* [nzbget](https://nzbget.net)
+* [transmission](https://transmissionbt.com)
+* [caddy](https://caddyserver.com/)
 
 ## Getting Started
 
