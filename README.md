@@ -4,8 +4,8 @@ docker-based plex media server for debian os x86/x64
 
 my goal was to use as many publicly maintained images as possible without modifications
 
-|service|image|example url|
-|---|---|---|
+|service|image|
+|---|---|
 |[plex](plex.tv)|[plexinc/pms-docker](https://hub.docker.com/r/plexinc/pms-docker/)|
 |[tautulli](http://tautulli.com/)|[tautulli/tautulli](https://hub.docker.com/r/tautulli/tautulli/)|
 |[hydra](github.com/theotherp/nzbhydra)|[linuxserver/hydra](https://hub.docker.com/r/linuxserver/hydra/)|
