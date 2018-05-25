@@ -12,6 +12,7 @@ tautulli.__CLOUDFLARE_DOMAIN__ {
     gzip
     # use builtin auth so api access still works
     proxy / tautulli:8181 {
+        header_upstream X-Forwarded-Host {host}
         transparent
     }
     tls {

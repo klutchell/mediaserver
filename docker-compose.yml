@@ -21,13 +21,12 @@ services:
         volumes:
             - ./data/tautulli/config:/config
             - ./data/plex/config/Library/Application Support/Plex Media Server/Logs:/logs:ro
+            - ./wait-for-it.sh:/usr/local/bin/wait-for-it.sh:ro
         env_file:
             - ./common.env
+        entrypoint: ["/usr/local/bin/wait-for-it.sh", "plex:32400", "-s", "-t", "300", "--", "/init"]
         healthcheck:
-            # test: if curl -f http://localhost:8181/ && curl -f http:/plex:32400/web/ ; then exit 0 ; else exit 1 ; fi
-            test: if curl -f http://plex:32400/web/ ; then exit 0 ; else exit 1 ; fi
-            interval: 10s
-            retries: 24 # plex takes 3 minutes, so give tautulli lots of retries at a short interval
+            test: ["CMD", "curl", "-f", "http://localhost:8181/api/v2"]
 
     # https://github.com/linuxserver/docker-nzbget
     nzbget:
@@ -39,7 +38,7 @@ services:
         env_file:
             - ./common.env
         healthcheck:
-            test: curl --fail http://localhost:6789/ || exit 1
+            test: ["CMD", "curl", "-f", "http://localhost:6789/"]
 
     # https://github.com/linuxserver/docker-sonarr
     sonarr:
@@ -50,10 +49,12 @@ services:
             - ./data/nzbget/downloads:/downloads
             - ./data/transmission/downloads:/transmission
             - ./data/plex/media/tv:/tv
+            - ./wait-for-it.sh:/usr/local/bin/wait-for-it.sh:ro
         env_file:
             - ./common.env
+        entrypoint: ["/usr/local/bin/wait-for-it.sh", "nzbget:6789", "hydra:5075", "-s", "-t", "300", "--", "/init"]
         healthcheck:
-            test: if curl -f http://localhost:8989/ && curl -f http://nzbget:6789/ && curl -f http://hydra:5075/ ; then exit 0 ; else exit 1 ; fi
+            test: ["CMD", "curl", "-f", "http://localhost:8989/"]
 
     # https://github.com/linuxserver/docker-radarr
     radarr:
@@ -64,10 +65,12 @@ services:
             - ./data/nzbget/downloads:/downloads
             - ./data/transmission/downloads:/transmission
             - ./data/plex/media/movies:/movies
+            - ./wait-for-it.sh:/usr/local/bin/wait-for-it.sh:ro
         env_file:
             - ./common.env
+        entrypoint: ["/usr/local/bin/wait-for-it.sh", "nzbget:6789", "hydra:5075", "-s", "-t", "300", "--", "/init"]
         healthcheck:
-            test: if curl -f http://localhost:7878/ && curl -f http://nzbget:6789/ && curl -f http://hydra:5075/ ; then exit 0 ; else exit 1 ; fi
+            test: ["CMD", "curl", "-f", "http://localhost:7878/"]
 
     # https://github.com/linuxserver/docker-transmission
     transmission:
@@ -83,7 +86,7 @@ services:
         env_file:
             - ./common.env
         healthcheck:
-            test: curl --fail http://localhost:9091/ || exit 1
+            test: ["CMD", "curl", "-f", "http://localhost:9091/"]
 
     # https://github.com/linuxserver/docker-hydra
     hydra:
@@ -95,7 +98,7 @@ services:
         env_file:
             - ./common.env
         healthcheck:
-            test: curl --fail http://localhost:5075/ || exit 1
+            test: ["CMD", "curl", "-f", "http://localhost:5075/"]
 
     # https://github.com/abiosoft/caddy-docker
     caddy:
