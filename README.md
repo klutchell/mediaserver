@@ -6,7 +6,7 @@ my goal was to use as many publicly maintained images as possible without modifi
 
 |service|image|
 |---|---|
-|[plex](plex.tv)|[plexinc/pms-docker](https://hub.docker.com/r/plexinc/pms-docker/)|
+|[plex](https://plex.tv)|[plexinc/pms-docker](https://hub.docker.com/r/plexinc/pms-docker/)|
 |[tautulli](http://tautulli.com/)|[tautulli/tautulli](https://hub.docker.com/r/tautulli/tautulli/)|
 |[hydra](github.com/theotherp/nzbhydra)|[linuxserver/hydra](https://hub.docker.com/r/linuxserver/hydra/)|
 |[sonarr](sonarr.tv)|[linuxserver/sonarr](https://hub.docker.com/r/linuxserver/sonarr/)|
