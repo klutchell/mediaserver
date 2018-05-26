@@ -88,7 +88,7 @@ services:
         healthcheck:
             test: ["CMD", "curl", "-f", "http://localhost:9091/"]
 
-    # https://github.com/linuxserver/docker-hydra
+    # https://github.com/theotherp/nzbhydra2
     hydra:
         image: "theotherp/nzbhydra2"
         restart: unless-stopped
