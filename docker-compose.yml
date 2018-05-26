@@ -90,11 +90,10 @@ services:
 
     # https://github.com/linuxserver/docker-hydra
     hydra:
-        image: "linuxserver/hydra2"
+        image: "theotherp/nzbhydra2"
         restart: unless-stopped
         volumes:
-            - ./data/hydra/config:/config
-            - ./data/hydra/downloads:/downloads
+            - ./data/hydra/config:/data
         env_file:
             - ./common.env
         healthcheck:
