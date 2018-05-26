@@ -90,7 +90,7 @@ services:
 
     # https://github.com/linuxserver/docker-hydra
     hydra:
-        image: "linuxserver/hydra"
+        image: "linuxserver/hydra2"
         restart: unless-stopped
         volumes:
             - ./data/hydra/config:/config
@@ -98,7 +98,7 @@ services:
         env_file:
             - ./common.env
         healthcheck:
-            test: ["CMD", "curl", "-f", "http://localhost:5075/"]
+            test: ["CMD", "curl", "-f", "http://localhost:5076/"]
 
     # https://github.com/abiosoft/caddy-docker
     caddy:

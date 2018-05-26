@@ -12,7 +12,7 @@ docker-based plex media server for debian-based x86/x64 os
 
 * [plex](https://plex.tv)
 * [tautulli](http://tautulli.com/)
-* [hydra](https://nzbhydra.com/)
+* [hydra](https://github.com/theotherp/nzbhydra2)
 * [sonarr](https://sonarr.tv)
 * [radarr](https://radarr.video)
 * [nzbget](https://nzbget.net)
@@ -124,7 +124,7 @@ docker-compose up -d
 * `Config` -> `Authorization` -> `Add new user` = `Username: admin` `Password: xxxxxxxx`
 
 **Radarr/Sonarr**
-* `Settings` -> `Indexers` -> `Add` = `Type: newsnab` `URL: http://hydra:5075`
+* `Settings` -> `Indexers` -> `Add` = `Type: newsnab` `URL: http://hydra:5076` `API Key: xxxxxxxx`
 * `Settings` -> `Download Client` -> `Add` = `Type: nzbget` `Host: nzbget` `Port: 6789`
 
 ## Author

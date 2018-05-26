@@ -63,7 +63,7 @@ nzbget.__CLOUDFLARE_DOMAIN__ {
 hydra.__CLOUDFLARE_DOMAIN__ {
     gzip
     # use builtin auth so api access still works
-    proxy / hydra:5075 {
+    proxy / hydra:5076 {
         transparent
     }
     tls {
