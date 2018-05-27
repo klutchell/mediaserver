@@ -52,7 +52,7 @@ services:
             - ./wait-for-it.sh:/usr/local/bin/wait-for-it.sh:ro
         env_file:
             - ./common.env
-        entrypoint: ["/usr/local/bin/wait-for-it.sh", "nzbget:6789", "hydra:5075", "-s", "-t", "300", "--", "/init"]
+        entrypoint: ["/usr/local/bin/wait-for-it.sh", "nzbget:6789", "hydra:5076", "-s", "-t", "300", "--", "/init"]
         healthcheck:
             test: ["CMD", "curl", "-f", "http://localhost:8989/"]
 
@@ -68,7 +68,7 @@ services:
             - ./wait-for-it.sh:/usr/local/bin/wait-for-it.sh:ro
         env_file:
             - ./common.env
-        entrypoint: ["/usr/local/bin/wait-for-it.sh", "nzbget:6789", "hydra:5075", "-s", "-t", "300", "--", "/init"]
+        entrypoint: ["/usr/local/bin/wait-for-it.sh", "nzbget:6789", "hydra:5076", "-s", "-t", "300", "--", "/init"]
         healthcheck:
             test: ["CMD", "curl", "-f", "http://localhost:7878/"]
 
