@@ -24,7 +24,7 @@ services:
             - ./wait-for-it.sh:/wait-for-it.sh:ro
         env_file:
             - ./common.env
-        entrypoint: ["/wait-for-it.sh", "plex:32400", "-s", "-t", "300", "--", "/init"]
+        entrypoint: ["/wait-for-it.sh", "plex:32400", "-t", "300", "--", "/init"]
         healthcheck:
             test: ["CMD", "curl", "-f", "http://localhost:8181/"]
 
@@ -52,7 +52,7 @@ services:
             - ./wait-for-it.sh:/wait-for-it.sh:ro
         env_file:
             - ./common.env
-        entrypoint: ["/wait-for-it.sh", "nzbget:6789", "hydra:5076", "-s", "-t", "300", "--", "/init"]
+        entrypoint: ["/wait-for-it.sh", "nzbget:6789", "hydra:5076", "-t", "300", "--", "/init"]
         healthcheck:
             test: ["CMD", "curl", "-f", "http://localhost:8989/"]
 
@@ -68,7 +68,7 @@ services:
             - ./wait-for-it.sh:/wait-for-it.sh:ro
         env_file:
             - ./common.env
-        entrypoint: ["/wait-for-it.sh", "nzbget:6789", "hydra:5076", "-s", "-t", "300", "--", "/init"]
+        entrypoint: ["/wait-for-it.sh", "nzbget:6789", "hydra:5076", "-t", "300", "--", "/init"]
         healthcheck:
             test: ["CMD", "curl", "-f", "http://localhost:7878/"]
 
