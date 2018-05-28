@@ -114,8 +114,8 @@ docker-compose up -d
 
 ## Usage
 
-1. **enable basic authentication on each service via the respective webui**
-2. link containers internally via the service name & port (eg. `http://hydra:5076`)
+* **(IMPORTANT)** enable basic authentication on each service via the respective webui
+* link containers internally via the service name & port (eg. `http://hydra:5076`)
 
 ## Author
 
