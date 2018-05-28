@@ -114,44 +114,8 @@ docker-compose up -d
 
 ## Usage
 
-It's very important at this point to enable authentication on each service!
-
-I had originally configured basicauth via Caddy but that blocks api access with tokens.
-
-**nzbget**
-* `Settings` -> `Security` -> `ControlUsername` = `user1`
-* `Settings` -> `Security` -> `ControlPassword` = `password1`
-* `Settings` -> `Security` -> `RestrictedUsername` = `user2`
-* `Settings` -> `Security` -> `RestrictedPassword` = `password2`
-
-**tautulli**
-* `Settings` -> `Plex Media Server` -> `Plex IP Address or Hostname` = `plex`
-* `Settings` -> `Plex Media Server` -> `Plex Port` = `32400`
-* `Settings` -> `Web Interface` -> `HTTP Username` = `user1`
-* `Settings` -> `Web Interface` -> `HTTP Password` = `password1`
-
-**hydra**
-* `Config` -> `Main` -> `External URL` = `https://hydra.mydomain.com`
-* `Config` -> `Authorization` -> `Auth type` = `HTTP Basic auth`
-* `Config` -> `Authorization` -> `Add new user` = `Username: user1` `Password: password1`
-
-**radarr/sonarr**
-* `Settings` -> `Indexers` -> `Type` = `newsnab`
-* `Settings` -> `Indexers` -> `URL` = `http://hydra:5076`
-* `Settings` -> `Indexers` -> `API Key` = `<get api key from hydra webui>`
-* `Settings` -> `Download Client` -> `Type` = `nzbget`
-* `Settings` -> `Download Client` -> `Host` = `nzbget`
-* `Settings` -> `Download Client` -> `Port` = `6789`
-* `Settings` -> `Download Client` -> `Username` =`<nzbget RestrictedUsername>`
-* `Settings` -> `Download Client` -> `Password` = `<nzbget RestrictedPassword>`
-* `Settings` -> `General` -> `Security` -> `Authentication` = `Basic`
-* `Settings` -> `General` -> `Security` -> `Username` = `user1`
-* `Settings` -> `General` -> `Security` -> `Password` = `password1`
-
-**transmission**
-* `./data/transmission/config/settings.json` -> `rpc-authentication-required` = `true`
-* `./data/transmission/config/settings.json` -> `rpc-username` = `user1`
-* `./data/transmission/config/settings.json` -> `rpc-password` = `password1`
+1. **enable basic authentication on each service via the respective webui**
+2. link containers internally via the service name & port (eg. `http://hydra:5076`)
 
 ## Author
 
