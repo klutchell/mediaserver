@@ -1,5 +1,9 @@
-plex.__CLOUDFLARE_DOMAIN__ {
-    gzip
+(cloudflare_tls) {
+    tls {
+        dns cloudflare
+    }
+}
+(secure_headers) {
     header / {
         # Enable HTTP Strict Transport Security (HSTS) to force clients to always
         # connect via HTTPS (do not use if only testing)
@@ -11,145 +15,73 @@ plex.__CLOUDFLARE_DOMAIN__ {
         # Disallow the site to be rendered within a frame (clickjacking protection)
         X-Frame-Options "DENY"
     }
-    # uncomment this to enable basic auth (blocks api token access)
-    # basicauth / user1 password1
+}
+(basic_auth) {
+    # basicauth on / will block api token access but can be
+    # temporarily enabled to secure all services until built-in auth
+    # can be enabled via each service's settings
+    basicauth / user1 password1
+}
+plex.__CLOUDFLARE_DOMAIN__ {
+    gzip
+    import secure_headers
+    import cloudflare_tls
     proxy / plex:32400 {
         transparent
-    }
-    tls {
-        dns cloudflare
     }
 }
 tautulli.__CLOUDFLARE_DOMAIN__ {
     gzip
-    header / {
-        # Enable HTTP Strict Transport Security (HSTS) to force clients to always
-        # connect via HTTPS (do not use if only testing)
-        Strict-Transport-Security "max-age=31536000;"
-        # Enable cross-site filter (XSS) and tell browser to block detected attacks
-        X-XSS-Protection "1; mode=block"
-        # Prevent some browsers from MIME-sniffing a response away from the declared Content-Type
-        X-Content-Type-Options "nosniff"
-        # Disallow the site to be rendered within a frame (clickjacking protection)
-        X-Frame-Options "DENY"
-    }
-    # uncomment this to enable basic auth (blocks api token access)
-    # basicauth / user1 password1
+    import secure_headers
+    import cloudflare_tls
+    # import basic_auth
     proxy / tautulli:8181 {
         header_upstream X-Forwarded-Host {host}
         transparent
     }
-    tls {
-        dns cloudflare
-    }
 }
 nzbget.__CLOUDFLARE_DOMAIN__ {
     gzip
-    header / {
-        # Enable HTTP Strict Transport Security (HSTS) to force clients to always
-        # connect via HTTPS (do not use if only testing)
-        Strict-Transport-Security "max-age=31536000;"
-        # Enable cross-site filter (XSS) and tell browser to block detected attacks
-        X-XSS-Protection "1; mode=block"
-        # Prevent some browsers from MIME-sniffing a response away from the declared Content-Type
-        X-Content-Type-Options "nosniff"
-        # Disallow the site to be rendered within a frame (clickjacking protection)
-        X-Frame-Options "DENY"
-    }
-    # uncomment this to enable basic auth (blocks api token access)
-    # basicauth / user1 password1
+    import secure_headers
+    import cloudflare_tls
+    # import basic_auth
     proxy / nzbget:6789 {
         transparent
-    }
-    tls {
-        dns cloudflare
     }
 }
 sonarr.__CLOUDFLARE_DOMAIN__ {
     gzip
-    header / {
-        # Enable HTTP Strict Transport Security (HSTS) to force clients to always
-        # connect via HTTPS (do not use if only testing)
-        Strict-Transport-Security "max-age=31536000;"
-        # Enable cross-site filter (XSS) and tell browser to block detected attacks
-        X-XSS-Protection "1; mode=block"
-        # Prevent some browsers from MIME-sniffing a response away from the declared Content-Type
-        X-Content-Type-Options "nosniff"
-        # Disallow the site to be rendered within a frame (clickjacking protection)
-        X-Frame-Options "DENY"
-    }
-    # uncomment this to enable basic auth (blocks api token access)
-    # basicauth / user1 password1
+    import secure_headers
+    import cloudflare_tls
+    # import basic_auth
     proxy / sonarr:8989 {
         transparent
-    }
-    tls {
-        dns cloudflare
     }
 }
 radarr.__CLOUDFLARE_DOMAIN__ {
     gzip
-    header / {
-        # Enable HTTP Strict Transport Security (HSTS) to force clients to always
-        # connect via HTTPS (do not use if only testing)
-        Strict-Transport-Security "max-age=31536000;"
-        # Enable cross-site filter (XSS) and tell browser to block detected attacks
-        X-XSS-Protection "1; mode=block"
-        # Prevent some browsers from MIME-sniffing a response away from the declared Content-Type
-        X-Content-Type-Options "nosniff"
-        # Disallow the site to be rendered within a frame (clickjacking protection)
-        X-Frame-Options "DENY"
-    }
-    # uncomment this to enable basic auth (blocks api token access)
-    # basicauth / user1 password1
+    import secure_headers
+    import cloudflare_tls
+    # import basic_auth
     proxy / radarr:7878 {
         transparent
-    }
-    tls {
-        dns cloudflare
     }
 }
 hydra.__CLOUDFLARE_DOMAIN__ {
     gzip
-    header / {
-        # Enable HTTP Strict Transport Security (HSTS) to force clients to always
-        # connect via HTTPS (do not use if only testing)
-        Strict-Transport-Security "max-age=31536000;"
-        # Enable cross-site filter (XSS) and tell browser to block detected attacks
-        X-XSS-Protection "1; mode=block"
-        # Prevent some browsers from MIME-sniffing a response away from the declared Content-Type
-        X-Content-Type-Options "nosniff"
-        # Disallow the site to be rendered within a frame (clickjacking protection)
-        X-Frame-Options "DENY"
-    }
-    # uncomment this to enable basic auth (blocks api token access)
-    # basicauth / user1 password1
+    import secure_headers
+    import cloudflare_tls
+    # import basic_auth
     proxy / hydra:5076 {
         transparent
-    }
-    tls {
-        dns cloudflare
     }
 }
 transmission.__CLOUDFLARE_DOMAIN__ {
     gzip
-    header / {
-        # Enable HTTP Strict Transport Security (HSTS) to force clients to always
-        # connect via HTTPS (do not use if only testing)
-        Strict-Transport-Security "max-age=31536000;"
-        # Enable cross-site filter (XSS) and tell browser to block detected attacks
-        X-XSS-Protection "1; mode=block"
-        # Prevent some browsers from MIME-sniffing a response away from the declared Content-Type
-        X-Content-Type-Options "nosniff"
-        # Disallow the site to be rendered within a frame (clickjacking protection)
-        X-Frame-Options "DENY"
-    }
-    # uncomment this to enable basic auth (blocks api token access)
-    # basicauth / user1 password1
+    import secure_headers
+    import cloudflare_tls
+    # import basic_auth
     proxy / transmission:9091 {
         transparent
-    }
-    tls {
-        dns cloudflare
     }
 }
