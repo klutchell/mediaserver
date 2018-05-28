@@ -1,6 +1,7 @@
 plex.__CLOUDFLARE_DOMAIN__ {
     gzip
-    # use builtin auth so api access still works
+    # uncomment this to enable basic auth (blocks api token access)
+    # basicauth / user1 password1
     proxy / plex:32400 {
         transparent
     }
@@ -10,40 +11,10 @@ plex.__CLOUDFLARE_DOMAIN__ {
 }
 tautulli.__CLOUDFLARE_DOMAIN__ {
     gzip
-    # use builtin auth so api access still works
+    # uncomment this to enable basic auth (blocks api token access)
+    # basicauth / user1 password1
     proxy / tautulli:8181 {
-        # this is required so tautulli redirects properly
         header_upstream X-Forwarded-Host {host}
-        transparent
-    }
-    tls {
-        dns cloudflare
-    }
-}
-sonarr.__CLOUDFLARE_DOMAIN__ {
-    gzip
-    basicauth / admin __BASICAUTH_PASSWORD__
-    proxy / sonarr:8989 {
-        transparent
-    }
-    tls {
-        dns cloudflare
-    }
-}
-transmission.__CLOUDFLARE_DOMAIN__ {
-    gzip
-    basicauth / admin __BASICAUTH_PASSWORD__
-    proxy / transmission:9091 {
-        transparent
-    }
-    tls {
-        dns cloudflare
-    }
-}
-radarr.__CLOUDFLARE_DOMAIN__ {
-    gzip
-    basicauth / admin __BASICAUTH_PASSWORD__
-    proxy / radarr:7878 {
         transparent
     }
     tls {
@@ -52,8 +23,31 @@ radarr.__CLOUDFLARE_DOMAIN__ {
 }
 nzbget.__CLOUDFLARE_DOMAIN__ {
     gzip
-    basicauth / admin __BASICAUTH_PASSWORD__
+    # uncomment this to enable basic auth (blocks api token access)
+    # basicauth / user1 password1
     proxy / nzbget:6789 {
+        transparent
+    }
+    tls {
+        dns cloudflare
+    }
+}
+sonarr.__CLOUDFLARE_DOMAIN__ {
+    gzip
+    # uncomment this to enable basic auth (blocks api token access)
+    # basicauth / user1 password1
+    proxy / sonarr:8989 {
+        transparent
+    }
+    tls {
+        dns cloudflare
+    }
+}
+radarr.__CLOUDFLARE_DOMAIN__ {
+    gzip
+    # uncomment this to enable basic auth (blocks api token access)
+    # basicauth / user1 password1
+    proxy / radarr:7878 {
         transparent
     }
     tls {
@@ -62,8 +56,20 @@ nzbget.__CLOUDFLARE_DOMAIN__ {
 }
 hydra.__CLOUDFLARE_DOMAIN__ {
     gzip
-    # use builtin auth so api access still works
+    # uncomment this to enable basic auth (blocks api token access)
+    # basicauth / user1 password1
     proxy / hydra:5076 {
+        transparent
+    }
+    tls {
+        dns cloudflare
+    }
+}
+transmission.__CLOUDFLARE_DOMAIN__ {
+    gzip
+    # uncomment this to enable basic auth (blocks api token access)
+    # basicauth / user1 password1
+    proxy / transmission:9091 {
         transparent
     }
     tls {

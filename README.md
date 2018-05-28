@@ -114,19 +114,36 @@ docker-compose up -d
 
 ## Usage
 
-**Tautulli**
+It's very important at this point to enable authentication on each service!
+
+I had originally configured basicauth via Caddy but that blocks api access with tokens.
+
+**nzbget**
+* `Settings` -> `Security` -> `ControlUsername` = `admin`
+* `Settings` -> `Security` -> `ControlPassword` = `xxxxxxxx`
+
+**tautulli**
 * `Settings` -> `Plex Media Server` -> `Plex IP Address or Hostname` = `plex`
 * `Settings` -> `Plex Media Server` -> `Plex Port` = `32400`
-* `Settings` -> `Web Interface` -> `HTTP Username: admin` `HTTP Password: xxxxxxxx`
+* `Settings` -> `Web Interface` -> `HTTP Username` = `admin`
+* `Settings` -> `Web Interface` -> `HTTP Password` = `xxxxxxxx`
 
-**Hydra**
+**hydra**
 * `Config` -> `Main` -> `External URL` = `https://hydra.mydomain.com`
-* `Config` -> `Authorization` -> `Auth type` = `HTTP Basic auth` or `Login form`
+* `Config` -> `Authorization` -> `Auth type` = `HTTP Basic auth`
 * `Config` -> `Authorization` -> `Add new user` = `Username: admin` `Password: xxxxxxxx`
 
-**Radarr/Sonarr**
+**radarr/sonarr**
 * `Settings` -> `Indexers` -> `Add` = `Type: newsnab` `URL: http://hydra:5076` `API Key: xxxxxxxx`
 * `Settings` -> `Download Client` -> `Add` = `Type: nzbget` `Host: nzbget` `Port: 6789`
+* `Settings` -> `General` -> `Security` -> `Authentication` = `Basic`
+* `Settings` -> `General` -> `Security` -> `Username` = `admin`
+* `Settings` -> `General` -> `Security` -> `Password` = `xxxxxxxx`
+
+**transmission**
+* `./data/transmission/config/settings.json` -> `rpc-authentication-required` = `true`
+* `./data/transmission/config/settings.json` -> `rpc-username` = `admin`
+* `./data/transmission/config/settings.json` -> `rpc-password` = `xxxxxxxx`
 
 ## Author
 
