@@ -1,5 +1,16 @@
 plex.__CLOUDFLARE_DOMAIN__ {
     gzip
+    header / {
+        # Enable HTTP Strict Transport Security (HSTS) to force clients to always
+        # connect via HTTPS (do not use if only testing)
+        Strict-Transport-Security "max-age=31536000;"
+        # Enable cross-site filter (XSS) and tell browser to block detected attacks
+        X-XSS-Protection "1; mode=block"
+        # Prevent some browsers from MIME-sniffing a response away from the declared Content-Type
+        X-Content-Type-Options "nosniff"
+        # Disallow the site to be rendered within a frame (clickjacking protection)
+        X-Frame-Options "DENY"
+    }
     # uncomment this to enable basic auth (blocks api token access)
     # basicauth / user1 password1
     proxy / plex:32400 {
@@ -11,6 +22,17 @@ plex.__CLOUDFLARE_DOMAIN__ {
 }
 tautulli.__CLOUDFLARE_DOMAIN__ {
     gzip
+    header / {
+        # Enable HTTP Strict Transport Security (HSTS) to force clients to always
+        # connect via HTTPS (do not use if only testing)
+        Strict-Transport-Security "max-age=31536000;"
+        # Enable cross-site filter (XSS) and tell browser to block detected attacks
+        X-XSS-Protection "1; mode=block"
+        # Prevent some browsers from MIME-sniffing a response away from the declared Content-Type
+        X-Content-Type-Options "nosniff"
+        # Disallow the site to be rendered within a frame (clickjacking protection)
+        X-Frame-Options "DENY"
+    }
     # uncomment this to enable basic auth (blocks api token access)
     # basicauth / user1 password1
     proxy / tautulli:8181 {
@@ -23,6 +45,17 @@ tautulli.__CLOUDFLARE_DOMAIN__ {
 }
 nzbget.__CLOUDFLARE_DOMAIN__ {
     gzip
+    header / {
+        # Enable HTTP Strict Transport Security (HSTS) to force clients to always
+        # connect via HTTPS (do not use if only testing)
+        Strict-Transport-Security "max-age=31536000;"
+        # Enable cross-site filter (XSS) and tell browser to block detected attacks
+        X-XSS-Protection "1; mode=block"
+        # Prevent some browsers from MIME-sniffing a response away from the declared Content-Type
+        X-Content-Type-Options "nosniff"
+        # Disallow the site to be rendered within a frame (clickjacking protection)
+        X-Frame-Options "DENY"
+    }
     # uncomment this to enable basic auth (blocks api token access)
     # basicauth / user1 password1
     proxy / nzbget:6789 {
@@ -34,6 +67,17 @@ nzbget.__CLOUDFLARE_DOMAIN__ {
 }
 sonarr.__CLOUDFLARE_DOMAIN__ {
     gzip
+    header / {
+        # Enable HTTP Strict Transport Security (HSTS) to force clients to always
+        # connect via HTTPS (do not use if only testing)
+        Strict-Transport-Security "max-age=31536000;"
+        # Enable cross-site filter (XSS) and tell browser to block detected attacks
+        X-XSS-Protection "1; mode=block"
+        # Prevent some browsers from MIME-sniffing a response away from the declared Content-Type
+        X-Content-Type-Options "nosniff"
+        # Disallow the site to be rendered within a frame (clickjacking protection)
+        X-Frame-Options "DENY"
+    }
     # uncomment this to enable basic auth (blocks api token access)
     # basicauth / user1 password1
     proxy / sonarr:8989 {
@@ -45,6 +89,17 @@ sonarr.__CLOUDFLARE_DOMAIN__ {
 }
 radarr.__CLOUDFLARE_DOMAIN__ {
     gzip
+    header / {
+        # Enable HTTP Strict Transport Security (HSTS) to force clients to always
+        # connect via HTTPS (do not use if only testing)
+        Strict-Transport-Security "max-age=31536000;"
+        # Enable cross-site filter (XSS) and tell browser to block detected attacks
+        X-XSS-Protection "1; mode=block"
+        # Prevent some browsers from MIME-sniffing a response away from the declared Content-Type
+        X-Content-Type-Options "nosniff"
+        # Disallow the site to be rendered within a frame (clickjacking protection)
+        X-Frame-Options "DENY"
+    }
     # uncomment this to enable basic auth (blocks api token access)
     # basicauth / user1 password1
     proxy / radarr:7878 {
@@ -56,6 +111,17 @@ radarr.__CLOUDFLARE_DOMAIN__ {
 }
 hydra.__CLOUDFLARE_DOMAIN__ {
     gzip
+    header / {
+        # Enable HTTP Strict Transport Security (HSTS) to force clients to always
+        # connect via HTTPS (do not use if only testing)
+        Strict-Transport-Security "max-age=31536000;"
+        # Enable cross-site filter (XSS) and tell browser to block detected attacks
+        X-XSS-Protection "1; mode=block"
+        # Prevent some browsers from MIME-sniffing a response away from the declared Content-Type
+        X-Content-Type-Options "nosniff"
+        # Disallow the site to be rendered within a frame (clickjacking protection)
+        X-Frame-Options "DENY"
+    }
     # uncomment this to enable basic auth (blocks api token access)
     # basicauth / user1 password1
     proxy / hydra:5076 {
@@ -67,6 +133,17 @@ hydra.__CLOUDFLARE_DOMAIN__ {
 }
 transmission.__CLOUDFLARE_DOMAIN__ {
     gzip
+    header / {
+        # Enable HTTP Strict Transport Security (HSTS) to force clients to always
+        # connect via HTTPS (do not use if only testing)
+        Strict-Transport-Security "max-age=31536000;"
+        # Enable cross-site filter (XSS) and tell browser to block detected attacks
+        X-XSS-Protection "1; mode=block"
+        # Prevent some browsers from MIME-sniffing a response away from the declared Content-Type
+        X-Content-Type-Options "nosniff"
+        # Disallow the site to be rendered within a frame (clickjacking protection)
+        X-Frame-Options "DENY"
+    }
     # uncomment this to enable basic auth (blocks api token access)
     # basicauth / user1 password1
     proxy / transmission:9091 {
