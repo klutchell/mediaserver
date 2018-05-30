@@ -1,14 +1,15 @@
 #!/bin/sh
 
-# remove secrets from .env files and Caddyfile
+# clean environment variables from .env files
 
-secret_files="plex.env caddy.env Caddyfile"
+env_files="plex.env common.env"
 
-while IFS== read -r placeholder secret || [ -n "${placeholder}" ]
+for file in ${env_files}
 do
-	sed -i "s|${secret}|${placeholder}|g" ${secret_files}
-done < "./secrets.env"
+	cp "${file}" "${file}.bak"
+	sed -r -i "s|([^#]+=).*|\1|g" "${file}"
+done
 
-echo "removed secrets from ${secret_files}"
+echo "cleaned environment variables from ${env_files}"
 
-git add ${secret_files}
+git add ${env_files}

@@ -1,12 +1,12 @@
 #!/bin/sh
 
-# restore secrets to .env files and Caddyfile
+# restore environment variables to .env files
 
-secret_files="plex.env caddy.env Caddyfile"
+env_files="plex.env common.env"
 
-while IFS== read -r placeholder secret || [ -n "${placeholder}" ]
+for file in ${env_files}
 do
-	sed -i "s|${placeholder}|${secret}|g" ${secret_files}
-done < "./secrets.env"
+	mv "${file}.bak" "${file}"
+done
 
-echo "restored secrets to ${secret_files}"
+echo "restored environment variables to ${env_files}"

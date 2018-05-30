@@ -1,3 +1,3 @@
 data/*
-secrets.env
 wait-for-it.sh
+*.env.bak

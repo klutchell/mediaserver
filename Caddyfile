@@ -22,7 +22,7 @@
     # can be enabled via each service's settings
     basicauth / user1 password1
 }
-plex.__CLOUDFLARE_DOMAIN__ {
+plex.{$CLOUDFLARE_DOMAIN} {
     gzip
     import secure_headers
     import cloudflare_tls
@@ -31,7 +31,7 @@ plex.__CLOUDFLARE_DOMAIN__ {
         websocket
     }
 }
-tautulli.__CLOUDFLARE_DOMAIN__ {
+tautulli.{$CLOUDFLARE_DOMAIN} {
     gzip
     import secure_headers
     import cloudflare_tls
@@ -41,7 +41,7 @@ tautulli.__CLOUDFLARE_DOMAIN__ {
         transparent
     }
 }
-nzbget.__CLOUDFLARE_DOMAIN__ {
+nzbget.{$CLOUDFLARE_DOMAIN} {
     gzip
     import secure_headers
     import cloudflare_tls
@@ -50,7 +50,7 @@ nzbget.__CLOUDFLARE_DOMAIN__ {
         transparent
     }
 }
-sonarr.__CLOUDFLARE_DOMAIN__ {
+sonarr.{$CLOUDFLARE_DOMAIN} {
     gzip
     import secure_headers
     import cloudflare_tls
@@ -59,7 +59,7 @@ sonarr.__CLOUDFLARE_DOMAIN__ {
         transparent
     }
 }
-radarr.__CLOUDFLARE_DOMAIN__ {
+radarr.{$CLOUDFLARE_DOMAIN} {
     gzip
     import secure_headers
     import cloudflare_tls
@@ -68,7 +68,7 @@ radarr.__CLOUDFLARE_DOMAIN__ {
         transparent
     }
 }
-hydra.__CLOUDFLARE_DOMAIN__ {
+hydra.{$CLOUDFLARE_DOMAIN} {
     gzip
     import secure_headers
     import cloudflare_tls
@@ -77,7 +77,7 @@ hydra.__CLOUDFLARE_DOMAIN__ {
         transparent
     }
 }
-transmission.__CLOUDFLARE_DOMAIN__ {
+transmission.{$CLOUDFLARE_DOMAIN} {
     gzip
     import secure_headers
     import cloudflare_tls
