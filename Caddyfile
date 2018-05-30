@@ -62,6 +62,7 @@ sonarr.{$CLOUDFLARE_DOMAIN} {
     reauth {
         path /
         except /api
+        except /feed
         simple {$HTTP_AUTH_USER}={$HTTP_AUTH_PASS}
     }
     proxy / sonarr:8989 {
@@ -77,6 +78,7 @@ radarr.{$CLOUDFLARE_DOMAIN} {
     reauth {
         path /
         except /api
+        except /feed
         simple {$HTTP_AUTH_USER}={$HTTP_AUTH_PASS}
     }
     proxy / radarr:7878 {
