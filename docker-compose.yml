@@ -12,7 +12,6 @@ services:
             - /tmp:/transcode
         env_file:
             - ./plex.env
-            - ./common.env
 
     # https://github.com/Tautulli/Tautulli-Docker
     tautulli:

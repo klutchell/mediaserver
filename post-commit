@@ -1,6 +1,10 @@
 #!/bin/sh
 
-# restore environment variables to .env files
+# restore environment variables to .env files after git commit
+
+# install with:
+#   ln -s ../../pre-commit .git/hooks/pre-commit
+#   ln -s ../../post-commit .git/hooks/post-commit
 
 env_files="plex.env common.env"
 
