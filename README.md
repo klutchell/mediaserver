@@ -54,7 +54,7 @@ sudo chmod +x /usr/local/bin/docker-compose
 
 # clone mediaserver repo
 mkdir mediaserver && cd mediaserver
-git clone git@github.com:klutchell/mediaserver.git .
+git clone https://github.com/klutchell/mediaserver.git .
 
 # download wait-for-it.sh from jlordiales's github fork
 # this fork allows multiple services to be tested
