@@ -87,12 +87,13 @@ services:
         healthcheck:
             test: ["CMD", "curl", "-f", "http://localhost:9091/"]
 
-    # https://github.com/theotherp/nzbhydra2
+    # https://github.com/linuxserver/docker-hydra2
     hydra:
-        image: "theotherp/nzbhydra2"
+        image: "linuxserver/hydra2"
         restart: unless-stopped
         volumes:
-            - ./data/hydra/config:/data
+            - ./data/hydra/config:/config
+            - ./data/hydra/downloads:/downloads
         env_file:
             - ./common.env
         healthcheck:
@@ -103,7 +104,7 @@ services:
         build:
             context: github.com/abiosoft/caddy-docker.git
             args:
-                plugins: "git,filemanager,cors,realip,expires,cache,cloudflare"
+                plugins: "git,filemanager,cors,realip,expires,cache,cloudflare,reauth"
         env_file:
             - ./common.env
         ports:

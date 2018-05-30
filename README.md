@@ -100,13 +100,7 @@ docker-compose up -d
 
 ## Usage
 
-* enable authentication on each service via the respective webui **(important)**
-  * plex has authentication by default
-  * tautulli under `Settings -> Web Interface -> Authentication`
-  * nzbget under `Settings -> Security`
-  * sonarr/radarr under `Settings -> General -> Security`
-  * hydra under `Config -> Authorization`
-  * transmission `rpc-` values in `/data/transmission/config/settings.json` 
+* add hydra users for authentication under `Config -> Authorization`
 * link containers internally via the service name & port
   * tautulli can reach plex via `http://plex:32400`
   * sonarr/radarr can reach hydra via `http://hydra:5076`
