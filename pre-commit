@@ -11,7 +11,7 @@ env_files="plex.env common.env"
 for file in ${env_files}
 do
 	cp "${file}" "${file}.bak"
-	sed -r -i "s|([^#=]+=).*|\1|g" "${file}"
+	sed -r -i "/^[[:space:]]*#/!s|([^=]+=).*|\1|g" "${file}"
 done
 
 echo "cleaned environment variables from ${env_files}"
