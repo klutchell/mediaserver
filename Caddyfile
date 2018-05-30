@@ -28,6 +28,7 @@ plex.__CLOUDFLARE_DOMAIN__ {
     import cloudflare_tls
     proxy / plex:32400 {
         transparent
+        websocket
     }
 }
 tautulli.__CLOUDFLARE_DOMAIN__ {
