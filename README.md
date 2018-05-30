@@ -3,10 +3,10 @@
 docker-based plex media server for debian-based x86/x64 os 
 
 **goals**
-* expose each service at `https://<service>.<mydomain>.com` with ssl
-* use only publicly maintained images with as few modifications if any
-* keep the source repo as small and clean as possible (~4 required files)
-* avoid extensive configuration and setup (~11 environment variables, set once and forget)
+* expose each service at `https://<service>.<yourdomain>.com` with ssl
+* publicly maintained images with no modifications
+* small source repo (~4 required files)
+* minimal configuration and setup (~14 env variables)
 * self-healing containers and dependencies (healthcheck, wait-for-it)
 
 **services**
