@@ -86,27 +86,15 @@ chmod +x wait-for-it.sh
 sudo ufw allow http https
 ```
 
-#### Services
-
-**common.env**
-* set `PUID` and `PGID` to the output of `id -u` and `id -g` respectively
-* set `TZ` to your local [unix timezone](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones)
-* set `ACME_AGREE` to `true` if you agree to the [Letsencrypt TOS](https://docs.google.com/viewer?url=https%3A%2F%2Fletsencrypt.org%2Fdocuments%2F2017.11.15-LE-SA-v1.2.pdf&pdf=true)
-* set `CLOUDFLARE_EMAIL` to your registered Cloudflare email address
-* set `CLOUDFLARE_API_KEY` to your [Cloudflare api key](https://support.cloudflare.com/hc/en-us/articles/200167836-Where-do-I-find-my-Cloudflare-API-key-)
-
-**plex.env**
-* set `ADVERTISE_IP` to `https://plex.yourdomain.com:443`
-* set `PLEX_UID` and `PLEX_GID` to the output of `id -u` and `id -g` respectively
-* set `PLEX_CLAIM` to a new token obtained at https://www.plex.tv/claim
-
-**Caddyfile**
-* add your custom domain to each of the opening blocks above `gzip`
-* (optional) add a password to the `basic_auth` block and uncomment all of the `import basic_auth` lines
-
 ## Deploy
 
 ```bash
+# set environment variables in plex.env and common.env
+# descriptions and examples are provided
+nano plex.env
+nano common.env
+
+# deploy containers with docker compose
 docker-compose up -d
 ```
 
