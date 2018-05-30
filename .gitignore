@@ -1,3 +1,4 @@
 data/*
 wait-for-it.sh
+*.env
 *.env.bak

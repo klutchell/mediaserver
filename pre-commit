@@ -12,4 +12,4 @@ done
 
 echo "cleaned environment variables from ${env_files}"
 
-git add ${env_files}
+git add -f ${env_files}

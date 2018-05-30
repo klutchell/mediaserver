@@ -5,7 +5,7 @@ docker-based plex media server for debian-based x86/x64 os
 **goals**
 * expose each service at `https://<service>.<mydomain>.com` with ssl
 * use only publicly maintained images with as few modifications if any
-* keep the source repo as small and clean as possible (2 config files, 2 env files)
+* keep the source repo as small and clean as possible (~4 required files)
 * avoid extensive configuration and setup (~11 environment variables, set once and forget)
 * self-healing containers and dependencies (healthcheck, wait-for-it)
 
@@ -24,19 +24,19 @@ docker-based plex media server for debian-based x86/x64 os
 
 ### Prerequisites
 
-* _(recommended)_ dedicated server with plenty of storage ( eg.
-[Kimsufi](https://www.kimsufi.com/ca/en/servers.xml),
-[SoYouStart](https://www.soyoustart.com/ca/en/essential-servers/),
-[Hetzner](https://www.hetzner.com/sb?country=us)
-)
+* dedicated server with plenty of storage
+  * [Kimsufi](https://www.kimsufi.com/ca/en/servers.xml) _(tested)_
+  * [SoYouStart](https://www.soyoustart.com/ca/en/essential-servers/)
+  * [Hetzner](https://www.hetzner.com/sb?country=us)
+  * etc...
 
-* _(recommended)_ debian-based x86/x64 os (not ARM) ( eg.
-[Ubuntu Server x64](https://www.ubuntu.com/download/server)
-)
+* debian-based x86/x64 os (not ARM)
+  * [Ubuntu Server x64](https://www.ubuntu.com/download/server) _(tested)_
+  * etc...
 
-* _(required)_ custom top-level domain with cloudflare DNS ( eg.
-[namecheap](https://www.namecheap.com/) & [cloudflare](https://www.cloudflare.com/)
-)
+* custom top-level domain with cloudflare DNS
+  * [namecheap](https://www.namecheap.com/) & [cloudflare](https://www.cloudflare.com/) _(tested)_
+  * etc...
 
 ### Install
 
