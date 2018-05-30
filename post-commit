@@ -10,3 +10,5 @@ do
 done
 
 echo "restored environment variables to ${env_files}"
+
+git update-index --assume-unchanged ${env_files}
