@@ -2,7 +2,7 @@
 
 docker-based plex media server for debian-based x86/x64 os 
 
-**goals**
+## Motivation
 
 * host services at `https://<service>.<yourdomain>.com` with tls/ssl
 * run public maintained images with no modifications
@@ -11,7 +11,7 @@ docker-based plex media server for debian-based x86/x64 os
 * attempt self-healing containers and dependencies (healthcheck, wait-for-it)
 * enforce http basic authentication with exceptions for api urls
 
-**services**
+## Features
 
 * [plex](https://plex.tv)
 * [tautulli](http://tautulli.com/)
@@ -22,9 +22,7 @@ docker-based plex media server for debian-based x86/x64 os
 * [transmission](https://transmissionbt.com)
 * [caddy](https://caddyserver.com/)
 
-## Getting Started
-
-### Prerequisites
+## Requirements
 
 * dedicated server with plenty of storage
   * [Kimsufi](https://www.kimsufi.com/ca/en/servers.xml) _(tested)_
@@ -40,7 +38,7 @@ docker-based plex media server for debian-based x86/x64 os
   * [namecheap](https://www.namecheap.com/) & [cloudflare](https://www.cloudflare.com/) _(tested)_
   * etc...
 
-### Install
+## Install
 
 ```bash
 # install docker
@@ -62,9 +60,9 @@ curl -L --fail https://raw.githubusercontent.com/jlordiales/wait-for-it/master/w
 chmod +x wait-for-it.sh
 ```
 
-### Configure
+## Configure
 
-#### Cloudflare
+### Cloudflare
 
 * `DNS` -> `DNS Records`
 
@@ -80,7 +78,7 @@ chmod +x wait-for-it.sh
 
 * `Crypto` -> `SSL` = `Full (strict)`
 
-#### Firewall
+### Firewall
 
 * allow HTTP (80) and HTTPS (443) through your firewall
 ```bash
@@ -88,14 +86,14 @@ chmod +x wait-for-it.sh
 sudo ufw allow http https
 ```
 
+### Environment
+
+* set environment variables in `plex.env` and `common.env`
+(descriptions and examples are provided)
+
 ## Deploy
 
 ```bash
-# set environment variables in plex.env and common.env
-# descriptions and examples are provided
-nano plex.env
-nano common.env
-
 # deploy containers with docker compose
 docker-compose up -d
 ```
@@ -108,6 +106,14 @@ docker-compose up -d
   * sonarr/radarr can reach hydra via `http://hydra:5076`
   * sonarr/radarr can reach nzbget via `http://nzbget:6789`
 
+## Tests
+
+_TODO_
+
+## Contributing
+
+_TODO_
+
 ## Author
 
 Kyle Harding <kylemharding@gmail.com>
@@ -117,6 +123,10 @@ Kyle Harding <kylemharding@gmail.com>
 I didn't create any of these docker images myself, so credit goes to the
 maintainers, and the app creators themselves.
 
+## References
+
+_TODO_
+
 ## License
 
-MIT License
+This project is licensed under [GLWTPL](./LICENSE)
