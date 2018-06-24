@@ -6,14 +6,11 @@
 #   ln -s ../../pre-commit .git/hooks/pre-commit
 #   ln -s ../../post-commit .git/hooks/post-commit
 
-env_files="plex.env common.env"
-
-for file in ${env_files}
+for file in *.env
 do
 	cp "${file}" "${file}.bak"
 	sed -r -i "/^[[:space:]]*#/!s|([^=]+=).*|\1|g" "${file}"
+	echo "cleaned environment variables from ${file}"
+	git add ${file}
 done
 
-echo "cleaned environment variables from ${env_files}"
-
-git add ${env_files}
