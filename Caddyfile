@@ -116,10 +116,10 @@ nextcloud.{$CLOUDFLARE_DOMAIN} {
     tls {
         dns cloudflare
     }
-    reauth {
-        path /
-        simple {$HTTP_AUTH_USER}={$HTTP_AUTH_PASS}
-    }
+    # reauth {
+    #     path /
+    #     simple {$HTTP_AUTH_USER}={$HTTP_AUTH_PASS}
+    # }
     proxy / nextcloud:80 {
         transparent
     }
@@ -134,7 +134,7 @@ cloud9.{$CLOUDFLARE_DOMAIN} {
         path /
         simple {$HTTP_AUTH_USER}={$HTTP_AUTH_PASS}
     }
-    proxy / cloud9:80 {
+    proxy / cloud9:8080 {
         transparent
     }
 }

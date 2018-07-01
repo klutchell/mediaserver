@@ -120,17 +120,18 @@ services:
         env_file:
             - ./common.env
 
-    # https://github.com/kdelfour/cloud9-docker
+    # https://github.com/klutchell/docker-cloud9
     cloud9:
-        image: "kdelfour/cloud9-docker"
+        image: "klutchell/cloud9:1.1.6"
         restart: unless-stopped
         volumes:
+            - cloud9_home:/root
             - cloud9_workspace:/workspace
-            - ./:/mediaserver
         env_file:
             - ./common.env
         healthcheck:
-            test: ["CMD", "curl", "-f", "http://localhost:80/"]
+            test: ["CMD", "curl", "-f", "http://localhost:8080/"]
+        privileged: true
 
     # https://github.com/abiosoft/caddy-docker
     caddy:
@@ -156,9 +157,9 @@ services:
         volumes:
             - volumerize_cache:/volumerize-cache
             - ./:/volumes/mediaserver:ro
-            - caddy_certs:/volumes/caddy_certs:ro
             - mariadb_database:/volumes/mariadb_database:ro
             - nextcloud_root:/volumes/nextcloud_root:ro
+            - cloud9_home:/volumes/cloud9_home:ro
             - cloud9_workspace:/volumes/cloud9_workspace:ro
         env_file:
             - ./volumerize.env
@@ -173,6 +174,7 @@ volumes:
     caddy_certs:
     mariadb_database:
     nextcloud_root:
+    cloud9_home:
     cloud9_workspace:
     volumerize_cache:
 
