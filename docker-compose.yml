@@ -127,11 +127,24 @@ services:
         volumes:
             - cloud9_home:/root
             - cloud9_workspace:/workspace
+            - ghost_data:/volumes/ghost_data
         env_file:
             - ./common.env
         healthcheck:
             test: ["CMD", "curl", "-f", "http://localhost:8080/"]
         privileged: true
+
+    # https://github.com/docker-library/ghost
+    ghost:
+        image: "ghost:alpine"
+        restart: unless-stopped
+        volumes:
+            - ghost_data:/var/lib/ghost
+        env_file:
+            - ./common.env
+            - ./ghost.env
+        healthcheck:
+            test: ["CMD", "curl", "-f", "http://localhost:2368/"]
 
     # https://github.com/abiosoft/caddy-docker
     caddy:
@@ -161,6 +174,7 @@ services:
             - nextcloud_root:/volumes/nextcloud_root:ro
             - cloud9_home:/volumes/cloud9_home:ro
             - cloud9_workspace:/volumes/cloud9_workspace:ro
+            - ghost_data:/volumes/ghost_data:ro
         env_file:
             - ./volumerize.env
         environment:
@@ -177,4 +191,5 @@ volumes:
     cloud9_home:
     cloud9_workspace:
     volumerize_cache:
+    ghost_data:
 

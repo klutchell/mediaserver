@@ -138,4 +138,19 @@ cloud9.{$CLOUDFLARE_DOMAIN} {
         transparent
     }
 }
+{$CLOUDFLARE_DOMAIN} {
+    gzip
+    import secure_headers
+    tls {
+        dns cloudflare
+    }
+    reauth {
+        path /
+        simple {$HTTP_AUTH_USER}={$HTTP_AUTH_PASS}
+    }
+    proxy / ghost:2368 {
+        transparent
+        websocket
+    }
+}
 
