@@ -1,4 +1,4 @@
-version: '3.4'
+version: '3'
 services:
 
     # https://github.com/plexinc/pms-docker
