@@ -127,7 +127,6 @@ services:
         volumes:
             - cloud9_home:/root
             - cloud9_workspace:/workspace
-            - ghost_data:/volumes/ghost_data
         env_file:
             - ./common.env
         healthcheck:

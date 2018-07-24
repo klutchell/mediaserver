@@ -144,10 +144,10 @@ cloud9.{$CLOUDFLARE_DOMAIN} {
     tls {
         dns cloudflare
     }
-    reauth {
-        path /
-        simple {$HTTP_AUTH_USER}={$HTTP_AUTH_PASS}
-    }
+    # reauth {
+    #     path /
+    #     simple {$HTTP_AUTH_USER}={$HTTP_AUTH_PASS}
+    # }
     proxy / ghost:2368 {
         transparent
         websocket
