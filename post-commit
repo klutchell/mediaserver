@@ -6,12 +6,8 @@
 #   ln -s ../../pre-commit .git/hooks/pre-commit
 #   ln -s ../../post-commit .git/hooks/post-commit
 
-env_files="plex.env common.env"
-
-for file in ${env_files}
+for file in *.env
 do
 	mv "${file}.bak" "${file}"
+	echo "restored environment variables to ${file}"
 done
-
-echo "restored environment variables to ${env_files}"
-

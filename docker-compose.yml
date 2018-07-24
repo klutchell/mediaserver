@@ -115,6 +115,23 @@ services:
             - caddy_certs_vol:/root/.caddy
             - /etc/localtime:/etc/localtime:ro
 
+    # https://github.com/blacklabelops/volumerize
+    volumerize:
+        image: blacklabelops/volumerize
+        restart: unless-stopped
+        volumes:
+            - volumerize_cache:/volumerize-cache
+            - ./:/volumes/mediaserver:ro
+        env_file:
+            - ./volumerize.env
+        environment:
+            - VOLUMERIZE_SOURCE=/volumes
+            - "VOLUMERIZE_DUPLICITY_OPTIONS=
+                --exclude /volumes/mediaserver/data/plex/media
+                --exclude /volumes/mediaserver/data/nzbget/downloads
+                --exclude /volumes/mediaserver/data/transmission/downloads"
+
 volumes:
     caddy_certs_vol:
+    volumerize_cache:
 
