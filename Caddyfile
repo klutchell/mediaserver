@@ -110,3 +110,17 @@ transmission.{$CLOUDFLARE_DOMAIN} {
         transparent
     }
 }
+duplicati.{$CLOUDFLARE_DOMAIN} {
+    gzip
+    import secure_headers
+    tls {
+        dns cloudflare
+    }
+    reauth {
+        path /
+        simple {$HTTP_AUTH_USER}={$HTTP_AUTH_PASS}
+    }
+    proxy / duplicati:8200 {
+        transparent
+    }
+}

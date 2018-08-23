@@ -28,6 +28,7 @@ services:
             test: ["CMD", "curl", "-f", "http://localhost:8181/"]
 
     # https://github.com/linuxserver/docker-nzbget
+    # https://hub.docker.com/r/linuxserver/nzbget/
     nzbget:
         image: "linuxserver/nzbget"
         restart: unless-stopped
@@ -40,6 +41,7 @@ services:
             test: ["CMD", "curl", "-f", "http://localhost:6789/"]
 
     # https://github.com/linuxserver/docker-sonarr
+    # https://hub.docker.com/r/linuxserver/sonarr/
     sonarr:
         image: "linuxserver/sonarr"
         restart: unless-stopped
@@ -56,6 +58,7 @@ services:
             test: ["CMD", "curl", "-f", "http://localhost:8989/"]
 
     # https://github.com/linuxserver/docker-radarr
+    # https://hub.docker.com/r/linuxserver/radarr/
     radarr:
         image: "linuxserver/radarr"
         restart: unless-stopped
@@ -72,6 +75,7 @@ services:
             test: ["CMD", "curl", "-f", "http://localhost:7878/"]
 
     # https://github.com/linuxserver/docker-transmission
+    # https://hub.docker.com/r/linuxserver/transmission/
     transmission:
         image: "linuxserver/transmission"
         ports:
@@ -87,16 +91,18 @@ services:
         healthcheck:
             test: ["CMD", "curl", "-f", "http://localhost:9091/"]
 
-    # https://github.com/theotherp/nzbhydra2
+    # https://github.com/linuxserver/docker-hydra2
+    # https://hub.docker.com/r/linuxserver/hydra2/
     hydra:
-        image: "theotherp/nzbhydra2"
+        image: "linuxserver/hydra2"
         restart: unless-stopped
         volumes:
-            - ./data/hydra/config:/data
+            - ./data/hydra/config:/config
+            - ./data/hydra/downloads:/downloads
         env_file:
             - ./common.env
-        # healthcheck:
-        #     test: ["CMD", "curl", "-f", "http://localhost:5076/"]
+        healthcheck:
+            test: ["CMD", "curl", "-f", "http://localhost:5076/"]
 
     # https://github.com/abiosoft/caddy-docker
     caddy:
@@ -115,23 +121,20 @@ services:
             - caddy_certs_vol:/root/.caddy
             - /etc/localtime:/etc/localtime:ro
 
-    # https://github.com/blacklabelops/volumerize
-    volumerize:
-        image: blacklabelops/volumerize
+    # https://github.com/linuxserver/docker-duplicati
+    # https://hub.docker.com/r/linuxserver/duplicati/
+    duplicati:
+        image: linuxserver/duplicati
         restart: unless-stopped
         volumes:
-            - volumerize_cache:/volumerize-cache
-            - ./:/volumes/mediaserver:ro
+            - ./data/duplicati/config:/config
+            - ./data/duplicati/backups:/backup
+            - /:/source:ro
         env_file:
-            - ./volumerize.env
-        environment:
-            - VOLUMERIZE_SOURCE=/volumes
-            - "VOLUMERIZE_DUPLICITY_OPTIONS=
-                --exclude /volumes/mediaserver/data/plex/media
-                --exclude /volumes/mediaserver/data/nzbget/downloads
-                --exclude /volumes/mediaserver/data/transmission/downloads"
+            - ./common.env
+        healthcheck:
+            test: ["CMD", "curl", "-f", "http://localhost:8200/"]
 
 volumes:
     caddy_certs_vol:
-    volumerize_cache:
 
