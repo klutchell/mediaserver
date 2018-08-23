@@ -21,6 +21,7 @@ docker-based plex media server for debian-based x86/x64 os
 * [nzbget](https://nzbget.net)
 * [transmission](https://transmissionbt.com)
 * [caddy](https://caddyserver.com/)
+* [duplicati](https://www.duplicati.com/)
 
 ## Requirements
 
@@ -75,6 +76,7 @@ chmod +x wait-for-it.sh
 |`A`|`radarr.yourdomain.com`|`xxx.xxx.xxx.xxx`|
 |`A`|`nzbget.yourdomain.com`|`xxx.xxx.xxx.xxx`|
 |`A`|`transmission.yourdomain.com`|`xxx.xxx.xxx.xxx`|
+|`A`|`duplicati.yourdomain.com`|`xxx.xxx.xxx.xxx`|
 
 * `Crypto` -> `SSL` = `Full (strict)`
 
