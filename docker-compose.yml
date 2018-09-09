@@ -100,18 +100,18 @@ services:
             - './data/hydra/config:/config'
             - './data/hydra/downloads:/downloads'
         env_file:
-            - ./common.env
+            - './common.env'
         healthcheck:
             test: ['CMD', 'curl', '-f', 'http://localhost:5076/']
 
     # https://github.com/abiosoft/caddy-docker
     caddy:
         build:
-            context: github.com/abiosoft/caddy-docker.git
+            context: 'github.com/abiosoft/caddy-docker.git'
             args:
                 plugins: 'git,filemanager,cors,realip,expires,cache,cloudflare,reauth'
         env_file:
-            - ./common.env
+            - './common.env'
         ports:
             - '80:80'
             - '443:443'
@@ -124,7 +124,7 @@ services:
     # https://github.com/linuxserver/docker-duplicati
     # https://hub.docker.com/r/linuxserver/duplicati/
     duplicati:
-        image: linuxserver/duplicati
+        image: 'linuxserver/duplicati'
         restart: unless-stopped
         volumes:
             - './data/duplicati/config:/config'
