@@ -3,113 +3,113 @@ services:
 
     # https://github.com/plexinc/pms-docker
     plex:
-        image: "plexinc/pms-docker:plexpass"
+        image: 'plexinc/pms-docker:plexpass'
         restart: unless-stopped
         volumes:
-            - ./data/plex/config:/config
-            - ./data/plex/media/tv:/tv
-            - ./data/plex/media/movies:/movies
-            - /tmp:/transcode
+            - './data/plex/config:/config'
+            - './data/plex/media/tv:/tv'
+            - './data/plex/media/movies:/movies'
+            - '/tmp:/transcode'
         env_file:
-            - ./plex.env
+            - './plex.env'
 
     # https://github.com/Tautulli/Tautulli-Docker
     tautulli:
-        image: "tautulli/tautulli"
+        image: 'tautulli/tautulli'
         restart: unless-stopped
         volumes:
-            - ./data/tautulli/config:/config
-            - ./data/plex/config/Library/Application Support/Plex Media Server/Logs:/logs:ro
-            - ./wait-for-it.sh:/wait-for-it.sh:ro
+            - './data/tautulli/config:/config'
+            - './data/plex/config/Library/Application Support/Plex Media Server/Logs:/logs:ro'
+            - './wait-for-it.sh:/wait-for-it.sh:ro'
         env_file:
-            - ./common.env
-        entrypoint: ["/wait-for-it.sh", "plex:32400", "-t", "300", "--", "/init"]
+            - './common.env'
+        entrypoint: ['/wait-for-it.sh', 'plex:32400', '-t', '300', '--', '/init']
         healthcheck:
-            test: ["CMD", "curl", "-f", "http://localhost:8181/"]
+            test: ['CMD', 'curl', '-f', 'http://localhost:8181/']
 
     # https://github.com/linuxserver/docker-nzbget
     # https://hub.docker.com/r/linuxserver/nzbget/
     nzbget:
-        image: "linuxserver/nzbget"
+        image: 'linuxserver/nzbget'
         restart: unless-stopped
         volumes:
-            - ./data/nzbget/config:/config
-            - ./data/nzbget/downloads:/downloads
+            - './data/nzbget/config:/config'
+            - './data/nzbget/downloads:/downloads'
         env_file:
-            - ./common.env
+            - './common.env'
         healthcheck:
-            test: ["CMD", "curl", "-f", "http://localhost:6789/"]
+            test: ['CMD', 'curl', '-f', 'http://localhost:6789/']
 
     # https://github.com/linuxserver/docker-sonarr
     # https://hub.docker.com/r/linuxserver/sonarr/
     sonarr:
-        image: "linuxserver/sonarr"
+        image: 'linuxserver/sonarr'
         restart: unless-stopped
         volumes:
-            - ./data/sonarr/config:/config
-            - ./data/nzbget/downloads:/downloads
-            - ./data/transmission/downloads:/transmission
-            - ./data/plex/media/tv:/tv
-            - ./wait-for-it.sh:/wait-for-it.sh:ro
+            - './data/sonarr/config:/config'
+            - './data/nzbget/downloads:/downloads'
+            - './data/transmission/downloads:/transmission'
+            - './data/plex/media/tv:/tv'
+            - './wait-for-it.sh:/wait-for-it.sh:ro'
         env_file:
-            - ./common.env
-        entrypoint: ["/wait-for-it.sh", "nzbget:6789", "hydra:5076", "-t", "300", "--", "/init"]
+            - './common.env'
+        entrypoint: ['/wait-for-it.sh', 'nzbget:6789', 'hydra:5076', '-t', '300', '--', '/init']
         healthcheck:
-            test: ["CMD", "curl", "-f", "http://localhost:8989/"]
+            test: ['CMD', 'curl', '-f', 'http://localhost:8989/']
 
     # https://github.com/linuxserver/docker-radarr
     # https://hub.docker.com/r/linuxserver/radarr/
     radarr:
-        image: "linuxserver/radarr"
+        image: 'linuxserver/radarr'
         restart: unless-stopped
         volumes:
-            - ./data/radarr/config:/config
-            - ./data/nzbget/downloads:/downloads
-            - ./data/transmission/downloads:/transmission
-            - ./data/plex/media/movies:/movies
-            - ./wait-for-it.sh:/wait-for-it.sh:ro
+            - './data/radarr/config:/config'
+            - './data/nzbget/downloads:/downloads'
+            - './data/transmission/downloads:/transmission'
+            - './data/plex/media/movies:/movies'
+            - './wait-for-it.sh:/wait-for-it.sh:ro'
         env_file:
-            - ./common.env
-        entrypoint: ["/wait-for-it.sh", "nzbget:6789", "hydra:5076", "-t", "300", "--", "/init"]
+            - './common.env'
+        entrypoint: ['/wait-for-it.sh', 'nzbget:6789', 'hydra:5076', '-t', '300', '--', '/init']
         healthcheck:
-            test: ["CMD", "curl", "-f", "http://localhost:7878/"]
+            test: ['CMD', 'curl', '-f', 'http://localhost:7878/']
 
     # https://github.com/linuxserver/docker-transmission
     # https://hub.docker.com/r/linuxserver/transmission/
     transmission:
-        image: "linuxserver/transmission"
+        image: 'linuxserver/transmission'
         ports:
-            - "51413:51413/tcp"
-            - "51413:51413/udp"
+            - '51413:51413/tcp'
+            - '51413:51413/udp'
         restart: unless-stopped
         volumes:
-            - ./data/transmission/config:/config
-            - ./data/transmission/downloads:/downloads
-            - ./data/transmission/watch:/watch
+            - './data/transmission/config:/config'
+            - './data/transmission/downloads:/downloads'
+            - './data/transmission/watch:/watch'
         env_file:
-            - ./common.env
+            - './common.env'
         healthcheck:
-            test: ["CMD", "curl", "-f", "http://localhost:9091/"]
+            test: ['CMD', 'curl', '-f', 'http://localhost:9091/']
 
     # https://github.com/linuxserver/docker-hydra2
     # https://hub.docker.com/r/linuxserver/hydra2/
     hydra:
-        image: "linuxserver/hydra2"
+        image: 'linuxserver/hydra2'
         restart: unless-stopped
         volumes:
-            - ./data/hydra/config:/config
-            - ./data/hydra/downloads:/downloads
+            - './data/hydra/config:/config'
+            - './data/hydra/downloads:/downloads'
         env_file:
             - ./common.env
         healthcheck:
-            test: ["CMD", "curl", "-f", "http://localhost:5076/"]
+            test: ['CMD', 'curl', '-f', 'http://localhost:5076/']
 
     # https://github.com/abiosoft/caddy-docker
     caddy:
         build:
             context: github.com/abiosoft/caddy-docker.git
             args:
-                plugins: "git,filemanager,cors,realip,expires,cache,cloudflare,reauth"
+                plugins: 'git,filemanager,cors,realip,expires,cache,cloudflare,reauth'
         env_file:
             - ./common.env
         ports:
@@ -117,9 +117,9 @@ services:
             - '443:443'
         restart: unless-stopped
         volumes:
-            - ./Caddyfile:/etc/Caddyfile
-            - caddy_certs_vol:/root/.caddy
-            - /etc/localtime:/etc/localtime:ro
+            - './Caddyfile:/etc/Caddyfile'
+            - 'caddy_certs_vol:/root/.caddy'
+            - '/etc/localtime:/etc/localtime:ro'
 
     # https://github.com/linuxserver/docker-duplicati
     # https://hub.docker.com/r/linuxserver/duplicati/
@@ -127,13 +127,13 @@ services:
         image: linuxserver/duplicati
         restart: unless-stopped
         volumes:
-            - ./data/duplicati/config:/config
-            - ./data/duplicati/backups:/backup
-            - /:/source:ro
+            - './data/duplicati/config:/config'
+            - './data/duplicati/backups:/backup'
+            - '/:/source:ro'
         env_file:
-            - ./common.env
+            - './common.env'
         healthcheck:
-            test: ["CMD", "curl", "-f", "http://localhost:8200/"]
+            test: ['CMD', 'curl', '-f', 'http://localhost:8200/']
 
 volumes:
     caddy_certs_vol:
