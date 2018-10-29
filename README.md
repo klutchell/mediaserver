@@ -33,7 +33,7 @@ docker-based plex media server using custom domains with tls
 ## Pre-Install
 
 1. login to [cloudflare](https://www.cloudflare.com/) and select your domain
-2. select `Full (strict)` ssl under `Crypto` -> `SSL`
+2. select `Full (strict)` under `Crypto` -> `SSL`
 3. add dns records for each service under `DNS` -> `DNS Records`
 
 |Type|Name|Value|
