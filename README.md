@@ -25,19 +25,27 @@ docker-based plex media server using custom domains with tls
 
 ## Requirements
 
-* dedicated server with plenty of storage
-  * [Kimsufi](https://www.kimsufi.com/ca/en/servers.xml) _(tested)_
-  * [SoYouStart](https://www.soyoustart.com/ca/en/essential-servers/)
-  * [Hetzner](https://www.hetzner.com/sb?country=us)
-  * etc...
+* dedicated server or PC with plenty of storage (eg. [Kimsufi](https://www.kimsufi.com/ca/en/servers.xml))
+* windows or linux x86/x64 os (not ARM) (eg. [Ubuntu Server x64](https://www.ubuntu.com/download/server))
+* custom top-level domain with configurable sub-domains (eg. plex.mydomain.com)
+* [cloudflare](https://www.cloudflare.com/) dns for automatic tls
 
-* debian-based x86/x64 os (not ARM)
-  * [Ubuntu Server x64](https://www.ubuntu.com/download/server) _(tested)_
-  * etc...
+## Pre-Install
 
-* custom top-level domain with cloudflare DNS
-  * [namecheap](https://www.namecheap.com/) & [cloudflare](https://www.cloudflare.com/) _(tested)_
-  * etc...
+1. login to [cloudflare](https://www.cloudflare.com/) and select your domain
+2. select `Full (strict)` ssl under `Crypto` -> `SSL`
+3. add dns records for each service under `DNS` -> `DNS Records`
+
+|Type|Name|Value|
+|---|---|---|
+|`A`|`plex.yourdomain.com`|`xxx.xxx.xxx.xxx`|
+|`A`|`tautulli.yourdomain.com`|`xxx.xxx.xxx.xxx`|
+|`A`|`hydra.yourdomain.com`|`xxx.xxx.xxx.xxx`|
+|`A`|`sonarr.yourdomain.com`|`xxx.xxx.xxx.xxx`|
+|`A`|`radarr.yourdomain.com`|`xxx.xxx.xxx.xxx`|
+|`A`|`nzbget.yourdomain.com`|`xxx.xxx.xxx.xxx`|
+|`A`|`transmission.yourdomain.com`|`xxx.xxx.xxx.xxx`|
+|`A`|`duplicati.yourdomain.com`|`xxx.xxx.xxx.xxx`|
 
 ## Install
 
@@ -59,39 +67,23 @@ git clone https://github.com/klutchell/mediaserver.git .
 # this fork allows multiple services to be tested
 curl -L --fail https://raw.githubusercontent.com/jlordiales/wait-for-it/master/wait-for-it.sh -o wait-for-it.sh
 chmod +x wait-for-it.sh
+
+# optionally install pre and post commit files
+ln -s pre-commit .git/pre-commit
+ln -s post-commit .git/post-commit
+
 ```
 
 ## Configure
 
-### Cloudflare
-
-* `DNS` -> `DNS Records`
-
-|Type|Name|Value|
-|---|---|---|
-|`A`|`plex.yourdomain.com`|`xxx.xxx.xxx.xxx`|
-|`A`|`tautulli.yourdomain.com`|`xxx.xxx.xxx.xxx`|
-|`A`|`hydra.yourdomain.com`|`xxx.xxx.xxx.xxx`|
-|`A`|`sonarr.yourdomain.com`|`xxx.xxx.xxx.xxx`|
-|`A`|`radarr.yourdomain.com`|`xxx.xxx.xxx.xxx`|
-|`A`|`nzbget.yourdomain.com`|`xxx.xxx.xxx.xxx`|
-|`A`|`transmission.yourdomain.com`|`xxx.xxx.xxx.xxx`|
-|`A`|`duplicati.yourdomain.com`|`xxx.xxx.xxx.xxx`|
-
-* `Crypto` -> `SSL` = `Full (strict)`
-
-### Firewall
-
-* allow HTTP (80) and HTTPS (443) through your firewall
 ```bash
-# ufw example
+# allow ports 80 and 443 through your firewall
+# ufw example:
 sudo ufw allow http https
+
+# set environment variables in plex.env and common.env
+nano plex.env common.env
 ```
-
-### Environment
-
-* set environment variables in `plex.env` and `common.env`
-(descriptions and examples are provided)
 
 ## Deploy
 
