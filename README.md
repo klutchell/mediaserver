@@ -1,10 +1,10 @@
 # Docker Plex & Usenet Media Server #
 
-docker-based plex media server for debian-based x86/x64 os 
+docker-based plex media server using custom domains with tls
 
 ## Motivation
 
-* host services at `https://<service>.<yourdomain>.com` with tls/ssl
+* host services at `https://<service>.<yourdomain>.com` over https
 * run public maintained images with no modifications
 * keep source repo small (~4 required files)
 * require minimal configuration and setup (~15 env variables)
