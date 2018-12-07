@@ -132,6 +132,7 @@ services:
             - '/:/source:ro'
         env_file:
             - './common.env'
+        entrypoint: ['/bin/bash', '-c', 'sed -i "s/config/config --webservice-allowed-hostnames=*/" /etc/services.d/duplicati/run; /init']
         healthcheck:
             test: ['CMD', 'curl', '-f', 'http://localhost:8200/']
 
