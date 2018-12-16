@@ -109,7 +109,7 @@ services:
         build:
             context: 'github.com/abiosoft/caddy-docker.git'
             args:
-                plugins: 'git,filemanager,cors,realip,expires,cache,cloudflare,reauth'
+                plugins: 'git,cors,realip,expires,cache,cloudflare,reauth'
         env_file:
             - './common.env'
         ports:
