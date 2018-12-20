@@ -54,22 +54,12 @@ curl -sSL get.docker.com | sh
 
 # install docker compose
 # https://docs.docker.com/compose/install/
-sudo curl -L --fail https://github.com/docker/compose/releases/download/1.21.2/run.sh -o /usr/local/bin/docker-compose
+sudo curl -L --fail https://github.com/docker/compose/releases/download/1.23.1/run.sh -o /usr/local/bin/docker-compose
 sudo chmod +x /usr/local/bin/docker-compose
 
 # clone mediaserver repo
 mkdir mediaserver && cd mediaserver
 git clone https://github.com/klutchell/mediaserver.git .
-
-# download wait-for-it.sh from jlordiales's github fork
-# this fork allows multiple services to be tested
-curl -L --fail https://raw.githubusercontent.com/jlordiales/wait-for-it/master/wait-for-it.sh -o wait-for-it.sh
-chmod +x wait-for-it.sh
-
-# optionally install pre and post commit files
-ln -s pre-commit .git/pre-commit
-ln -s post-commit .git/post-commit
-
 ```
 
 ## Configure
@@ -92,10 +82,7 @@ docker-compose up -d
 
 ## Usage
 
-* add hydra users for authentication under `Config -> Authorization`
-* link containers internally via the service name & port
-  * sonarr/radarr can reach hydra via `http://hydra:5076`
-  * sonarr/radarr can reach nzbget via `http://nzbget:6789`
+_TODO_
 
 ## Tests
 
