@@ -12,6 +12,7 @@ services:
             - '/tmp:/transcode'
         env_file:
             - './plex.env'
+            - './common.env'
 
     # https://github.com/linuxserver/docker-nzbget
     # https://hub.docker.com/r/linuxserver/nzbget/
