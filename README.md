@@ -8,7 +8,6 @@ docker-based plex media server using custom domains with tls
 * run public maintained images with no modifications
 * keep source repo small (~4 required files)
 * require minimal configuration and setup (~15 env variables)
-* attempt self-healing containers and dependencies (healthcheck, wait-for-it)
 * enforce http basic authentication with exceptions for api urls
 
 ## Features
@@ -52,14 +51,13 @@ docker-based plex media server using custom domains with tls
 # https://docs.docker.com/install/linux/docker-ce/debian/
 curl -sSL get.docker.com | sh
 
-# install docker compose
-# https://docs.docker.com/compose/install/
+# install docker-compose
+# https://docs.docker.com/compose/install/#install-compose
 sudo curl -L --fail https://github.com/docker/compose/releases/download/1.23.1/run.sh -o /usr/local/bin/docker-compose
 sudo chmod +x /usr/local/bin/docker-compose
 
 # clone mediaserver repo
-mkdir mediaserver && cd mediaserver
-git clone https://github.com/klutchell/mediaserver.git .
+git clone https://github.com/klutchell/mediaserver.git
 ```
 
 ## Configure
@@ -76,8 +74,14 @@ nano plex.env common.env
 ## Deploy
 
 ```bash
+# pull latest public images
+docker-compose pull
+
+# build latest caddy with plugins
+docker-compose build
+
 # deploy containers with docker compose
-docker-compose up -d
+docker-compose up -d --remove-orphans
 ```
 
 ## Usage

@@ -94,6 +94,7 @@ services:
                 plugins: 'git,cors,realip,expires,cache,cloudflare,reauth'
         env_file:
             - './common.env'
+            - './caddy.env'
         ports:
             - '80:80'
             - '443:443'
