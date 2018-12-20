@@ -6,7 +6,7 @@ docker-based plex media server using custom domains with tls
 
 * host services at `<service>.<yourdomain>.com` over https
 * run public maintained images with no modifications
-* keep source repo small (~4 required files)
+* keep source repo small (~5 required files)
 * require minimal configuration and setup (~15 env variables)
 * enforce http basic authentication with exceptions for api urls
 
@@ -67,8 +67,8 @@ git clone https://github.com/klutchell/mediaserver.git
 # ufw example:
 sudo ufw allow http https
 
-# set environment variables in plex.env and common.env
-nano plex.env common.env
+# set environment variables
+nano plex.env common.env caddy.env
 ```
 
 ## Deploy
