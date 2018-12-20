@@ -8,13 +8,11 @@ docker-based plex media server using custom domains with tls
 * run public maintained images with no modifications
 * keep source repo small (~4 required files)
 * require minimal configuration and setup (~15 env variables)
-* attempt self-healing containers and dependencies (healthcheck, wait-for-it)
 * enforce http basic authentication with exceptions for api urls
 
 ## Features
 
 * [plex](https://plex.tv)
-* [tautulli](http://tautulli.com/)
 * [hydra](https://github.com/theotherp/nzbhydra2)
 * [sonarr](https://sonarr.tv)
 * [radarr](https://radarr.video)
@@ -39,7 +37,6 @@ docker-based plex media server using custom domains with tls
 |Type|Name|Value|
 |---|---|---|
 |`A`|`plex.yourdomain.com`|`xxx.xxx.xxx.xxx`|
-|`A`|`tautulli.yourdomain.com`|`xxx.xxx.xxx.xxx`|
 |`A`|`hydra.yourdomain.com`|`xxx.xxx.xxx.xxx`|
 |`A`|`sonarr.yourdomain.com`|`xxx.xxx.xxx.xxx`|
 |`A`|`radarr.yourdomain.com`|`xxx.xxx.xxx.xxx`|
@@ -54,24 +51,13 @@ docker-based plex media server using custom domains with tls
 # https://docs.docker.com/install/linux/docker-ce/debian/
 curl -sSL get.docker.com | sh
 
-# install docker compose
-# https://docs.docker.com/compose/install/
-sudo curl -L --fail https://github.com/docker/compose/releases/download/1.21.2/run.sh -o /usr/local/bin/docker-compose
+# install docker-compose
+# https://docs.docker.com/compose/install/#install-compose
+sudo curl -L --fail https://github.com/docker/compose/releases/download/1.23.1/run.sh -o /usr/local/bin/docker-compose
 sudo chmod +x /usr/local/bin/docker-compose
 
 # clone mediaserver repo
-mkdir mediaserver && cd mediaserver
-git clone https://github.com/klutchell/mediaserver.git .
-
-# download wait-for-it.sh from jlordiales's github fork
-# this fork allows multiple services to be tested
-curl -L --fail https://raw.githubusercontent.com/jlordiales/wait-for-it/master/wait-for-it.sh -o wait-for-it.sh
-chmod +x wait-for-it.sh
-
-# optionally install pre and post commit files
-ln -s pre-commit .git/pre-commit
-ln -s post-commit .git/post-commit
-
+git clone https://github.com/klutchell/mediaserver.git
 ```
 
 ## Configure
@@ -88,17 +74,19 @@ nano plex.env common.env
 ## Deploy
 
 ```bash
+# pull latest public images
+docker-compose pull
+
+# build latest caddy with plugins
+docker-compose build
+
 # deploy containers with docker compose
-docker-compose up -d
+docker-compose up -d --remove-orphans
 ```
 
 ## Usage
 
-* add hydra users for authentication under `Config -> Authorization`
-* link containers internally via the service name & port
-  * tautulli can reach plex via `http://plex:32400`
-  * sonarr/radarr can reach hydra via `http://hydra:5076`
-  * sonarr/radarr can reach nzbget via `http://nzbget:6789`
+_TODO_
 
 ## Tests
 

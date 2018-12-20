@@ -23,22 +23,6 @@ plex.{$CLOUDFLARE_DOMAIN} {
         websocket
     }
 }
-tautulli.{$CLOUDFLARE_DOMAIN} {
-    gzip
-    import secure_headers
-    tls {
-        dns cloudflare
-    }
-    reauth {
-        path /
-        except /api/v2
-        simple {$HTTP_AUTH_USER}={$HTTP_AUTH_PASS}
-    }
-    proxy / tautulli:8181 {
-        header_upstream X-Forwarded-Host {host}
-        transparent
-    }
-}
 nzbget.{$CLOUDFLARE_DOMAIN} {
     gzip
     import secure_headers
