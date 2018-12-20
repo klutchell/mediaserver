@@ -14,7 +14,6 @@ docker-based plex media server using custom domains with tls
 ## Features
 
 * [plex](https://plex.tv)
-* [tautulli](http://tautulli.com/)
 * [hydra](https://github.com/theotherp/nzbhydra2)
 * [sonarr](https://sonarr.tv)
 * [radarr](https://radarr.video)
@@ -39,7 +38,6 @@ docker-based plex media server using custom domains with tls
 |Type|Name|Value|
 |---|---|---|
 |`A`|`plex.yourdomain.com`|`xxx.xxx.xxx.xxx`|
-|`A`|`tautulli.yourdomain.com`|`xxx.xxx.xxx.xxx`|
 |`A`|`hydra.yourdomain.com`|`xxx.xxx.xxx.xxx`|
 |`A`|`sonarr.yourdomain.com`|`xxx.xxx.xxx.xxx`|
 |`A`|`radarr.yourdomain.com`|`xxx.xxx.xxx.xxx`|
@@ -96,7 +94,6 @@ docker-compose up -d
 
 * add hydra users for authentication under `Config -> Authorization`
 * link containers internally via the service name & port
-  * tautulli can reach plex via `http://plex:32400`
   * sonarr/radarr can reach hydra via `http://hydra:5076`
   * sonarr/radarr can reach nzbget via `http://nzbget:6789`
 
