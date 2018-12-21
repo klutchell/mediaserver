@@ -1,0 +1,125 @@
+version: '3'
+services:
+
+    # https://github.com/plexinc/pms-docker
+    plex:
+        image: 'plexinc/pms-docker:plexpass'
+        restart: unless-stopped
+        volumes:
+            - './data/plex/config:/config'
+            - './data/plex/media/tv:/tv'
+            - './data/plex/media/movies:/movies'
+            - '/tmp:/transcode'
+        env_file:
+            - './plex.env'
+            - './common.env'
+        ports:
+            - '32400:32400/tcp'
+            - '3005:3005/tcp'
+            - '8324:8324/tcp'
+            - '32469:32469/tcp'
+            - '1900:1900/udp'
+            - '32410:32410/udp'
+            - '32412:32412/udp'
+            - '32413:32413/udp'
+            - '32414:32414/udp'
+
+    # https://github.com/linuxserver/docker-nzbget
+    # https://hub.docker.com/r/linuxserver/nzbget/
+    nzbget:
+        image: 'linuxserver/nzbget'
+        restart: unless-stopped
+        volumes:
+            - './data/nzbget/config:/config'
+            - './data/nzbget/downloads:/downloads'
+        env_file:
+            - './common.env'
+        healthcheck:
+            test: ['CMD', 'curl', '-f', 'http://localhost:6789/']
+        ports:
+            - '6789:6789/tcp'
+
+    # https://github.com/linuxserver/docker-sonarr
+    # https://hub.docker.com/r/linuxserver/sonarr/
+    sonarr:
+        image: 'linuxserver/sonarr'
+        restart: unless-stopped
+        volumes:
+            - './data/sonarr/config:/config'
+            - './data/nzbget/downloads:/downloads'
+            - './data/transmission/downloads:/transmission'
+            - './data/plex/media/tv:/tv'
+        env_file:
+            - './common.env'
+        healthcheck:
+            test: ['CMD', 'curl', '-f', 'http://localhost:8989/']
+        ports:
+            - '8989:8989/tcp'
+
+    # https://github.com/linuxserver/docker-radarr
+    # https://hub.docker.com/r/linuxserver/radarr/
+    radarr:
+        image: 'linuxserver/radarr'
+        restart: unless-stopped
+        volumes:
+            - './data/radarr/config:/config'
+            - './data/nzbget/downloads:/downloads'
+            - './data/transmission/downloads:/transmission'
+            - './data/plex/media/movies:/movies'
+        env_file:
+            - './common.env'
+        healthcheck:
+            test: ['CMD', 'curl', '-f', 'http://localhost:7878/']
+        ports:
+            - '7878:7878/tcp'
+
+    # https://github.com/linuxserver/docker-transmission
+    # https://hub.docker.com/r/linuxserver/transmission/
+    transmission:
+        image: 'linuxserver/transmission'
+        restart: unless-stopped
+        volumes:
+            - './data/transmission/config:/config'
+            - './data/transmission/downloads:/downloads'
+            - './data/transmission/watch:/watch'
+        env_file:
+            - './common.env'
+        healthcheck:
+            test: ['CMD', 'curl', '-f', 'http://localhost:9091/']
+        ports:
+            - '51413:51413/tcp'
+            - '51413:51413/udp'
+            - '9091:9091/tcp'
+
+    # https://github.com/linuxserver/docker-hydra2
+    # https://hub.docker.com/r/linuxserver/hydra2/
+    hydra:
+        image: 'linuxserver/hydra2'
+        restart: unless-stopped
+        volumes:
+            - './data/hydra/config:/config'
+            - './data/hydra/downloads:/downloads'
+        env_file:
+            - './common.env'
+        healthcheck:
+            test: ['CMD', 'curl', '-f', 'http://localhost:5076/']
+        ports:
+            - '5076:5076/tcp'
+
+    # https://github.com/linuxserver/docker-duplicati
+    # https://hub.docker.com/r/linuxserver/duplicati/
+    duplicati:
+        image: 'linuxserver/duplicati'
+        restart: unless-stopped
+        volumes:
+            - './data/duplicati/config:/config'
+            - './data/duplicati/backups:/backup'
+            - '/:/source:ro'
+        env_file:
+            - './common.env'
+        entrypoint: ['/bin/bash', '-c', 'sed -i "s/config/config --webservice-allowed-hostnames=*/" /etc/services.d/duplicati/run; /init']
+        healthcheck:
+            test: ['CMD', 'curl', '-f', 'http://localhost:8200/']
+        ports:
+            - '8200:8200/tcp'
+

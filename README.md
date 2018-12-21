@@ -47,46 +47,65 @@ docker-based plex media server using custom domains with tls
 ## Install
 
 ```bash
-# install docker
+# 1. install docker
 # https://docs.docker.com/install/linux/docker-ce/debian/
 curl -sSL get.docker.com | sh
 
-# install docker-compose
+# 2. install docker-compose
 # https://docs.docker.com/compose/install/#install-compose
 sudo curl -L --fail https://github.com/docker/compose/releases/download/1.23.1/run.sh -o /usr/local/bin/docker-compose
 sudo chmod +x /usr/local/bin/docker-compose
 
-# clone mediaserver repo
+# 3. clone mediaserver repo
 git clone https://github.com/klutchell/mediaserver.git
 ```
 
 ## Configure
 
 ```bash
-# allow ports 80 and 443 through your firewall
+# 1. allow ports 80 and 443 through your firewall
 # ufw example:
 sudo ufw allow http https
 
-# set environment variables
+# 2. set environment variables
 nano plex.env common.env caddy.env
 ```
 
 ## Deploy
 
 ```bash
-# pull latest public images
+# 1. pull latest public images
 docker-compose pull
 
-# build latest caddy with plugins
+# 2. build latest caddy with plugins
 docker-compose build
 
-# deploy containers with docker compose
+# 3. deploy containers with docker compose
 docker-compose up -d --remove-orphans
 ```
 
 ## Usage
 
-_TODO_
+Optionally, if you don't want to buy a domain or use Caddy as a proxy, you
+can run the services in local mode with steps similar to the following:
+
+```bash
+
+# 1. move docker-compose.local.yml to docker-compose.yml
+mv docker-compose.local.yml docker-compose.yml
+
+# 2. open additional ports on your firewall
+# ufw example:
+sudo ufw allow 32400/tcp 6789/tcp 8989/tcp 7878/tcp 9091/tcp 5076/tcp 8200/tcp
+# you may want additional ports for plex depending on your usage
+
+# 3. pull latest public images
+docker-compose pull
+
+# 4. deploy containers with docker compose
+docker-compose up -d --remove-orphans
+
+```
 
 ## Tests
 
