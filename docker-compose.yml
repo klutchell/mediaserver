@@ -13,6 +13,16 @@ services:
         env_file:
             - './plex.env'
             - './common.env'
+        # ports:
+        #     - '32400:32400/tcp'
+        #     - '3005:3005/tcp'
+        #     - '8324:8324/tcp'
+        #     - '32469:32469/tcp'
+        #     - '1900:1900/udp'
+        #     - '32410:32410/udp'
+        #     - '32412:32412/udp'
+        #     - '32413:32413/udp'
+        #     - '32414:32414/udp'
 
     # https://github.com/linuxserver/docker-nzbget
     # https://hub.docker.com/r/linuxserver/nzbget/
@@ -26,6 +36,8 @@ services:
             - './common.env'
         healthcheck:
             test: ['CMD', 'curl', '-f', 'http://localhost:6789/']
+        # ports:
+        #     - '6789:6789/tcp'
 
     # https://github.com/linuxserver/docker-sonarr
     # https://hub.docker.com/r/linuxserver/sonarr/
@@ -41,6 +53,8 @@ services:
             - './common.env'
         healthcheck:
             test: ['CMD', 'curl', '-f', 'http://localhost:8989/']
+        # ports:
+        #     - '8989:8989/tcp'
 
     # https://github.com/linuxserver/docker-radarr
     # https://hub.docker.com/r/linuxserver/radarr/
@@ -56,14 +70,13 @@ services:
             - './common.env'
         healthcheck:
             test: ['CMD', 'curl', '-f', 'http://localhost:7878/']
+        # ports:
+        #     - '7878:7878/tcp'
 
     # https://github.com/linuxserver/docker-transmission
     # https://hub.docker.com/r/linuxserver/transmission/
     transmission:
         image: 'linuxserver/transmission'
-        ports:
-            - '51413:51413/tcp'
-            - '51413:51413/udp'
         restart: unless-stopped
         volumes:
             - './data/transmission/config:/config'
@@ -73,6 +86,10 @@ services:
             - './common.env'
         healthcheck:
             test: ['CMD', 'curl', '-f', 'http://localhost:9091/']
+        ports:
+            - '51413:51413/tcp'
+            - '51413:51413/udp'
+            # - '9091:9091/tcp'
 
     # https://github.com/linuxserver/docker-hydra2
     # https://hub.docker.com/r/linuxserver/hydra2/
@@ -86,24 +103,8 @@ services:
             - './common.env'
         healthcheck:
             test: ['CMD', 'curl', '-f', 'http://localhost:5076/']
-
-    # https://github.com/abiosoft/caddy-docker
-    caddy:
-        build:
-            context: 'github.com/abiosoft/caddy-docker.git'
-            args:
-                plugins: 'git,cors,realip,expires,cache,cloudflare,reauth'
-        env_file:
-            - './common.env'
-            - './caddy.env'
-        ports:
-            - '80:80'
-            - '443:443'
-        restart: unless-stopped
-        volumes:
-            - './Caddyfile:/etc/Caddyfile'
-            - 'caddy_certs_vol:/root/.caddy'
-            - '/etc/localtime:/etc/localtime:ro'
+        # ports:
+        #     - '5076:5076/tcp'
 
     # https://github.com/linuxserver/docker-duplicati
     # https://hub.docker.com/r/linuxserver/duplicati/
@@ -119,6 +120,26 @@ services:
         entrypoint: ['/bin/bash', '-c', 'sed -i "s/config/config --webservice-allowed-hostnames=*/" /etc/services.d/duplicati/run; /init']
         healthcheck:
             test: ['CMD', 'curl', '-f', 'http://localhost:8200/']
+        # ports:
+        #     - '8200:8200/tcp'
+
+    # https://github.com/abiosoft/caddy-docker
+    caddy:
+        build:
+            context: 'github.com/abiosoft/caddy-docker.git'
+            args:
+                plugins: 'git,cors,realip,expires,cache,cloudflare,reauth'
+        env_file:
+            - './common.env'
+            - './caddy.env'
+        restart: unless-stopped
+        volumes:
+            - './Caddyfile:/etc/Caddyfile'
+            - 'caddy_certs_vol:/root/.caddy'
+            - '/etc/localtime:/etc/localtime:ro'
+        ports:
+            - '80:80/tcp'
+            - '443:443/tcp'
 
 volumes:
     caddy_certs_vol:
