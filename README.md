@@ -65,7 +65,8 @@ git clone https://github.com/klutchell/mediaserver.git
 ```bash
 # 1. allow ports 80 and 443 through your firewall
 # ufw example:
-sudo ufw allow http https
+sudo ufw allow http
+sudo ufw allow https
 
 # 2. set environment variables
 nano plex.env common.env caddy.env
@@ -95,9 +96,14 @@ can run the services in local mode with steps similar to the following:
 mv docker-compose.local.yml docker-compose.yml
 
 # 2. open additional ports on your firewall
-# ufw example:
-sudo ufw allow 32400/tcp 6789/tcp 8989/tcp 7878/tcp 9091/tcp 5076/tcp 8200/tcp
-# you may want additional ports for plex depending on your usage
+# ufw examples:
+sudo ufw allow 32400/tcp    # plex (more may be required)
+sudo ufw allow 6789/tcp     # nzbget
+sudo ufw allow 8989/tcp     # sonarr
+sudo ufw allow 7878/tcp     # radarr
+sudo ufw allow 9091/tcp     # transmission
+sudo ufw allow 5076/tcp     # hydra
+sudo ufw allow 8200/tcp     # duplicati
 
 # 3. pull latest public images
 docker-compose pull
