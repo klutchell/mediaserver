@@ -13,13 +13,11 @@ docker-based plex media server using custom domains with tls
 ## Features
 
 * [plex](https://plex.tv)
-* [hydra](https://github.com/theotherp/nzbhydra2)
+* [nzbget](https://nzbget.net)
 * [sonarr](https://sonarr.tv)
 * [radarr](https://radarr.video)
-* [nzbget](https://nzbget.net)
-* [transmission](https://transmissionbt.com)
+* [hydra](https://github.com/theotherp/nzbhydra2)
 * [caddy](https://caddyserver.com/)
-* [duplicati](https://www.duplicati.com/)
 
 ## Requirements
 
@@ -41,8 +39,6 @@ docker-based plex media server using custom domains with tls
 |`A`|`sonarr.yourdomain.com`|`xxx.xxx.xxx.xxx`|
 |`A`|`radarr.yourdomain.com`|`xxx.xxx.xxx.xxx`|
 |`A`|`nzbget.yourdomain.com`|`xxx.xxx.xxx.xxx`|
-|`A`|`transmission.yourdomain.com`|`xxx.xxx.xxx.xxx`|
-|`A`|`duplicati.yourdomain.com`|`xxx.xxx.xxx.xxx`|
 
 ## Install
 
@@ -62,14 +58,34 @@ git clone https://github.com/klutchell/mediaserver.git
 
 ## Configure
 
+**OPTION 1: Configure with a custom domain and https proxy**
+
 ```bash
-# 1. allow ports 80 and 443 through your firewall
+# 1. set environment variables
+nano plex.env common.env caddy.env
+
+# 2. allow http and https traffic through your firewall
 # ufw example:
 sudo ufw allow http
 sudo ufw allow https
+```
+
+**OPTION 2: Configure without a custom domain or https proxy**
+
+```bash
+# 1. move docker-compose.local.yml to docker-compose.yml
+mv docker-compose.local.yml docker-compose.yml
 
 # 2. set environment variables
-nano plex.env common.env caddy.env
+nano plex.env common.env
+
+# 3. open ports on your firewall for each service
+# ufw example:
+sudo ufw allow 32400/tcp    # plex (more may be required)
+sudo ufw allow 6789/tcp     # nzbget
+sudo ufw allow 8989/tcp     # sonarr
+sudo ufw allow 7878/tcp     # radarr
+sudo ufw allow 5076/tcp     # hydra
 ```
 
 ## Deploy
@@ -87,31 +103,7 @@ docker-compose up -d --remove-orphans
 
 ## Usage
 
-Optionally, if you don't want to buy a domain or use Caddy as a proxy, you
-can run the services in local mode with steps similar to the following:
-
-```bash
-
-# 1. move docker-compose.local.yml to docker-compose.yml
-mv docker-compose.local.yml docker-compose.yml
-
-# 2. open additional ports on your firewall
-# ufw examples:
-sudo ufw allow 32400/tcp    # plex (more may be required)
-sudo ufw allow 6789/tcp     # nzbget
-sudo ufw allow 8989/tcp     # sonarr
-sudo ufw allow 7878/tcp     # radarr
-sudo ufw allow 9091/tcp     # transmission
-sudo ufw allow 5076/tcp     # hydra
-sudo ufw allow 8200/tcp     # duplicati
-
-# 3. pull latest public images
-docker-compose pull
-
-# 4. deploy containers with docker compose
-docker-compose up -d --remove-orphans
-
-```
+* Log into each service and enable http authentication
 
 ## Tests
 

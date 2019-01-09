@@ -17,7 +17,6 @@ plex.{$CLOUDFLARE_DOMAIN} {
     tls {
         dns cloudflare
     }
-    # use built-in authentication
     proxy / plex:32400 {
         transparent
         websocket
@@ -29,10 +28,6 @@ nzbget.{$CLOUDFLARE_DOMAIN} {
     tls {
         dns cloudflare
     }
-    reauth {
-        path /
-        simple {$HTTP_AUTH_USER}={$HTTP_AUTH_PASS}
-    }
     proxy / nzbget:6789 {
         transparent
     }
@@ -42,12 +37,6 @@ sonarr.{$CLOUDFLARE_DOMAIN} {
     import secure_headers
     tls {
         dns cloudflare
-    }
-    reauth {
-        path /
-        except /api
-        except /feed
-        simple {$HTTP_AUTH_USER}={$HTTP_AUTH_PASS}
     }
     proxy / sonarr:8989 {
         transparent
@@ -59,12 +48,6 @@ radarr.{$CLOUDFLARE_DOMAIN} {
     tls {
         dns cloudflare
     }
-    reauth {
-        path /
-        except /api
-        except /feed
-        simple {$HTTP_AUTH_USER}={$HTTP_AUTH_PASS}
-    }
     proxy / radarr:7878 {
         transparent
     }
@@ -75,36 +58,8 @@ hydra.{$CLOUDFLARE_DOMAIN} {
     tls {
         dns cloudflare
     }
-    # use built-in authentication
     proxy / hydra:5076 {
         transparent
     }
 }
-transmission.{$CLOUDFLARE_DOMAIN} {
-    gzip
-    import secure_headers
-    tls {
-        dns cloudflare
-    }
-    reauth {
-        path /
-        simple {$HTTP_AUTH_USER}={$HTTP_AUTH_PASS}
-    }
-    proxy / transmission:9091 {
-        transparent
-    }
-}
-duplicati.{$CLOUDFLARE_DOMAIN} {
-    gzip
-    import secure_headers
-    tls {
-        dns cloudflare
-    }
-    reauth {
-        path /
-        simple {$HTTP_AUTH_USER}={$HTTP_AUTH_PASS}
-    }
-    proxy / duplicati:8200 {
-        transparent
-    }
-}
+
