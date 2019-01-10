@@ -1,7 +1,6 @@
 version: '3'
 services:
 
-    # https://github.com/linuxserver/docker-plex
     # https://hub.docker.com/r/linuxserver/plex/
     plex:
         container_name: plex
@@ -23,7 +22,6 @@ services:
             - './data/plex/media/movies:/movies'
             - '/tmp:/transcode'
 
-    # https://github.com/linuxserver/docker-nzbget
     # https://hub.docker.com/r/linuxserver/nzbget/
     nzbget:
         container_name: nzbget
@@ -42,7 +40,6 @@ services:
             - './data/nzbget/config:/config'
             - './data/nzbget/downloads:/downloads'
 
-    # https://github.com/linuxserver/docker-sonarr
     # https://hub.docker.com/r/linuxserver/sonarr/
     sonarr:
         container_name: sonarr
@@ -62,7 +59,6 @@ services:
             - './data/nzbget/downloads:/downloads'
             - './data/plex/media/tv:/tv'
 
-    # https://github.com/linuxserver/docker-radarr
     # https://hub.docker.com/r/linuxserver/radarr/
     radarr:
         container_name: radarr
@@ -82,7 +78,6 @@ services:
             - './data/nzbget/downloads:/downloads'
             - './data/plex/media/movies:/movies'
 
-    # https://github.com/linuxserver/docker-hydra2
     # https://hub.docker.com/r/linuxserver/hydra2/
     hydra:
         container_name: hydra
