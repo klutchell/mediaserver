@@ -1,91 +1,122 @@
 version: '3'
 services:
 
-    # https://github.com/plexinc/pms-docker
+    # https://github.com/linuxserver/docker-plex
+    # https://hub.docker.com/r/linuxserver/plex/
     plex:
-        image: 'plexinc/pms-docker:plexpass'
+        container_name: plex
+        image: linuxserver/plex
         restart: unless-stopped
+        environment:
+            - 'PUID=1000'
+            - 'PGID=1000'
+            - 'TZ=America/New_York'
+            - 'VERSION=latest'
+        labels:
+            - 'traefik.enable=true'
+            - 'traefik.frontend.rule=Host:plex.yourdomain.com'
+            - 'traefik.port=32400'
+            - 'traefik.protocol=http'
         volumes:
             - './data/plex/config:/config'
             - './data/plex/media/tv:/tv'
             - './data/plex/media/movies:/movies'
             - '/tmp:/transcode'
-        env_file:
-            - './plex.env'
-            - './common.env'
 
     # https://github.com/linuxserver/docker-nzbget
     # https://hub.docker.com/r/linuxserver/nzbget/
     nzbget:
-        image: 'linuxserver/nzbget'
+        container_name: nzbget
+        image: linuxserver/nzbget
         restart: unless-stopped
+        environment:
+            - 'PUID=1000'
+            - 'PGID=1000'
+            - 'TZ=America/New_York'
+        labels:
+            - 'traefik.enable=true'
+            - 'traefik.frontend.rule=Host:nzbget.yourdomain.com'
+            - 'traefik.port=6789'
+            - 'traefik.protocol=http'
         volumes:
             - './data/nzbget/config:/config'
             - './data/nzbget/downloads:/downloads'
-        env_file:
-            - './common.env'
-        healthcheck:
-            test: ['CMD', 'curl', '-f', 'http://localhost:6789/']
 
     # https://github.com/linuxserver/docker-sonarr
     # https://hub.docker.com/r/linuxserver/sonarr/
     sonarr:
-        image: 'linuxserver/sonarr'
+        container_name: sonarr
+        image: linuxserver/sonarr
         restart: unless-stopped
+        environment:
+            - 'PUID=1000'
+            - 'PGID=1000'
+            - 'TZ=America/New_York'
+        labels:
+            - 'traefik.enable=true'
+            - 'traefik.frontend.rule=Host:sonarr.yourdomain.com'
+            - 'traefik.port=8989'
+            - 'traefik.protocol=http'
         volumes:
             - './data/sonarr/config:/config'
             - './data/nzbget/downloads:/downloads'
             - './data/plex/media/tv:/tv'
-        env_file:
-            - './common.env'
-        healthcheck:
-            test: ['CMD', 'curl', '-f', 'http://localhost:8989/']
 
     # https://github.com/linuxserver/docker-radarr
     # https://hub.docker.com/r/linuxserver/radarr/
     radarr:
-        image: 'linuxserver/radarr'
+        container_name: radarr
+        image: linuxserver/radarr
         restart: unless-stopped
+        environment:
+            - 'PUID=1000'
+            - 'PGID=1000'
+            - 'TZ=America/New_York'
+        labels:
+            - 'traefik.enable=true'
+            - 'traefik.frontend.rule=Host:radarr.yourdomain.com'
+            - 'traefik.port=7878'
+            - 'traefik.protocol=http'
         volumes:
             - './data/radarr/config:/config'
             - './data/nzbget/downloads:/downloads'
             - './data/plex/media/movies:/movies'
-        env_file:
-            - './common.env'
-        healthcheck:
-            test: ['CMD', 'curl', '-f', 'http://localhost:7878/']
 
     # https://github.com/linuxserver/docker-hydra2
     # https://hub.docker.com/r/linuxserver/hydra2/
     hydra:
-        image: 'linuxserver/hydra2'
+        container_name: hydra
+        image: linuxserver/hydra2
         restart: unless-stopped
+        environment:
+            - 'PUID=1000'
+            - 'PGID=1000'
+            - 'TZ=America/New_York'
+        labels:
+            - 'traefik.enable=true'
+            - 'traefik.frontend.rule=Host:hydra.yourdomain.com'
+            - 'traefik.port=5076'
+            - 'traefik.protocol=http'
         volumes:
             - './data/hydra/config:/config'
             - './data/hydra/downloads:/downloads'
-        env_file:
-            - './common.env'
-        healthcheck:
-            test: ['CMD', 'curl', '-f', 'http://localhost:5076/']
-
-    # https://github.com/abiosoft/caddy-docker
-    caddy:
-        build:
-            context: 'github.com/abiosoft/caddy-docker.git'
-            args:
-                plugins: 'git,cors,realip,expires,cache,cloudflare,reauth'
-        env_file:
-            - './common.env'
-            - './caddy.env'
+    
+    # https://hub.docker.com/_/traefik/
+    traefik:
+        container_name: traefik
+        image: traefik
         restart: unless-stopped
-        volumes:
-            - './Caddyfile:/etc/Caddyfile'
-            - 'caddy_certs_vol:/root/.caddy'
-            - '/etc/localtime:/etc/localtime:ro'
+        environment:
+            - 'CF_API_EMAIL=your@emailaddress.com'
+            - 'CF_API_KEY='
         ports:
             - '80:80/tcp'
             - '443:443/tcp'
+        volumes:
+            - '/var/run/docker.sock:/var/run/docker.sock:ro'
+            - './traefik.toml:/etc/traefik/traefik.toml'
+            - 'traefik_acme:/etc/traefik/acme.json'
 
 volumes:
-    caddy_certs_vol:
+    traefik_acme:
 
