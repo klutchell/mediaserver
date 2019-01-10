@@ -16,6 +16,7 @@ docker-based plex & usenet media server using custom subdomains with tls
 * [Sonarr](https://hub.docker.com/r/linuxserver/sonarr/) (formerly NZBdrone) is a PVR for usenet and bittorrent users. It can monitor multiple RSS feeds for new episodes of your favorite shows and will grab, sort and rename them. It can also be configured to automatically upgrade the quality of files already downloaded when a better quality format becomes available.
 * [Radarr](https://hub.docker.com/r/linuxserver/radarr/) - A fork of Sonarr to work with movies à la Couchpotato.
 * [NZBHydra](https://hub.docker.com/r/linuxserver/hydra2/) 2 is a meta search application for NZB indexers, the "spiritual successor" to NZBmegasearcH, and an evolution of the original application NZBHydra . It provides easy access to a number of raw and newznab based indexers.
+* [Duplicati](https://hub.docker.com/r/linuxserver/duplicati/) works with standard protocols like FTP, SSH, WebDAV as well as popular services like Microsoft OneDrive, Amazon Cloud Drive & S3, Google Drive, box.com, Mega, hubiC and many others.
 * [Traefik](https://hub.docker.com/_/traefik/) is a modern HTTP reverse proxy and load balancer that makes deploying microservices easy.
 
 ## Requirements
@@ -38,6 +39,7 @@ docker-based plex & usenet media server using custom subdomains with tls
 |`A`|`sonarr.yourdomain.com`|`xxx.xxx.xxx.xxx`|
 |`A`|`radarr.yourdomain.com`|`xxx.xxx.xxx.xxx`|
 |`A`|`nzbget.yourdomain.com`|`xxx.xxx.xxx.xxx`|
+|`A`|`duplicati.yourdomain.com`|`xxx.xxx.xxx.xxx`|
 
 ## Install
 
