@@ -95,6 +95,26 @@ services:
         volumes:
             - './data/hydra/config:/config'
             - './data/hydra/downloads:/downloads'
+
+    # https://hub.docker.com/r/linuxserver/duplicati/
+    duplicati:
+        container_name: duplicati
+        image: linuxserver/duplicati
+        restart: unless-stopped
+        environment:
+            - 'PUID=1000'
+            - 'PGID=1000'
+            - 'TZ=America/New_York'
+        labels:
+            - 'traefik.enable=true'
+            - 'traefik.frontend.rule=Host:duplicati.yourdomain.com'
+            - 'traefik.port=8200'
+            - 'traefik.protocol=http'
+        volumes:
+            - './data/duplicati/config:/config'
+            - './data/duplicati/backups:/backup'
+            - '/:/source:ro'
+        entrypoint: ['/bin/bash', '-c', 'sed -i "s/config/config --webservice-allowed-hostnames=*/" /etc/services.d/duplicati/run; /init']
     
     # https://hub.docker.com/_/traefik/
     traefik:
