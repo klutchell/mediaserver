@@ -13,7 +13,7 @@ services:
             - 'VERSION=latest'
         labels:
             - 'traefik.enable=true'
-            - 'traefik.frontend.rule=Host:plex.yourdomain.com'
+            - 'traefik.frontend.rule=Host:plex.exampledomain.com'
             - 'traefik.port=32400'
             - 'traefik.protocol=http'
         volumes:
@@ -33,7 +33,7 @@ services:
             - 'TZ=America/New_York'
         labels:
             - 'traefik.enable=true'
-            - 'traefik.frontend.rule=Host:nzbget.yourdomain.com'
+            - 'traefik.frontend.rule=Host:nzbget.exampledomain.com'
             - 'traefik.port=6789'
             - 'traefik.protocol=http'
         volumes:
@@ -51,7 +51,7 @@ services:
             - 'TZ=America/New_York'
         labels:
             - 'traefik.enable=true'
-            - 'traefik.frontend.rule=Host:sonarr.yourdomain.com'
+            - 'traefik.frontend.rule=Host:sonarr.exampledomain.com'
             - 'traefik.port=8989'
             - 'traefik.protocol=http'
         volumes:
@@ -70,7 +70,7 @@ services:
             - 'TZ=America/New_York'
         labels:
             - 'traefik.enable=true'
-            - 'traefik.frontend.rule=Host:radarr.yourdomain.com'
+            - 'traefik.frontend.rule=Host:radarr.exampledomain.com'
             - 'traefik.port=7878'
             - 'traefik.protocol=http'
         volumes:
@@ -89,7 +89,7 @@ services:
             - 'TZ=America/New_York'
         labels:
             - 'traefik.enable=true'
-            - 'traefik.frontend.rule=Host:hydra.yourdomain.com'
+            - 'traefik.frontend.rule=Host:hydra.exampledomain.com'
             - 'traefik.port=5076'
             - 'traefik.protocol=http'
         volumes:
@@ -107,7 +107,7 @@ services:
             - 'TZ=America/New_York'
         labels:
             - 'traefik.enable=true'
-            - 'traefik.frontend.rule=Host:duplicati.yourdomain.com'
+            - 'traefik.frontend.rule=Host:duplicati.exampledomain.com'
             - 'traefik.port=8200'
             - 'traefik.protocol=http'
         volumes:
@@ -122,7 +122,7 @@ services:
         image: traefik
         restart: unless-stopped
         environment:
-            - 'CF_API_EMAIL=your@emailaddress.com'
+            - 'CF_API_EMAIL=example@address.com'
             - 'CF_API_KEY='
         ports:
             - '80:80/tcp'

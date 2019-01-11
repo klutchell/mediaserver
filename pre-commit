@@ -1,6 +1,12 @@
 #!/bin/sh
 
-# remove secrets from docker-compose.yml and traefik.toml before git commit
+# create `secrets.env` in the root of the repo to avoid committing sensitive
+# details from your local configuration to git.
+
+# add entries in the format "secret=placeholder" (placeholder can be blank)
+#   echo "secret@address.com=example@address.com" >> secrets.env
+#   echo "secretdomain.com=exampledomain.com" >> secrets.env
+#   echo "abcdefghijklmnopqrstuvwxyz1234567890=" >> secrets.env
 
 # install with:
 #   ln -s ../../pre-commit .git/hooks/pre-commit
@@ -8,6 +14,7 @@
 
 [ -e "secrets.env" ] || exit
 
+# remove secrets from docker-compose.yml and traefik.toml before git commit
 for file in "docker-compose.yml" "traefik.toml"
 do
 	cp "${file}" "${file}.bak"

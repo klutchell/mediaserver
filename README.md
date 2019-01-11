@@ -4,7 +4,7 @@ docker-based plex & usenet media server using custom subdomains with tls
 
 ## Motivation
 
-* host services at `<service>.<yourdomain>.com` over https
+* host each service as a subdomain of a personal domain over https
 * run public maintained images with no modifications
 * keep source repo small (2 required files)
 * require minimal configuration and setup
@@ -23,8 +23,8 @@ docker-based plex & usenet media server using custom subdomains with tls
 
 * dedicated server or PC with plenty of storage
 * windows or linux x86/x64 os (not ARM)
-* custom top-level domain with configurable sub-domains (eg. plex.mydomain.com)
-* [cloudflare](https://www.cloudflare.com/) dns for automatic tls
+* custom top-level domain with configurable sub-domains (eg. plex.exampledomain.com)
+* [cloudflare](https://www.cloudflare.com/) dns and proxy
 
 ## Pre-Install
 
@@ -34,12 +34,12 @@ docker-based plex & usenet media server using custom subdomains with tls
 
 |Type|Name|Value|
 |---|---|---|
-|`A`|`plex.yourdomain.com`|`xxx.xxx.xxx.xxx`|
-|`A`|`hydra.yourdomain.com`|`xxx.xxx.xxx.xxx`|
-|`A`|`sonarr.yourdomain.com`|`xxx.xxx.xxx.xxx`|
-|`A`|`radarr.yourdomain.com`|`xxx.xxx.xxx.xxx`|
-|`A`|`nzbget.yourdomain.com`|`xxx.xxx.xxx.xxx`|
-|`A`|`duplicati.yourdomain.com`|`xxx.xxx.xxx.xxx`|
+|`A`|`plex.exampledomain.com`|`xxx.xxx.xxx.xxx`|
+|`A`|`hydra.exampledomain.com`|`xxx.xxx.xxx.xxx`|
+|`A`|`sonarr.exampledomain.com`|`xxx.xxx.xxx.xxx`|
+|`A`|`radarr.exampledomain.com`|`xxx.xxx.xxx.xxx`|
+|`A`|`nzbget.exampledomain.com`|`xxx.xxx.xxx.xxx`|
+|`A`|`duplicati.exampledomain.com`|`xxx.xxx.xxx.xxx`|
 
 ## Install
 
@@ -77,13 +77,21 @@ docker-compose up -d --remove-orphans
 
 * Log into each service and enable http authentication
 
-## Tests
-
-_TODO_
-
 ## Contributing
 
-_TODO_
+Create `secrets.env` in the root of the repo to avoid committing sensitive
+details from your local configuration to git.
+
+```bash
+# add entries in the format "secret=placeholder" (placeholder can be blank)
+echo "secret@address.com=example@address.com" >> secrets.env
+echo "secretdomain.com=exampledomain.com" >> secrets.env
+echo "abcdefghijklmnopqrstuvwxyz1234567890=" >> secrets.env
+
+# install pre-commit and post-commit hooks
+ln -s ../../pre-commit .git/hooks/pre-commit
+ln -s ../../post-commit .git/hooks/post-commit
+```
 
 ## Author
 
@@ -92,7 +100,7 @@ Kyle Harding <kylemharding@gmail.com>
 ## Acknowledgments
 
 I didn't create any of these docker images myself, so credit goes to the
-maintainers, and the app creators themselves.
+maintainers, and the app creators.
 
 * [linuxserver.io](https://linuxserver.io/)
 * [traefik.io](https://traefik.io/)
