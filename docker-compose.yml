@@ -112,7 +112,6 @@ services:
             - 'traefik.protocol=http'
         volumes:
             - './data/duplicati/config:/config'
-            - './data/duplicati/backups:/backup'
             - '/:/source:ro'
         entrypoint: ['/bin/bash', '-c', 'sed -i "s/config/config --webservice-allowed-hostnames=*/" /etc/services.d/duplicati/run; /init']
     
