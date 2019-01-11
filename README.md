@@ -101,6 +101,7 @@ maintainers, and the app creators themselves.
 
 * https://docs.traefik.io/configuration/acme/
 * https://docs.traefik.io/configuration/backends/docker/
+* https://blog.linuxserver.io/2018/02/03/using-traefik-as-a-reverse-proxy-with-docker/
 
 ## License
 
