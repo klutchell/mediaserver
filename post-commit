@@ -1,13 +1,13 @@
 #!/bin/sh
 
-# restore environment variables to .env files after git commit
+# restore secrets to docker-compose.yml and traefik.toml after git commit
 
 # install with:
 #   ln -s ../../pre-commit .git/hooks/pre-commit
 #   ln -s ../../post-commit .git/hooks/post-commit
 
-for file in *.env
+for file in "docker-compose.yml" "traefik.toml"
 do
-	mv "${file}.bak" "${file}"
-	echo "restored environment variables to ${file}"
+	[ -e "${file}.bak" ] && mv "${file}.bak" "${file}"
+	echo "restored secrets to ${file}"
 done

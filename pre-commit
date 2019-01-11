@@ -1,15 +1,20 @@
 #!/bin/sh
 
-# clean environment variables from .env files before git commit
+# remove secrets from docker-compose.yml and traefik.toml before git commit
 
 # install with:
 #   ln -s ../../pre-commit .git/hooks/pre-commit
 #   ln -s ../../post-commit .git/hooks/post-commit
 
-for file in *.env
+[ -e "secrets.env" ] || exit
+
+for file in "docker-compose.yml" "traefik.toml"
 do
 	cp "${file}" "${file}.bak"
-	sed -r -i "/^[[:space:]]*#/!s|([^=]+=).*|\1|g" "${file}"
-	echo "cleaned environment variables from ${file}"
+	while IFS='=' read -r secret text || [[ -n "${secret}" ]]
+	do
+		sed -e "s|${secret}|${text}|g" -i "${file}"
+	done < "secrets.env"
+	echo "removed secrets from ${file}"
 	git add ${file}
 done
