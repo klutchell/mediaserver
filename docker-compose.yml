@@ -7,13 +7,13 @@ services:
         image: linuxserver/plex
         restart: unless-stopped
         environment:
-            - 'PUID=1000'
-            - 'PGID=1000'
-            - 'TZ=America/New_York'
+            - 'PUID=${PUID}'
+            - 'PGID=${PGID}'
+            - 'TZ=${TZ}'
             - 'VERSION=latest'
         labels:
             - 'traefik.enable=true'
-            - 'traefik.frontend.rule=Host:plex.exampledomain.com'
+            - 'traefik.frontend.rule=Host:plex.${CF_DOMAIN}'
             - 'traefik.port=32400'
             - 'traefik.protocol=http'
         volumes:
@@ -28,12 +28,12 @@ services:
         image: linuxserver/nzbget
         restart: unless-stopped
         environment:
-            - 'PUID=1000'
-            - 'PGID=1000'
-            - 'TZ=America/New_York'
+            - 'PUID=${PUID}'
+            - 'PGID=${PGID}'
+            - 'TZ=${TZ}'
         labels:
             - 'traefik.enable=true'
-            - 'traefik.frontend.rule=Host:nzbget.exampledomain.com'
+            - 'traefik.frontend.rule=Host:nzbget.${CF_DOMAIN}'
             - 'traefik.port=6789'
             - 'traefik.protocol=http'
         volumes:
@@ -46,12 +46,12 @@ services:
         image: linuxserver/sonarr
         restart: unless-stopped
         environment:
-            - 'PUID=1000'
-            - 'PGID=1000'
-            - 'TZ=America/New_York'
+            - 'PUID=${PUID}'
+            - 'PGID=${PGID}'
+            - 'TZ=${TZ}'
         labels:
             - 'traefik.enable=true'
-            - 'traefik.frontend.rule=Host:sonarr.exampledomain.com'
+            - 'traefik.frontend.rule=Host:sonarr.${CF_DOMAIN}'
             - 'traefik.port=8989'
             - 'traefik.protocol=http'
         volumes:
@@ -65,12 +65,12 @@ services:
         image: linuxserver/radarr
         restart: unless-stopped
         environment:
-            - 'PUID=1000'
-            - 'PGID=1000'
-            - 'TZ=America/New_York'
+            - 'PUID=${PUID}'
+            - 'PGID=${PGID}'
+            - 'TZ=${TZ}'
         labels:
             - 'traefik.enable=true'
-            - 'traefik.frontend.rule=Host:radarr.exampledomain.com'
+            - 'traefik.frontend.rule=Host:radarr.${CF_DOMAIN}'
             - 'traefik.port=7878'
             - 'traefik.protocol=http'
         volumes:
@@ -84,12 +84,12 @@ services:
         image: linuxserver/hydra2
         restart: unless-stopped
         environment:
-            - 'PUID=1000'
-            - 'PGID=1000'
-            - 'TZ=America/New_York'
+            - 'PUID=${PUID}'
+            - 'PGID=${PGID}'
+            - 'TZ=${TZ}'
         labels:
             - 'traefik.enable=true'
-            - 'traefik.frontend.rule=Host:hydra.exampledomain.com'
+            - 'traefik.frontend.rule=Host:hydra.${CF_DOMAIN}'
             - 'traefik.port=5076'
             - 'traefik.protocol=http'
         volumes:
@@ -102,12 +102,12 @@ services:
         image: linuxserver/duplicati
         restart: unless-stopped
         environment:
-            - 'PUID=1000'
-            - 'PGID=1000'
-            - 'TZ=America/New_York'
+            - 'PUID=${PUID}'
+            - 'PGID=${PGID}'
+            - 'TZ=${TZ}'
         labels:
             - 'traefik.enable=true'
-            - 'traefik.frontend.rule=Host:duplicati.exampledomain.com'
+            - 'traefik.frontend.rule=Host:duplicati.${CF_DOMAIN}'
             - 'traefik.port=8200'
             - 'traefik.protocol=http'
         volumes:
@@ -121,10 +121,9 @@ services:
         image: traefik
         restart: unless-stopped
         environment:
-            - 'CF_API_EMAIL=example@address.com'
-            - 'CF_API_KEY='
+            - 'CF_API_EMAIL=${CF_API_EMAIL}'
+            - 'CF_API_KEY=${CF_API_KEY}'
         ports:
-            - '80:80/tcp'
             - '443:443/tcp'
         volumes:
             - '/var/run/docker.sock:/var/run/docker.sock:ro'

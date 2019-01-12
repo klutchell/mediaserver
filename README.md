@@ -6,7 +6,7 @@ docker-based plex & usenet media server using custom subdomains with tls
 
 * host each service as a subdomain of a personal domain over https
 * run public maintained images with no modifications
-* keep source repo small (2 required files)
+* keep source repo small (3 required files)
 * require minimal configuration and setup
 
 ## Features
@@ -59,9 +59,13 @@ git clone https://github.com/klutchell/mediaserver.git
 
 ## Configure
 
-1. `traefik.frontend.rule` needs to be set for each service in `docker-compose.yml`
-2. `CF_API_EMAIL` and `CF_API_KEY` need to be set for traefik in `docker-compose.yml`
-3. `domain` and `email` need to be set in `traefik.toml`
+```bash
+# copy env.sample to .env
+cp env.sample .env
+
+# fill all required variables in .env
+nano .env
+```
 
 ## Deploy
 
@@ -76,22 +80,6 @@ docker-compose up -d --remove-orphans
 ## Usage
 
 * Log into each service and enable http authentication
-
-## Contributing
-
-Create `secrets.env` in the root of the repo to avoid committing sensitive
-details from your local configuration to git.
-
-```bash
-# add entries in the format "secret=placeholder" (placeholder can be blank)
-echo "secret@address.com=example@address.com" >> secrets.env
-echo "secretdomain.com=exampledomain.com" >> secrets.env
-echo "abcdefghijklmnopqrstuvwxyz1234567890=" >> secrets.env
-
-# install pre-commit and post-commit hooks
-ln -s ../../pre-commit .git/hooks/pre-commit
-ln -s ../../post-commit .git/hooks/post-commit
-```
 
 ## Author
 
