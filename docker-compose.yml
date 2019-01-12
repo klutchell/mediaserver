@@ -113,7 +113,10 @@ services:
         volumes:
             - './data/duplicati/config:/config'
             - '/:/source:ro'
-        entrypoint: ['/bin/bash', '-c', 'sed -i "s/config/config --webservice-allowed-hostnames=*/" /etc/services.d/duplicati/run; /init']
+        entrypoint:
+            - '/bin/bash'
+            - '-c'
+            - 'sed -i "s/config/config --webservice-allowed-hostnames=*/" /etc/services.d/duplicati/run; /init'
     
     # https://hub.docker.com/_/traefik/
     traefik:
@@ -129,6 +132,10 @@ services:
             - '/var/run/docker.sock:/var/run/docker.sock:ro'
             - './traefik.toml:/etc/traefik/traefik.toml'
             - 'traefik_acme:/etc/traefik/acme.json'
+        entrypoint:
+            - '/traefik'
+            - '--acme.email=${CF_API_EMAIL}'
+            - '--docker.domain=${CF_DOMAIN}'
 
 volumes:
     traefik_acme:
