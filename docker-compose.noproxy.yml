@@ -1,0 +1,106 @@
+version: '3'
+services:
+
+    # https://hub.docker.com/r/linuxserver/plex/
+    plex:
+        container_name: plex
+        image: linuxserver/plex
+        restart: unless-stopped
+        environment:
+            - 'PUID=${PUID}'
+            - 'PGID=${PGID}'
+            - 'TZ=${TZ}'
+            - 'VERSION=latest'
+        ports:
+            - '32400:32400/tcp'
+            - '3005:3005/tcp'
+            - '8324:8324/tcp'
+            - '32469:32469/tcp'
+            - '1900:1900/udp'
+            - '32410:32410/udp'
+            - '32412:32412/udp'
+            - '32413:32413/udp'
+            - '32414:32414/udp'
+        volumes:
+            - './data/plex/config:/config'
+            - './data/plex/media/tv:/tv'
+            - './data/plex/media/movies:/movies'
+            - '/tmp:/transcode'
+
+    # https://hub.docker.com/r/linuxserver/nzbget/
+    nzbget:
+        container_name: nzbget
+        image: linuxserver/nzbget
+        restart: unless-stopped
+        environment:
+            - 'PUID=${PUID}'
+            - 'PGID=${PGID}'
+            - 'TZ=${TZ}'
+        ports:
+            - '6789:6789/tcp'
+        volumes:
+            - './data/nzbget/config:/config'
+            - './data/nzbget/downloads:/downloads'
+
+    # https://hub.docker.com/r/linuxserver/sonarr/
+    sonarr:
+        container_name: sonarr
+        image: linuxserver/sonarr
+        restart: unless-stopped
+        environment:
+            - 'PUID=${PUID}'
+            - 'PGID=${PGID}'
+            - 'TZ=${TZ}'
+        ports:
+            - '8989:8989/tcp'
+        volumes:
+            - './data/sonarr/config:/config'
+            - './data/nzbget/downloads:/downloads'
+            - './data/plex/media/tv:/tv'
+
+    # https://hub.docker.com/r/linuxserver/radarr/
+    radarr:
+        container_name: radarr
+        image: linuxserver/radarr
+        restart: unless-stopped
+        environment:
+            - 'PUID=${PUID}'
+            - 'PGID=${PGID}'
+            - 'TZ=${TZ}'
+        ports:
+            - '7878:7878/tcp'
+        volumes:
+            - './data/radarr/config:/config'
+            - './data/nzbget/downloads:/downloads'
+            - './data/plex/media/movies:/movies'
+
+    # https://hub.docker.com/r/linuxserver/hydra2/
+    hydra:
+        container_name: hydra
+        image: linuxserver/hydra2
+        restart: unless-stopped
+        environment:
+            - 'PUID=${PUID}'
+            - 'PGID=${PGID}'
+            - 'TZ=${TZ}'
+        ports:
+            - '5076:5076/tcp'
+        volumes:
+            - './data/hydra/config:/config'
+            - './data/hydra/downloads:/downloads'
+
+    # https://hub.docker.com/r/linuxserver/duplicati/
+    duplicati:
+        container_name: duplicati
+        image: linuxserver/duplicati
+        restart: unless-stopped
+        environment:
+            - 'PUID=${PUID}'
+            - 'PGID=${PGID}'
+            - 'TZ=${TZ}'
+        ports:
+            - '8200:8200/tcp'
+        volumes:
+            - './data/duplicati/config:/config'
+            - '/:/source:ro'
+
