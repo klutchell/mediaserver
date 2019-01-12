@@ -12,8 +12,8 @@
 #   ln -s ../../pre-commit .git/hooks/pre-commit
 #   ln -s ../../post-commit .git/hooks/post-commit
 
-# restore secrets to docker-compose.yml and traefik.toml after git commit
-for file in "docker-compose.yml" "traefik.toml"
+# restore secrets to docker-compose.yml after git commit
+for file in "docker-compose.yml"
 do
 	[ -e "${file}.bak" ] && mv "${file}.bak" "${file}"
 	echo "restored secrets to ${file}"

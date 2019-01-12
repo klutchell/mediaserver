@@ -19,12 +19,12 @@ address = ":443"
 
 [docker]
 endpoint = "unix:///var/run/docker.sock"
-domain = "exampledomain.com"
+domain = "klutchell.com"
 watch = true
 exposedByDefault = false
 
 [acme]
-email = "example@address.com"
+email = "kylemharding@gmail.com"
 storage = "acme.json"
 entryPoint = "https"
 onHostRule = true

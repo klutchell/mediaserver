@@ -14,8 +14,8 @@
 
 [ -e "secrets.env" ] || exit
 
-# remove secrets from docker-compose.yml and traefik.toml before git commit
-for file in "docker-compose.yml" "traefik.toml"
+# remove secrets from docker-compose.yml before git commit
+for file in "docker-compose.yml"
 do
 	cp "${file}" "${file}.bak"
 	while IFS='=' read -r secret text || [[ -n "${secret}" ]]
