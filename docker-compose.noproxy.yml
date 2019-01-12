@@ -11,11 +11,16 @@ services:
             - 'PGID=${PGID}'
             - 'TZ=${TZ}'
             - 'VERSION=latest'
-        labels:
-            - 'traefik.enable=true'
-            - 'traefik.frontend.rule=Host:plex.${CF_DOMAIN}'
-            - 'traefik.port=32400'
-            - 'traefik.protocol=http'
+        ports:
+            - '32400:32400/tcp'
+            - '3005:3005/tcp'
+            - '8324:8324/tcp'
+            - '32469:32469/tcp'
+            - '1900:1900/udp'
+            - '32410:32410/udp'
+            - '32412:32412/udp'
+            - '32413:32413/udp'
+            - '32414:32414/udp'
         volumes:
             - './data/plex/config:/config'
             - './data/plex/media/tv:/tv'
@@ -31,11 +36,8 @@ services:
             - 'PUID=${PUID}'
             - 'PGID=${PGID}'
             - 'TZ=${TZ}'
-        labels:
-            - 'traefik.enable=true'
-            - 'traefik.frontend.rule=Host:nzbget.${CF_DOMAIN}'
-            - 'traefik.port=6789'
-            - 'traefik.protocol=http'
+        ports:
+            - '6789:6789/tcp'
         volumes:
             - './data/nzbget/config:/config'
             - './data/nzbget/downloads:/downloads'
@@ -49,11 +51,8 @@ services:
             - 'PUID=${PUID}'
             - 'PGID=${PGID}'
             - 'TZ=${TZ}'
-        labels:
-            - 'traefik.enable=true'
-            - 'traefik.frontend.rule=Host:sonarr.${CF_DOMAIN}'
-            - 'traefik.port=8989'
-            - 'traefik.protocol=http'
+        ports:
+            - '8989:8989/tcp'
         volumes:
             - './data/sonarr/config:/config'
             - './data/nzbget/downloads:/downloads'
@@ -68,11 +67,8 @@ services:
             - 'PUID=${PUID}'
             - 'PGID=${PGID}'
             - 'TZ=${TZ}'
-        labels:
-            - 'traefik.enable=true'
-            - 'traefik.frontend.rule=Host:radarr.${CF_DOMAIN}'
-            - 'traefik.port=7878'
-            - 'traefik.protocol=http'
+        ports:
+            - '7878:7878/tcp'
         volumes:
             - './data/radarr/config:/config'
             - './data/nzbget/downloads:/downloads'
@@ -87,11 +83,8 @@ services:
             - 'PUID=${PUID}'
             - 'PGID=${PGID}'
             - 'TZ=${TZ}'
-        labels:
-            - 'traefik.enable=true'
-            - 'traefik.frontend.rule=Host:hydra.${CF_DOMAIN}'
-            - 'traefik.port=5076'
-            - 'traefik.protocol=http'
+        ports:
+            - '5076:5076/tcp'
         volumes:
             - './data/hydra/config:/config'
             - './data/hydra/downloads:/downloads'
@@ -105,38 +98,9 @@ services:
             - 'PUID=${PUID}'
             - 'PGID=${PGID}'
             - 'TZ=${TZ}'
-        labels:
-            - 'traefik.enable=true'
-            - 'traefik.frontend.rule=Host:duplicati.${CF_DOMAIN}'
-            - 'traefik.port=8200'
-            - 'traefik.protocol=http'
+        ports:
+            - '8200:8200/tcp'
         volumes:
             - './data/duplicati/config:/config'
             - '/:/source:ro'
-        entrypoint:
-            - '/bin/bash'
-            - '-c'
-            - 'sed -i "s/config/config --webservice-allowed-hostnames=*/" /etc/services.d/duplicati/run; /init'
-    
-    # https://hub.docker.com/_/traefik/
-    traefik:
-        container_name: traefik
-        image: traefik
-        restart: unless-stopped
-        environment:
-            - 'CF_API_EMAIL=${CF_API_EMAIL}'
-            - 'CF_API_KEY=${CF_API_KEY}'
-        ports:
-            - '443:443/tcp'
-        volumes:
-            - '/var/run/docker.sock:/var/run/docker.sock:ro'
-            - './traefik.toml:/etc/traefik/traefik.toml'
-            - 'traefik_acme:/etc/traefik/acme.json'
-        entrypoint:
-            - '/traefik'
-            - '--acme.email=${CF_API_EMAIL}'
-            - '--docker.domain=${CF_DOMAIN}'
-
-volumes:
-    traefik_acme:
 
