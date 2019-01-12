@@ -1,27 +1,8 @@
 #!/bin/sh
 
-# create `secrets.env` in the root of the repo to avoid committing sensitive
-# details from your local configuration to git.
-
-# add entries in the format "secret=placeholder" (placeholder can be blank)
-#   echo "secret@address.com=example@address.com" >> secrets.env
-#   echo "secretdomain.com=exampledomain.com" >> secrets.env
-#   echo "abcdefghijklmnopqrstuvwxyz1234567890=" >> secrets.env
-
 # install with:
 #   ln -s ../../pre-commit .git/hooks/pre-commit
-#   ln -s ../../post-commit .git/hooks/post-commit
 
-[ -e "secrets.env" ] || exit
-
-# remove secrets from docker-compose.yml before git commit
-for file in "docker-compose.yml"
-do
-	cp "${file}" "${file}.bak"
-	while IFS='=' read -r secret text || [[ -n "${secret}" ]]
-	do
-		sed -e "s|${secret}|${text}|g" -i "${file}"
-	done < "secrets.env"
-	echo "removed secrets from ${file}"
-	git add ${file}
-done
+# update env.sample by stripping values from .env
+sed -r "/^[[:space:]]*#/!s|([^=]+=).*|\1|g" ".env" > "env.sample"
+git add "env.sample"

@@ -7,9 +7,9 @@ services:
         image: linuxserver/plex
         restart: unless-stopped
         environment:
-            - 'PUID=1000'
-            - 'PGID=1000'
-            - 'TZ=America/New_York'
+            - 'PUID=${PUID}'
+            - 'PGID=${PGID}'
+            - 'TZ=${TZ}'
             - 'VERSION=latest'
         ports:
             - '32400:32400/tcp'
@@ -33,9 +33,9 @@ services:
         image: linuxserver/nzbget
         restart: unless-stopped
         environment:
-            - 'PUID=1000'
-            - 'PGID=1000'
-            - 'TZ=America/New_York'
+            - 'PUID=${PUID}'
+            - 'PGID=${PGID}'
+            - 'TZ=${TZ}'
         ports:
             - '6789:6789/tcp'
         volumes:
@@ -48,9 +48,9 @@ services:
         image: linuxserver/sonarr
         restart: unless-stopped
         environment:
-            - 'PUID=1000'
-            - 'PGID=1000'
-            - 'TZ=America/New_York'
+            - 'PUID=${PUID}'
+            - 'PGID=${PGID}'
+            - 'TZ=${TZ}'
         ports:
             - '8989:8989/tcp'
         volumes:
@@ -64,9 +64,9 @@ services:
         image: linuxserver/radarr
         restart: unless-stopped
         environment:
-            - 'PUID=1000'
-            - 'PGID=1000'
-            - 'TZ=America/New_York'
+            - 'PUID=${PUID}'
+            - 'PGID=${PGID}'
+            - 'TZ=${TZ}'
         ports:
             - '7878:7878/tcp'
         volumes:
@@ -80,9 +80,9 @@ services:
         image: linuxserver/hydra2
         restart: unless-stopped
         environment:
-            - 'PUID=1000'
-            - 'PGID=1000'
-            - 'TZ=America/New_York'
+            - 'PUID=${PUID}'
+            - 'PGID=${PGID}'
+            - 'TZ=${TZ}'
         ports:
             - '5076:5076/tcp'
         volumes:
@@ -95,9 +95,9 @@ services:
         image: linuxserver/duplicati
         restart: unless-stopped
         environment:
-            - 'PUID=1000'
-            - 'PGID=1000'
-            - 'TZ=America/New_York'
+            - 'PUID=${PUID}'
+            - 'PGID=${PGID}'
+            - 'TZ=${TZ}'
         ports:
             - '8200:8200/tcp'
         volumes:
