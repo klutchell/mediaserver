@@ -112,6 +112,7 @@ services:
             - 'traefik.protocol=http'
         volumes:
             - './data/duplicati/config:/config'
+            - './data/duplicati/backups:/backups'
             - '/:/source:ro'
         entrypoint:
             - '/bin/bash'
