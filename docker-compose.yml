@@ -114,10 +114,6 @@ services:
             - './data/duplicati/config:/config'
             - './data/duplicati/backups:/backups'
             - '/:/source:ro'
-        entrypoint:
-            - '/bin/bash'
-            - '-c'
-            - 'sed -i "s/config/config --webservice-allowed-hostnames=*/" /etc/services.d/duplicati/run; /init'
     
     # https://hub.docker.com/_/traefik/
     traefik:
