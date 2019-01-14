@@ -102,5 +102,6 @@ services:
             - '8200:8200/tcp'
         volumes:
             - './data/duplicati/config:/config'
+            - './data/duplicati/backups:/backups'
             - '/:/source:ro'
 
