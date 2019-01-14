@@ -124,6 +124,7 @@ services:
             - 'CF_API_EMAIL=${CF_API_EMAIL}'
             - 'CF_API_KEY=${CF_API_KEY}'
         ports:
+            - '80:80/tcp'
             - '443:443/tcp'
         volumes:
             - '/var/run/docker.sock:/var/run/docker.sock:ro'
