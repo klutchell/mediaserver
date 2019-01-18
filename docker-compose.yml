@@ -123,10 +123,8 @@ services:
             - '80:80/tcp'
             - '443:443/tcp'
         volumes:
-            - '${CONFIG_DIR}/traefik:/etc/traefik'
+            - './traefik.toml:/etc/traefik/traefik.toml'
             - '/var/run/docker.sock:/var/run/docker.sock:ro'
-        entrypoint:
-            - '/traefik'
+        command:
             - '--acme.email=${CF_API_EMAIL}'
-            - '--docker.domain=${CF_DOMAIN}'
 
