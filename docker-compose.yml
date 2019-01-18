@@ -17,9 +17,8 @@ services:
             - 'traefik.port=32400'
             - 'traefik.protocol=http'
         volumes:
-            - './data/plex/config:/config'
-            - './data/plex/media/tv:/tv'
-            - './data/plex/media/movies:/movies'
+            - '${CONFIG_DIR}/plex:/config'
+            - '${DOWNLOADS_DIR}:/downloads'
             - '/tmp:/transcode'
 
     # https://hub.docker.com/r/linuxserver/nzbget/
@@ -37,8 +36,8 @@ services:
             - 'traefik.port=6789'
             - 'traefik.protocol=http'
         volumes:
-            - './data/nzbget/config:/config'
-            - './data/nzbget/downloads:/downloads'
+            - '${CONFIG_DIR}/nzbget:/config'
+            - '${DOWNLOADS_DIR}:/downloads'
 
     # https://hub.docker.com/r/linuxserver/sonarr/
     sonarr:
@@ -55,9 +54,8 @@ services:
             - 'traefik.port=8989'
             - 'traefik.protocol=http'
         volumes:
-            - './data/sonarr/config:/config'
-            - './data/nzbget/downloads:/downloads'
-            - './data/plex/media/tv:/tv'
+            - '${CONFIG_DIR}/sonarr:/config'
+            - '${DOWNLOADS_DIR}:/downloads'
 
     # https://hub.docker.com/r/linuxserver/radarr/
     radarr:
@@ -74,9 +72,8 @@ services:
             - 'traefik.port=7878'
             - 'traefik.protocol=http'
         volumes:
-            - './data/radarr/config:/config'
-            - './data/nzbget/downloads:/downloads'
-            - './data/plex/media/movies:/movies'
+            - '${CONFIG_DIR}/radarr:/config'
+            - '${DOWNLOADS_DIR}:/downloads'
 
     # https://hub.docker.com/r/linuxserver/hydra2/
     hydra:
@@ -93,8 +90,8 @@ services:
             - 'traefik.port=5076'
             - 'traefik.protocol=http'
         volumes:
-            - './data/hydra/config:/config'
-            - './data/hydra/downloads:/downloads'
+            - '${CONFIG_DIR}/hydra:/config'
+            - '${DOWNLOADS_DIR}:/downloads'
 
     # https://hub.docker.com/r/linuxserver/duplicati/
     duplicati:
@@ -111,8 +108,7 @@ services:
             - 'traefik.port=8200'
             - 'traefik.protocol=http'
         volumes:
-            - './data/duplicati/config:/config'
-            - './data/duplicati/backups:/backups'
+            - '${CONFIG_DIR}/duplicati:/config'
             - '/:/source:ro'
     
     # https://hub.docker.com/_/traefik/
@@ -127,14 +123,10 @@ services:
             - '80:80/tcp'
             - '443:443/tcp'
         volumes:
+            - '${CONFIG_DIR}/traefik:/etc/traefik'
             - '/var/run/docker.sock:/var/run/docker.sock:ro'
-            - './traefik.toml:/etc/traefik/traefik.toml'
-            - 'traefik_acme:/etc/traefik/acme.json'
         entrypoint:
             - '/traefik'
             - '--acme.email=${CF_API_EMAIL}'
             - '--docker.domain=${CF_DOMAIN}'
-
-volumes:
-    traefik_acme:
 

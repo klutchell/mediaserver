@@ -61,9 +61,11 @@ git clone https://github.com/klutchell/mediaserver.git
 
 ```bash
 # copy env.sample to .env
+# this file will not be tracked by git
 cp env.sample .env
 
 # fill all required variables in .env
+# examples are provided
 nano .env
 ```
 
