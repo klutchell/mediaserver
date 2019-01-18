@@ -22,9 +22,8 @@ services:
             - '32413:32413/udp'
             - '32414:32414/udp'
         volumes:
-            - './data/plex/config:/config'
-            - './data/plex/media/tv:/tv'
-            - './data/plex/media/movies:/movies'
+            - '${CONFIG_DIR}/plex:/config'
+            - '${DOWNLOADS_DIR}:/downloads'
             - '/tmp:/transcode'
 
     # https://hub.docker.com/r/linuxserver/nzbget/
@@ -39,8 +38,8 @@ services:
         ports:
             - '6789:6789/tcp'
         volumes:
-            - './data/nzbget/config:/config'
-            - './data/nzbget/downloads:/downloads'
+            - '${CONFIG_DIR}/nzbget:/config'
+            - '${DOWNLOADS_DIR}:/downloads'
 
     # https://hub.docker.com/r/linuxserver/sonarr/
     sonarr:
@@ -54,9 +53,8 @@ services:
         ports:
             - '8989:8989/tcp'
         volumes:
-            - './data/sonarr/config:/config'
-            - './data/nzbget/downloads:/downloads'
-            - './data/plex/media/tv:/tv'
+            - '${CONFIG_DIR}/sonarr:/config'
+            - '${DOWNLOADS_DIR}:/downloads'
 
     # https://hub.docker.com/r/linuxserver/radarr/
     radarr:
@@ -70,9 +68,8 @@ services:
         ports:
             - '7878:7878/tcp'
         volumes:
-            - './data/radarr/config:/config'
-            - './data/nzbget/downloads:/downloads'
-            - './data/plex/media/movies:/movies'
+            - '${CONFIG_DIR}/radarr:/config'
+            - '${DOWNLOADS_DIR}:/downloads'
 
     # https://hub.docker.com/r/linuxserver/hydra2/
     hydra:
@@ -86,8 +83,8 @@ services:
         ports:
             - '5076:5076/tcp'
         volumes:
-            - './data/hydra/config:/config'
-            - './data/hydra/downloads:/downloads'
+            - '${CONFIG_DIR}/hydra:/config'
+            - '${DOWNLOADS_DIR}:/downloads'
 
     # https://hub.docker.com/r/linuxserver/duplicati/
     duplicati:
@@ -101,6 +98,6 @@ services:
         ports:
             - '8200:8200/tcp'
         volumes:
-            - './data/duplicati/config:/config'
+            - '${CONFIG_DIR}/duplicati:/config'
             - '/:/source:ro'
 
