@@ -67,6 +67,10 @@ cp env.sample .env
 # fill all required variables in .env
 # examples are provided
 nano .env
+
+# create an empty file for ssl/tls cert storage
+# this file will not be tracked by git
+sudo touch acme.json && sudo chmod 600 acme.json
 ```
 
 ## Deploy
