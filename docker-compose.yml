@@ -15,6 +15,8 @@ services:
             - 'traefik.enable=true'
             - 'traefik.frontend.rule=Host:plex.${CF_DOMAIN}'
             - 'traefik.port=32400'
+        ports:
+            - '32400:32400/tcp'
         volumes:
             - '${CONFIG_DIR}/plex:/config'
             - '${DOWNLOADS_DIR}:/downloads'
