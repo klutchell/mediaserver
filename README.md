@@ -29,8 +29,7 @@ docker-based plex & usenet media server using custom subdomains with tls
 ## Pre-Install
 
 1. login to [cloudflare](https://www.cloudflare.com/) and select your domain
-2. select `Full (strict)` under `Crypto` -> `SSL`
-3. add dns records for each service under `DNS` -> `DNS Records`
+2. add dns records for each service under `DNS` -> `DNS Records`
 
 |Type|Name|Value|
 |---|---|---|
@@ -60,13 +59,9 @@ git clone https://github.com/klutchell/mediaserver.git
 ## Configure
 
 ```bash
-# copy env.sample to .env
+# copy env.sample to .env and fill all fields
 # this file will not be tracked by git
-cp env.sample .env
-
-# fill all required variables in .env
-# examples are provided
-nano .env
+cp env.sample .env && nano .env
 
 # create an empty file for ssl/tls cert storage
 # this file will not be tracked by git
@@ -79,13 +74,14 @@ sudo touch acme.json && sudo chmod 600 acme.json
 # 1. pull latest public images
 docker-compose pull
 
-# 2. deploy containers with docker compose
+# 2. deploy or update containers with docker compose
 docker-compose up -d --remove-orphans
 ```
 
 ## Usage
 
-* Log into each service and enable http authentication
+* Log in to plex and claim server to your plex.tv account
+* Log in to each service and enable http authentication
 
 ## Author
 
@@ -101,9 +97,10 @@ maintainers, and the app creators.
 
 ## References
 
-* https://docs.traefik.io/configuration/acme/
+* https://docs.traefik.io/configuration/commons/
+* https://docs.traefik.io/configuration/entrypoints/
 * https://docs.traefik.io/configuration/backends/docker/
-* https://blog.linuxserver.io/2018/02/03/using-traefik-as-a-reverse-proxy-with-docker/
+* https://docs.traefik.io/configuration/acme/
 
 ## License
 
