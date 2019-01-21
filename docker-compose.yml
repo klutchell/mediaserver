@@ -15,7 +15,8 @@ services:
             - 'traefik.enable=true'
             - 'traefik.frontend.rule=Host:plex.${CF_DOMAIN}'
             - 'traefik.port=32400'
-            - 'traefik.protocol=http'
+        ports:
+            - '32400:32400/tcp'
         volumes:
             - '${CONFIG_DIR}/plex:/config'
             - '${DOWNLOADS_DIR}:/downloads'
@@ -34,7 +35,6 @@ services:
             - 'traefik.enable=true'
             - 'traefik.frontend.rule=Host:nzbget.${CF_DOMAIN}'
             - 'traefik.port=6789'
-            - 'traefik.protocol=http'
         volumes:
             - '${CONFIG_DIR}/nzbget:/config'
             - '${DOWNLOADS_DIR}:/downloads'
@@ -52,7 +52,6 @@ services:
             - 'traefik.enable=true'
             - 'traefik.frontend.rule=Host:sonarr.${CF_DOMAIN}'
             - 'traefik.port=8989'
-            - 'traefik.protocol=http'
         volumes:
             - '${CONFIG_DIR}/sonarr:/config'
             - '${DOWNLOADS_DIR}:/downloads'
@@ -70,7 +69,6 @@ services:
             - 'traefik.enable=true'
             - 'traefik.frontend.rule=Host:radarr.${CF_DOMAIN}'
             - 'traefik.port=7878'
-            - 'traefik.protocol=http'
         volumes:
             - '${CONFIG_DIR}/radarr:/config'
             - '${DOWNLOADS_DIR}:/downloads'
@@ -88,7 +86,6 @@ services:
             - 'traefik.enable=true'
             - 'traefik.frontend.rule=Host:hydra.${CF_DOMAIN}'
             - 'traefik.port=5076'
-            - 'traefik.protocol=http'
         volumes:
             - '${CONFIG_DIR}/hydra:/config'
             - '${DOWNLOADS_DIR}:/downloads'
@@ -106,7 +103,6 @@ services:
             - 'traefik.enable=true'
             - 'traefik.frontend.rule=Host:duplicati.${CF_DOMAIN}'
             - 'traefik.port=8200'
-            - 'traefik.protocol=http'
         volumes:
             - '${CONFIG_DIR}/duplicati:/config'
             - '/:/source:ro'
@@ -123,7 +119,8 @@ services:
             - '80:80/tcp'
             - '443:443/tcp'
         volumes:
-            - './traefik.toml:/etc/traefik/traefik.toml'
+            - './traefik.toml:/traefik.toml'
+            - './acme.json:/acme.json'
             - '/var/run/docker.sock:/var/run/docker.sock:ro'
         command:
             - '--acme.email=${CF_API_EMAIL}'
