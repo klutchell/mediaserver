@@ -77,18 +77,3 @@ services:
             - '${CONFIG_DIR}/hydra:/config'
             - '${DOWNLOADS_DIR}:/downloads'
 
-    # https://hub.docker.com/r/linuxserver/duplicati/
-    duplicati:
-        container_name: duplicati
-        image: linuxserver/duplicati
-        restart: unless-stopped
-        environment:
-            - 'PUID=${PUID}'
-            - 'PGID=${PGID}'
-            - 'TZ=${TZ}'
-        ports:
-            - '8200:8200/tcp'
-        volumes:
-            - '${CONFIG_DIR}/duplicati:/config'
-            - '/:/source:ro'
-

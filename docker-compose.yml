@@ -90,23 +90,6 @@ services:
             - '${CONFIG_DIR}/hydra:/config'
             - '${DOWNLOADS_DIR}:/downloads'
 
-    # https://hub.docker.com/r/linuxserver/duplicati/
-    duplicati:
-        container_name: duplicati
-        image: linuxserver/duplicati
-        restart: unless-stopped
-        environment:
-            - 'PUID=${PUID}'
-            - 'PGID=${PGID}'
-            - 'TZ=${TZ}'
-        labels:
-            - 'traefik.enable=true'
-            - 'traefik.frontend.rule=Host:duplicati.${CF_DOMAIN}'
-            - 'traefik.port=8200'
-        volumes:
-            - '${CONFIG_DIR}/duplicati:/config'
-            - '/:/source:ro'
-    
     # https://hub.docker.com/_/traefik/
     traefik:
         container_name: traefik
