@@ -39,19 +39,22 @@ cd mediaserver
 
 ## Configure
 
-1. copy env.sample to .env and fill all fields
+1. copy `env.sample` to `.env` and fill all required fields
 ```bash
 # this file will not be tracked by git
 cp env.sample .env && nano .env
 ```
 
-2. create an empty file for ssl/tls cert storage
+_skip remaining steps if NOT using traefik https proxy_
+
+2. create an empty file `acme.json` for ssl/tls cert storage
+
 ```bash
 # this file will not be tracked by git
 sudo touch acme.json && sudo chmod 600 acme.json
 ```
 
-3. login to [cloudflare](https://www.cloudflare.com/) and add dns records
+3. login to [cloudflare](https://www.cloudflare.com/) and add dns records 
 for each service under `DNS` -> `DNS Records`
 
 |Type|Name|Value|
@@ -64,21 +67,23 @@ for each service under `DNS` -> `DNS Records`
 
 ## Deploy
 
-1. pull latest public images
+_if using traefik https proxy_
+
 ```bash
-# with traefik https proxy
+# pull latest public images
 docker-compose pull
 
-# without traefik https proxy
-docker-compose -f docker-compose.noproxy.yml pull
+# deploy (or update) containers with docker compose
+docker-compose up -d --remove-orphans
 ```
 
-2. deploy (or update) containers with docker compose
-```bash
-# with traefik https proxy
-docker-compose up -d --remove-orphans
+_if NOT using traefik https proxy_
 
-# without traefik https proxy
+```bash
+# pull latest public images
+docker-compose -f docker-compose.noproxy.yml pull
+
+# deploy (or update) containers with docker compose
 docker-compose -f docker-compose.noproxy.yml up -d --remove-orphans
 ```
 
