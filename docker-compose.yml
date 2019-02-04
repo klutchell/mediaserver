@@ -13,7 +13,7 @@ services:
             - 'VERSION=latest'
         labels:
             - 'traefik.enable=true'
-            - 'traefik.frontend.rule=Host:plex.${CF_DOMAIN}'
+            - 'traefik.frontend.rule=Host:plex.${CF_DOMAIN},${CF_DOMAIN}'
             - 'traefik.port=32400'
         ports:
             - '32400:32400/tcp'
