@@ -51,16 +51,15 @@ cp env.sample .env && nano .env
 sudo touch acme.json && sudo chmod 600 acme.json
 ```
 
-3. login to [cloudflare](https://www.cloudflare.com/) and add dns records
-for each service under `DNS` -> `DNS Records`
+3. login to [cloudflare](https://www.cloudflare.com/), select your domain,
+   and add the following under `DNS` -> `DNS Records` pointing to your server public IP.
 
-|Type|Name|Value|
-|---|---|---|
-|`A`|`plex.exampledomain.com`|`xxx.xxx.xxx.xxx`|
-|`A`|`hydra.exampledomain.com`|`xxx.xxx.xxx.xxx`|
-|`A`|`sonarr.exampledomain.com`|`xxx.xxx.xxx.xxx`|
-|`A`|`radarr.exampledomain.com`|`xxx.xxx.xxx.xxx`|
-|`A`|`nzbget.exampledomain.com`|`xxx.xxx.xxx.xxx`|
+* `Type A` : `exampledomain.com`
+* `Type A` : `plex`
+* `Type A` : `hydra`
+* `Type A` : `sonarr`
+* `Type A` : `radarr`
+* `Type A` : `nzbget`
 
 ## Deploy
 
