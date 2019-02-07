@@ -55,6 +55,9 @@ services:
         volumes:
             - '${CONFIG_DIR}/sonarr:/config'
             - '${DOWNLOADS_DIR}:/downloads'
+        links:
+            - hydra
+            - nzbget
 
     # https://hub.docker.com/r/linuxserver/radarr/
     radarr:
@@ -72,6 +75,9 @@ services:
         volumes:
             - '${CONFIG_DIR}/radarr:/config'
             - '${DOWNLOADS_DIR}:/downloads'
+        links:
+            - hydra
+            - nzbget
 
     # https://hub.docker.com/r/linuxserver/hydra2/
     hydra:
