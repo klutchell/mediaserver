@@ -38,15 +38,17 @@ git clone https://github.com/klutchell/mediaserver.git && cd mediaserver
 
 ## Configuration
 
-1. copy `env.sample` to `.env` and fill all required fields
+copy `env.sample` to `.env` and fill all required fields
 ```bash
 # this file will not be tracked by git
 cp env.sample .env && nano .env
 ```
 
-_if using traefik https proxy_
+## Deployment
 
-2. login to [cloudflare](https://www.cloudflare.com/), select your domain,
+### with optional https proxy & cloudflare
+
+1. login to [cloudflare](https://www.cloudflare.com/), select your domain,
 	and add the following under `DNS` -> `DNS Records` pointing to your server public IP.
 
 * `Type A` : `exampledomain.com`
@@ -56,25 +58,19 @@ _if using traefik https proxy_
 * `Type A` : `radarr`
 * `Type A` : `nzbget`
 
-## Deployment
-
-_if using traefik https proxy_
+2. pull and deploy containers with docker compose
 
 ```bash
-# pull latest public images
 docker-compose pull
-
-# deploy (or update) containers with docker compose
 docker-compose up -d --remove-orphans
 ```
 
-_if NOT using traefik https proxy_
+### without https proxy
+
+1. pull and deploy containers with docker compose
 
 ```bash
-# pull latest public images
 docker-compose -f docker-compose.noproxy.yml pull
-
-# deploy (or update) containers with docker compose
 docker-compose -f docker-compose.noproxy.yml up -d --remove-orphans
 ```
 
