@@ -22,8 +22,8 @@ docker-based plex & usenet media server using custom subdomains with tls
 
 * dedicated server or PC with plenty of storage
 * windows or linux x86/x64 os (not ARM)
-* custom top-level domain with configurable sub-domains (eg. plex.exampledomain.com)
-* [cloudflare](https://www.cloudflare.com/) dns and proxy
+* _(optional)_ custom top-level domain with configurable sub-domains (eg. plex.exampledomain.com)
+* _(optional)_ [cloudflare](https://www.cloudflare.com/) dns and proxy
 
 ## Installation
 
@@ -33,8 +33,7 @@ docker-based plex & usenet media server using custom subdomains with tls
 
 3. clone mediaserver repo
 ```bash
-git clone https://github.com/klutchell/mediaserver.git
-cd mediaserver
+git clone https://github.com/klutchell/mediaserver.git && cd mediaserver
 ```
 
 ## Configuration
@@ -45,16 +44,9 @@ cd mediaserver
 cp env.sample .env && nano .env
 ```
 
-_skip remaining steps if NOT using traefik https proxy_
+_if using traefik https proxy_
 
-2. create an empty file `acme.json` for ssl/tls cert storage
-
-```bash
-# this file will not be tracked by git
-sudo touch acme.json && sudo chmod 600 acme.json
-```
-
-3. login to [cloudflare](https://www.cloudflare.com/), select your domain,
+2. login to [cloudflare](https://www.cloudflare.com/), select your domain,
 	and add the following under `DNS` -> `DNS Records` pointing to your server public IP.
 
 * `Type A` : `exampledomain.com`
