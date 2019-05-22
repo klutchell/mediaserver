@@ -127,7 +127,7 @@ exposedByDefault = false
 #
 # Required
 #
-storage = "/tmp/acme.json"
+storage = "/acme/acme.json"
 # or `storage = "traefik/acme/account"` if using KV store.
 
 # Entrypoint to proxy acme apply certificates to.
