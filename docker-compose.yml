@@ -7,14 +7,14 @@ services:
         image: linuxserver/plex
         restart: unless-stopped
         environment:
-            - 'PUID=${PUID}'
-            - 'PGID=${PGID}'
-            - 'TZ=${TZ}'
-            - 'VERSION=latest'
+            PUID: '${PUID}'
+            PGID: '${PGID}'
+            TZ: '${TZ}'
+            VERSION: 'latest'
         labels:
-            - 'traefik.enable=true'
-            - 'traefik.frontend.rule=Host:plex.${CF_DOMAIN},${CF_DOMAIN}'
-            - 'traefik.port=32400'
+            traefik.enable: true
+            traefik.frontend.rule: 'Host:plex.${CF_DOMAIN},${CF_DOMAIN}'
+            traefik.port: 32400
         ports:
             - '32400:32400/tcp'
         volumes:
@@ -28,13 +28,13 @@ services:
         image: linuxserver/nzbget
         restart: unless-stopped
         environment:
-            - 'PUID=${PUID}'
-            - 'PGID=${PGID}'
-            - 'TZ=${TZ}'
+            PUID: '${PUID}'
+            PGID: '${PGID}'
+            TZ: '${TZ}'
         labels:
-            - 'traefik.enable=true'
-            - 'traefik.frontend.rule=Host:nzbget.${CF_DOMAIN}'
-            - 'traefik.port=6789'
+            traefik.enable: true
+            traefik.frontend.rule: 'Host:nzbget.${CF_DOMAIN}'
+            traefik.port: 6789
         volumes:
             - '${CONFIG_DIR}/nzbget:/config'
             - '${DOWNLOADS_DIR}:/downloads'
@@ -45,13 +45,13 @@ services:
         image: linuxserver/sonarr
         restart: unless-stopped
         environment:
-            - 'PUID=${PUID}'
-            - 'PGID=${PGID}'
-            - 'TZ=${TZ}'
+            PUID: '${PUID}'
+            PGID: '${PGID}'
+            TZ: '${TZ}'
         labels:
-            - 'traefik.enable=true'
-            - 'traefik.frontend.rule=Host:sonarr.${CF_DOMAIN}'
-            - 'traefik.port=8989'
+            traefik.enable: true
+            traefik.frontend.rule: 'Host:sonarr.${CF_DOMAIN}'
+            traefik.port: 8989
         volumes:
             - '${CONFIG_DIR}/sonarr:/config'
             - '${DOWNLOADS_DIR}:/downloads'
@@ -65,13 +65,13 @@ services:
         image: linuxserver/radarr
         restart: unless-stopped
         environment:
-            - 'PUID=${PUID}'
-            - 'PGID=${PGID}'
-            - 'TZ=${TZ}'
+            PUID: '${PUID}'
+            PGID: '${PGID}'
+            TZ: '${TZ}'
         labels:
-            - 'traefik.enable=true'
-            - 'traefik.frontend.rule=Host:radarr.${CF_DOMAIN}'
-            - 'traefik.port=7878'
+            traefik.enable: true
+            traefik.frontend.rule: 'Host:radarr.${CF_DOMAIN}'
+            traefik.port: 7878
         volumes:
             - '${CONFIG_DIR}/radarr:/config'
             - '${DOWNLOADS_DIR}:/downloads'
@@ -85,13 +85,13 @@ services:
         image: linuxserver/hydra2
         restart: unless-stopped
         environment:
-            - 'PUID=${PUID}'
-            - 'PGID=${PGID}'
-            - 'TZ=${TZ}'
+            PUID: '${PUID}'
+            PGID: '${PGID}'
+            TZ: '${TZ}'
         labels:
-            - 'traefik.enable=true'
-            - 'traefik.frontend.rule=Host:hydra.${CF_DOMAIN}'
-            - 'traefik.port=5076'
+            traefik.enable: true
+            traefik.frontend.rule: 'Host:hydra.${CF_DOMAIN}'
+            traefik.port: 5076
         volumes:
             - '${CONFIG_DIR}/hydra:/config'
             - '${DOWNLOADS_DIR}:/downloads'
@@ -102,8 +102,8 @@ services:
         image: traefik
         restart: unless-stopped
         environment:
-            - 'CF_API_EMAIL=${CF_API_EMAIL}'
-            - 'CF_API_KEY=${CF_API_KEY}'
+            CF_API_EMAIL: '${CF_API_EMAIL}'
+            CF_API_KEY: '${CF_API_KEY}'
         ports:
             - '80:80/tcp'
             - '443:443/tcp'
