@@ -22,8 +22,22 @@ docker-based plex & usenet media server using custom subdomains with tls
 
 * dedicated server or PC with plenty of storage
 * windows or linux x86/x64 os (not ARM)
-* _(optional)_ custom top-level domain with configurable sub-domains (eg. plex.exampledomain.com)
-* _(optional)_ [cloudflare](https://www.cloudflare.com/) dns and proxy
+* personal top-level domain with configurable sub-domains (eg. plex.exampledomain.com)
+* [cloudflare](https://www.cloudflare.com/) or a similar supported [ACME provider](https://docs.traefik.io/configuration/acme/)
+
+## ACME & DNS
+
+Login to your DNS provider ([cloudflare](https://www.cloudflare.com/) in my case), select your domain,
+	and add the following DNS Records pointing to your server public IP.
+
+* `Type A` : `exampledomain.com`
+* `Type A` : `plex`
+* `Type A` : `hydra`
+* `Type A` : `sonarr`
+* `Type A` : `radarr`
+* `Type A` : `nzbget`
+* `Type A` : `traefik`
+* `Type A` : `*`
 
 ## Installation
 
@@ -38,7 +52,8 @@ git clone https://github.com/klutchell/mediaserver.git && cd mediaserver
 
 ## Configuration
 
-copy `env.sample` to `.env` and fill all required fields
+Copy `env.sample` to `.env` and fill all required fields
+
 ```bash
 # this file will not be tracked by git
 cp env.sample .env && nano .env
@@ -46,38 +61,17 @@ cp env.sample .env && nano .env
 
 ## Deployment
 
-### with optional https proxy & cloudflare
-
-1. login to [cloudflare](https://www.cloudflare.com/), select your domain,
-	and add the following under `DNS` -> `DNS Records` pointing to your server public IP.
-
-* `Type A` : `exampledomain.com`
-* `Type A` : `plex`
-* `Type A` : `hydra`
-* `Type A` : `sonarr`
-* `Type A` : `radarr`
-* `Type A` : `nzbget`
-
-2. pull and deploy containers with docker compose
+Pull and deploy containers with docker-compose
 
 ```bash
 docker-compose pull
 docker-compose up -d --remove-orphans
 ```
 
-### without https proxy
-
-1. pull and deploy containers with docker compose
-
-```bash
-docker-compose -f docker-compose.noproxy.yml pull
-docker-compose -f docker-compose.noproxy.yml up -d --remove-orphans
-```
-
 ## Usage
 
 * Log in to plex and claim server to your plex.tv account
-* Log in to each service and enable http authentication
+* Log in to hydra, sonarr, radarr, and nzbget and enable authentication
 
 ## Author
 
