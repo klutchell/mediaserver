@@ -6,7 +6,7 @@ docker-based plex & usenet media server using custom subdomains with tls
 
 * host each service as a subdomain of a personal domain over https
 * run public maintained images with no modifications
-* keep source repo small (3 required files)
+* keep source repo small (2 required files)
 * require minimal configuration and setup
 
 ## Features
@@ -47,7 +47,7 @@ Login to your DNS provider ([cloudflare](https://www.cloudflare.com/) in my case
 
 3. clone mediaserver repo
 ```bash
-git clone https://github.com/klutchell/mediaserver.git && cd mediaserver
+git clone https://github.com/klutchell/mediaserver.git
 ```
 
 ## Configuration
@@ -55,8 +55,13 @@ git clone https://github.com/klutchell/mediaserver.git && cd mediaserver
 Copy `env.sample` to `.env` and fill all required fields
 
 ```bash
-# this file will not be tracked by git
 cp env.sample .env && nano .env
+```
+
+Optionally install pre-commit hook to keep `env.sample` up-to-date
+
+```bash
+ln -s ../../pre-commit .git/hooks/pre-commit
 ```
 
 ## Deployment
