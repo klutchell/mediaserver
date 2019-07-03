@@ -30,18 +30,18 @@ services:
             traefik.frontend.redirect.entryPoint: https
             traefik.frontend.priority: 1
             traefik.frontend.passHostHeader: true
-            traefik.frontend.headers.SSLForceHost: true
-            traefik.frontend.headers.SSLHost: plex.${DOMAINNAME}
-            traefik.frontend.headers.SSLRedirect: true
-            traefik.frontend.headers.browserXSSFilter: true
-            traefik.frontend.headers.contentTypeNosniff: true
-            traefik.frontend.headers.forceSTSHeader: true
-            traefik.frontend.headers.STSSeconds: 315360000
-            traefik.frontend.headers.STSIncludeSubdomains: true
-            traefik.frontend.headers.STSPreload: true
-            traefik.frontend.headers.customResponseHeaders: X-Robots-Tag:noindex,nofollow,nosnippet,noarchive,notranslate,noimageindex
-            traefik.frontend.headers.frameDeny: true
-            traefik.frontend.headers.customFrameOptionsValue: 'allow-from https:${DOMAINNAME}'
+            # traefik.frontend.headers.SSLForceHost: true
+            # traefik.frontend.headers.SSLHost: plex.${DOMAINNAME}
+            # traefik.frontend.headers.SSLRedirect: true
+            # traefik.frontend.headers.browserXSSFilter: true
+            # traefik.frontend.headers.contentTypeNosniff: true
+            # traefik.frontend.headers.forceSTSHeader: true
+            # traefik.frontend.headers.STSSeconds: 315360000
+            # traefik.frontend.headers.STSIncludeSubdomains: true
+            # traefik.frontend.headers.STSPreload: true
+            # traefik.frontend.headers.customResponseHeaders: X-Robots-Tag:noindex,nofollow,nosnippet,noarchive,notranslate,noimageindex
+            # traefik.frontend.headers.frameDeny: true
+            # traefik.frontend.headers.customFrameOptionsValue: 'allow-from https:${DOMAINNAME}'
             # traefik.frontend.auth.forward.address: http://oauth:4181
             # traefik.frontend.auth.basic.users: ${HTPASSWD}
 
