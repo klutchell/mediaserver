@@ -22,7 +22,7 @@ docker-based plex & usenet media server using custom subdomains with tls
 
 * dedicated server or PC with plenty of storage
 * windows or linux x86/x64 os (not ARM)
-* personal top-level domain with configurable sub-domains (eg. plex.exampledomain.com)
+* personal top-level domain with configurable sub-domains (eg. plex.mydomain.com)
 * [cloudflare](https://www.cloudflare.com/) or a similar supported [ACME provider](https://docs.traefik.io/configuration/acme/)
 
 ## ACME & DNS
@@ -30,7 +30,7 @@ docker-based plex & usenet media server using custom subdomains with tls
 Login to your DNS provider ([cloudflare](https://www.cloudflare.com/) in my case), select your domain,
 	and add the following DNS Records pointing to your server public IP.
 
-* `Type A` : `exampledomain.com`
+* `Type A` : `mydomain.com`
 * `Type A` : `plex`
 * `Type A` : `hydra`
 * `Type A` : `sonarr`
