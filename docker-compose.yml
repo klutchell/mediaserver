@@ -30,18 +30,6 @@ services:
             traefik.frontend.redirect.entryPoint: https
             traefik.frontend.priority: 1
             traefik.frontend.passHostHeader: true
-            # traefik.frontend.headers.SSLForceHost: true
-            # traefik.frontend.headers.SSLHost: plex.${ROOT_DOMAIN}
-            # traefik.frontend.headers.SSLRedirect: true
-            # traefik.frontend.headers.browserXSSFilter: true
-            # traefik.frontend.headers.contentTypeNosniff: true
-            # traefik.frontend.headers.forceSTSHeader: true
-            # traefik.frontend.headers.STSSeconds: 315360000
-            # traefik.frontend.headers.STSIncludeSubdomains: true
-            # traefik.frontend.headers.STSPreload: true
-            # traefik.frontend.headers.customResponseHeaders: X-Robots-Tag:noindex,nofollow,nosnippet,noarchive,notranslate,noimageindex
-            # traefik.frontend.headers.frameDeny: true
-            # traefik.frontend.headers.customFrameOptionsValue: 'allow-from https:${ROOT_DOMAIN}'
             # traefik.frontend.auth.forward.address: http://oauth:4181
             # traefik.frontend.auth.basic.users: ${HTPASSWD}
 
@@ -70,18 +58,6 @@ services:
             traefik.frontend.redirect.entryPoint: https
             traefik.frontend.priority: 1
             traefik.frontend.passHostHeader: true
-            # traefik.frontend.headers.SSLForceHost: true
-            # traefik.frontend.headers.SSLHost: nzbget.${ROOT_DOMAIN}
-            # traefik.frontend.headers.SSLRedirect: true
-            # traefik.frontend.headers.browserXSSFilter: true
-            # traefik.frontend.headers.contentTypeNosniff: true
-            # traefik.frontend.headers.forceSTSHeader: true
-            # traefik.frontend.headers.STSSeconds: 315360000
-            # traefik.frontend.headers.STSIncludeSubdomains: true
-            # traefik.frontend.headers.STSPreload: true
-            # traefik.frontend.headers.customResponseHeaders: X-Robots-Tag:noindex,nofollow,nosnippet,noarchive,notranslate,noimageindex
-            # traefik.frontend.headers.frameDeny: true
-            # traefik.frontend.headers.customFrameOptionsValue: 'allow-from https:${ROOT_DOMAIN}'
             # traefik.frontend.auth.forward.address: http://oauth:4181
             # traefik.frontend.auth.basic.users: ${HTPASSWD}
 
@@ -110,18 +86,6 @@ services:
             traefik.frontend.redirect.entryPoint: https
             traefik.frontend.priority: 1
             traefik.frontend.passHostHeader: true
-            # traefik.frontend.headers.SSLForceHost: true
-            # traefik.frontend.headers.SSLHost: sonarr.${ROOT_DOMAIN}
-            # traefik.frontend.headers.SSLRedirect: true
-            # traefik.frontend.headers.browserXSSFilter: true
-            # traefik.frontend.headers.contentTypeNosniff: true
-            # traefik.frontend.headers.forceSTSHeader: true
-            # traefik.frontend.headers.STSSeconds: 315360000
-            # traefik.frontend.headers.STSIncludeSubdomains: true
-            # traefik.frontend.headers.STSPreload: true
-            # traefik.frontend.headers.customResponseHeaders: X-Robots-Tag:noindex,nofollow,nosnippet,noarchive,notranslate,noimageindex
-            # traefik.frontend.headers.frameDeny: true
-            # traefik.frontend.headers.customFrameOptionsValue: 'allow-from https:${ROOT_DOMAIN}'
             # traefik.frontend.auth.forward.address: http://oauth:4181
             # traefik.frontend.auth.basic.users: ${HTPASSWD}
         links:
@@ -153,18 +117,6 @@ services:
             traefik.frontend.redirect.entryPoint: https
             traefik.frontend.priority: 1
             traefik.frontend.passHostHeader: true
-            # traefik.frontend.headers.SSLForceHost: true
-            # traefik.frontend.headers.SSLHost: radarr.${ROOT_DOMAIN}
-            # traefik.frontend.headers.SSLRedirect: true
-            # traefik.frontend.headers.browserXSSFilter: true
-            # traefik.frontend.headers.contentTypeNosniff: true
-            # traefik.frontend.headers.forceSTSHeader: true
-            # traefik.frontend.headers.STSSeconds: 315360000
-            # traefik.frontend.headers.STSIncludeSubdomains: true
-            # traefik.frontend.headers.STSPreload: true
-            # traefik.frontend.headers.customResponseHeaders: X-Robots-Tag:noindex,nofollow,nosnippet,noarchive,notranslate,noimageindex
-            # traefik.frontend.headers.frameDeny: true
-            # traefik.frontend.headers.customFrameOptionsValue: 'allow-from https:${ROOT_DOMAIN}'
             # traefik.frontend.auth.forward.address: http://oauth:4181
             # traefik.frontend.auth.basic.users: ${HTPASSWD}
         links:
@@ -196,18 +148,6 @@ services:
             traefik.frontend.redirect.entryPoint: https
             traefik.frontend.priority: 1
             traefik.frontend.passHostHeader: true
-            # traefik.frontend.headers.SSLForceHost: true
-            # traefik.frontend.headers.SSLHost: hydra.${ROOT_DOMAIN}
-            # traefik.frontend.headers.SSLRedirect: true
-            # traefik.frontend.headers.browserXSSFilter: true
-            # traefik.frontend.headers.contentTypeNosniff: true
-            # traefik.frontend.headers.forceSTSHeader: true
-            # traefik.frontend.headers.STSSeconds: 315360000
-            # traefik.frontend.headers.STSIncludeSubdomains: true
-            # traefik.frontend.headers.STSPreload: true
-            # traefik.frontend.headers.customResponseHeaders: X-Robots-Tag:noindex,nofollow,nosnippet,noarchive,notranslate,noimageindex
-            # traefik.frontend.headers.frameDeny: true
-            # traefik.frontend.headers.customFrameOptionsValue: 'allow-from https:${ROOT_DOMAIN}'
             # traefik.frontend.auth.forward.address: http://oauth:4181
             # traefik.frontend.auth.basic.users: ${HTPASSWD}
 
@@ -264,18 +204,6 @@ services:
             traefik.frontend.redirect.entryPoint: https
             traefik.frontend.priority: 1
             traefik.frontend.passHostHeader: true
-            traefik.frontend.headers.SSLForceHost: true
-            traefik.frontend.headers.SSLHost: traefik.${ROOT_DOMAIN}
-            traefik.frontend.headers.SSLRedirect: true
-            traefik.frontend.headers.browserXSSFilter: true
-            traefik.frontend.headers.contentTypeNosniff: true
-            traefik.frontend.headers.forceSTSHeader: true
-            traefik.frontend.headers.STSSeconds: 315360000
-            traefik.frontend.headers.STSIncludeSubdomains: true
-            traefik.frontend.headers.STSPreload: true
-            traefik.frontend.headers.customResponseHeaders: X-Robots-Tag:noindex,nofollow,nosnippet,noarchive,notranslate,noimageindex
-            traefik.frontend.headers.frameDeny: true
-            traefik.frontend.headers.customFrameOptionsValue: 'allow-from https:${ROOT_DOMAIN}'
             # traefik.frontend.auth.forward.address: http://oauth:4181
             traefik.frontend.auth.basic.users: ${HTPASSWD}
 
