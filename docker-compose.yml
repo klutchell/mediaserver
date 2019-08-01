@@ -25,13 +25,13 @@ services:
             traefik.backend: plex
             traefik.protocol: http
             traefik.port: 32400
-            traefik.frontend.rule: Host:plex.${DOMAINNAME},${DOMAINNAME}
+            traefik.frontend.rule: Host:plex.${ROOT_DOMAIN},${ROOT_DOMAIN}
             traefik.frontend.entryPoint: http
             traefik.frontend.redirect.entryPoint: https
             traefik.frontend.priority: 1
             traefik.frontend.passHostHeader: true
             # traefik.frontend.headers.SSLForceHost: true
-            # traefik.frontend.headers.SSLHost: plex.${DOMAINNAME}
+            # traefik.frontend.headers.SSLHost: plex.${ROOT_DOMAIN}
             # traefik.frontend.headers.SSLRedirect: true
             # traefik.frontend.headers.browserXSSFilter: true
             # traefik.frontend.headers.contentTypeNosniff: true
@@ -41,7 +41,7 @@ services:
             # traefik.frontend.headers.STSPreload: true
             # traefik.frontend.headers.customResponseHeaders: X-Robots-Tag:noindex,nofollow,nosnippet,noarchive,notranslate,noimageindex
             # traefik.frontend.headers.frameDeny: true
-            # traefik.frontend.headers.customFrameOptionsValue: 'allow-from https:${DOMAINNAME}'
+            # traefik.frontend.headers.customFrameOptionsValue: 'allow-from https:${ROOT_DOMAIN}'
             # traefik.frontend.auth.forward.address: http://oauth:4181
             # traefik.frontend.auth.basic.users: ${HTPASSWD}
 
@@ -65,13 +65,13 @@ services:
             traefik.backend: nzbget
             traefik.protocol: http
             traefik.port: 6789
-            traefik.frontend.rule: Host:nzbget.${DOMAINNAME}
+            traefik.frontend.rule: Host:nzbget.${ROOT_DOMAIN}
             traefik.frontend.entryPoint: http
             traefik.frontend.redirect.entryPoint: https
             traefik.frontend.priority: 1
             traefik.frontend.passHostHeader: true
             # traefik.frontend.headers.SSLForceHost: true
-            # traefik.frontend.headers.SSLHost: nzbget.${DOMAINNAME}
+            # traefik.frontend.headers.SSLHost: nzbget.${ROOT_DOMAIN}
             # traefik.frontend.headers.SSLRedirect: true
             # traefik.frontend.headers.browserXSSFilter: true
             # traefik.frontend.headers.contentTypeNosniff: true
@@ -81,7 +81,7 @@ services:
             # traefik.frontend.headers.STSPreload: true
             # traefik.frontend.headers.customResponseHeaders: X-Robots-Tag:noindex,nofollow,nosnippet,noarchive,notranslate,noimageindex
             # traefik.frontend.headers.frameDeny: true
-            # traefik.frontend.headers.customFrameOptionsValue: 'allow-from https:${DOMAINNAME}'
+            # traefik.frontend.headers.customFrameOptionsValue: 'allow-from https:${ROOT_DOMAIN}'
             # traefik.frontend.auth.forward.address: http://oauth:4181
             # traefik.frontend.auth.basic.users: ${HTPASSWD}
 
@@ -105,13 +105,13 @@ services:
             traefik.backend: sonarr
             traefik.protocol: http
             traefik.port: 8989
-            traefik.frontend.rule: Host:sonarr.${DOMAINNAME}
+            traefik.frontend.rule: Host:sonarr.${ROOT_DOMAIN}
             traefik.frontend.entryPoint: http
             traefik.frontend.redirect.entryPoint: https
             traefik.frontend.priority: 1
             traefik.frontend.passHostHeader: true
             # traefik.frontend.headers.SSLForceHost: true
-            # traefik.frontend.headers.SSLHost: sonarr.${DOMAINNAME}
+            # traefik.frontend.headers.SSLHost: sonarr.${ROOT_DOMAIN}
             # traefik.frontend.headers.SSLRedirect: true
             # traefik.frontend.headers.browserXSSFilter: true
             # traefik.frontend.headers.contentTypeNosniff: true
@@ -121,7 +121,7 @@ services:
             # traefik.frontend.headers.STSPreload: true
             # traefik.frontend.headers.customResponseHeaders: X-Robots-Tag:noindex,nofollow,nosnippet,noarchive,notranslate,noimageindex
             # traefik.frontend.headers.frameDeny: true
-            # traefik.frontend.headers.customFrameOptionsValue: 'allow-from https:${DOMAINNAME}'
+            # traefik.frontend.headers.customFrameOptionsValue: 'allow-from https:${ROOT_DOMAIN}'
             # traefik.frontend.auth.forward.address: http://oauth:4181
             # traefik.frontend.auth.basic.users: ${HTPASSWD}
         links:
@@ -148,13 +148,13 @@ services:
             traefik.backend: radarr
             traefik.protocol: http
             traefik.port: 7878
-            traefik.frontend.rule: Host:radarr.${DOMAINNAME}
+            traefik.frontend.rule: Host:radarr.${ROOT_DOMAIN}
             traefik.frontend.entryPoint: http
             traefik.frontend.redirect.entryPoint: https
             traefik.frontend.priority: 1
             traefik.frontend.passHostHeader: true
             # traefik.frontend.headers.SSLForceHost: true
-            # traefik.frontend.headers.SSLHost: radarr.${DOMAINNAME}
+            # traefik.frontend.headers.SSLHost: radarr.${ROOT_DOMAIN}
             # traefik.frontend.headers.SSLRedirect: true
             # traefik.frontend.headers.browserXSSFilter: true
             # traefik.frontend.headers.contentTypeNosniff: true
@@ -164,7 +164,7 @@ services:
             # traefik.frontend.headers.STSPreload: true
             # traefik.frontend.headers.customResponseHeaders: X-Robots-Tag:noindex,nofollow,nosnippet,noarchive,notranslate,noimageindex
             # traefik.frontend.headers.frameDeny: true
-            # traefik.frontend.headers.customFrameOptionsValue: 'allow-from https:${DOMAINNAME}'
+            # traefik.frontend.headers.customFrameOptionsValue: 'allow-from https:${ROOT_DOMAIN}'
             # traefik.frontend.auth.forward.address: http://oauth:4181
             # traefik.frontend.auth.basic.users: ${HTPASSWD}
         links:
@@ -191,13 +191,13 @@ services:
             traefik.backend: hydra
             traefik.protocol: http
             traefik.port: 5076
-            traefik.frontend.rule: Host:hydra.${DOMAINNAME}
+            traefik.frontend.rule: Host:hydra.${ROOT_DOMAIN}
             traefik.frontend.entryPoint: http
             traefik.frontend.redirect.entryPoint: https
             traefik.frontend.priority: 1
             traefik.frontend.passHostHeader: true
             # traefik.frontend.headers.SSLForceHost: true
-            # traefik.frontend.headers.SSLHost: hydra.${DOMAINNAME}
+            # traefik.frontend.headers.SSLHost: hydra.${ROOT_DOMAIN}
             # traefik.frontend.headers.SSLRedirect: true
             # traefik.frontend.headers.browserXSSFilter: true
             # traefik.frontend.headers.contentTypeNosniff: true
@@ -207,7 +207,7 @@ services:
             # traefik.frontend.headers.STSPreload: true
             # traefik.frontend.headers.customResponseHeaders: X-Robots-Tag:noindex,nofollow,nosnippet,noarchive,notranslate,noimageindex
             # traefik.frontend.headers.frameDeny: true
-            # traefik.frontend.headers.customFrameOptionsValue: 'allow-from https:${DOMAINNAME}'
+            # traefik.frontend.headers.customFrameOptionsValue: 'allow-from https:${ROOT_DOMAIN}'
             # traefik.frontend.auth.forward.address: http://oauth:4181
             # traefik.frontend.auth.basic.users: ${HTPASSWD}
 
@@ -219,8 +219,8 @@ services:
         restart: unless-stopped
         environment:
             TZ: '${TZ}'
-            CLOUDFLARE_EMAIL: '${CLOUDFLARE_EMAIL}'
-            CLOUDFLARE_API_KEY: '${CLOUDFLARE_API_KEY}'
+            CF_API_EMAIL: '${CF_API_EMAIL}'
+            CF_API_KEY: '${CF_API_KEY}'
         networks:
             - traefik
         ports:
@@ -243,13 +243,13 @@ services:
             - "--acme.dnsChallenge.delayBeforeCheck=60"
             - "--acme.dnsChallenge.resolvers=1.1.1.1,1.0.0.1"
             - "--acme.onHostRule=true"
-            - "--acme.email=${CLOUDFLARE_EMAIL}"
+            - "--acme.email=${CF_API_EMAIL}"
             - "--acme.acmeLogging=true"
-            - "--acme.domains=${DOMAINNAME},*.${DOMAINNAME},"
+            - "--acme.domains=${ROOT_DOMAIN},*.${ROOT_DOMAIN}"
             - "--acme.KeyType=RSA4096"
             # - "--acme.caServer=https://acme-staging-v02.api.letsencrypt.org/directory" # staging server
             - "--docker"
-            - "--docker.domain=${DOMAINNAME}"
+            - "--docker.domain=${ROOT_DOMAIN}"
             - "--docker.watch"
             - "--docker.exposedbydefault=false"
             - "--retry"
@@ -259,13 +259,13 @@ services:
             traefik.backend: traefik
             traefik.protocol: http
             traefik.port: 8080
-            traefik.frontend.rule: Host:traefik.${DOMAINNAME}
+            traefik.frontend.rule: Host:traefik.${ROOT_DOMAIN}
             traefik.frontend.entryPoint: http
             traefik.frontend.redirect.entryPoint: https
             traefik.frontend.priority: 1
             traefik.frontend.passHostHeader: true
             traefik.frontend.headers.SSLForceHost: true
-            traefik.frontend.headers.SSLHost: traefik.${DOMAINNAME}
+            traefik.frontend.headers.SSLHost: traefik.${ROOT_DOMAIN}
             traefik.frontend.headers.SSLRedirect: true
             traefik.frontend.headers.browserXSSFilter: true
             traefik.frontend.headers.contentTypeNosniff: true
@@ -275,7 +275,7 @@ services:
             traefik.frontend.headers.STSPreload: true
             traefik.frontend.headers.customResponseHeaders: X-Robots-Tag:noindex,nofollow,nosnippet,noarchive,notranslate,noimageindex
             traefik.frontend.headers.frameDeny: true
-            traefik.frontend.headers.customFrameOptionsValue: 'allow-from https:${DOMAINNAME}'
+            traefik.frontend.headers.customFrameOptionsValue: 'allow-from https:${ROOT_DOMAIN}'
             # traefik.frontend.auth.forward.address: http://oauth:4181
             traefik.frontend.auth.basic.users: ${HTPASSWD}
 
