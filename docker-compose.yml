@@ -18,7 +18,7 @@ services:
         volumes:
             - '${CONFIG_DIR}/plex:/config'
             - '${DOWNLOADS_DIR}:/downloads'
-            - '/tmp:/transcode'
+            - '/tmp:/tmp'
         labels:
             traefik.enable: true
             traefik.docker.network: traefik
