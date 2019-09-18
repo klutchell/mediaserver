@@ -174,15 +174,26 @@ services:
             traefik.http.routers.traefik.tls.certresolver: cloudflare
             traefik.http.routers.traefik.service: traefik
             traefik.http.routers.traefik.rule: Host(`traefik.${CF_DOMAIN}`)
-            traefik.http.routers.traefik.middlewares: traefik
-            traefik.http.middlewares.traefik.basicauth.users: ${HTPASSWD}
+            traefik.http.routers.traefik.middlewares: secureheaders, basicauth
             traefik.http.services.traefik.loadbalancer.server.port: 8080
             traefik.http.services.traefik.loadbalancer.server.scheme: http
             traefik.http.services.traefik.loadbalancer.passhostheader: true
-            traefik.http.routers.http_redirect.entrypoints: http
-            traefik.http.routers.http_redirect.rule: HostRegexp(`${CF_DOMAIN}`, `{subdomain:[a-z]+}.${CF_DOMAIN}`)
-            traefik.http.routers.http_redirect.middlewares: http_redirect
-            traefik.http.middlewares.http_redirect.redirectscheme.scheme: https
+            traefik.http.routers.http.entrypoints: http
+            traefik.http.routers.http.rule: HostRegexp(`${CF_DOMAIN}`, `{subdomain:[a-z]+}.${CF_DOMAIN}`)
+            traefik.http.routers.http.middlewares: redirectscheme
+            traefik.http.middlewares.redirectscheme.redirectscheme.scheme: https
+            traefik.http.middlewares.basicauth.basicauth.users: ${HTPASSWD}
+            traefik.http.middlewares.secureheaders.headers.stsSeconds: 15552000
+            traefik.http.middlewares.secureheaders.headers.framedeny: true
+            traefik.http.middlewares.secureheaders.headers.sslForceHost: true
+            traefik.http.middlewares.secureheaders.headers.sslRedirect: true
+            traefik.http.middlewares.secureheaders.headers.stsIncludeSubdomains: true
+            traefik.http.middlewares.secureheaders.headers.browserXssFilter: true
+            traefik.http.middlewares.secureheaders.headers.contentTypeNosniff: true
+            traefik.http.middlewares.secureheaders.headers.forceSTSHeader: true
+            traefik.http.middlewares.secureheaders.headers.stsPreload: true
+            traefik.http.middlewares.secureheaders.headers.customResponseHeaders.X-Robots-Tag: none
+            traefik.http.middlewares.secureheaders.headers.customFrameOptionsValue: SAMEORIGIN
 
 networks:
     traefik:
