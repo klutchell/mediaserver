@@ -156,6 +156,7 @@ services:
         command:
             - "--log.level=INFO"
             - "--global.sendanonymoususage=false"
+            - "--serverstransport.insecureskipverify"
             - "--entrypoints.http.address=:80"
             - "--entrypoints.https.address=:443"
             - "--providers.docker=true"
