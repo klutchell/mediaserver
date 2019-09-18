@@ -155,6 +155,7 @@ services:
             - '${CONF_DIR}/traefik:/etc/traefik:rw'
         command:
             - "--log.level=INFO"
+            - "--api.insecure=true"
             - "--global.sendanonymoususage=false"
             - "--serverstransport.insecureskipverify"
             - "--entrypoints.http.address=:80"
@@ -166,6 +167,22 @@ services:
             - "--certificatesresolvers.cloudflare.acme.storage=/etc/traefik/acme.json"
             - "--certificatesresolvers.cloudflare.acme.email=${CF_API_EMAIL}"
             # - "--certificatesresolvers.cloudflare.acme.caserver=https://acme-staging-v02.api.letsencrypt.org/directory"
+        labels:
+            traefik.enable: true
+            traefik.docker.network: traefik
+            traefik.http.routers.traefik.entrypoints: https
+            traefik.http.routers.traefik.tls.certresolver: cloudflare
+            traefik.http.routers.traefik.service: traefik
+            traefik.http.routers.traefik.rule: Host(`traefik.${CF_DOMAIN}`)
+            traefik.http.routers.traefik.middlewares: traefik
+            traefik.http.middlewares.traefik.basicauth.users: ${HTPASSWD}
+            traefik.http.services.traefik.loadbalancer.server.port: 8080
+            traefik.http.services.traefik.loadbalancer.server.scheme: http
+            traefik.http.services.traefik.loadbalancer.passhostheader: true
+            traefik.http.routers.http_redirect.entrypoints: http
+            traefik.http.routers.http_redirect.rule: HostRegexp(`${CF_DOMAIN}`, `{subdomain:[a-z]+}.${CF_DOMAIN}`)
+            traefik.http.routers.http_redirect.middlewares: http_redirect
+            traefik.http.middlewares.http_redirect.redirectscheme.scheme: https
 
 networks:
     traefik:
