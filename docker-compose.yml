@@ -24,8 +24,8 @@ services:
             traefik.docker.network: traefik
             traefik.http.routers.plex.entrypoints: https
             traefik.http.routers.plex.tls.certresolver: cloudflare
+            traefik.http.routers.plex.rule: Host(`plex.${CF_DOMAIN}`) || Host(`${CF_DOMAIN}`)
             traefik.http.routers.plex.service: plex
-            traefik.http.routers.plex.rule: Host(`plex.${CF_DOMAIN}`,`${CF_DOMAIN}`)
             traefik.http.services.plex.loadbalancer.server.port: 32400
             traefik.http.services.plex.loadbalancer.server.scheme: http
             traefik.http.services.plex.loadbalancer.passhostheader: true
