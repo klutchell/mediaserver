@@ -16,22 +16,19 @@ services:
         ports:
             - '32400:32400/tcp'
         volumes:
-            - '${CONFIG_DIR}/plex:/config'
-            - '${DOWNLOADS_DIR}:/downloads'
+            - '${CONF_DIR}/plex:/config'
+            - '${DATA_DIR}:/downloads'
             - '/tmp:/tmp'
         labels:
             traefik.enable: true
             traefik.docker.network: traefik
-            traefik.backend: plex
-            traefik.protocol: http
-            traefik.port: 32400
-            traefik.frontend.rule: Host:plex.${ROOT_DOMAIN},${ROOT_DOMAIN}
-            traefik.frontend.entryPoint: http
-            traefik.frontend.redirect.entryPoint: https
-            traefik.frontend.priority: 1
-            traefik.frontend.passHostHeader: true
-            # traefik.frontend.auth.forward.address: http://oauth:4181
-            # traefik.frontend.auth.basic.users: ${HTPASSWD}
+            traefik.http.routers.plex.entrypoints: https
+            traefik.http.routers.plex.tls.certresolver: cloudflare
+            traefik.http.routers.plex.service: plex
+            traefik.http.routers.plex.rule: Host(`plex.${CF_DOMAIN}`,`${CF_DOMAIN}`)
+            traefik.http.services.plex.loadbalancer.server.port: 32400
+            traefik.http.services.plex.loadbalancer.server.scheme: http
+            traefik.http.services.plex.loadbalancer.passhostheader: true
 
     # https://hub.docker.com/r/linuxserver/nzbget/
     nzbget:
@@ -45,21 +42,18 @@ services:
         networks:
             - traefik
         volumes:
-            - '${CONFIG_DIR}/nzbget:/config'
-            - '${DOWNLOADS_DIR}:/downloads'
+            - '${CONF_DIR}/nzbget:/config'
+            - '${DATA_DIR}:/downloads'
         labels:
             traefik.enable: true
             traefik.docker.network: traefik
-            traefik.backend: nzbget
-            traefik.protocol: http
-            traefik.port: 6789
-            traefik.frontend.rule: Host:nzbget.${ROOT_DOMAIN}
-            traefik.frontend.entryPoint: http
-            traefik.frontend.redirect.entryPoint: https
-            traefik.frontend.priority: 1
-            traefik.frontend.passHostHeader: true
-            # traefik.frontend.auth.forward.address: http://oauth:4181
-            # traefik.frontend.auth.basic.users: ${HTPASSWD}
+            traefik.http.routers.nzbget.entrypoints: https
+            traefik.http.routers.nzbget.tls.certresolver: cloudflare
+            traefik.http.routers.nzbget.service: nzbget
+            traefik.http.routers.nzbget.rule: Host(`nzbget.${CF_DOMAIN}`)
+            traefik.http.services.nzbget.loadbalancer.server.port: 6789
+            traefik.http.services.nzbget.loadbalancer.server.scheme: http
+            traefik.http.services.nzbget.loadbalancer.passhostheader: true
 
     # https://hub.docker.com/r/linuxserver/sonarr/
     sonarr:
@@ -73,21 +67,18 @@ services:
         networks:
             - traefik
         volumes:
-            - '${CONFIG_DIR}/sonarr:/config'
-            - '${DOWNLOADS_DIR}:/downloads'
+            - '${CONF_DIR}/sonarr:/config'
+            - '${DATA_DIR}:/downloads'
         labels:
             traefik.enable: true
             traefik.docker.network: traefik
-            traefik.backend: sonarr
-            traefik.protocol: http
-            traefik.port: 8989
-            traefik.frontend.rule: Host:sonarr.${ROOT_DOMAIN}
-            traefik.frontend.entryPoint: http
-            traefik.frontend.redirect.entryPoint: https
-            traefik.frontend.priority: 1
-            traefik.frontend.passHostHeader: true
-            # traefik.frontend.auth.forward.address: http://oauth:4181
-            # traefik.frontend.auth.basic.users: ${HTPASSWD}
+            traefik.http.routers.sonarr.entrypoints: https
+            traefik.http.routers.sonarr.tls.certresolver: cloudflare
+            traefik.http.routers.sonarr.service: sonarr
+            traefik.http.routers.sonarr.rule: Host(`sonarr.${CF_DOMAIN}`)
+            traefik.http.services.sonarr.loadbalancer.server.port: 8989
+            traefik.http.services.sonarr.loadbalancer.server.scheme: http
+            traefik.http.services.sonarr.loadbalancer.passhostheader: true
         links:
             - hydra
             - nzbget
@@ -104,21 +95,18 @@ services:
         networks:
             - traefik
         volumes:
-            - '${CONFIG_DIR}/radarr:/config'
-            - '${DOWNLOADS_DIR}:/downloads'
+            - '${CONF_DIR}/radarr:/config'
+            - '${DATA_DIR}:/downloads'
         labels:
             traefik.enable: true
             traefik.docker.network: traefik
-            traefik.backend: radarr
-            traefik.protocol: http
-            traefik.port: 7878
-            traefik.frontend.rule: Host:radarr.${ROOT_DOMAIN}
-            traefik.frontend.entryPoint: http
-            traefik.frontend.redirect.entryPoint: https
-            traefik.frontend.priority: 1
-            traefik.frontend.passHostHeader: true
-            # traefik.frontend.auth.forward.address: http://oauth:4181
-            # traefik.frontend.auth.basic.users: ${HTPASSWD}
+            traefik.http.routers.radarr.entrypoints: https
+            traefik.http.routers.radarr.tls.certresolver: cloudflare
+            traefik.http.routers.radarr.service: radarr
+            traefik.http.routers.radarr.rule: Host(`radarr.${CF_DOMAIN}`)
+            traefik.http.services.radarr.loadbalancer.server.port: 7878
+            traefik.http.services.radarr.loadbalancer.server.scheme: http
+            traefik.http.services.radarr.loadbalancer.passhostheader: true
         links:
             - hydra
             - nzbget
@@ -135,27 +123,23 @@ services:
         networks:
             - traefik
         volumes:
-            - '${CONFIG_DIR}/hydra:/config'
-            - '${DOWNLOADS_DIR}:/downloads'
+            - '${CONF_DIR}/hydra:/config'
+            - '${DATA_DIR}:/downloads'
         labels:
             traefik.enable: true
             traefik.docker.network: traefik
-            traefik.backend: hydra
-            traefik.protocol: http
-            traefik.port: 5076
-            traefik.frontend.rule: Host:hydra.${ROOT_DOMAIN}
-            traefik.frontend.entryPoint: http
-            traefik.frontend.redirect.entryPoint: https
-            traefik.frontend.priority: 1
-            traefik.frontend.passHostHeader: true
-            # traefik.frontend.auth.forward.address: http://oauth:4181
-            # traefik.frontend.auth.basic.users: ${HTPASSWD}
-
+            traefik.http.routers.hydra.entrypoints: https
+            traefik.http.routers.hydra.tls.certresolver: cloudflare
+            traefik.http.routers.hydra.service: hydra
+            traefik.http.routers.hydra.rule: Host(`hydra.${CF_DOMAIN}`)
+            traefik.http.services.hydra.loadbalancer.server.port: 5076
+            traefik.http.services.hydra.loadbalancer.server.scheme: http
+            traefik.http.services.hydra.loadbalancer.passhostheader: true
 
     # https://hub.docker.com/_/traefik/
     traefik:
         container_name: traefik
-        image: traefik
+        image: traefik:2.0.0
         restart: unless-stopped
         environment:
             TZ: '${TZ}'
@@ -168,44 +152,19 @@ services:
             - '443:443/tcp'
         volumes:
             - '/var/run/docker.sock:/var/run/docker.sock:ro'
-            - '${CONFIG_DIR}/traefik:/etc/traefik:rw'
-        command: 
-            - "--logLevel=INFO"
-            - "--api"
-            - "--defaultentrypoints=http,https"
-            - "--entrypoints=Name:http Address::80 Redirect.EntryPoint:https"
-            - "--entrypoints=Name:https Address::443 TLS TLS.SniStrict:true TLS.MinVersion:VersionTLS12 CipherSuites:TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256, TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256, TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384, TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384, TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256, TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA256"
-            - "--acme"
-            - "--acme.storage=/etc/traefik/acme.json"
-            - "--acme.entryPoint=https"
-            - "--acme.dnsChallenge=true"
-            - "--acme.dnsChallenge.provider=cloudflare"
-            - "--acme.dnsChallenge.delayBeforeCheck=60"
-            - "--acme.dnsChallenge.resolvers=1.1.1.1,1.0.0.1"
-            - "--acme.onHostRule=true"
-            - "--acme.email=${CF_API_EMAIL}"
-            - "--acme.acmeLogging=true"
-            - "--acme.domains=${ROOT_DOMAIN},*.${ROOT_DOMAIN}"
-            - "--acme.KeyType=RSA4096"
-            # - "--acme.caServer=https://acme-staging-v02.api.letsencrypt.org/directory" # staging server
-            - "--docker"
-            - "--docker.domain=${ROOT_DOMAIN}"
-            - "--docker.watch"
-            - "--docker.exposedbydefault=false"
-            - "--retry"
-        labels:
-            traefik.enable: true
-            traefik.docker.network: traefik
-            traefik.backend: traefik
-            traefik.protocol: http
-            traefik.port: 8080
-            traefik.frontend.rule: Host:traefik.${ROOT_DOMAIN}
-            traefik.frontend.entryPoint: http
-            traefik.frontend.redirect.entryPoint: https
-            traefik.frontend.priority: 1
-            traefik.frontend.passHostHeader: true
-            # traefik.frontend.auth.forward.address: http://oauth:4181
-            traefik.frontend.auth.basic.users: ${HTPASSWD}
+            - '${CONF_DIR}/traefik:/etc/traefik:rw'
+        command:
+            - "--log.level=INFO"
+            - "--global.sendanonymoususage=false"
+            - "--entrypoints.http.address=:80"
+            - "--entrypoints.https.address=:443"
+            - "--providers.docker=true"
+            - "--providers.docker.exposedbydefault=false"
+            - "--certificatesresolvers.cloudflare.acme.dnschallenge=true"
+            - "--certificatesresolvers.cloudflare.acme.dnschallenge.provider=cloudflare"
+            - "--certificatesresolvers.cloudflare.acme.storage=/etc/traefik/acme.json"
+            - "--certificatesresolvers.cloudflare.acme.email=${CF_API_EMAIL}"
+            # - "--certificatesresolvers.cloudflare.acme.caserver=https://acme-staging-v02.api.letsencrypt.org/directory"
 
 networks:
     traefik:

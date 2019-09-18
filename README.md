@@ -30,14 +30,13 @@ docker-based plex & usenet media server using custom subdomains with tls
 Login to your DNS provider ([cloudflare](https://www.cloudflare.com/) in my case), select your domain,
 	and add the following DNS Records pointing to your server public IP.
 
-* `Type A` : `mydomain.com`
-* `Type A` : `plex`
-* `Type A` : `hydra`
-* `Type A` : `sonarr`
-* `Type A` : `radarr`
-* `Type A` : `nzbget`
-* `Type A` : `traefik`
-* `Type A` : `*`
+|Type|Name|IPv4 address|TTL|
+|---|---|---|---|
+|`A`|`plex`|`{server-public-ip}`|`Auto`|
+|`A`|`nzbget`|`{server-public-ip}`|`Auto`|
+|`A`|`sonarr`|`{server-public-ip}`|`Auto`|
+|`A`|`radarr`|`{server-public-ip}`|`Auto`|
+|`A`|`hydra`|`{server-public-ip}`|`Auto`|
 
 ## Installation
 
@@ -92,10 +91,7 @@ maintainers, and the app creators.
 
 ## References
 
-* https://docs.traefik.io/configuration/commons/
-* https://docs.traefik.io/configuration/entrypoints/
-* https://docs.traefik.io/configuration/backends/docker/
-* https://docs.traefik.io/configuration/acme/
+* <https://docs.traefik.io/>
 
 ## License
 
