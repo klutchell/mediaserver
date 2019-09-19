@@ -25,10 +25,8 @@ services:
             traefik.http.routers.plex.entrypoints: https
             traefik.http.routers.plex.tls.certresolver: cloudflare
             traefik.http.routers.plex.rule: Host(`plex.${CF_DOMAIN}`) || Host(`${CF_DOMAIN}`)
-            traefik.http.routers.plex.service: plex
-            traefik.http.services.plex.loadbalancer.server.port: 32400
-            traefik.http.services.plex.loadbalancer.server.scheme: http
-            traefik.http.services.plex.loadbalancer.passhostheader: true
+            traefik.http.services.plex_mediaserver.loadbalancer.server.port: 32400
+            traefik.http.services.plex_mediaserver.loadbalancer.server.scheme: http
 
     # https://hub.docker.com/r/linuxserver/nzbget/
     nzbget:
@@ -49,11 +47,7 @@ services:
             traefik.docker.network: traefik
             traefik.http.routers.nzbget.entrypoints: https
             traefik.http.routers.nzbget.tls.certresolver: cloudflare
-            traefik.http.routers.nzbget.service: nzbget
             traefik.http.routers.nzbget.rule: Host(`nzbget.${CF_DOMAIN}`)
-            traefik.http.services.nzbget.loadbalancer.server.port: 6789
-            traefik.http.services.nzbget.loadbalancer.server.scheme: http
-            traefik.http.services.nzbget.loadbalancer.passhostheader: true
 
     # https://hub.docker.com/r/linuxserver/sonarr/
     sonarr:
@@ -74,11 +68,7 @@ services:
             traefik.docker.network: traefik
             traefik.http.routers.sonarr.entrypoints: https
             traefik.http.routers.sonarr.tls.certresolver: cloudflare
-            traefik.http.routers.sonarr.service: sonarr
             traefik.http.routers.sonarr.rule: Host(`sonarr.${CF_DOMAIN}`)
-            traefik.http.services.sonarr.loadbalancer.server.port: 8989
-            traefik.http.services.sonarr.loadbalancer.server.scheme: http
-            traefik.http.services.sonarr.loadbalancer.passhostheader: true
         links:
             - hydra
             - nzbget
@@ -102,11 +92,7 @@ services:
             traefik.docker.network: traefik
             traefik.http.routers.radarr.entrypoints: https
             traefik.http.routers.radarr.tls.certresolver: cloudflare
-            traefik.http.routers.radarr.service: radarr
             traefik.http.routers.radarr.rule: Host(`radarr.${CF_DOMAIN}`)
-            traefik.http.services.radarr.loadbalancer.server.port: 7878
-            traefik.http.services.radarr.loadbalancer.server.scheme: http
-            traefik.http.services.radarr.loadbalancer.passhostheader: true
         links:
             - hydra
             - nzbget
@@ -130,11 +116,7 @@ services:
             traefik.docker.network: traefik
             traefik.http.routers.hydra.entrypoints: https
             traefik.http.routers.hydra.tls.certresolver: cloudflare
-            traefik.http.routers.hydra.service: hydra
             traefik.http.routers.hydra.rule: Host(`hydra.${CF_DOMAIN}`)
-            traefik.http.services.hydra.loadbalancer.server.port: 5076
-            traefik.http.services.hydra.loadbalancer.server.scheme: http
-            traefik.http.services.hydra.loadbalancer.passhostheader: true
 
     # https://hub.docker.com/_/traefik/
     traefik:
@@ -155,7 +137,7 @@ services:
             - '${CONF_DIR}/traefik:/etc/traefik:rw'
         command:
             - "--log.level=INFO"
-            - "--api.insecure=true"
+            - "--api=true"
             - "--global.sendanonymoususage=false"
             - "--serverstransport.insecureskipverify"
             - "--entrypoints.http.address=:80"
@@ -172,12 +154,9 @@ services:
             traefik.docker.network: traefik
             traefik.http.routers.traefik.entrypoints: https
             traefik.http.routers.traefik.tls.certresolver: cloudflare
-            traefik.http.routers.traefik.service: traefik
             traefik.http.routers.traefik.rule: Host(`traefik.${CF_DOMAIN}`)
             traefik.http.routers.traefik.middlewares: secureheaders, basicauth
-            traefik.http.services.traefik.loadbalancer.server.port: 8080
-            traefik.http.services.traefik.loadbalancer.server.scheme: http
-            traefik.http.services.traefik.loadbalancer.passhostheader: true
+            traefik.http.routers.traefik.service: api@internal
             traefik.http.routers.http.entrypoints: http
             traefik.http.routers.http.rule: HostRegexp(`${CF_DOMAIN}`, `{subdomain:[a-z]+}.${CF_DOMAIN}`)
             traefik.http.routers.http.middlewares: redirectscheme
