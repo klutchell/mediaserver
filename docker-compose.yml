@@ -10,14 +10,14 @@ services:
             PUID: '${PUID}'
             PGID: '${PGID}'
             TZ: '${TZ}'
-            VERSION: 'latest'
+            VERSION: 'docker'
         networks:
             - traefik
         ports:
             - '32400:32400/tcp'
         volumes:
-            - '${CONF_DIR}/plex:/config'
-            - '${DATA_DIR}:/downloads'
+            - '${CONFIG_DIR}/plex:/config'
+            - '${DOWNLOADS_DIR}:/downloads'
             - '/tmp:/tmp'
         labels:
             traefik.enable: true
@@ -40,8 +40,8 @@ services:
         networks:
             - traefik
         volumes:
-            - '${CONF_DIR}/nzbget:/config'
-            - '${DATA_DIR}:/downloads'
+            - '${CONFIG_DIR}/nzbget:/config'
+            - '${DOWNLOADS_DIR}:/downloads'
         labels:
             traefik.enable: true
             traefik.docker.network: traefik
@@ -61,8 +61,8 @@ services:
         networks:
             - traefik
         volumes:
-            - '${CONF_DIR}/sonarr:/config'
-            - '${DATA_DIR}:/downloads'
+            - '${CONFIG_DIR}/sonarr:/config'
+            - '${DOWNLOADS_DIR}:/downloads'
         labels:
             traefik.enable: true
             traefik.docker.network: traefik
@@ -85,8 +85,8 @@ services:
         networks:
             - traefik
         volumes:
-            - '${CONF_DIR}/radarr:/config'
-            - '${DATA_DIR}:/downloads'
+            - '${CONFIG_DIR}/radarr:/config'
+            - '${DOWNLOADS_DIR}:/downloads'
         labels:
             traefik.enable: true
             traefik.docker.network: traefik
@@ -109,8 +109,8 @@ services:
         networks:
             - traefik
         volumes:
-            - '${CONF_DIR}/hydra:/config'
-            - '${DATA_DIR}:/downloads'
+            - '${CONFIG_DIR}/hydra:/config'
+            - '${DOWNLOADS_DIR}:/downloads'
         labels:
             traefik.enable: true
             traefik.docker.network: traefik
@@ -134,7 +134,7 @@ services:
             - '443:443/tcp'
         volumes:
             - '/var/run/docker.sock:/var/run/docker.sock:ro'
-            - '${CONF_DIR}/traefik:/etc/traefik:rw'
+            - '${CONFIG_DIR}/traefik:/etc/traefik:rw'
         command:
             - "--log.level=INFO"
             - "--api=true"
