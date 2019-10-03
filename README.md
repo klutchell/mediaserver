@@ -32,11 +32,12 @@ Login to your DNS provider ([cloudflare](https://www.cloudflare.com/) in my case
 
 |Type|Name|IPv4 address|TTL|
 |---|---|---|---|
-|`A`|`plex`|`{server-public-ip}`|`Auto`|
-|`A`|`nzbget`|`{server-public-ip}`|`Auto`|
-|`A`|`sonarr`|`{server-public-ip}`|`Auto`|
-|`A`|`radarr`|`{server-public-ip}`|`Auto`|
-|`A`|`hydra`|`{server-public-ip}`|`Auto`|
+|`A`|`plex`|`[server-public-ip]`|`Auto`|
+|`A`|`nzbget`|`[server-public-ip]`|`Auto`|
+|`A`|`sonarr`|`[server-public-ip]`|`Auto`|
+|`A`|`radarr`|`[server-public-ip]`|`Auto`|
+|`A`|`hydra`|`[server-public-ip]`|`Auto`|
+|`A`|`traefik`|`[server-public-ip]`|`Auto`|
 
 ## Installation
 
@@ -57,19 +58,13 @@ Copy `env.sample` to `.env` and fill all required fields
 cp env.sample .env && nano .env
 ```
 
-Optionally install pre-commit hook to keep `env.sample` up-to-date
-
-```bash
-ln -s ../../pre-commit .git/hooks/pre-commit
-```
-
 ## Deployment
 
 Pull and deploy containers with docker-compose
 
 ```bash
 docker-compose pull
-docker-compose up -d --remove-orphans
+docker-compose up -d
 ```
 
 ## Usage
@@ -79,19 +74,15 @@ docker-compose up -d --remove-orphans
 
 ## Author
 
-Kyle Harding <kylemharding@gmail.com>
+Kyle Harding <https://klutchell.dev>
 
 ## Acknowledgments
 
 I didn't create any of these docker images myself, so credit goes to the
-maintainers, and the app creators.
+maintainers, and the original software creators.
 
 * [linuxserver.io](https://linuxserver.io/)
 * [traefik.io](https://traefik.io/)
-
-## References
-
-* <https://docs.traefik.io/>
 
 ## License
 
