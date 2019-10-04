@@ -17,7 +17,7 @@ services:
             - '32400:32400/tcp'
         volumes:
             - '${CONFIG_DIR}/plex:/config'
-            - '${DOWNLOADS_DIR}:/downloads'
+            - '${MEDIA_DIR}:/media'
             - '/tmp:/tmp'
         labels:
             traefik.enable: true
@@ -63,6 +63,7 @@ services:
         volumes:
             - '${CONFIG_DIR}/sonarr:/config'
             - '${DOWNLOADS_DIR}:/downloads'
+            - '${MEDIA_DIR}:/media'
         labels:
             traefik.enable: true
             traefik.docker.network: traefik
@@ -87,6 +88,7 @@ services:
         volumes:
             - '${CONFIG_DIR}/radarr:/config'
             - '${DOWNLOADS_DIR}:/downloads'
+            - '${MEDIA_DIR}:/media'
         labels:
             traefik.enable: true
             traefik.docker.network: traefik
@@ -134,7 +136,7 @@ services:
             - '443:443/tcp'
         volumes:
             - '/var/run/docker.sock:/var/run/docker.sock:ro'
-            - '${CONFIG_DIR}/traefik:/etc/traefik:rw'
+            - 'traefik:/etc/traefik:rw'
         command:
             - "--log.level=INFO"
             - "--api=true"
@@ -178,3 +180,6 @@ networks:
     traefik:
         name: traefik
         attachable: true
+
+volumes:
+    traefik:
