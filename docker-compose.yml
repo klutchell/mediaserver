@@ -4,7 +4,7 @@ services:
     # https://hub.docker.com/r/linuxserver/plex/
     plex:
         container_name: plex
-        image: linuxserver/plex
+        image: linuxserver/plex:1.17.0.1841-d42cfa161-ls56
         restart: unless-stopped
         environment:
             PUID: '${PUID}'
@@ -31,7 +31,7 @@ services:
     # https://hub.docker.com/r/linuxserver/nzbget/
     nzbget:
         container_name: nzbget
-        image: linuxserver/nzbget
+        image: linuxserver/nzbget:v21.0-ls29
         restart: unless-stopped
         environment:
             PUID: '${PUID}'
@@ -52,7 +52,7 @@ services:
     # https://hub.docker.com/r/linuxserver/sonarr/
     sonarr:
         container_name: sonarr
-        image: linuxserver/sonarr
+        image: linuxserver/sonarr:2.0.0.5338-ls37
         restart: unless-stopped
         environment:
             PUID: '${PUID}'
@@ -77,7 +77,7 @@ services:
     # https://hub.docker.com/r/linuxserver/radarr/
     radarr:
         container_name: radarr
-        image: linuxserver/radarr
+        image: linuxserver/radarr:2.0.0.2096-ls30
         restart: unless-stopped
         environment:
             PUID: '${PUID}'
@@ -102,7 +102,7 @@ services:
     # https://hub.docker.com/r/linuxserver/hydra2/
     hydra:
         container_name: hydra
-        image: linuxserver/hydra2
+        image: linuxserver/hydra2:v2.7.2-ls40
         restart: unless-stopped
         environment:
             PUID: '${PUID}'
@@ -123,7 +123,7 @@ services:
     # https://hub.docker.com/_/traefik/
     traefik:
         container_name: traefik
-        image: traefik:2.0.0
+        image: traefik:v2.0.2
         restart: unless-stopped
         environment:
             TZ: '${TZ}'
