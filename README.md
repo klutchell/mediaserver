@@ -11,7 +11,7 @@ docker-based plex & usenet media server using custom subdomains with tls
 
 ## Features
 
-* [Plex](https://hub.docker.com/r/linuxserver/plex/) organizes video, music and photos from personal media libraries and streams them to smart TVs, streaming boxes and mobile devices. This container is packaged as a standalone Plex Media Server.
+* [Plex](https://hub.docker.com/r/plexinc/pms-docker) organizes video, music and photos from personal media libraries and streams them to smart TVs, streaming boxes and mobile devices. This container is packaged as a standalone Plex Media Server.
 * [NZBGet](https://hub.docker.com/r/linuxserver/nzbget/) is a usenet downloader, written in C++ and designed with performance in mind to achieve maximum download speed by using very little system resources.
 * [Sonarr](https://hub.docker.com/r/linuxserver/sonarr/) (formerly NZBdrone) is a PVR for usenet and bittorrent users. It can monitor multiple RSS feeds for new episodes of your favorite shows and will grab, sort and rename them. It can also be configured to automatically upgrade the quality of files already downloaded when a better quality format becomes available.
 * [Radarr](https://hub.docker.com/r/linuxserver/radarr/) - A fork of Sonarr to work with movies à la Couchpotato.
@@ -67,11 +67,6 @@ docker-compose pull
 docker-compose up -d
 ```
 
-## Usage
-
-* Log in to plex and claim server to your plex.tv account
-* Log in to hydra, sonarr, radarr, and nzbget and enable authentication
-
 ## Author
 
 Kyle Harding <https://klutchell.dev>
@@ -81,6 +76,7 @@ Kyle Harding <https://klutchell.dev>
 I didn't create any of these docker images myself, so credit goes to the
 maintainers, and the original software creators.
 
+* [plex.tv](https://plex.tv/)
 * [linuxserver.io](https://linuxserver.io/)
 * [traefik.io](https://traefik.io/)
 
