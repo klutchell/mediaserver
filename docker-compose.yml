@@ -24,8 +24,8 @@ services:
             traefik.enable: true
             traefik.docker.network: traefik
             traefik.http.routers.plex.entrypoints: https
-            traefik.http.routers.plex.tls.certresolver: cloudflare
-            traefik.http.routers.plex.rule: Host(`plex.${CF_DOMAIN}`) || Host(`${CF_DOMAIN}`)
+            traefik.http.routers.plex.tls.certresolver: tlschallenge
+            traefik.http.routers.plex.rule: Host(`plex.${ACME_DOMAIN}`) || Host(`${ACME_DOMAIN}`)
             traefik.http.services.plex_mediaserver.loadbalancer.server.port: 32400
             traefik.http.services.plex_mediaserver.loadbalancer.server.scheme: http
 
@@ -47,8 +47,8 @@ services:
             traefik.enable: true
             traefik.docker.network: traefik
             traefik.http.routers.nzbget.entrypoints: https
-            traefik.http.routers.nzbget.tls.certresolver: cloudflare
-            traefik.http.routers.nzbget.rule: Host(`nzbget.${CF_DOMAIN}`)
+            traefik.http.routers.nzbget.tls.certresolver: tlschallenge
+            traefik.http.routers.nzbget.rule: Host(`nzbget.${ACME_DOMAIN}`)
 
     # https://hub.docker.com/r/linuxserver/sonarr/
     sonarr:
@@ -69,8 +69,8 @@ services:
             traefik.enable: true
             traefik.docker.network: traefik
             traefik.http.routers.sonarr.entrypoints: https
-            traefik.http.routers.sonarr.tls.certresolver: cloudflare
-            traefik.http.routers.sonarr.rule: Host(`sonarr.${CF_DOMAIN}`)
+            traefik.http.routers.sonarr.tls.certresolver: tlschallenge
+            traefik.http.routers.sonarr.rule: Host(`sonarr.${ACME_DOMAIN}`)
         links:
             - hydra
             - nzbget
@@ -94,8 +94,8 @@ services:
             traefik.enable: true
             traefik.docker.network: traefik
             traefik.http.routers.radarr.entrypoints: https
-            traefik.http.routers.radarr.tls.certresolver: cloudflare
-            traefik.http.routers.radarr.rule: Host(`radarr.${CF_DOMAIN}`)
+            traefik.http.routers.radarr.tls.certresolver: tlschallenge
+            traefik.http.routers.radarr.rule: Host(`radarr.${ACME_DOMAIN}`)
         links:
             - hydra
             - nzbget
@@ -118,8 +118,8 @@ services:
             traefik.enable: true
             traefik.docker.network: traefik
             traefik.http.routers.hydra.entrypoints: https
-            traefik.http.routers.hydra.tls.certresolver: cloudflare
-            traefik.http.routers.hydra.rule: Host(`hydra.${CF_DOMAIN}`)
+            traefik.http.routers.hydra.tls.certresolver: tlschallenge
+            traefik.http.routers.hydra.rule: Host(`hydra.${ACME_DOMAIN}`)
 
     # https://hub.docker.com/_/traefik/
     traefik:
@@ -128,8 +128,6 @@ services:
         restart: unless-stopped
         environment:
             TZ: '${TZ}'
-            CF_API_EMAIL: '${CF_API_EMAIL}'
-            CF_API_KEY: '${CF_API_KEY}'
         networks:
             - traefik
         ports:
@@ -147,21 +145,20 @@ services:
             - "--entrypoints.https.address=:443"
             - "--providers.docker=true"
             - "--providers.docker.exposedbydefault=false"
-            - "--certificatesresolvers.cloudflare.acme.dnschallenge=true"
-            - "--certificatesresolvers.cloudflare.acme.dnschallenge.provider=cloudflare"
-            - "--certificatesresolvers.cloudflare.acme.storage=/etc/traefik/acme.json"
-            - "--certificatesresolvers.cloudflare.acme.email=${CF_API_EMAIL}"
-            # - "--certificatesresolvers.cloudflare.acme.caserver=https://acme-staging-v02.api.letsencrypt.org/directory"
+            - "--certificatesResolvers.tlschallenge.acme.tlschallenge=true"
+            - "--certificatesresolvers.tlschallenge.acme.storage=/etc/traefik/acme.json"
+            - "--certificatesresolvers.tlschallenge.acme.email=${ACME_EMAIL}"
+            # - "--certificatesresolvers.tlschallenge.acme.caserver=https://acme-staging-v02.api.letsencrypt.org/directory"
         labels:
             traefik.enable: true
             traefik.docker.network: traefik
             traefik.http.routers.traefik.entrypoints: https
-            traefik.http.routers.traefik.tls.certresolver: cloudflare
-            traefik.http.routers.traefik.rule: Host(`traefik.${CF_DOMAIN}`)
+            traefik.http.routers.traefik.tls.certresolver: tlschallenge
+            traefik.http.routers.traefik.rule: Host(`traefik.${ACME_DOMAIN}`)
             traefik.http.routers.traefik.middlewares: secureheaders, basicauth
             traefik.http.routers.traefik.service: api@internal
             traefik.http.routers.http.entrypoints: http
-            traefik.http.routers.http.rule: HostRegexp(`${CF_DOMAIN}`, `{subdomain:[a-z]+}.${CF_DOMAIN}`)
+            traefik.http.routers.http.rule: HostRegexp(`${ACME_DOMAIN}`, `{subdomain:[a-z]+}.${ACME_DOMAIN}`)
             traefik.http.routers.http.middlewares: redirectscheme
             traefik.http.middlewares.redirectscheme.redirectscheme.scheme: https
             traefik.http.middlewares.basicauth.basicauth.users: ${HTPASSWD}
