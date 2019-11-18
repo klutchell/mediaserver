@@ -124,7 +124,7 @@ services:
     # https://hub.docker.com/_/traefik/
     traefik:
         container_name: traefik
-        image: traefik:v2.0.2
+        image: traefik:v2.1.0-rc2
         restart: unless-stopped
         environment:
             TZ: '${TZ}'
