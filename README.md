@@ -35,6 +35,15 @@ The following subdomains should point to the public IP of your server:
 - `hydra.mydomain.com`
 - `traefik.mydomain.com`
 
+Optionally provide domains for these extra services, or a subset of them:
+
+- `nextcloud.mydomain.com`
+- `raneto.mydomain.com`
+- `ghost.mydomain.com`
+- `duplicati.mydomain.com`
+- `whoami.mydomain.com`
+- `netdata.mydomain.com`
+
 ## Installation
 
 1. install [docker](https://docs.docker.com/install/linux/docker-ce/debian/)
@@ -63,6 +72,13 @@ docker-compose pull
 docker-compose up -d
 ```
 
+Optionally load additional services by specifying both compose files from the command line
+
+```bash
+docker-compose -f docker-compose.yml -f docker-compose.extras.yml pull nextcloud mariadb
+docker-compose -f docker-compose.yml -f docker-compose.extras.yml up -d nextcloud mariadb
+```
+
 ## Author
 
 Kyle Harding <https://klutchell.dev>
@@ -75,6 +91,12 @@ maintainers, and the original software creators.
 - [plex.tv](https://plex.tv/)
 - [linuxserver.io](https://linuxserver.io/)
 - [traefik.io](https://traefik.io/)
+- [nextcloud.com](https://nextcloud.com/)
+- [mariadb.com](https://mariadb.com/)
+- [ghost.org](https://ghost.org/)
+- [duplicati.com](https://www.duplicati.com/)
+- [containo.us](https://containo.us/)
+- [netdata.cloud](https://www.netdata.cloud/)
 
 ## License
 
