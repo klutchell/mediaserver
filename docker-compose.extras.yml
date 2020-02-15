@@ -79,7 +79,7 @@ services:
     duplicati:
         image: duplicati/duplicati
         container_name: duplicati
-        command: duplicati-server --webservice-allowed-hostnames=* --webservice-interface:*
+        command: ["/usr/bin/duplicati-server", "--webservice-port=8200", "--webservice-interface=any", "--webservice-allowed-hostnames=*"]
         environment:
             TZ: ${TZ}
         volumes:
