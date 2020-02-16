@@ -35,15 +35,6 @@ The following subdomains should point to the public IP of your server:
 - `hydra.mydomain.com`
 - `traefik.mydomain.com`
 
-Optionally provide domains for these extra services, or a subset of them:
-
-- `nextcloud.mydomain.com`
-- `raneto.mydomain.com`
-- `ghost.mydomain.com`
-- `duplicati.mydomain.com`
-- `whoami.mydomain.com`
-- `netdata.mydomain.com`
-
 ## Installation
 
 1. install [docker](https://docs.docker.com/install/linux/docker-ce/debian/)
@@ -72,11 +63,56 @@ docker-compose pull
 docker-compose up -d
 ```
 
-Optionally load additional services by specifying both compose files from the command line
+## Extras
+
+Optionally load all additional services by providing two compose files from the command line
+
+```bash
+docker-compose -f docker-compose.yml -f docker-compose.extras.yml pull
+docker-compose -f docker-compose.yml -f docker-compose.extras.yml up -d
+```
+
+Or just load a subset of the extra services (eg. nextcloud & mariadb only)
 
 ```bash
 docker-compose -f docker-compose.yml -f docker-compose.extras.yml pull nextcloud mariadb
 docker-compose -f docker-compose.yml -f docker-compose.extras.yml up -d nextcloud mariadb
+```
+
+Manually create a nextcloud database & user
+
+```bash
+docker exec -it mariadb mysql -u root -p
+
+mysql> CREATE DATABASE nextcloud;
+mysql> CREATE USER 'nextcloud'@'%' IDENTIFIED BY 'NEXTCLOUD_DB_PASSWORD';
+mysql> GRANT ALL PRIVILEGES ON nextcloud.* TO 'nextcloud'@'%';
+mysql> FLUSH PRIVILEGES;
+mysql> SHOW GRANTS FOR 'nextcloud'@'%';
+```
+
+Manually create a codimd database & user
+
+```bash
+docker exec -it mariadb mysql -u root -p
+
+mysql> CREATE DATABASE codimd;
+mysql> CREATE USER 'codimd'@'%' IDENTIFIED BY 'CODIMD_DB_PASSWORD';
+mysql> GRANT ALL PRIVILEGES ON codimd.* TO 'codimd'@'%';
+mysql> FLUSH PRIVILEGES;
+mysql> SHOW GRANTS FOR 'codimd'@'%';
+```
+
+Manually create a ghost database & user
+
+```bash
+docker exec -it mariadb mysql -u root -p
+
+mysql> CREATE DATABASE ghost;
+mysql> CREATE USER 'ghost'@'%' IDENTIFIED BY 'GHOST_DB_PASSWORD';
+mysql> GRANT ALL PRIVILEGES ON ghost.* TO 'ghost'@'%';
+mysql> FLUSH PRIVILEGES;
+mysql> SHOW GRANTS FOR 'ghost'@'%';
 ```
 
 ## Author
@@ -97,6 +133,7 @@ maintainers, and the original software creators.
 - [duplicati.com](https://www.duplicati.com/)
 - [containo.us](https://containo.us/)
 - [netdata.cloud](https://www.netdata.cloud/)
+- [codimd.org](https://codimd.org)
 
 ## License
 
