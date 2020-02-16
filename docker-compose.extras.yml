@@ -1,10 +1,16 @@
 version: '3.7'
 
+volumes:
+    duplicati:
+    nextcloud:
+    mariadb:
+    codimd:
+    ghost:
+
 services:
 
     # https://hub.docker.com/_/nextcloud/
     nextcloud:
-        container_name: nextcloud
         image: nextcloud
         volumes:
             - nextcloud:/var/www/html
@@ -14,7 +20,7 @@ services:
             NEXTCLOUD_TRUSTED_DOMAINS: ${NEXTCLOUD_HOST}
         labels:
             traefik.enable: true
-            traefik.docker.network: traefik
+            traefik.docker.network: mediaserver_frontend
             traefik.http.routers.nextcloud.entrypoints: https
             traefik.http.routers.nextcloud.tls.certresolver: tlschallenge
             traefik.http.routers.nextcloud.rule: Host(`${NEXTCLOUD_HOST}`)
@@ -22,13 +28,13 @@ services:
             traefik.http.middlewares.cardcaldav.replacepathregex.regex: ^/.well-known/(card|cal)dav
             traefik.http.middlewares.cardcaldav.replacepathregex.replacement: /remote.php/dav/
         networks:
-            - traefik
+            - frontend
+            - backend
         links:
             - mariadb
 
     # https://hub.docker.com/_/mariadb/
     mariadb:
-        container_name: mariadb
         image: mariadb
         command: --transaction-isolation=READ-COMMITTED --binlog-format=ROW
         volumes:
@@ -38,12 +44,11 @@ services:
             MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
             TZ: ${TZ}
         networks:
-            - traefik
+            - backend
 
     # https://hub.docker.com/r/linuxserver/codimd
     codimd:
         image: linuxserver/codimd
-        container_name: codimd
         volumes:
           - codimd:/config
         environment:
@@ -63,36 +68,47 @@ services:
             CMD_ALLOW_GRAVATAR: 'true'
             CMD_ALLOW_FREEURL: 'true'
             CMD_DEFAULT_PERMISSION: private
-        links:
-            - mariadb
         labels:
             traefik.enable: true
+            traefik.docker.network: mediaserver_frontend
             traefik.http.routers.codimd.entrypoints: https
             traefik.http.routers.codimd.tls.certresolver: tlschallenge
             traefik.http.routers.codimd.rule: Host(`${CODIMD_HOST}`)
             traefik.http.routers.codimd.middlewares: secureheaders, basicauth
         networks:
-            - traefik
+            - frontend
+            - backend
+        links:
+            - mariadb
 
     # https://hub.docker.com/_/ghost/
     ghost:
-        container_name: ghost
         image: ghost
+        environment:
+            url: https://${GHOST_HOST}
+            database__client: mysql
+            database__connection__host: mariadb
+            database__connection__database: ghost
+            database__connection__user: ghost
+            database__connection__password: ghost
         volumes:
             - 'ghost:/var/lib/ghost/content:rw'
         labels:
             traefik.enable: true
+            traefik.docker.network: mediaserver_frontend
             traefik.http.routers.ghost.entrypoints: https
             traefik.http.routers.ghost.tls.certresolver: tlschallenge
             traefik.http.routers.ghost.rule: Host(`${GHOST_HOST}`)
             traefik.http.routers.ghost.middlewares: secureheaders, basicauth
         networks:
-            - traefik
+            - frontend
+            - backend
+        links:
+            - mariadb
 
     # https://hub.docker.com/r/linuxserver/duplicati
     duplicati:
         image: linuxserver/duplicati
-        container_name: duplicati
         environment:
             PUID: 0
             PGID: 0
@@ -108,33 +124,31 @@ services:
             - mariadb:/sources/mariadb:ro
             - codimd:/sources/codimd:ro
             - ghost:/sources/ghost:ro
-        networks:
-            - traefik
         labels:
             traefik.enable: true
-            traefik.docker.network: traefik
+            traefik.docker.network: mediaserver_frontend
             traefik.http.routers.duplicati.entrypoints: https
             traefik.http.routers.duplicati.tls.certresolver: tlschallenge
             traefik.http.routers.duplicati.rule: Host(`${DUPLICATI_HOST}`)
             traefik.http.routers.duplicati.middlewares: secureheaders, basicauth
+        networks:
+            - frontend
 
     # https://hub.docker.com/r/containous/whoami
     whoami:
         image: containous/whoami
-        container_name: whoami
         labels:
             traefik.enable: true
-            traefik.docker.network: traefik
+            traefik.docker.network: mediaserver_frontend
             traefik.http.routers.whoami.entrypoints: https
             traefik.http.routers.whoami.tls.certresolver: tlschallenge
             traefik.http.routers.whoami.rule: Host(`${WHOAMI_HOST}`)
             traefik.http.routers.whoami.middlewares: secureheaders, basicauth
         networks:
-            - traefik
+            - frontend
     
     # https://hub.docker.com/r/netdata/netdata
     netdata:
-        container_name: netdata
         image: netdata/netdata
         hostname: ${NETDATA_HOST}
         environment:
@@ -153,17 +167,10 @@ services:
             - /var/run/docker.sock:/var/run/docker.sock:ro
         labels:
             traefik.enable: true
-            traefik.docker.network: traefik
+            traefik.docker.network: mediaserver_frontend
             traefik.http.routers.netdata.entrypoints: https
             traefik.http.routers.netdata.tls.certresolver: tlschallenge
             traefik.http.routers.netdata.rule: Host(`${NETDATA_HOST}`)
             traefik.http.routers.netdata.middlewares: secureheaders, basicauth
         networks:
-            - traefik
-
-volumes:
-    duplicati:
-    nextcloud:
-    mariadb:
-    codimd:
-    ghost:
+            - frontend

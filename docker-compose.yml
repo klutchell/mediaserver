@@ -1,9 +1,21 @@
 version: '3.7'
+
+networks:
+    frontend:
+    backend:
+
+volumes:
+    plex:
+    nzbget:
+    sonarr:
+    radarr:
+    hydra:
+    traefik:
+
 services:
 
     # https://hub.docker.com/r/plexinc/pms-docker
     plex:
-        container_name: plex
         image: plexinc/pms-docker
         environment:
             PLEX_UID: '${PUID}'
@@ -12,7 +24,7 @@ services:
             PLEX_CLAIM: '${PLEX_CLAIM}'
             ADVERTISE_IP: '${ADVERTISE_IP}'
         networks:
-            - traefik
+            - frontend
         ports:
             - '32400:32400/tcp'
         volumes:
@@ -21,7 +33,7 @@ services:
             - '/tmp:/tmp'
         labels:
             traefik.enable: true
-            traefik.docker.network: traefik
+            traefik.docker.network: mediaserver_frontend
             traefik.http.routers.plex.entrypoints: https
             traefik.http.routers.plex.tls.certresolver: tlschallenge
             traefik.http.routers.plex.rule: Host(`${PLEX_HOST}`)
@@ -30,41 +42,39 @@ services:
 
     # https://hub.docker.com/r/linuxserver/nzbget/
     nzbget:
-        container_name: nzbget
         image: linuxserver/nzbget
         environment:
             PUID: '${PUID}'
             PGID: '${PGID}'
             TZ: '${TZ}'
         networks:
-            - traefik
+            - frontend
         volumes:
             - 'nzbget:/config'
             - '${DOWNLOADS_DIR}:/downloads'
         labels:
             traefik.enable: true
-            traefik.docker.network: traefik
+            traefik.docker.network: mediaserver_frontend
             traefik.http.routers.nzbget.entrypoints: https
             traefik.http.routers.nzbget.tls.certresolver: tlschallenge
             traefik.http.routers.nzbget.rule: Host(`${NZBGET_HOST}`)
 
     # https://hub.docker.com/r/linuxserver/sonarr/
     sonarr:
-        container_name: sonarr
         image: linuxserver/sonarr
         environment:
             PUID: '${PUID}'
             PGID: '${PGID}'
             TZ: '${TZ}'
         networks:
-            - traefik
+            - frontend
         volumes:
             - 'sonarr:/config'
             - '${DOWNLOADS_DIR}:/downloads'
             - '${MEDIA_DIR}:/media'
         labels:
             traefik.enable: true
-            traefik.docker.network: traefik
+            traefik.docker.network: mediaserver_frontend
             traefik.http.routers.sonarr.entrypoints: https
             traefik.http.routers.sonarr.tls.certresolver: tlschallenge
             traefik.http.routers.sonarr.rule: Host(`${SONARR_HOST}`)
@@ -74,21 +84,20 @@ services:
 
     # https://hub.docker.com/r/linuxserver/radarr/
     radarr:
-        container_name: radarr
         image: linuxserver/radarr
         environment:
             PUID: '${PUID}'
             PGID: '${PGID}'
             TZ: '${TZ}'
         networks:
-            - traefik
+            - frontend
         volumes:
             - 'radarr:/config'
             - '${DOWNLOADS_DIR}:/downloads'
             - '${MEDIA_DIR}:/media'
         labels:
             traefik.enable: true
-            traefik.docker.network: traefik
+            traefik.docker.network: mediaserver_frontend
             traefik.http.routers.radarr.entrypoints: https
             traefik.http.routers.radarr.tls.certresolver: tlschallenge
             traefik.http.routers.radarr.rule: Host(`${RADARR_HOST}`)
@@ -98,32 +107,30 @@ services:
 
     # https://hub.docker.com/r/linuxserver/hydra2/
     hydra:
-        container_name: hydra
         image: linuxserver/hydra2
         environment:
             PUID: '${PUID}'
             PGID: '${PGID}'
             TZ: '${TZ}'
         networks:
-            - traefik
+            - frontend
         volumes:
             - 'hydra:/config'
             - '${DOWNLOADS_DIR}:/downloads'
         labels:
             traefik.enable: true
-            traefik.docker.network: traefik
+            traefik.docker.network: mediaserver_frontend
             traefik.http.routers.hydra.entrypoints: https
             traefik.http.routers.hydra.tls.certresolver: tlschallenge
             traefik.http.routers.hydra.rule: Host(`${HYDRA_HOST}`)
 
     # https://hub.docker.com/_/traefik/
     traefik:
-        container_name: traefik
         image: traefik
         environment:
             TZ: '${TZ}'
         networks:
-            - traefik
+            - frontend
         ports:
             - '80:80/tcp'
             - '443:443/tcp'
@@ -145,7 +152,7 @@ services:
             # - "--certificatesresolvers.tlschallenge.acme.caserver=https://acme-staging-v02.api.letsencrypt.org/directory"
         labels:
             traefik.enable: true
-            traefik.docker.network: traefik
+            traefik.docker.network: mediaserver_frontend
             traefik.http.routers.traefik.entrypoints: https
             traefik.http.routers.traefik.tls.certresolver: tlschallenge
             traefik.http.routers.traefik.rule: Host(`${TRAEFIK_HOST}`)
@@ -168,16 +175,3 @@ services:
             traefik.http.middlewares.secureheaders.headers.stsPreload: true
             traefik.http.middlewares.secureheaders.headers.customResponseHeaders.X-Robots-Tag: none
             traefik.http.middlewares.secureheaders.headers.customFrameOptionsValue: SAMEORIGIN
-
-networks:
-    traefik:
-        name: traefik
-        attachable: true
-
-volumes:
-    plex:
-    nzbget:
-    sonarr:
-    radarr:
-    hydra:
-    traefik:
