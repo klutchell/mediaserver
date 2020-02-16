@@ -33,6 +33,7 @@ services:
         command: --transaction-isolation=READ-COMMITTED --binlog-format=ROW
         volumes:
             - mariadb:/var/lib/mysql
+            - ./utf8.cnf:/etc/mysql/conf.d/utf8.cnf
         environment:
             MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
             TZ: ${TZ}
@@ -54,6 +55,14 @@ services:
             DB_PASS: codimd
             DB_NAME: codimd
             DB_PORT: 3306
+            CMD_IMAGE_UPLOAD_TYPE: filesystem
+            CMD_DOMAIN: ${CODIMD_HOST}
+            CMD_PROTOCOL_USESSL: 'true'
+            CMD_URL_ADDPORT: 'false'
+            CMD_ALLOW_PDF_EXPORT: 'true'
+            CMD_ALLOW_GRAVATAR: 'true'
+            CMD_ALLOW_FREEURL: 'true'
+            CMD_DEFAULT_PERMISSION: private
         links:
             - mariadb
         labels:
