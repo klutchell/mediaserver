@@ -10,9 +10,6 @@ services:
             - nextcloud:/var/www/html
         environment:
             MYSQL_HOST: mariadb
-            MYSQL_DATABASE: nextcloud
-            MYSQL_USER: nextcloud
-            MYSQL_PASSWORD: nextcloud
             TZ: ${TZ}
             NEXTCLOUD_TRUSTED_DOMAINS: ${NEXTCLOUD_HOST}
         labels:
@@ -37,26 +34,34 @@ services:
         volumes:
             - mariadb:/var/lib/mysql
         environment:
-            MYSQL_DATABASE: nextcloud
-            MYSQL_USER: nextcloud
-            MYSQL_PASSWORD: nextcloud
-            MYSQL_RANDOM_ROOT_PASSWORD: 'yes'
+            MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
             TZ: ${TZ}
         networks:
             - traefik
 
-    # https://hub.docker.com/r/linuxserver/raneto
-    raneto:
-        container_name: raneto
-        image: linuxserver/raneto
+    # https://hub.docker.com/r/linuxserver/codimd
+    codimd:
+        image: linuxserver/codimd
+        container_name: codimd
         volumes:
-            - 'raneto:/config'
+          - codimd:/config
+        environment:
+            PUID: ${PUID}
+            PGID: ${PGID}
+            TZ: ${TZ}
+            DB_HOST: mariadb
+            DB_USER: codimd
+            DB_PASS: codimd
+            DB_NAME: codimd
+            DB_PORT: 3306
+        links:
+            - mariadb
         labels:
             traefik.enable: true
-            traefik.http.routers.raneto.entrypoints: https
-            traefik.http.routers.raneto.tls.certresolver: tlschallenge
-            traefik.http.routers.raneto.rule: Host(`${RANETO_HOST}`)
-            traefik.http.routers.raneto.middlewares: secureheaders, basicauth
+            traefik.http.routers.codimd.entrypoints: https
+            traefik.http.routers.codimd.tls.certresolver: tlschallenge
+            traefik.http.routers.codimd.rule: Host(`${CODIMD_HOST}`)
+            traefik.http.routers.codimd.middlewares: secureheaders, basicauth
         networks:
             - traefik
 
@@ -91,7 +96,7 @@ services:
             - hydra:/sources/hydra:ro
             - nextcloud:/sources/nextcloud:ro
             - mariadb:/sources/mariadb:ro
-            - raneto:/sources/raneto:ro
+            - codimd:/sources/codimd:ro
             - ghost:/sources/ghost:ro
         networks:
             - traefik
@@ -150,5 +155,5 @@ volumes:
     duplicati:
     nextcloud:
     mariadb:
-    raneto:
+    codimd:
     ghost:
