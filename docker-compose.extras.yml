@@ -16,6 +16,9 @@ services:
             - nextcloud:/var/www/html
         environment:
             MYSQL_HOST: mariadb
+            MYSQL_DATABASE: nextcloud
+            MYSQL_USER: nextcloud
+            MYSQL_PASSWORD: ${NEXTCLOUD_DB_PASSWORD}
             TZ: ${TZ}
             NEXTCLOUD_TRUSTED_DOMAINS: ${NEXTCLOUD_HOST}
         labels:
@@ -33,19 +36,6 @@ services:
         links:
             - mariadb
 
-    # https://hub.docker.com/_/mariadb/
-    mariadb:
-        image: mariadb
-        command: --transaction-isolation=READ-COMMITTED --binlog-format=ROW
-        volumes:
-            - mariadb:/var/lib/mysql
-            - ./utf8.cnf:/etc/mysql/conf.d/utf8.cnf
-        environment:
-            MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
-            TZ: ${TZ}
-        networks:
-            - backend
-
     # https://hub.docker.com/r/linuxserver/codimd
     codimd:
         image: linuxserver/codimd
@@ -56,9 +46,9 @@ services:
             PGID: ${PGID}
             TZ: ${TZ}
             DB_HOST: mariadb
-            DB_USER: codimd
-            DB_PASS: codimd
             DB_NAME: codimd
+            DB_USER: codimd
+            DB_PASS: ${CODIMD_DB_PASSWORD}
             DB_PORT: 3306
             CMD_IMAGE_UPLOAD_TYPE: filesystem
             CMD_DOMAIN: ${CODIMD_HOST}
@@ -90,7 +80,7 @@ services:
             database__connection__host: mariadb
             database__connection__database: ghost
             database__connection__user: ghost
-            database__connection__password: ghost
+            database__connection__password: ${GHOST_DB_PASSWORD}
         volumes:
             - 'ghost:/var/lib/ghost/content:rw'
         labels:
@@ -134,19 +124,6 @@ services:
         networks:
             - frontend
 
-    # https://hub.docker.com/r/containous/whoami
-    whoami:
-        image: containous/whoami
-        labels:
-            traefik.enable: true
-            traefik.docker.network: mediaserver_frontend
-            traefik.http.routers.whoami.entrypoints: https
-            traefik.http.routers.whoami.tls.certresolver: tlschallenge
-            traefik.http.routers.whoami.rule: Host(`${WHOAMI_HOST}`)
-            traefik.http.routers.whoami.middlewares: secureheaders, basicauth
-        networks:
-            - frontend
-    
     # https://hub.docker.com/r/netdata/netdata
     netdata:
         image: netdata/netdata
@@ -172,5 +149,31 @@ services:
             traefik.http.routers.netdata.tls.certresolver: tlschallenge
             traefik.http.routers.netdata.rule: Host(`${NETDATA_HOST}`)
             traefik.http.routers.netdata.middlewares: secureheaders, basicauth
+        networks:
+            - frontend
+
+    # https://hub.docker.com/_/mariadb/
+    mariadb:
+        image: mariadb
+        command: --transaction-isolation=READ-COMMITTED --binlog-format=ROW
+        volumes:
+            - mariadb:/var/lib/mysql
+            - ./utf8.cnf:/etc/mysql/conf.d/utf8.cnf
+        environment:
+            MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+            TZ: ${TZ}
+        networks:
+            - backend
+
+    # https://hub.docker.com/r/containous/whoami
+    whoami:
+        image: containous/whoami
+        labels:
+            traefik.enable: true
+            traefik.docker.network: mediaserver_frontend
+            traefik.http.routers.whoami.entrypoints: https
+            traefik.http.routers.whoami.tls.certresolver: tlschallenge
+            traefik.http.routers.whoami.rule: Host(`${WHOAMI_HOST}`)
+            traefik.http.routers.whoami.middlewares: secureheaders, basicauth
         networks:
             - frontend
