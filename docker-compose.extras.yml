@@ -89,15 +89,16 @@ services:
         networks:
             - traefik
 
-    # https://hub.docker.com/r/duplicati/duplicati
+    # https://hub.docker.com/r/linuxserver/duplicati
     duplicati:
-        image: duplicati/duplicati
+        image: linuxserver/duplicati
         container_name: duplicati
-        command: ["/usr/bin/duplicati-server", "--webservice-port=8200", "--webservice-interface=any", "--webservice-allowed-hostnames=*"]
         environment:
+            PUID: 0
+            PGID: 0
             TZ: ${TZ}
         volumes:
-            - duplicati:/data:rw
+            - duplicati:/config:rw
             - plex:/sources/plex:ro
             - nzbget:/sources/nzbget:ro
             - sonarr:/sources/sonarr:ro
