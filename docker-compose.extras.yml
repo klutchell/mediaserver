@@ -97,6 +97,7 @@ services:
         links:
             - mariadb
 
+    # https://hub.docker.com/r/vikunja/api
     vikunja-api:
         image: vikunja/api
         environment:
@@ -120,6 +121,7 @@ services:
         links:
             - mariadb
 
+    # https://hub.docker.com/r/vikunja/frontend
     vikunja:
         image: vikunja/frontend
         labels:
@@ -202,16 +204,3 @@ services:
             TZ: ${TZ}
         networks:
             - backend
-
-    # https://hub.docker.com/r/containous/whoami
-    whoami:
-        image: containous/whoami
-        labels:
-            traefik.enable: true
-            traefik.docker.network: mediaserver_frontend
-            traefik.http.routers.whoami.entrypoints: https
-            traefik.http.routers.whoami.tls.certresolver: tlschallenge
-            traefik.http.routers.whoami.rule: Host(`${WHOAMI_HOST}`)
-            traefik.http.routers.whoami.middlewares: secureheaders, basicauth
-        networks:
-            - frontend

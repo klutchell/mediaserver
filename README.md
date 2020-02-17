@@ -6,7 +6,6 @@ docker-based plex & usenet media server using custom subdomains with tls
 
 - host each service as a subdomain of a personal domain over https
 - run public maintained images with no modifications
-- keep source repo small (2 required files)
 - require minimal configuration and setup
 
 ## Features
@@ -24,9 +23,7 @@ docker-based plex & usenet media server using custom subdomains with tls
 - windows or linux x86/x64 os (not ARM)
 - personal top-level domain with configurable sub-domains (eg. plex.mydomain.com)
 
-## ACME & DNS
-
-The following subdomains should point to the public IP of your server:
+The following subdomains should point to the public IP of your server.
 
 - `plex.mydomain.com`
 - `nzbget.mydomain.com`
@@ -42,13 +39,14 @@ The following subdomains should point to the public IP of your server:
 2. install [docker-compose](https://docs.docker.com/compose/install/#install-compose)
 
 3. clone mediaserver repo
+
 ```bash
 git clone https://github.com/klutchell/mediaserver.git
 ```
 
 ## Configuration
 
-Copy `env.sample` to `.env` and fill all required fields
+Copy `env.sample` to `.env` and fill all required fields.
 
 ```bash
 cp env.sample .env && nano .env
@@ -56,7 +54,7 @@ cp env.sample .env && nano .env
 
 ## Deployment
 
-Pull and deploy containers with docker-compose
+Pull and deploy containers with docker-compose.
 
 ```bash
 docker-compose pull
@@ -65,7 +63,7 @@ docker-compose up -d
 
 ## Extras
 
-Optionally load all additional services by providing two compose files from the command line
+Optionally load all additional services by providing two compose files from the command line.
 
 ```bash
 docker-compose -f docker-compose.yml -f docker-compose.extras.yml pull
@@ -79,13 +77,22 @@ docker-compose -f docker-compose.yml -f docker-compose.extras.yml pull nextcloud
 docker-compose -f docker-compose.yml -f docker-compose.extras.yml up -d nextcloud mariadb
 ```
 
-Create a link in order to automatically load both config files for future docker-compose commands
+Create a link in order to automatically load both config files for future docker-compose commands.
 
 ```bash
 ln -s docker-compose.extras.yml docker-compose.override.yml
 ```
 
-Manually create a nextcloud database & user
+Add basic http auth credentials for accessing some protected services.
+
+```bash
+docker-compose exec traefik /bin/sh
+
+apk add --no-cache apache2-utils
+htpasswd /etc/traefik/.htpasswd <username>
+```
+
+Manually create mysql databases & users for some services.
 
 ```bash
 docker-compose exec mariadb mysql -u root -p
@@ -95,36 +102,18 @@ mysql> CREATE USER 'nextcloud'@'%' IDENTIFIED BY 'NEXTCLOUD_DB_PASSWORD';
 mysql> GRANT ALL PRIVILEGES ON nextcloud.* TO 'nextcloud'@'%';
 mysql> FLUSH PRIVILEGES;
 mysql> SHOW GRANTS FOR 'nextcloud'@'%';
-```
-
-Manually create a codimd database & user
-
-```bash
-docker-compose exec mariadb mysql -u root -p
 
 mysql> CREATE DATABASE codimd;
 mysql> CREATE USER 'codimd'@'%' IDENTIFIED BY 'CODIMD_DB_PASSWORD';
 mysql> GRANT ALL PRIVILEGES ON codimd.* TO 'codimd'@'%';
 mysql> FLUSH PRIVILEGES;
 mysql> SHOW GRANTS FOR 'codimd'@'%';
-```
-
-Manually create a ghost database & user
-
-```bash
-docker-compose exec mariadb mysql -u root -p
 
 mysql> CREATE DATABASE ghost;
 mysql> CREATE USER 'ghost'@'%' IDENTIFIED BY 'GHOST_DB_PASSWORD';
 mysql> GRANT ALL PRIVILEGES ON ghost.* TO 'ghost'@'%';
 mysql> FLUSH PRIVILEGES;
 mysql> SHOW GRANTS FOR 'ghost'@'%';
-```
-
-Manually create a vikunja database & user
-
-```bash
-docker-compose exec mariadb mysql -u root -p
 
 mysql> CREATE DATABASE vikunja;
 mysql> CREATE USER 'vikunja'@'%' IDENTIFIED BY 'VIKUNJA_DB_PASSWORD';
@@ -133,7 +122,7 @@ mysql> FLUSH PRIVILEGES;
 mysql> SHOW GRANTS FOR 'vikunja'@'%';
 ```
 
-Fix nextcloud database warnings
+Fix nextcloud database warnings.
 
 ```bash
 docker-compose exec nextcloud /bin/bash
@@ -159,7 +148,6 @@ maintainers, and the original software creators.
 - [mariadb.com](https://mariadb.com/)
 - [ghost.org](https://ghost.org/)
 - [duplicati.com](https://www.duplicati.com/)
-- [containo.us](https://containo.us/)
 - [netdata.cloud](https://www.netdata.cloud/)
 - [codimd.org](https://codimd.org)
 - [vikunja.io](https://vikunja.io)
