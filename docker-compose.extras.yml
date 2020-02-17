@@ -142,8 +142,7 @@ services:
             traefik.docker.network: mediaserver_frontend
             traefik.http.routers.vikunja-api.entrypoints: https
             traefik.http.routers.vikunja-api.tls.certresolver: tlschallenge
-            traefik.http.routers.vikunja-api.rule: Host(`${VIKUNJA_HOST}`) && PathPrefix(`/api/v1`)
-            traefik.http.routers.vikunja-api.middlewares: secureheaders
+            traefik.http.routers.vikunja-api.rule: Host(`${VIKUNJA_HOST}`) && PathPrefix(`/api`)
         networks:
             - frontend
             - backend
@@ -159,7 +158,6 @@ services:
             traefik.http.routers.vikunja.entrypoints: https
             traefik.http.routers.vikunja.tls.certresolver: tlschallenge
             traefik.http.routers.vikunja.rule: Host(`${VIKUNJA_HOST}`) && PathPrefix(`/`)
-            traefik.http.routers.vikunja.middlewares: secureheaders
         networks:
             - frontend
             - backend

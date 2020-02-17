@@ -125,11 +125,10 @@ mysql> SHOW GRANTS FOR 'vikunja'@'%';
 Fix nextcloud database warnings.
 
 ```bash
-docker-compose exec nextcloud /bin/bash
-
-apt-get update && apt-get install sudo
-sudo -u www-data ./occ db:add-missing-indices
-sudo -u www-data ./occ db:convert-filecache-bigint
+docker-compose exec -u www-data nextcloud php occ maintenance:mode --on
+docker-compose exec -u www-data nextcloud php occ db:add-missing-indices
+docker-compose exec -u www-data nextcloud php occ db:convert-filecache-bigint
+docker-compose exec -u www-data nextcloud php occ maintenance:mode --off
 ```
 
 ## Author
