@@ -114,12 +114,6 @@ mysql> CREATE USER 'ghost'@'%' IDENTIFIED BY 'GHOST_DB_PASSWORD';
 mysql> GRANT ALL PRIVILEGES ON ghost.* TO 'ghost'@'%';
 mysql> FLUSH PRIVILEGES;
 mysql> SHOW GRANTS FOR 'ghost'@'%';
-
-mysql> CREATE DATABASE vikunja;
-mysql> CREATE USER 'vikunja'@'%' IDENTIFIED BY 'VIKUNJA_DB_PASSWORD';
-mysql> GRANT ALL PRIVILEGES ON vikunja.* TO 'vikunja'@'%';
-mysql> FLUSH PRIVILEGES;
-mysql> SHOW GRANTS FOR 'vikunja'@'%';
 ```
 
 Fix nextcloud database warnings.
