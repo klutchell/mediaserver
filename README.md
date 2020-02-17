@@ -142,6 +142,10 @@ maintainers, and the original software creators.
 
 - [plex.tv](https://plex.tv/)
 - [linuxserver.io](https://linuxserver.io/)
+- [nzbget.net](https://nzbget.net/)
+- [sonarr.tv](https://sonarr.tv/)
+- [radarr.video](https://radarr.video/)
+- [nzbhydra.com](https://nzbhydra.com/)
 - [traefik.io](https://traefik.io/)
 - [nextcloud.com](https://nextcloud.com/)
 - [mariadb.com](https://mariadb.com/)
@@ -149,7 +153,6 @@ maintainers, and the original software creators.
 - [duplicati.com](https://www.duplicati.com/)
 - [netdata.cloud](https://www.netdata.cloud/)
 - [codimd.org](https://codimd.org)
-- [vikunja.io](https://vikunja.io)
 - [nginx.com](https://nginx.com)
 
 ## License

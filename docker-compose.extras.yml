@@ -124,44 +124,6 @@ services:
         links:
             - mariadb
 
-    # https://hub.docker.com/r/vikunja/api
-    vikunja-api:
-        image: vikunja/api
-        environment:
-            VIKUNJA_DATABASE_HOST: mariadb
-            VIKUNJA_DATABASE_TYPE: mysql
-            VIKUNJA_DATABASE_DATABASE: vikunja
-            VIKUNJA_DATABASE_USER: vikunja
-            VIKUNJA_DATABASE_PASSWORD: ${VIKUNJA_DB_PASSWORD}
-            VIKUNJA_SERVICE_ENABLEREGISTRATION: 'false'
-            VIKUNJA_SERVICE_TIMEZONE: ${TZ}
-        volumes: 
-            - vikunja:/app/vikunja/files
-        labels:
-            traefik.enable: true
-            traefik.docker.network: mediaserver_frontend
-            traefik.http.routers.vikunja-api.entrypoints: https
-            traefik.http.routers.vikunja-api.tls.certresolver: tlschallenge
-            traefik.http.routers.vikunja-api.rule: Host(`${VIKUNJA_HOST}`) && PathPrefix(`/api`)
-        networks:
-            - frontend
-            - backend
-        links:
-            - mariadb
-
-    # https://hub.docker.com/r/vikunja/frontend
-    vikunja:
-        image: vikunja/frontend
-        labels:
-            traefik.enable: true
-            traefik.docker.network: mediaserver_frontend
-            traefik.http.routers.vikunja.entrypoints: https
-            traefik.http.routers.vikunja.tls.certresolver: tlschallenge
-            traefik.http.routers.vikunja.rule: Host(`${VIKUNJA_HOST}`) && PathPrefix(`/`)
-        networks:
-            - frontend
-            - backend
-
     # https://hub.docker.com/r/linuxserver/duplicati
     duplicati:
         image: linuxserver/duplicati
