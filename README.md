@@ -79,10 +79,16 @@ docker-compose -f docker-compose.yml -f docker-compose.extras.yml pull nextcloud
 docker-compose -f docker-compose.yml -f docker-compose.extras.yml up -d nextcloud mariadb
 ```
 
+Create a link in order to automatically load both config files for future docker-compose commands
+
+```bash
+ln -s docker-compose.extras.yml docker-compose.override.yml
+```
+
 Manually create a nextcloud database & user
 
 ```bash
-docker exec -it mariadb mysql -u root -p
+docker-compose exec mariadb mysql -u root -p
 
 mysql> CREATE DATABASE nextcloud;
 mysql> CREATE USER 'nextcloud'@'%' IDENTIFIED BY 'NEXTCLOUD_DB_PASSWORD';
@@ -94,7 +100,7 @@ mysql> SHOW GRANTS FOR 'nextcloud'@'%';
 Manually create a codimd database & user
 
 ```bash
-docker exec -it mariadb mysql -u root -p
+docker-compose exec mariadb mysql -u root -p
 
 mysql> CREATE DATABASE codimd;
 mysql> CREATE USER 'codimd'@'%' IDENTIFIED BY 'CODIMD_DB_PASSWORD';
@@ -106,13 +112,35 @@ mysql> SHOW GRANTS FOR 'codimd'@'%';
 Manually create a ghost database & user
 
 ```bash
-docker exec -it mariadb mysql -u root -p
+docker-compose exec mariadb mysql -u root -p
 
 mysql> CREATE DATABASE ghost;
 mysql> CREATE USER 'ghost'@'%' IDENTIFIED BY 'GHOST_DB_PASSWORD';
 mysql> GRANT ALL PRIVILEGES ON ghost.* TO 'ghost'@'%';
 mysql> FLUSH PRIVILEGES;
 mysql> SHOW GRANTS FOR 'ghost'@'%';
+```
+
+Manually create a vikunja database & user
+
+```bash
+docker-compose exec mariadb mysql -u root -p
+
+mysql> CREATE DATABASE vikunja;
+mysql> CREATE USER 'vikunja'@'%' IDENTIFIED BY 'VIKUNJA_DB_PASSWORD';
+mysql> GRANT ALL PRIVILEGES ON vikunja.* TO 'vikunja'@'%';
+mysql> FLUSH PRIVILEGES;
+mysql> SHOW GRANTS FOR 'vikunja'@'%';
+```
+
+Fix nextcloud database warnings
+
+```bash
+docker-compose exec nextcloud /bin/bash
+
+apt-get update && apt-get install sudo
+sudo -u www-data ./occ db:add-missing-indices
+sudo -u www-data ./occ db:convert-filecache-bigint
 ```
 
 ## Author
@@ -134,6 +162,7 @@ maintainers, and the original software creators.
 - [containo.us](https://containo.us/)
 - [netdata.cloud](https://www.netdata.cloud/)
 - [codimd.org](https://codimd.org)
+- [vikunja.io](https://vikunja.io)
 
 ## License
 
