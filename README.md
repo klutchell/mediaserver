@@ -151,6 +151,7 @@ maintainers, and the original software creators.
 - [netdata.cloud](https://www.netdata.cloud/)
 - [codimd.org](https://codimd.org)
 - [vikunja.io](https://vikunja.io)
+- [nginx.com](https://nginx.com)
 
 ## License
 

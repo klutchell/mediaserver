@@ -7,8 +7,34 @@ volumes:
     codimd:
     ghost:
     vikunja:
+    ombi:
+    nginx_conf:
+    nginx_html:
 
 services:
+
+    # https://hub.docker.com/r/linuxserver/ombi
+    ombi:
+        image: linuxserver/ombi
+        environment:
+            PUID: ${PUID}
+            PGID: ${PGID}
+            TZ: ${TZ}
+        volumes:
+            - ombi:/config
+        labels:
+            traefik.enable: true
+            traefik.docker.network: mediaserver_frontend
+            traefik.http.routers.ombi.entrypoints: https
+            traefik.http.routers.ombi.tls.certresolver: tlschallenge
+            traefik.http.routers.ombi.rule: Host(`${OMBI_HOST}`)
+            traefik.http.routers.ombi.middlewares: secureheaders
+        networks:
+            - frontend
+        links:
+            - sonarr
+            - radarr
+            - plex
 
     # https://hub.docker.com/_/nextcloud/
     nextcloud:
@@ -114,7 +140,7 @@ services:
             traefik.http.routers.vikunja-api.entrypoints: https
             traefik.http.routers.vikunja-api.tls.certresolver: tlschallenge
             traefik.http.routers.vikunja-api.rule: Host(`${VIKUNJA_HOST}`) && PathPrefix(`/api/v1`)
-            traefik.http.routers.vikunja-api.middlewares: secureheaders, basicauth
+            traefik.http.routers.vikunja-api.middlewares: secureheaders
         networks:
             - frontend
             - backend
@@ -154,6 +180,9 @@ services:
             - codimd:/sources/codimd:ro
             - ghost:/sources/ghost:ro
             - vikunja:/sources/vikunja:ro
+            - ombi:/sources/ombi:ro
+            - nginx_conf:/sources/nginx_conf:ro
+            - nginx_html:/sources/nginx_html:ro
         labels:
             traefik.enable: true
             traefik.docker.network: mediaserver_frontend
@@ -189,6 +218,24 @@ services:
             traefik.http.routers.netdata.tls.certresolver: tlschallenge
             traefik.http.routers.netdata.rule: Host(`${NETDATA_HOST}`)
             traefik.http.routers.netdata.middlewares: secureheaders, basicauth
+        networks:
+            - frontend
+
+    # https://hub.docker.com/_/nginx/
+    nginx:
+        image: nginx
+        environment:
+            TZ: ${TZ}
+        volumes:
+            - nginx_conf:/etc/nginx
+            - nginx_html:/usr/share/nginx/html
+        labels:
+            traefik.enable: true
+            traefik.docker.network: mediaserver_frontend
+            traefik.http.routers.nginx.entrypoints: https
+            traefik.http.routers.nginx.tls.certresolver: tlschallenge
+            traefik.http.routers.nginx.rule: Host(`${NGINX_HOST}`)
+            traefik.http.routers.nginx.middlewares: secureheaders, basicauth
         networks:
             - frontend
 

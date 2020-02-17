@@ -1,5 +1,3 @@
-config
-downloads
-media
+*/
 .env
 docker-compose.override.yml
