@@ -102,6 +102,7 @@ services:
     ghost:
         image: ghost
         environment:
+            TZ: ${TZ}
             url: https://${GHOST_HOST}
             database__client: mysql
             database__connection__host: mariadb
@@ -132,6 +133,8 @@ services:
             VIKUNJA_DATABASE_DATABASE: vikunja
             VIKUNJA_DATABASE_USER: vikunja
             VIKUNJA_DATABASE_PASSWORD: ${VIKUNJA_DB_PASSWORD}
+            VIKUNJA_SERVICE_ENABLEREGISTRATION: 'false'
+            VIKUNJA_SERVICE_TIMEZONE: ${TZ}
         volumes: 
             - vikunja:/app/vikunja/files
         labels:
@@ -156,7 +159,7 @@ services:
             traefik.http.routers.vikunja.entrypoints: https
             traefik.http.routers.vikunja.tls.certresolver: tlschallenge
             traefik.http.routers.vikunja.rule: Host(`${VIKUNJA_HOST}`) && PathPrefix(`/`)
-            traefik.http.routers.vikunja.middlewares: secureheaders, basicauth
+            traefik.http.routers.vikunja.middlewares: secureheaders
         networks:
             - frontend
             - backend
