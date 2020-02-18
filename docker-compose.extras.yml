@@ -65,7 +65,7 @@ services:
 
     # https://hub.docker.com/r/linuxserver/codimd
     codimd:
-        image: linuxserver/codimd
+        image: linuxserver/codimd:1.5.0-ls27
         volumes:
           - codimd:/config
         environment:
@@ -85,13 +85,15 @@ services:
             CMD_ALLOW_GRAVATAR: 'true'
             CMD_ALLOW_FREEURL: 'true'
             CMD_DEFAULT_PERMISSION: private
+            CMD_ALLOW_ANONYMOUS: 'false'
+            CMD_ALLOW_EMAIL_REGISTER: 'false'
         labels:
             traefik.enable: true
             traefik.docker.network: mediaserver_frontend
             traefik.http.routers.codimd.entrypoints: https
             traefik.http.routers.codimd.tls.certresolver: tlschallenge
             traefik.http.routers.codimd.rule: Host(`${CODIMD_HOST}`)
-            traefik.http.routers.codimd.middlewares: secureheaders, basicauth
+            traefik.http.routers.codimd.middlewares: secureheaders
         networks:
             - frontend
             - backend
