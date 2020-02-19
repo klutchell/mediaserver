@@ -3,13 +3,11 @@ version: '3.7'
 volumes:
     duplicati:
     nextcloud:
-    mariadb:
-    codimd:
     ghost:
-    vikunja:
     ombi:
-    nginx_conf:
-    nginx_html:
+    nginx:
+    html:
+    mariadb:
 
 services:
 
@@ -63,43 +61,6 @@ services:
         links:
             - mariadb
 
-    # https://hub.docker.com/r/linuxserver/codimd
-    codimd:
-        image: linuxserver/codimd:1.5.0-ls27
-        volumes:
-          - codimd:/config
-        environment:
-            PUID: ${PUID}
-            PGID: ${PGID}
-            TZ: ${TZ}
-            DB_HOST: mariadb
-            DB_NAME: codimd
-            DB_USER: codimd
-            DB_PASS: ${CODIMD_DB_PASSWORD}
-            DB_PORT: 3306
-            CMD_IMAGE_UPLOAD_TYPE: filesystem
-            CMD_DOMAIN: ${CODIMD_HOST}
-            CMD_PROTOCOL_USESSL: 'true'
-            CMD_URL_ADDPORT: 'false'
-            CMD_ALLOW_PDF_EXPORT: 'true'
-            CMD_ALLOW_GRAVATAR: 'true'
-            CMD_ALLOW_FREEURL: 'true'
-            CMD_DEFAULT_PERMISSION: private
-            CMD_ALLOW_ANONYMOUS: 'false'
-            CMD_ALLOW_EMAIL_REGISTER: 'false'
-        labels:
-            traefik.enable: true
-            traefik.docker.network: mediaserver_frontend
-            traefik.http.routers.codimd.entrypoints: https
-            traefik.http.routers.codimd.tls.certresolver: tlschallenge
-            traefik.http.routers.codimd.rule: Host(`${CODIMD_HOST}`)
-            traefik.http.routers.codimd.middlewares: secureheaders
-        networks:
-            - frontend
-            - backend
-        links:
-            - mariadb
-
     # https://hub.docker.com/_/ghost/
     ghost:
         image: ghost
@@ -142,12 +103,10 @@ services:
             - hydra:/sources/hydra:ro
             - nextcloud:/sources/nextcloud:ro
             - mariadb:/sources/mariadb:ro
-            - codimd:/sources/codimd:ro
             - ghost:/sources/ghost:ro
-            - vikunja:/sources/vikunja:ro
             - ombi:/sources/ombi:ro
-            - nginx_conf:/sources/nginx_conf:ro
-            - nginx_html:/sources/nginx_html:ro
+            - nginx:/sources/nginx_conf:ro
+            - html:/sources/nginx_html:ro
         labels:
             traefik.enable: true
             traefik.docker.network: mediaserver_frontend
@@ -192,8 +151,8 @@ services:
         environment:
             TZ: ${TZ}
         volumes:
-            - nginx_conf:/etc/nginx
-            - nginx_html:/usr/share/nginx/html
+            - nginx:/etc/nginx
+            - html:/usr/share/nginx/html
         labels:
             traefik.enable: true
             traefik.docker.network: mediaserver_frontend

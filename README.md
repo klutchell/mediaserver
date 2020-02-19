@@ -38,15 +38,9 @@ The following subdomains should point to the public IP of your server.
 
 2. install [docker-compose](https://docs.docker.com/compose/install/#install-compose)
 
-3. clone mediaserver repo
+3. fork and clone the mediaserver repo
 
-```bash
-git clone https://github.com/klutchell/mediaserver.git
-```
-
-## Configuration
-
-Copy `env.sample` to `.env` and fill all required fields.
+4. copy `env.sample` to `.env` and fill all required fields.
 
 ```bash
 cp env.sample .env && nano .env
@@ -63,24 +57,17 @@ docker-compose up -d
 
 ## Extras
 
-Optionally load all additional services by providing two compose files from the command line.
-
-```bash
-docker-compose -f docker-compose.yml -f docker-compose.extras.yml pull
-docker-compose -f docker-compose.yml -f docker-compose.extras.yml up -d
-```
-
-Or just load a subset of the extra services (eg. nextcloud & mariadb only)
-
-```bash
-docker-compose -f docker-compose.yml -f docker-compose.extras.yml pull nextcloud mariadb
-docker-compose -f docker-compose.yml -f docker-compose.extras.yml up -d nextcloud mariadb
-```
-
-Create a link in order to automatically load both config files for future docker-compose commands.
+Create a link in order to append the extras compose file to future docker-compose commands.
 
 ```bash
 ln -s docker-compose.extras.yml docker-compose.override.yml
+```
+
+Load all extra services now that both compose files are linked.
+
+```bash
+docker-compose pull
+docker-compose up -d
 ```
 
 Add basic http auth credentials for accessing some protected services.
@@ -92,7 +79,7 @@ apk add --no-cache apache2-utils
 htpasswd /etc/traefik/.htpasswd <username>
 ```
 
-Manually create mysql databases & users for some services.
+Manually create mysql databases & users for nextcloud and ghost.
 
 ```bash
 docker-compose exec mariadb mysql -u root -p
@@ -102,12 +89,6 @@ mysql> CREATE USER 'nextcloud'@'%' IDENTIFIED BY 'NEXTCLOUD_DB_PASSWORD';
 mysql> GRANT ALL PRIVILEGES ON nextcloud.* TO 'nextcloud'@'%';
 mysql> FLUSH PRIVILEGES;
 mysql> SHOW GRANTS FOR 'nextcloud'@'%';
-
-mysql> CREATE DATABASE codimd;
-mysql> CREATE USER 'codimd'@'%' IDENTIFIED BY 'CODIMD_DB_PASSWORD';
-mysql> GRANT ALL PRIVILEGES ON codimd.* TO 'codimd'@'%';
-mysql> FLUSH PRIVILEGES;
-mysql> SHOW GRANTS FOR 'codimd'@'%';
 
 mysql> CREATE DATABASE ghost;
 mysql> CREATE USER 'ghost'@'%' IDENTIFIED BY 'GHOST_DB_PASSWORD';
@@ -146,7 +127,6 @@ maintainers, and the original software creators.
 - [ghost.org](https://ghost.org/)
 - [duplicati.com](https://www.duplicati.com/)
 - [netdata.cloud](https://www.netdata.cloud/)
-- [codimd.org](https://codimd.org)
 - [nginx.com](https://nginx.com)
 
 ## License
