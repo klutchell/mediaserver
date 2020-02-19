@@ -34,11 +34,11 @@ The following subdomains should point to the public IP of your server.
 
 ## Installation
 
-1. install [docker](https://docs.docker.com/install/linux/docker-ce/debian/)
+1. fork and clone the mediaserver repo
 
-2. install [docker-compose](https://docs.docker.com/compose/install/#install-compose)
+2. install [docker](https://docs.docker.com/install/linux/docker-ce/debian/)
 
-3. fork and clone the mediaserver repo
+3. install [docker-compose](https://docs.docker.com/compose/install/#install-compose)
 
 4. copy `env.sample` to `.env` and fill all required fields.
 
@@ -63,14 +63,14 @@ Create a link in order to append the extras compose file to future docker-compos
 ln -s docker-compose.extras.yml docker-compose.override.yml
 ```
 
-Load all extra services now that both compose files are linked.
+Load extra services now that both compose files are linked. Optionally remove the unwanted services first.
 
 ```bash
 docker-compose pull
 docker-compose up -d
 ```
 
-Add basic http auth credentials for accessing some protected services.
+Add http credentials for services using `basicauth` in the middlewares labels definition.
 
 ```bash
 docker-compose exec traefik /bin/sh
