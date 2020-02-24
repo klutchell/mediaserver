@@ -73,10 +73,9 @@ docker-compose up -d
 Add http credentials for services using `basicauth` in the middlewares labels definition.
 
 ```bash
-docker-compose exec traefik /bin/sh
-
-apk add --no-cache apache2-utils
-htpasswd /etc/traefik/.htpasswd <username>
+docker-compose exec traefik apk add --no-cache apache2-utils
+docker-compose exec traefik htpasswd -c /etc/traefik/.htpasswd <user1>
+docker-compose exec traefik htpasswd /etc/traefik/.htpasswd <user2>
 ```
 
 Manually create mysql databases & users for nextcloud and ghost.
