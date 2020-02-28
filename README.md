@@ -55,6 +55,16 @@ docker-compose pull
 docker-compose up -d
 ```
 
+Add credentials for basic http auth. The first user added requires `htpasswd -c`
+in order to create the password file. Subsequent users should only use `htpasswd` to avoid
+overwriting the file. 
+
+```bash
+docker-compose exec traefik apk add --no-cache apache2-utils
+docker-compose exec traefik htpasswd -c /etc/traefik/.htpasswd <user1>
+docker-compose exec traefik htpasswd /etc/traefik/.htpasswd <user2>
+```
+
 ## Extras
 
 Create a link in order to append the extras compose file to future docker-compose commands.
@@ -68,14 +78,6 @@ Load extra services now that both compose files are linked. Optionally remove th
 ```bash
 docker-compose pull
 docker-compose up -d
-```
-
-Add http credentials for services using `basicauth` in the middlewares labels definition.
-
-```bash
-docker-compose exec traefik apk add --no-cache apache2-utils
-docker-compose exec traefik htpasswd -c /etc/traefik/.htpasswd <user1>
-docker-compose exec traefik htpasswd /etc/traefik/.htpasswd <user2>
 ```
 
 Manually create mysql databases & users for nextcloud and ghost.
@@ -126,7 +128,6 @@ maintainers, and the original software creators.
 - [ghost.org](https://ghost.org/)
 - [duplicati.com](https://www.duplicati.com/)
 - [netdata.cloud](https://www.netdata.cloud/)
-- [nginx.com](https://nginx.com)
 
 ## License
 

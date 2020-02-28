@@ -81,6 +81,10 @@ services:
             traefik.http.routers.ghost.tls.certresolver: tlschallenge
             traefik.http.routers.ghost.rule: Host(`${GHOST_HOST}`)
             traefik.http.routers.ghost.middlewares: secureheaders, basicauth
+            traefik.http.routers.ghost-admin.entrypoints: https
+            traefik.http.routers.ghost-admin.tls.certresolver: tlschallenge
+            traefik.http.routers.ghost-admin.rule: Host(`${GHOST_HOST}`) && PathPrefix(`/ghost`)
+            traefik.http.routers.ghost-admin.middlewares: secureheaders, basicauth
         networks:
             - frontend
             - backend
