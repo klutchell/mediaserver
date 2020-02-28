@@ -145,24 +145,6 @@ services:
         networks:
             - frontend
 
-    # https://hub.docker.com/_/nginx/
-    nginx:
-        image: nginx
-        environment:
-            TZ: ${TZ}
-        volumes:
-            - nginx:/etc/nginx
-            - html:/usr/share/nginx/html
-        labels:
-            traefik.enable: true
-            traefik.docker.network: mediaserver_frontend
-            traefik.http.routers.nginx.entrypoints: https
-            traefik.http.routers.nginx.tls.certresolver: tlschallenge
-            traefik.http.routers.nginx.rule: Host(`${NGINX_HOST}`)
-            traefik.http.routers.nginx.middlewares: secureheaders, basicauth
-        networks:
-            - frontend
-
     # https://hub.docker.com/_/mariadb/
     mariadb:
         image: mariadb

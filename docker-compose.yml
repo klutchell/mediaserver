@@ -58,6 +58,11 @@ services:
             traefik.http.routers.nzbget.entrypoints: https
             traefik.http.routers.nzbget.tls.certresolver: tlschallenge
             traefik.http.routers.nzbget.rule: Host(`${NZBGET_HOST}`)
+            traefik.http.routers.nzbget.middlewares: secureheaders, basicauth
+            traefik.http.routers.nzbget-api.entrypoints: https
+            traefik.http.routers.nzbget-api.tls.certresolver: tlschallenge
+            traefik.http.routers.nzbget-api.rule: Host(`${NZBGET_HOST}`) && PathPrefix(`(/[^\/:]*:[^\/:]*)?/jsonrpc`,`(/[^\/:]*:[^\/:]*)?/xmlrpc`)
+            traefik.http.routers.nzbget-api.middlewares: secureheaders
 
     # https://hub.docker.com/r/linuxserver/sonarr/
     sonarr:
@@ -78,6 +83,11 @@ services:
             traefik.http.routers.sonarr.entrypoints: https
             traefik.http.routers.sonarr.tls.certresolver: tlschallenge
             traefik.http.routers.sonarr.rule: Host(`${SONARR_HOST}`)
+            traefik.http.routers.sonarr.middlewares: secureheaders, basicauth
+            traefik.http.routers.sonarr-api.entrypoints: https
+            traefik.http.routers.sonarr-api.tls.certresolver: tlschallenge
+            traefik.http.routers.sonarr-api.rule: Host(`${SONARR_HOST}`) && PathPrefix(`/api`)
+            traefik.http.routers.sonarr-api.middlewares: secureheaders
         links:
             - hydra
             - nzbget
@@ -101,6 +111,11 @@ services:
             traefik.http.routers.radarr.entrypoints: https
             traefik.http.routers.radarr.tls.certresolver: tlschallenge
             traefik.http.routers.radarr.rule: Host(`${RADARR_HOST}`)
+            traefik.http.routers.radarr.middlewares: secureheaders, basicauth
+            traefik.http.routers.radarr-api.entrypoints: https
+            traefik.http.routers.radarr-api.tls.certresolver: tlschallenge
+            traefik.http.routers.radarr-api.rule: Host(`${RADARR_HOST}`) && PathPrefix(`/api`)
+            traefik.http.routers.radarr-api.middlewares: secureheaders
         links:
             - hydra
             - nzbget
@@ -123,6 +138,11 @@ services:
             traefik.http.routers.hydra.entrypoints: https
             traefik.http.routers.hydra.tls.certresolver: tlschallenge
             traefik.http.routers.hydra.rule: Host(`${HYDRA_HOST}`)
+            traefik.http.routers.hydra.middlewares: secureheaders, basicauth
+            traefik.http.routers.hydra-api.entrypoints: https
+            traefik.http.routers.hydra-api.tls.certresolver: tlschallenge
+            traefik.http.routers.hydra-api.rule: Host(`${HYDRA_HOST}`) && PathPrefix(`/api`,`/getnzb`,`/gettorrent`,`/rss`,`/torznab/api`)
+            traefik.http.routers.hydra-api.middlewares: secureheaders
 
     # https://hub.docker.com/_/traefik/
     traefik:
