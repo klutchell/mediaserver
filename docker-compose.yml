@@ -2,7 +2,6 @@ version: '3.7'
 
 networks:
     frontend:
-    backend:
 
 volumes:
     plex:
