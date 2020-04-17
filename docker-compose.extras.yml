@@ -155,10 +155,8 @@ services:
     # https://hub.docker.com/_/mariadb/
     mariadb:
         image: mariadb
-        command: --transaction-isolation=READ-COMMITTED --binlog-format=ROW
         volumes:
             - mariadb:/var/lib/mysql
-            - ./utf8.cnf:/etc/mysql/conf.d/utf8.cnf
         environment:
             MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
             TZ: ${TZ}
