@@ -111,9 +111,9 @@ docker-compose exec -u www-data nextcloud php occ maintenance:mode --off
 
 Kyle Harding <https://klutchell.dev>
 
-[Buy me a beer](https://kyles-tip-jar.myshopify.com/cart/31356319498262:1?channel=buy_button)
+<a href="https://kyles-tip-jar.myshopify.com/cart/31356319498262:1?channel=buy_button" target="_blank">Buy me a beer</a>
 
-[Buy me a craft beer](https://kyles-tip-jar.myshopify.com/cart/31356317859862:1?channel=buy_button)
+<a href="https://kyles-tip-jar.myshopify.com/cart/31356317859862:1?channel=buy_button" target="_blank">Buy me a craft beer</a>
 
 ## Acknowledgments
 
