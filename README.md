@@ -111,6 +111,10 @@ docker-compose exec -u www-data nextcloud php occ maintenance:mode --off
 
 Kyle Harding <https://klutchell.dev>
 
+[Buy me a beer](https://kyles-tip-jar.myshopify.com/cart/31356319498262:1?channel=buy_button)
+
+[Buy me a craft beer](https://kyles-tip-jar.myshopify.com/cart/31356317859862:1?channel=buy_button)
+
 ## Acknowledgments
 
 I didn't create any of these docker images myself, so credit goes to the
