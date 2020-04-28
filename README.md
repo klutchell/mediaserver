@@ -67,11 +67,13 @@ docker-compose exec traefik htpasswd /etc/traefik/.htpasswd <user2>
 
 NZBGet ships with basic auth enabled by default, so you will get double prompted unless you turn that off.
 
-1. the first prompt should require your basic auth (htpasswd) credentials provided in the step above
-2. the second prompt should require username `nzbget` and password `tegbzn6789` by default
+```bash
+docker-compose exec nzbget sed 's/ControlUsername=.*/ControlUsername=/' -i /config/nzbget.conf
+docker-compose exec nzbget sed 's/ControlPassword=.*/ControlPassword=/' -i /config/nzbget.conf
+docker-compose restart nzbget
+```
 
-Once in the NZBGet dashboard you'll want to turn off the second prompt by navigating to Settings -> Security and removing `ControlUsername`
-
+Now only your provided htpasswd credentials will be needed, and not the default NZBGet credentials.
 
 ## Extras
 
