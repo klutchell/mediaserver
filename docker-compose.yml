@@ -60,7 +60,7 @@ services:
             traefik.http.routers.nzbget.middlewares: secureheaders, basicauth
             traefik.http.routers.nzbget-api.entrypoints: https
             traefik.http.routers.nzbget-api.tls.certresolver: tlschallenge
-            traefik.http.routers.nzbget-api.rule: Host(`${NZBGET_HOST}`) && PathPrefix(`(/[^\/:]*:[^\/:]*)?/jsonrpc`,`(/[^\/:]*:[^\/:]*)?/xmlrpc`)
+            traefik.http.routers.nzbget-api.rule: Host(`${NZBGET_HOST}`) && PathPrefix(`/{jsonrpc:([^\/:]*:[^\/:]*/)?jsonrpc}`,`/{xmlrpc:([^\/:]*:[^\/:]*/)?xmlrpc}`)
             traefik.http.routers.nzbget-api.middlewares: secureheaders
 
     # https://hub.docker.com/r/linuxserver/sonarr/
