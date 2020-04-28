@@ -8,8 +8,6 @@ volumes:
     nextcloud:
     ghost:
     ombi:
-    nginx:
-    html:
     mariadb:
 
 services:
@@ -112,8 +110,6 @@ services:
             - mariadb:/sources/mariadb:ro
             - ghost:/sources/ghost:ro
             - ombi:/sources/ombi:ro
-            - nginx:/sources/nginx_conf:ro
-            - html:/sources/nginx_html:ro
         labels:
             traefik.enable: true
             traefik.docker.network: mediaserver_frontend
