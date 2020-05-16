@@ -135,7 +135,7 @@ maintainers, and the original software creators.
 - [nzbget.net](https://nzbget.net/)
 - [sonarr.tv](https://sonarr.tv/)
 - [radarr.video](https://radarr.video/)
-- [nzbhydra.com](https://github.com/theotherp/nzbhydra)
+- [theotherp/nzbhydra2](https://github.com/theotherp/nzbhydra2)
 - [traefik.io](https://traefik.io/)
 - [nextcloud.com](https://nextcloud.com/)
 - [mariadb.com](https://mariadb.com/)
