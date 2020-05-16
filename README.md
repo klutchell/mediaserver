@@ -14,7 +14,7 @@ docker-based plex & usenet media server using custom subdomains with tls
 - [NZBGet](https://hub.docker.com/r/linuxserver/nzbget/) is a usenet downloader, written in C++ and designed with performance in mind to achieve maximum download speed by using very little system resources.
 - [Sonarr](https://hub.docker.com/r/linuxserver/sonarr/) (formerly NZBdrone) is a PVR for usenet and bittorrent users. It can monitor multiple RSS feeds for new episodes of your favorite shows and will grab, sort and rename them. It can also be configured to automatically upgrade the quality of files already downloaded when a better quality format becomes available.
 - [Radarr](https://hub.docker.com/r/linuxserver/radarr/) - A fork of Sonarr to work with movies à la Couchpotato.
-- [NZBHydra](https://hub.docker.com/r/linuxserver/hydra2/) 2 is a meta search application for NZB indexers, the "spiritual successor" to NZBmegasearcH, and an evolution of the original application NZBHydra . It provides easy access to a number of raw and newznab based indexers.
+- [NZBHydra2](https://hub.docker.com/r/linuxserver/nzbhydra2/) 2 is a meta search application for NZB indexers, the "spiritual successor" to NZBmegasearcH, and an evolution of the original application NZBHydra . It provides easy access to a number of raw and newznab based indexers.
 - [Traefik](https://hub.docker.com/_/traefik/) is a modern HTTP reverse proxy and load balancer that makes deploying microservices easy.
 
 ## Requirements
@@ -135,7 +135,7 @@ maintainers, and the original software creators.
 - [nzbget.net](https://nzbget.net/)
 - [sonarr.tv](https://sonarr.tv/)
 - [radarr.video](https://radarr.video/)
-- [nzbhydra.com](https://nzbhydra.com/)
+- [nzbhydra.com](https://github.com/theotherp/nzbhydra)
 - [traefik.io](https://traefik.io/)
 - [nextcloud.com](https://nextcloud.com/)
 - [mariadb.com](https://mariadb.com/)

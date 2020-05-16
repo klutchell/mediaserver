@@ -119,9 +119,9 @@ services:
             - hydra
             - nzbget
 
-    # https://hub.docker.com/r/linuxserver/hydra2/
+    # https://hub.docker.com/r/linuxserver/nzbhydra2
     hydra:
-        image: linuxserver/hydra2
+        image: linuxserver/nzbhydra2
         environment:
             PUID: '${PUID}'
             PGID: '${PGID}'
