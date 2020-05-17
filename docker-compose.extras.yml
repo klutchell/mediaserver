@@ -24,10 +24,8 @@ services:
         labels:
             traefik.enable: true
             traefik.docker.network: mediaserver_frontend
-            traefik.http.routers.ombi.entrypoints: https
-            traefik.http.routers.ombi.tls.certresolver: tlschallenge
             traefik.http.routers.ombi.rule: Host(`${OMBI_HOST}`)
-            traefik.http.routers.ombi.middlewares: secureheaders
+            traefik.http.routers.ombi.middlewares: hsts-header
         networks:
             - frontend
         links:
@@ -50,10 +48,8 @@ services:
         labels:
             traefik.enable: true
             traefik.docker.network: mediaserver_frontend
-            traefik.http.routers.nextcloud.entrypoints: https
-            traefik.http.routers.nextcloud.tls.certresolver: tlschallenge
             traefik.http.routers.nextcloud.rule: Host(`${NEXTCLOUD_HOST}`)
-            traefik.http.routers.nextcloud.middlewares: secureheaders, cardcaldav
+            traefik.http.routers.nextcloud.middlewares: hsts-header, cardcaldav
             traefik.http.middlewares.cardcaldav.replacepathregex.regex: ^/.well-known/(card|cal)dav
             traefik.http.middlewares.cardcaldav.replacepathregex.replacement: /remote.php/dav/
         networks:
@@ -78,14 +74,10 @@ services:
         labels:
             traefik.enable: true
             traefik.docker.network: mediaserver_frontend
-            traefik.http.routers.ghost.entrypoints: https
-            traefik.http.routers.ghost.tls.certresolver: tlschallenge
             traefik.http.routers.ghost.rule: Host(`${GHOST_HOST}`)
-            traefik.http.routers.ghost.middlewares: secureheaders, basicauth
-            traefik.http.routers.ghost-admin.entrypoints: https
-            traefik.http.routers.ghost-admin.tls.certresolver: tlschallenge
+            traefik.http.routers.ghost.middlewares: hsts-header, basicauth
             traefik.http.routers.ghost-admin.rule: Host(`${GHOST_HOST}`) && PathPrefix(`/ghost`)
-            traefik.http.routers.ghost-admin.middlewares: secureheaders, basicauth
+            traefik.http.routers.ghost-admin.middlewares: hsts-header, basicauth
         networks:
             - frontend
             - backend
@@ -113,10 +105,8 @@ services:
         labels:
             traefik.enable: true
             traefik.docker.network: mediaserver_frontend
-            traefik.http.routers.duplicati.entrypoints: https
-            traefik.http.routers.duplicati.tls.certresolver: tlschallenge
             traefik.http.routers.duplicati.rule: Host(`${DUPLICATI_HOST}`)
-            traefik.http.routers.duplicati.middlewares: secureheaders, basicauth
+            traefik.http.routers.duplicati.middlewares: hsts-header, basicauth
         networks:
             - frontend
 
@@ -141,10 +131,8 @@ services:
         labels:
             traefik.enable: true
             traefik.docker.network: mediaserver_frontend
-            traefik.http.routers.netdata.entrypoints: https
-            traefik.http.routers.netdata.tls.certresolver: tlschallenge
             traefik.http.routers.netdata.rule: Host(`${NETDATA_HOST}`)
-            traefik.http.routers.netdata.middlewares: secureheaders, basicauth
+            traefik.http.routers.netdata.middlewares: hsts-header, basicauth
         networks:
             - frontend
 

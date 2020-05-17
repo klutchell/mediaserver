@@ -33,8 +33,6 @@ services:
         labels:
             traefik.enable: true
             traefik.docker.network: mediaserver_frontend
-            traefik.http.routers.plex.entrypoints: https
-            traefik.http.routers.plex.tls.certresolver: tlschallenge
             traefik.http.routers.plex.rule: Host(`${PLEX_HOST}`)
             traefik.http.services.plex_mediaserver.loadbalancer.server.port: 32400
             traefik.http.services.plex_mediaserver.loadbalancer.server.scheme: http
@@ -54,14 +52,10 @@ services:
         labels:
             traefik.enable: true
             traefik.docker.network: mediaserver_frontend
-            traefik.http.routers.nzbget.entrypoints: https
-            traefik.http.routers.nzbget.tls.certresolver: tlschallenge
             traefik.http.routers.nzbget.rule: Host(`${NZBGET_HOST}`)
-            traefik.http.routers.nzbget.middlewares: secureheaders, basicauth
-            traefik.http.routers.nzbget-api.entrypoints: https
-            traefik.http.routers.nzbget-api.tls.certresolver: tlschallenge
+            traefik.http.routers.nzbget.middlewares: hsts-header, basicauth
             traefik.http.routers.nzbget-api.rule: Host(`${NZBGET_HOST}`) && PathPrefix(`/{jsonrpc:([^\/:]*:[^\/:]*/)?jsonrpc}`,`/{xmlrpc:([^\/:]*:[^\/:]*/)?xmlrpc}`)
-            traefik.http.routers.nzbget-api.middlewares: secureheaders
+            traefik.http.routers.nzbget-api.middlewares: hsts-header
 
     # https://hub.docker.com/r/linuxserver/sonarr/
     sonarr:
@@ -79,14 +73,10 @@ services:
         labels:
             traefik.enable: true
             traefik.docker.network: mediaserver_frontend
-            traefik.http.routers.sonarr.entrypoints: https
-            traefik.http.routers.sonarr.tls.certresolver: tlschallenge
             traefik.http.routers.sonarr.rule: Host(`${SONARR_HOST}`)
-            traefik.http.routers.sonarr.middlewares: secureheaders, basicauth
-            traefik.http.routers.sonarr-api.entrypoints: https
-            traefik.http.routers.sonarr-api.tls.certresolver: tlschallenge
+            traefik.http.routers.sonarr.middlewares: hsts-header, basicauth
             traefik.http.routers.sonarr-api.rule: Host(`${SONARR_HOST}`) && PathPrefix(`/api`)
-            traefik.http.routers.sonarr-api.middlewares: secureheaders
+            traefik.http.routers.sonarr-api.middlewares: hsts-header
         links:
             - hydra
             - nzbget
@@ -107,14 +97,10 @@ services:
         labels:
             traefik.enable: true
             traefik.docker.network: mediaserver_frontend
-            traefik.http.routers.radarr.entrypoints: https
-            traefik.http.routers.radarr.tls.certresolver: tlschallenge
             traefik.http.routers.radarr.rule: Host(`${RADARR_HOST}`)
-            traefik.http.routers.radarr.middlewares: secureheaders, basicauth
-            traefik.http.routers.radarr-api.entrypoints: https
-            traefik.http.routers.radarr-api.tls.certresolver: tlschallenge
+            traefik.http.routers.radarr.middlewares: hsts-header, basicauth
             traefik.http.routers.radarr-api.rule: Host(`${RADARR_HOST}`) && PathPrefix(`/api`)
-            traefik.http.routers.radarr-api.middlewares: secureheaders
+            traefik.http.routers.radarr-api.middlewares: hsts-header
         links:
             - hydra
             - nzbget
@@ -134,14 +120,10 @@ services:
         labels:
             traefik.enable: true
             traefik.docker.network: mediaserver_frontend
-            traefik.http.routers.hydra.entrypoints: https
-            traefik.http.routers.hydra.tls.certresolver: tlschallenge
             traefik.http.routers.hydra.rule: Host(`${HYDRA_HOST}`)
-            traefik.http.routers.hydra.middlewares: secureheaders, basicauth
-            traefik.http.routers.hydra-api.entrypoints: https
-            traefik.http.routers.hydra-api.tls.certresolver: tlschallenge
+            traefik.http.routers.hydra.middlewares: hsts-header, basicauth
             traefik.http.routers.hydra-api.rule: Host(`${HYDRA_HOST}`) && PathPrefix(`/api`,`/getnzb`,`/gettorrent`,`/rss`,`/torznab/api`)
-            traefik.http.routers.hydra-api.middlewares: secureheaders
+            traefik.http.routers.hydra-api.middlewares: hsts-header
 
     # https://hub.docker.com/_/traefik/
     traefik:
@@ -159,38 +141,27 @@ services:
         command:
             - "--log.level=INFO"
             - "--api=true"
-            - "--global.sendanonymoususage=false"
-            - "--serverstransport.insecureskipverify"
-            - "--entrypoints.http.address=:80"
-            - "--entrypoints.https.address=:443"
             - "--providers.docker=true"
             - "--providers.docker.exposedbydefault=false"
-            - "--certificatesResolvers.tlschallenge.acme.tlschallenge=true"
-            - "--certificatesresolvers.tlschallenge.acme.storage=/etc/traefik/acme.json"
-            - "--certificatesresolvers.tlschallenge.acme.email=${ACME_EMAIL}"
-            # - "--certificatesresolvers.tlschallenge.acme.caserver=https://acme-staging-v02.api.letsencrypt.org/directory"
+            - "--entrypoints.web.address=:80"
+            - "--entrypoints.web.http.redirections.entrypoint.to=websecure"
+            - "--entrypoints.web.http.redirections.entrypoint.scheme=https"
+            - "--entrypoints.websecure.address=:443"
+            # suggest to change certresolver from "prod" to "staging" during first setup
+            # to avoid hitting letsencrypt rate-limits
+            - "--entrypoints.websecure.http.tls.certresolver=prod"
+            - "--certificatesResolvers.prod.acme.tlschallenge=true"
+            - "--certificatesresolvers.prod.acme.storage=/etc/traefik/acme.json"
+            - "--certificatesresolvers.prod.acme.email=${ACME_EMAIL}"
+            - "--certificatesResolvers.staging.acme.tlschallenge=true"
+            - "--certificatesresolvers.staging.acme.storage=/etc/traefik/acme-staging.json"
+            - "--certificatesresolvers.staging.acme.email=${ACME_EMAIL}"
+            - "--certificatesresolvers.staging.acme.caserver=https://acme-staging-v02.api.letsencrypt.org/directory"
         labels:
             traefik.enable: true
             traefik.docker.network: mediaserver_frontend
-            traefik.http.routers.traefik.entrypoints: https
-            traefik.http.routers.traefik.tls.certresolver: tlschallenge
             traefik.http.routers.traefik.rule: Host(`${TRAEFIK_HOST}`)
-            traefik.http.routers.traefik.middlewares: secureheaders, basicauth
+            traefik.http.routers.traefik.middlewares: hsts-header, basicauth
             traefik.http.routers.traefik.service: api@internal
-            traefik.http.routers.http.entrypoints: http
-            traefik.http.routers.http.rule: HostRegexp(`{catchall:.*}`)
-            traefik.http.routers.http.middlewares: redirectscheme
-            traefik.http.middlewares.redirectscheme.redirectscheme.scheme: https
-            traefik.http.middlewares.redirectscheme.redirectscheme.permanent: true
             traefik.http.middlewares.basicauth.basicauth.usersfile: /etc/traefik/.htpasswd
-            traefik.http.middlewares.secureheaders.headers.stsSeconds: 15552000
-            traefik.http.middlewares.secureheaders.headers.framedeny: true
-            traefik.http.middlewares.secureheaders.headers.sslForceHost: true
-            traefik.http.middlewares.secureheaders.headers.sslRedirect: true
-            traefik.http.middlewares.secureheaders.headers.stsIncludeSubdomains: true
-            traefik.http.middlewares.secureheaders.headers.browserXssFilter: true
-            traefik.http.middlewares.secureheaders.headers.contentTypeNosniff: true
-            traefik.http.middlewares.secureheaders.headers.forceSTSHeader: true
-            traefik.http.middlewares.secureheaders.headers.stsPreload: true
-            traefik.http.middlewares.secureheaders.headers.customResponseHeaders.X-Robots-Tag: none
-            traefik.http.middlewares.secureheaders.headers.customFrameOptionsValue: SAMEORIGIN
+            traefik.http.middlewares.hsts-header.headers.customResponseHeaders.Strict-Transport-Security: "max-age=63072000"
