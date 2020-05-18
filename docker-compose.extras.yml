@@ -25,6 +25,7 @@ services:
             traefik.enable: true
             traefik.docker.network: mediaserver_frontend
             traefik.http.routers.ombi.rule: Host(`${OMBI_HOST}`)
+            traefik.http.routers.ombi.tls.certresolver: prod
             traefik.http.routers.ombi.middlewares: hsts-header
         networks:
             - frontend
@@ -49,6 +50,7 @@ services:
             traefik.enable: true
             traefik.docker.network: mediaserver_frontend
             traefik.http.routers.nextcloud.rule: Host(`${NEXTCLOUD_HOST}`)
+            traefik.http.routers.nextcloud.tls.certresolver: prod
             traefik.http.routers.nextcloud.middlewares: hsts-header, cardcaldav
             traefik.http.middlewares.cardcaldav.replacepathregex.regex: ^/.well-known/(card|cal)dav
             traefik.http.middlewares.cardcaldav.replacepathregex.replacement: /remote.php/dav/
@@ -75,6 +77,7 @@ services:
             traefik.enable: true
             traefik.docker.network: mediaserver_frontend
             traefik.http.routers.ghost.rule: Host(`${GHOST_HOST}`)
+            traefik.http.routers.ghost.tls.certresolver: prod
             traefik.http.routers.ghost.middlewares: hsts-header, basicauth
             traefik.http.routers.ghost-admin.rule: Host(`${GHOST_HOST}`) && PathPrefix(`/ghost`)
             traefik.http.routers.ghost-admin.middlewares: hsts-header, basicauth
@@ -106,6 +109,7 @@ services:
             traefik.enable: true
             traefik.docker.network: mediaserver_frontend
             traefik.http.routers.duplicati.rule: Host(`${DUPLICATI_HOST}`)
+            traefik.http.routers.duplicati.tls.certresolver: prod
             traefik.http.routers.duplicati.middlewares: hsts-header, basicauth
         networks:
             - frontend
@@ -131,6 +135,7 @@ services:
         labels:
             traefik.enable: true
             traefik.docker.network: mediaserver_frontend
+            traefik.http.routers.netdata.tls.certresolver: prod
             traefik.http.routers.netdata.rule: Host(`${NETDATA_HOST}`)
             traefik.http.routers.netdata.middlewares: hsts-header, basicauth
         networks:

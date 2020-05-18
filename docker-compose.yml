@@ -33,6 +33,7 @@ services:
         labels:
             traefik.enable: true
             traefik.docker.network: mediaserver_frontend
+            traefik.http.routers.plex.tls.certresolver: prod
             traefik.http.routers.plex.rule: Host(`${PLEX_HOST}`)
             traefik.http.services.plex_mediaserver.loadbalancer.server.port: 32400
             traefik.http.services.plex_mediaserver.loadbalancer.server.scheme: http
@@ -53,6 +54,7 @@ services:
             traefik.enable: true
             traefik.docker.network: mediaserver_frontend
             traefik.http.routers.nzbget.rule: Host(`${NZBGET_HOST}`)
+            traefik.http.routers.nzbget.tls.certresolver: prod
             traefik.http.routers.nzbget.middlewares: hsts-header, basicauth
             traefik.http.routers.nzbget-api.rule: Host(`${NZBGET_HOST}`) && PathPrefix(`/{jsonrpc:([^\/:]*:[^\/:]*/)?jsonrpc}`,`/{xmlrpc:([^\/:]*:[^\/:]*/)?xmlrpc}`)
             traefik.http.routers.nzbget-api.middlewares: hsts-header
@@ -74,6 +76,7 @@ services:
             traefik.enable: true
             traefik.docker.network: mediaserver_frontend
             traefik.http.routers.sonarr.rule: Host(`${SONARR_HOST}`)
+            traefik.http.routers.sonarr.tls.certresolver: prod
             traefik.http.routers.sonarr.middlewares: hsts-header, basicauth
             traefik.http.routers.sonarr-api.rule: Host(`${SONARR_HOST}`) && PathPrefix(`/api`)
             traefik.http.routers.sonarr-api.middlewares: hsts-header
@@ -98,6 +101,7 @@ services:
             traefik.enable: true
             traefik.docker.network: mediaserver_frontend
             traefik.http.routers.radarr.rule: Host(`${RADARR_HOST}`)
+            traefik.http.routers.radarr.tls.certresolver: prod
             traefik.http.routers.radarr.middlewares: hsts-header, basicauth
             traefik.http.routers.radarr-api.rule: Host(`${RADARR_HOST}`) && PathPrefix(`/api`)
             traefik.http.routers.radarr-api.middlewares: hsts-header
@@ -121,6 +125,7 @@ services:
             traefik.enable: true
             traefik.docker.network: mediaserver_frontend
             traefik.http.routers.hydra.rule: Host(`${HYDRA_HOST}`)
+            traefik.http.routers.hydra.tls.certresolver: prod
             traefik.http.routers.hydra.middlewares: hsts-header, basicauth
             traefik.http.routers.hydra-api.rule: Host(`${HYDRA_HOST}`) && PathPrefix(`/api`,`/getnzb`,`/gettorrent`,`/rss`,`/torznab/api`)
             traefik.http.routers.hydra-api.middlewares: hsts-header
@@ -147,9 +152,7 @@ services:
             - "--entrypoints.web.http.redirections.entrypoint.to=websecure"
             - "--entrypoints.web.http.redirections.entrypoint.scheme=https"
             - "--entrypoints.websecure.address=:443"
-            # suggest to change certresolver from "prod" to "staging" during first setup
-            # to avoid hitting letsencrypt rate-limits
-            - "--entrypoints.websecure.http.tls.certresolver=prod"
+            - "--entrypoints.websecure.http.tls.certresolver=staging"
             - "--certificatesResolvers.prod.acme.tlschallenge=true"
             - "--certificatesresolvers.prod.acme.storage=/etc/traefik/acme.json"
             - "--certificatesresolvers.prod.acme.email=${ACME_EMAIL}"
