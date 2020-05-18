@@ -1,6 +1,6 @@
-# Docker Plex & Usenet Media Server #
+# Docker Plex & Usenet Media Server
 
-docker-based plex & usenet media server using custom subdomains with tls
+docker-based plex & usenet media server using custom subdomains over https
 
 ## Motivation
 
@@ -10,27 +10,26 @@ docker-based plex & usenet media server using custom subdomains with tls
 
 ## Features
 
-- [Plex](https://hub.docker.com/r/plexinc/pms-docker) organizes video, music and photos from personal media libraries and streams them to smart TVs, streaming boxes and mobile devices. This container is packaged as a standalone Plex Media Server.
-- [NZBGet](https://hub.docker.com/r/linuxserver/nzbget/) is a usenet downloader, written in C++ and designed with performance in mind to achieve maximum download speed by using very little system resources.
-- [Sonarr](https://hub.docker.com/r/linuxserver/sonarr/) (formerly NZBdrone) is a PVR for usenet and bittorrent users. It can monitor multiple RSS feeds for new episodes of your favorite shows and will grab, sort and rename them. It can also be configured to automatically upgrade the quality of files already downloaded when a better quality format becomes available.
-- [Radarr](https://hub.docker.com/r/linuxserver/radarr/) - A fork of Sonarr to work with movies à la Couchpotato.
-- [NZBHydra2](https://hub.docker.com/r/linuxserver/nzbhydra2/) 2 is a meta search application for NZB indexers, the "spiritual successor" to NZBmegasearcH, and an evolution of the original application NZBHydra . It provides easy access to a number of raw and newznab based indexers.
-- [Traefik](https://hub.docker.com/_/traefik/) is a modern HTTP reverse proxy and load balancer that makes deploying microservices easy.
+- [Plex](https://plex.tv/) organizes video, music and photos from personal media libraries and streams them to smart TVs, streaming boxes and mobile devices.
+- [NZBGet](https://nzbget.net/) is a usenet downloader, written in C++ and designed with performance in mind to achieve maximum download speed by using very little system resources.
+- [Sonarr](https://sonarr.tv/) (formerly NZBdrone) is a PVR for usenet and bittorrent users. It can monitor multiple RSS feeds for new episodes of your favorite shows and will grab, sort and rename them. It can also be configured to automatically upgrade the quality of files already downloaded when a better quality format becomes available.
+- [Radarr](https://radarr.video/) - A fork of Sonarr to work with movies à la Couchpotato.
+- [NZBHydra2](https://github.com/theotherp/nzbhydra2) is a meta search application for NZB indexers, the "spiritual successor" to NZBmegasearcH, and an evolution of the original application NZBHydra.
+- [Traefik](https://traefik.io/) is a modern HTTP reverse proxy and load balancer that makes deploying microservices easy.
 
 ## Requirements
 
 - dedicated server or PC with plenty of storage
-- windows or linux x86/x64 os (not ARM)
-- personal top-level domain with configurable sub-domains (eg. plex.mydomain.com)
+- personal top-level domain with configurable sub-domains (eg. plex.example.com)
 
 The following subdomains should point to the public IP of your server.
 
-- `plex.mydomain.com`
-- `nzbget.mydomain.com`
-- `sonarr.mydomain.com`
-- `radarr.mydomain.com`
-- `hydra.mydomain.com`
-- `traefik.mydomain.com`
+- `plex.example.com`
+- `nzbget.example.com`
+- `sonarr.example.com`
+- `radarr.example.com`
+- `hydra.example.com`
+- `traefik.example.com`
 
 ## Installation
 
@@ -57,7 +56,7 @@ docker-compose up -d
 
 Add credentials for basic http auth. The first user added requires `htpasswd -c`
 in order to create the password file. Subsequent users should only use `htpasswd` to avoid
-overwriting the file. 
+overwriting the file.
 
 ```bash
 docker-compose exec traefik apk add --no-cache apache2-utils
@@ -76,6 +75,12 @@ docker-compose restart nzbget
 Now only your provided htpasswd credentials will be needed, and not the default NZBGet credentials.
 
 ## Extras
+
+- [Nextcloud](https://nextcloud.com/)
+- [MariaDB](https://mariadb.com/)
+- [Ghost](https://ghost.org/)
+- [Duplicati](https://www.duplicati.com/)
+- [Netdata](https://www.netdata.cloud/)
 
 Create a link in order to append the extras compose file to future docker-compose commands.
 
@@ -130,18 +135,17 @@ Kyle Harding <https://klutchell.dev>
 I didn't create any of these docker images myself, so credit goes to the
 maintainers, and the original software creators.
 
-- [plex.tv](https://plex.tv/)
-- [linuxserver.io](https://linuxserver.io/)
-- [nzbget.net](https://nzbget.net/)
-- [sonarr.tv](https://sonarr.tv/)
-- [radarr.video](https://radarr.video/)
-- [theotherp/nzbhydra2](https://github.com/theotherp/nzbhydra2)
-- [traefik.io](https://traefik.io/)
-- [nextcloud.com](https://nextcloud.com/)
-- [mariadb.com](https://mariadb.com/)
-- [ghost.org](https://ghost.org/)
-- [duplicati.com](https://www.duplicati.com/)
-- [netdata.cloud](https://www.netdata.cloud/)
+- <https://hub.docker.com/r/plexinc/pms-docker/>
+- <https://hub.docker.com/r/linuxserver/nzbget/>
+- <https://hub.docker.com/r/linuxserver/sonarr/>
+- <https://hub.docker.com/r/linuxserver/radarr/>
+- <https://hub.docker.com/r/linuxserver/nzbhydra2/>
+- <https://hub.docker.com/_/traefik/>
+- <https://hub.docker.com/_/nextcloud/>
+- <https://hub.docker.com/_/ghost/>
+- <https://hub.docker.com/r/linuxserver/duplicati/>
+- <https://hub.docker.com/r/netdata/netdata/>
+- <https://hub.docker.com/_/mariadb/>
 
 ## License
 
