@@ -164,6 +164,7 @@ services:
             traefik.enable: true
             traefik.docker.network: mediaserver_frontend
             traefik.http.routers.traefik.rule: Host(`${TRAEFIK_HOST}`)
+            traefik.http.routers.traefik.tls.certresolver: prod
             traefik.http.routers.traefik.middlewares: hsts-header, basicauth
             traefik.http.routers.traefik.service: api@internal
             traefik.http.middlewares.basicauth.basicauth.usersfile: /etc/traefik/.htpasswd
