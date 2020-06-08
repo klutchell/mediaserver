@@ -15,7 +15,7 @@ services:
 
     # https://hub.docker.com/r/plexinc/pms-docker
     plex:
-        image: plexinc/pms-docker
+        image: plexinc/pms-docker:latest
         environment:
             PLEX_UID: '${PUID}'
             PLEX_GID: '${PGID}'
@@ -29,7 +29,9 @@ services:
         volumes:
             - 'plex:/config'
             - '${MEDIA_DIR}:/media'
+            - '${MUSIC_DIR}:/music'
             - '/tmp:/tmp'
+            - '${TRANSCODE_DIR}:/transcode'
         labels:
             traefik.enable: true
             traefik.docker.network: mediaserver_frontend
@@ -50,6 +52,7 @@ services:
         volumes:
             - 'nzbget:/config'
             - '${DOWNLOADS_DIR}:/downloads'
+            - '${NZB_INTERMEDIATE_DIR}:/intermediate'
         labels:
             traefik.enable: true
             traefik.docker.network: mediaserver_frontend
