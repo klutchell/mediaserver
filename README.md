@@ -23,25 +23,16 @@ docker-based plex & usenet media server using custom subdomains over https
 ## Requirements
 
 - dedicated server or PC with plenty of storage
+- [docker](https://docs.docker.com/install/linux/docker-ce/debian/) and [docker-compose](https://docs.docker.com/compose/install/#install-compose)
 - (optional) personal domain with configurable sub-domains (eg. plex.example.com)
 
-## Installation
+## Basic Configuration
 
-1. fork and clone the mediaserver repo
+Copy `env.sample` to `.env` and populate all fields in the `BASIC` section.
 
-2. install [docker](https://docs.docker.com/install/linux/docker-ce/debian/)
+## Letsencrypt Configuration
 
-3. install [docker-compose](https://docs.docker.com/compose/install/#install-compose)
-
-4. copy `env.sample` to `.env` and fill all required fields.
-
-```bash
-cp env.sample .env && nano .env
-```
-
-## Letsencrypt
-
-Ensure `ACME_EMAIL` and any desired `_HOST` fields have sane values in  `.env`.
+Copy `env.sample` to `.env` and populate all fields in the `BASIC` and `LETSENCRYPT` sections.
 
 Create a link in order to append the letsencrypt compose file to future docker-compose commands.
 
@@ -68,7 +59,7 @@ docker-compose exec traefik htpasswd -c /etc/traefik/.htpasswd <user1>
 docker-compose exec traefik htpasswd /etc/traefik/.htpasswd <user2>
 ```
 
-NZBGet ships with basic auth enabled by default, so you will get double prompted unless you turn that off.
+NZBGet ships with basic auth enabled by default, so you will get prompted twice unless you turn that off.
 
 ```bash
 docker-compose exec nzbget sed 's/ControlUsername=.*/ControlUsername=/' -i /config/nzbget.conf
@@ -78,11 +69,15 @@ docker-compose restart nzbget
 
 Now only your provided htpasswd credentials will be needed, and not the default NZBGet credentials.
 
-## Hacks
+## Migration
+
+I recommend rsync for transferring media from one server to another.
+
+However, transferring the docker volumes is not quite as straight forward. Here's a method that worked for me.
+
+<https://www.guidodiepen.nl/2016/05/transfer-docker-data-volume-to-another-host/>
 
 ```bash
-# transfer docker volumes to another host
-# https://www.guidodiepen.nl/2016/05/transfer-docker-data-volume-to-another-host/
 docker run --rm -v <SOURCE_DATA_VOLUME_NAME>:/from alpine ash -c "cd /from ; tar -cf - . " | \
     ssh <TARGET_HOST> 'docker run --rm -i -v <TARGET_DATA_VOLUME_NAME>:/to alpine ash -c "cd /to ; tar -xpvf - " '
 ```
