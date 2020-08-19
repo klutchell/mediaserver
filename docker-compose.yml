@@ -169,13 +169,12 @@ services:
       - "8200:8200/tcp"
     volumes:
       - duplicati:/config:rw
-      - plex:/sources/plex:ro
-      - nzbget:/sources/nzbget:ro
-      - sonarr:/sources/sonarr:ro
-      - radarr:/sources/radarr:ro
-      - hydra:/sources/hydra:ro
-      - ombi:/sources/ombi:ro
-      - /srv/nfs/k3s:/sources/k3s:ro
+      - plex:/sources/plex:rw
+      - nzbget:/sources/nzbget:rw
+      - sonarr:/sources/sonarr:rw
+      - radarr:/sources/radarr:rw
+      - hydra:/sources/hydra:rw
+      - ombi:/sources/ombi:rw
     labels:
       traefik.enable: "true"
       traefik.docker.network: mediaserver_traefik
