@@ -1,14 +1,14 @@
 version: "3.7"
 
 networks:
-  traefik:
+  default:
 
 volumes:
   plex:
   nzbget:
   sonarr:
   radarr:
-  hydra:
+  nzbhydra:
   ombi:
   duplicati:
   traefik:
@@ -24,19 +24,13 @@ services:
       TZ: "${TZ}"
       PLEX_CLAIM: "${PLEX_CLAIM}"
     networks:
-      - traefik
+      - default
     ports:
       - "32400:32400/tcp"
     volumes:
       - "plex:/config"
       - "${MEDIA_DIR}:/media"
       - "/tmp:/tmp"
-    labels:
-      traefik.enable: "true"
-      traefik.docker.network: mediaserver_traefik
-      traefik.http.routers.plex.rule: Host(`${PLEX_HOST}`)
-      traefik.http.services.plex_mediaserver.loadbalancer.server.port: 32400
-      traefik.http.services.plex_mediaserver.loadbalancer.server.scheme: http
 
   # https://hub.docker.com/r/linuxserver/nzbget/
   nzbget:
@@ -47,18 +41,12 @@ services:
       PGID: "${PGID}"
       TZ: "${TZ}"
     networks:
-      - traefik
+      - default
     ports:
       - "6789:6789/tcp"
     volumes:
       - "nzbget:/config"
       - "${DOWNLOADS_DIR}:/downloads"
-    labels:
-      traefik.enable: "true"
-      traefik.docker.network: mediaserver_traefik
-      traefik.http.routers.nzbget.rule: Host(`${NZBGET_HOST}`)
-      traefik.http.routers.nzbget.middlewares: basicauth
-      traefik.http.routers.nzbget-api.rule: Host(`${NZBGET_HOST}`) && PathPrefix(`/{jsonrpc:([^\/:]*:[^\/:]*/)?jsonrpc}`,`/{xmlrpc:([^\/:]*:[^\/:]*/)?xmlrpc}`)
 
   # https://hub.docker.com/r/linuxserver/sonarr/
   sonarr:
@@ -69,21 +57,15 @@ services:
       PGID: "${PGID}"
       TZ: "${TZ}"
     networks:
-      - traefik
+      - default
     ports:
       - "8989:8989/tcp"
     volumes:
       - "sonarr:/config"
       - "${DOWNLOADS_DIR}:/downloads"
       - "${MEDIA_DIR}:/media"
-    labels:
-      traefik.enable: "true"
-      traefik.docker.network: mediaserver_traefik
-      traefik.http.routers.sonarr.rule: Host(`${SONARR_HOST}`)
-      traefik.http.routers.sonarr.middlewares: basicauth
-      traefik.http.routers.sonarr-api.rule: Host(`${SONARR_HOST}`) && PathPrefix(`/api`)
     links:
-      - hydra
+      - nzbhydra
       - nzbget
 
   # https://hub.docker.com/r/linuxserver/radarr/
@@ -95,25 +77,19 @@ services:
       PGID: "${PGID}"
       TZ: "${TZ}"
     networks:
-      - traefik
+      - default
     ports:
       - "7878:7878/tcp"
     volumes:
       - "radarr:/config"
       - "${DOWNLOADS_DIR}:/downloads"
       - "${MEDIA_DIR}:/media"
-    labels:
-      traefik.enable: "true"
-      traefik.docker.network: mediaserver_traefik
-      traefik.http.routers.radarr.rule: Host(`${RADARR_HOST}`)
-      traefik.http.routers.radarr.middlewares: basicauth
-      traefik.http.routers.radarr-api.rule: Host(`${RADARR_HOST}`) && PathPrefix(`/api`)
     links:
-      - hydra
+      - nzbhydra
       - nzbget
 
   # https://hub.docker.com/r/linuxserver/nzbhydra2
-  hydra:
+  nzbhydra:
     image: linuxserver/nzbhydra2
     restart: unless-stopped
     environment:
@@ -121,18 +97,12 @@ services:
       PGID: "${PGID}"
       TZ: "${TZ}"
     networks:
-      - traefik
+      - default
     ports:
       - "5076:5076/tcp"
     volumes:
-      - "hydra:/config"
+      - "nzbhydra:/config"
       - "${DOWNLOADS_DIR}:/downloads"
-    labels:
-      traefik.enable: "true"
-      traefik.docker.network: mediaserver_traefik
-      traefik.http.routers.hydra.rule: Host(`${HYDRA_HOST}`)
-    #   traefik.http.routers.hydra.middlewares: basicauth
-    #   traefik.http.routers.hydra-api.rule: Host(`${HYDRA_HOST}`) && PathPrefix(`/api`,`/getnzb`,`/gettorrent`,`/rss`,`/torznab/api`)
 
   # https://hub.docker.com/r/linuxserver/ombi
   ombi:
@@ -146,12 +116,8 @@ services:
       - ombi:/config
     ports:
       - "3579:3579/tcp"
-    labels:
-      traefik.enable: "true"
-      traefik.docker.network: mediaserver_traefik
-      traefik.http.routers.ombi.rule: Host(`${OMBI_HOST}`)
     networks:
-      - traefik
+      - default
     links:
       - sonarr
       - radarr
@@ -173,15 +139,11 @@ services:
       - nzbget:/sources/nzbget:rw
       - sonarr:/sources/sonarr:rw
       - radarr:/sources/radarr:rw
-      - hydra:/sources/hydra:rw
+      - nzbhydra:/sources/nzbhydra:rw
       - ombi:/sources/ombi:rw
-    labels:
-      traefik.enable: "true"
-      traefik.docker.network: mediaserver_traefik
-      traefik.http.routers.duplicati.rule: Host(`${DUPLICATI_HOST}`)
-      traefik.http.routers.duplicati.middlewares: basicauth
+      - traefik:/sources/traefik:rw
     networks:
-      - traefik
+      - default
 
   # https://hub.docker.com/r/netdata/netdata
   netdata:
@@ -203,37 +165,5 @@ services:
       - /proc:/host/proc:ro
       - /sys:/host/sys:ro
       - /var/run/docker.sock:/var/run/docker.sock:ro
-    labels:
-      traefik.enable: "true"
-      traefik.docker.network: mediaserver_traefik
-      traefik.http.routers.netdata.rule: Host(`${NETDATA_HOST}`)
-      traefik.http.routers.netdata.middlewares: basicauth
     networks:
-      - traefik
-
-  # https://hub.docker.com/_/traefik/
-  traefik:
-    image: traefik
-    restart: unless-stopped
-    environment:
-      TZ: "${TZ}"
-    networks:
-      - traefik
-    ports:
-      - "80:80/tcp"
-    volumes:
-      - "/var/run/docker.sock:/var/run/docker.sock:ro"
-      - "traefik:/etc/traefik:rw"
-    command:
-      - "--log.level=INFO"
-      - "--api=true"
-      - "--providers.docker=true"
-      - "--providers.docker.exposedbydefault=false"
-      - "--entrypoints.web.address=:80"
-    labels:
-      traefik.enable: "true"
-      traefik.docker.network: mediaserver_traefik
-      traefik.http.routers.traefik.rule: Host(`${TRAEFIK_HOST}`)
-      traefik.http.routers.traefik.service: api@internal
-      traefik.http.routers.traefik.middlewares: basicauth
-      traefik.http.middlewares.basicauth.basicauth.usersfile: /etc/traefik/.htpasswd
+      - default
