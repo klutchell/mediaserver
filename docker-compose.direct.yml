@@ -1,0 +1,34 @@
+version: "3.7"
+
+services:
+  plex:
+    ports:
+      - "32400:32400/tcp"
+
+  nzbget:
+    ports:
+      - "6789:6789/tcp"
+
+  sonarr:
+    ports:
+      - "8989:8989/tcp"
+
+  radarr:
+    ports:
+      - "7878:7878/tcp"
+
+  nzbhydra:
+    ports:
+      - "5076:5076/tcp"
+
+  ombi:
+    ports:
+      - "3579:3579/tcp"
+
+  duplicati:
+    ports:
+      - "8200:8200/tcp"
+
+  netdata:
+    ports:
+      - "19999:19999/tcp"
