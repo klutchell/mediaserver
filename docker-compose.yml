@@ -42,8 +42,6 @@ services:
       TZ: "${TZ}"
     networks:
       - default
-    ports:
-      - "6789:6789/tcp"
     volumes:
       - "nzbget:/config"
       - "${DOWNLOADS_DIR}:/downloads"
@@ -58,8 +56,6 @@ services:
       TZ: "${TZ}"
     networks:
       - default
-    ports:
-      - "8989:8989/tcp"
     volumes:
       - "sonarr:/config"
       - "${DOWNLOADS_DIR}:/downloads"
@@ -78,8 +74,6 @@ services:
       TZ: "${TZ}"
     networks:
       - default
-    ports:
-      - "7878:7878/tcp"
     volumes:
       - "radarr:/config"
       - "${DOWNLOADS_DIR}:/downloads"
@@ -98,8 +92,6 @@ services:
       TZ: "${TZ}"
     networks:
       - default
-    ports:
-      - "5076:5076/tcp"
     volumes:
       - "nzbhydra:/config"
       - "${DOWNLOADS_DIR}:/downloads"
@@ -114,8 +106,6 @@ services:
       TZ: ${TZ}
     volumes:
       - ombi:/config
-    ports:
-      - "3579:3579/tcp"
     networks:
       - default
     links:
@@ -131,8 +121,6 @@ services:
       PUID: 0
       PGID: 0
       TZ: ${TZ}
-    ports:
-      - "8200:8200/tcp"
     volumes:
       - duplicati:/config:rw
       - plex:/sources/plex:rw
@@ -153,8 +141,6 @@ services:
     environment:
       PGID: ${DOCKER_PGID}
       TZ: ${TZ}
-    ports:
-      - "19999:19999/tcp"
     cap_add:
       - SYS_PTRACE
     security_opt:

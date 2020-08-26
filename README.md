@@ -26,19 +26,29 @@ docker-based plex & usenet media server using custom subdomains over https
 - [docker](https://docs.docker.com/install/linux/docker-ce/debian/) and [docker-compose](https://docs.docker.com/compose/install/#install-compose)
 - (optional) personal domain with configurable sub-domains (eg. plex.example.com)
 
-## Basic Configuration
+## Direct Configuration
 
-Copy `env.sample` to `.env` and populate all fields in the `BASIC` section.
+Copy `env.sample` to `.env` and populate all fields in the `COMMON` section.
+
+Create a link in order to append `docker-compose.direct.yml` to future docker-compose commands.
+
+```bash
+ln -sf docker-compose.direct.yml docker-compose.override.yml
+```
+
+Review the merged configs by running `docker-compose config`.
 
 ## Letsencrypt Configuration
 
-Copy `env.sample` to `.env` and populate all fields in the `BASIC` and `LETSENCRYPT` sections.
+Copy `env.sample` to `.env` and populate all fields in the `COMMON` and `LETSENCRYPT` sections.
 
-Create a link in order to append the letsencrypt compose file to future docker-compose commands.
+Create a link in order to append `docker-compose.letsencrypt.yml` to future docker-compose commands.
 
 ```bash
-ln -s docker-compose.letsencrypt.yml docker-compose.override.yml
+ln -sf docker-compose.letsencrypt.yml docker-compose.override.yml
 ```
+
+Review the merged configs by running `docker-compose config`.
 
 ## Deployment
 
