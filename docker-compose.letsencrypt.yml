@@ -5,14 +5,16 @@ services:
     labels:
       traefik.enable: "true"
       traefik.docker.network: mediaserver_default
+      traefik.http.routers.plex.tls.certresolver: prod
       traefik.http.routers.plex.rule: Host(`${PLEX_HOST}`)
-      traefik.http.services.plex_mediaserver.loadbalancer.server.port: 32400
-      traefik.http.services.plex_mediaserver.loadbalancer.server.scheme: http
+      traefik.http.services.plex.loadbalancer.server.port: 32400
+      traefik.http.services.plex.loadbalancer.server.scheme: http
 
   nzbget:
     labels:
       traefik.enable: "true"
       traefik.docker.network: mediaserver_default
+      traefik.http.routers.nzbget.tls.certresolver: prod
       traefik.http.routers.nzbget.rule: Host(`${NZBGET_HOST}`)
       traefik.http.routers.nzbget.middlewares: hsts-header, basicauth
       traefik.http.routers.nzbget-api.rule: Host(`${NZBGET_HOST}`) && PathPrefix(`/{jsonrpc:([^\/:]*:[^\/:]*/)?jsonrpc}`,`/{xmlrpc:([^\/:]*:[^\/:]*/)?xmlrpc}`)
@@ -22,6 +24,7 @@ services:
     labels:
       traefik.enable: "true"
       traefik.docker.network: mediaserver_default
+      traefik.http.routers.sonarr.tls.certresolver: prod
       traefik.http.routers.sonarr.rule: Host(`${SONARR_HOST}`)
       traefik.http.routers.sonarr.middlewares: hsts-header, basicauth
       traefik.http.routers.sonarr-api.rule: Host(`${SONARR_HOST}`) && PathPrefix(`/api`)
@@ -31,6 +34,7 @@ services:
     labels:
       traefik.enable: "true"
       traefik.docker.network: mediaserver_default
+      traefik.http.routers.radarr.tls.certresolver: prod
       traefik.http.routers.radarr.rule: Host(`${RADARR_HOST}`)
       traefik.http.routers.radarr.middlewares: hsts-header, basicauth
       traefik.http.routers.radarr-api.rule: Host(`${RADARR_HOST}`) && PathPrefix(`/api`)
@@ -40,6 +44,7 @@ services:
     labels:
       traefik.enable: "true"
       traefik.docker.network: mediaserver_default
+      traefik.http.routers.nzbhydra.tls.certresolver: prod
       traefik.http.routers.nzbhydra.rule: Host(`${NZBHYDRA_HOST}`)
       traefik.http.routers.nzbhydra.middlewares: hsts-header, basicauth
       traefik.http.routers.nzbhydra-api.rule: Host(`${NZBHYDRA_HOST}`) && PathPrefix(`/api`,`/getnzb`,`/gettorrent`,`/rss`,`/torznab/api`)
@@ -49,6 +54,7 @@ services:
     labels:
       traefik.enable: "true"
       traefik.docker.network: mediaserver_default
+      traefik.http.routers.ombi.tls.certresolver: prod
       traefik.http.routers.ombi.rule: Host(`${OMBI_HOST}`)
       traefik.http.routers.ombi.middlewares: hsts-header
 
@@ -56,6 +62,7 @@ services:
     labels:
       traefik.enable: "true"
       traefik.docker.network: mediaserver_default
+      traefik.http.routers.duplicati.tls.certresolver: prod
       traefik.http.routers.duplicati.rule: Host(`${DUPLICATI_HOST}`)
       traefik.http.routers.duplicati.middlewares: hsts-header, basicauth
 
@@ -63,6 +70,7 @@ services:
     labels:
       traefik.enable: "true"
       traefik.docker.network: mediaserver_default
+      traefik.http.routers.netdata.tls.certresolver: prod
       traefik.http.routers.netdata.rule: Host(`${NETDATA_HOST}`)
       traefik.http.routers.netdata.middlewares: hsts-header, basicauth
 
@@ -101,6 +109,7 @@ services:
     labels:
       traefik.enable: "true"
       traefik.docker.network: mediaserver_default
+      traefik.http.routers.traefik.tls.certresolver: prod
       traefik.http.routers.traefik.rule: Host(`${TRAEFIK_HOST}`)
       traefik.http.routers.traefik.middlewares: hsts-header, basicauth
       traefik.http.routers.traefik.service: api@internal
