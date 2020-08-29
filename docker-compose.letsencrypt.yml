@@ -6,8 +6,8 @@ services:
       traefik.enable: "true"
       traefik.docker.network: mediaserver_default
       traefik.http.routers.plex.rule: Host(`${PLEX_HOST}`)
-      traefik.http.services.plex_mediaserver.loadbalancer.server.port: 32400
-      traefik.http.services.plex_mediaserver.loadbalancer.server.scheme: http
+      traefik.http.services.plex.loadbalancer.server.port: 32400
+      traefik.http.services.plex.loadbalancer.server.scheme: http
 
   nzbget:
     labels:
