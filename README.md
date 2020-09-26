@@ -96,7 +96,7 @@ docker run --rm -v <SOURCE_DATA_VOLUME_NAME>:/from alpine ash -c "cd /from ; tar
 
 Kyle Harding <https://klutchell.dev>
 
-<a href="https://www.buymeacoffee.com/klutchell" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" style="height: 51px !important;width: 217px !important;" ></a>
+[![](https://cdn.buymeacoffee.com/buttons/default-orange.png)](https://www.buymeacoffee.com/klutchell)
 
 ## Acknowledgments
 
