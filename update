@@ -4,7 +4,6 @@ while IFS= read -r image
 do
     docker pull ${image}
     sha="$(docker inspect --format='{{index .RepoDigests 0}}' $image)"
-    echo "updating ${image} to ${sha}"
     sed -r "s|image: ${image%%:*}.*|image: ${sha}|g" -i docker-compose.yml
 done < .autoinc
 
