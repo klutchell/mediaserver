@@ -1,0 +1,8 @@
+linuxserver/plex:latest
+linuxserver/nzbget:latest
+linuxserver/sonarr:latest
+linuxserver/radarr:latest
+linuxserver/nzbhydra2:latest
+linuxserver/ombi:latest
+linuxserver/duplicati:latest
+netdata/netdata:latest
