@@ -26,8 +26,6 @@ services:
       PLEX_CLAIM: "${PLEX_CLAIM}"
     networks:
       - default
-    ports:
-      - "32400:32400/tcp"
     volumes:
       - "plex:/config"
       - "${MEDIA_DIR}:/media"
@@ -41,13 +39,9 @@ services:
       PUID: "${PUID}"
       PGID: "${PGID}"
       TZ: "${TZ}"
+      JELLYFIN_PublishedServerUrl: ${JELLYFIN_HOST}
     networks:
       - default
-    ports:
-      - 8096:8096
-      # - 8920:8920 #optional
-      - 7359:7359/udp #optional
-      # - 1900:1900/udp #optional
     volumes:
       - "jellyfin:/config"
       - "${MEDIA_DIR}:/media"
@@ -86,7 +80,7 @@ services:
 
   # https://docs.linuxserver.io/images/docker-radarr
   radarr:
-    image: ghcr.io/linuxserver/radarr@sha256:44e5849ff39d0617c4066ceb128932edb30c54ccf289341593f8c1245d1055b8
+    image: ghcr.io/linuxserver/radarr@sha256:23781553c0c9209a28fb0a439add7bd01cd03e022f3d7b6e800ff20396ad1f4b
     restart: unless-stopped
     environment:
       PUID: "${PUID}"
@@ -118,7 +112,7 @@ services:
 
   # https://docs.linuxserver.io/images/docker-ombi
   ombi:
-    image: ghcr.io/linuxserver/ombi@sha256:b0109056367314415d95f4f0b0357f2256cadaf368aaa113fbabcf2d03f075de
+    image: ghcr.io/linuxserver/ombi@sha256:86f4af654e21b950efba9aa2df745cd79a88b9a9e164988b0c7c0189ef7b5857
     restart: unless-stopped
     environment:
       PUID: ${PUID}
@@ -155,7 +149,7 @@ services:
 
   # https://hub.docker.com/r/netdata/netdata
   netdata:
-    image: netdata/netdata@sha256:db6bae0940d71a8eb38fddbdca00a8eee18eeaeb96d4d1b67c4e1ca72856f6b4
+    image: netdata/netdata@sha256:3a6b93280f3c0ec6f76829ad97c92f72688ec6913240a0009686194e8708c351
     restart: unless-stopped
     hostname: ${NETDATA_HOST}
     environment:

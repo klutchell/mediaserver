@@ -4,6 +4,11 @@ services:
   plex:
     ports:
       - "32400:32400/tcp"
+  
+  jellyfin:
+    ports:
+      - "8096:8096/tcp"
+      - "7359:7359/udp"
 
   nzbget:
     ports:

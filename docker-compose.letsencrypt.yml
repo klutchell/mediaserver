@@ -10,6 +10,15 @@ services:
       traefik.http.services.plex.loadbalancer.server.port: 32400
       traefik.http.services.plex.loadbalancer.server.scheme: http
 
+  jellyfin:
+    labels:
+      traefik.enable: "true"
+      traefik.docker.network: mediaserver_default
+      traefik.http.routers.jellyfin.tls.certresolver: prod
+      traefik.http.routers.jellyfin.rule: Host(`${JELLYFIN_HOST}`)
+      traefik.http.services.jellyfin.loadbalancer.server.port: 8096
+      traefik.http.services.jellyfin.loadbalancer.server.scheme: http
+
   nzbget:
     labels:
       traefik.enable: "true"
