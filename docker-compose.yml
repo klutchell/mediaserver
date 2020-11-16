@@ -33,13 +33,13 @@ services:
 
   # https://docs.linuxserver.io/images/docker-jellyfin
   jellyfin:
-    image: ghcr.io/linuxserver/jellyfin@sha256:4db18d56cfece3204e745a93b8690759c10ef48380c29e1dffa78ed95e4a651c
+    image: ghcr.io/linuxserver/jellyfin@sha256:342d4e6212183754d01bb2fb2267a021a7673b112bbd28e4f9c3f88da140690a
     restart: unless-stopped
     environment:
       PUID: "${PUID}"
       PGID: "${PGID}"
       TZ: "${TZ}"
-      JELLYFIN_PublishedServerUrl: ${JELLYFIN_HOST}
+      JELLYFIN_PublishedServerUrl: "${JELLYFIN_HOST}"
     networks:
       - default
     volumes:
@@ -62,7 +62,7 @@ services:
 
   # https://docs.linuxserver.io/images/docker-sonarr
   sonarr:
-    image: ghcr.io/linuxserver/sonarr@sha256:1c726833b7ab176e43b57225e5b41f44574b4b53030a44be5a5dcebaa1944235
+    image: ghcr.io/linuxserver/sonarr@sha256:7d13f50736661e60d4a3bedae9c3ee81f566d5d6a5a347e8f47d21a1ae97425b
     restart: unless-stopped
     environment:
       PUID: "${PUID}"
@@ -98,7 +98,7 @@ services:
 
   # https://docs.linuxserver.io/images/docker-nzbhydra
   nzbhydra:
-    image: ghcr.io/linuxserver/nzbhydra2@sha256:bfec1be8fd06b8c95d8e5c5f279ad8763c002cc6f2e4ac234d4374e2bfd59938
+    image: ghcr.io/linuxserver/nzbhydra2@sha256:8240c107102b8285bdda2022bdf96c9be076d23cecafcc01a4bd0f4b9ddba30c
     restart: unless-stopped
     environment:
       PUID: "${PUID}"
@@ -112,7 +112,7 @@ services:
 
   # https://docs.linuxserver.io/images/docker-ombi
   ombi:
-    image: ghcr.io/linuxserver/ombi@sha256:86f4af654e21b950efba9aa2df745cd79a88b9a9e164988b0c7c0189ef7b5857
+    image: ghcr.io/linuxserver/ombi@sha256:fd104651ec9f86938235abd0ec1e576286a47fcda416b02a1f4aad1b468ba777
     restart: unless-stopped
     environment:
       PUID: ${PUID}
@@ -129,7 +129,7 @@ services:
 
   # https://docs.linuxserver.io/images/docker-duplicati
   duplicati:
-    image: ghcr.io/linuxserver/duplicati@sha256:36ce4f8e86789a5d9396959fad29ca32b716697cc567fd7310f040e9fde03d1d
+    image: ghcr.io/linuxserver/duplicati@sha256:5bd8c83b2e91189df8195d76ccaa0a4cef0dae8f52f21aa4eec9fd114bd5c852
     restart: unless-stopped
     environment:
       PUID: 0
@@ -149,7 +149,7 @@ services:
 
   # https://hub.docker.com/r/netdata/netdata
   netdata:
-    image: netdata/netdata@sha256:3a6b93280f3c0ec6f76829ad97c92f72688ec6913240a0009686194e8708c351
+    image: netdata/netdata@sha256:de9cad4f3df9a0490ca0f10062fe4a73525e9e1bd2abb70294d4aeb7bef20ce9
     restart: unless-stopped
     hostname: ${NETDATA_HOST}
     environment:
