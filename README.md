@@ -79,24 +79,11 @@ docker-compose restart nzbget
 
 Now only your provided htpasswd credentials will be needed, and not the default NZBGet credentials.
 
-## Migration
-
-I recommend rsync for transferring media from one server to another.
-
-However, transferring the docker volumes is not quite as straight forward. Here's a method that worked for me.
-
-<https://www.guidodiepen.nl/2016/05/transfer-docker-data-volume-to-another-host/>
-
-```bash
-docker run --rm -v <SOURCE_DATA_VOLUME_NAME>:/from alpine ash -c "cd /from ; tar -cf - . " | \
-    ssh <TARGET_HOST> 'docker run --rm -i -v <TARGET_DATA_VOLUME_NAME>:/to alpine ash -c "cd /to ; tar -xpvf - " '
-```
-
 ## Author
 
 Kyle Harding <https://klutchell.dev>
 
-[![](https://cdn.buymeacoffee.com/buttons/default-orange.png)](https://www.buymeacoffee.com/klutchell)
+[Buy me a beer](https://buymeacoffee.com/klutchell)
 
 ## Acknowledgments
 
@@ -112,8 +99,3 @@ maintainers, and the original software creators.
 - <https://hub.docker.com/r/linuxserver/duplicati/>
 - <https://hub.docker.com/r/netdata/netdata/>
 - <https://hub.docker.com/_/traefik/>
-
-
-## License
-
-[MIT License](./LICENSE)
