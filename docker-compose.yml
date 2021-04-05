@@ -122,8 +122,8 @@ services:
     image: ghcr.io/linuxserver/duplicati@sha256:79c12cd7686621d9db3d183c1a21dd271933f8dce48a543cb008e41b29edd150
     restart: unless-stopped
     environment:
-      PUID: 0
-      PGID: 0
+      PUID: ${PUID}
+      PGID: ${PGID}
       TZ: ${TZ}
     volumes:
       - ${CONFIG_DIR}/duplicati:/config:rw
