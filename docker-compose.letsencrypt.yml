@@ -41,7 +41,7 @@ services:
       traefik.docker.network: mediaserver_default
       traefik.http.routers.nzbget.tls.certresolver: prod
       traefik.http.routers.nzbget.rule: Host(`${NZBGET_HOST}`)
-      traefik.http.routers.nzbget.middlewares: hsts-header, basicauth, ipallowlist
+      traefik.http.routers.nzbget.middlewares: hsts-header, ipallowlist
 
   sonarr:
     labels:
@@ -49,7 +49,7 @@ services:
       traefik.docker.network: mediaserver_default
       traefik.http.routers.sonarr.tls.certresolver: prod
       traefik.http.routers.sonarr.rule: Host(`${SONARR_HOST}`)
-      traefik.http.routers.sonarr.middlewares: hsts-header, basicauth, ipallowlist
+      traefik.http.routers.sonarr.middlewares: hsts-header, ipallowlist
 
   radarr:
     labels:
@@ -57,7 +57,7 @@ services:
       traefik.docker.network: mediaserver_default
       traefik.http.routers.radarr.tls.certresolver: prod
       traefik.http.routers.radarr.rule: Host(`${RADARR_HOST}`)
-      traefik.http.routers.radarr.middlewares: hsts-header, basicauth, ipallowlist
+      traefik.http.routers.radarr.middlewares: hsts-header, ipallowlist
 
   duplicati:
     labels:
