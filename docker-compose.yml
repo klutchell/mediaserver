@@ -6,7 +6,7 @@ networks:
 services:
   # https://docs.linuxserver.io/images/docker-plex
   plex:
-    image: ghcr.io/linuxserver/plex@sha256:3a7b736f20f3d65e208e3f6c2782aa84371631c0fc60003c0947fc8b46d3fa2d
+    image: ghcr.io/linuxserver/plex@sha256:6bb7c9d8f51d5e30835efc172c42a4fd05e8e40e175ac7ec202ab769536bc021
     restart: unless-stopped
     environment:
       PUID: "${PUID}"
@@ -23,7 +23,7 @@ services:
 
   # https://docs.linuxserver.io/images/docker-jellyfin
   jellyfin:
-    image: ghcr.io/linuxserver/jellyfin@sha256:5dc17ccc851e90953e4c519521933af51aeedc961663a8396b516a9e232c2ac7
+    image: ghcr.io/linuxserver/jellyfin@sha256:b3cd3b7b0b9cff3326d0615391f8ed627776853a1dd6f7d71684af9e0c2204da
     restart: unless-stopped
     environment:
       PUID: "${PUID}"
@@ -38,7 +38,7 @@ services:
 
   # https://docs.linuxserver.io/images/docker-nzbget
   nzbget:
-    image: ghcr.io/linuxserver/nzbget@sha256:997b4c081cfb9f25c897b19add737f8406d151d4936f8eafe7a578c5cc769041
+    image: ghcr.io/linuxserver/nzbget@sha256:90f7d096d40e5609623930709ce4974bd0121b4683a4b1bfd78115243514aa9d
     restart: unless-stopped
     environment:
       PUID: "${PUID}"
@@ -52,7 +52,7 @@ services:
 
   # https://docs.linuxserver.io/images/docker-sonarr
   sonarr:
-    image: ghcr.io/linuxserver/sonarr@sha256:fae1b8aa45f24ea99b50e03b2fadac0dc14c3ca8b5eeb233da9c368bafd7e7a6
+    image: ghcr.io/linuxserver/sonarr@sha256:3d25319746b5b884c3007b2fec061a8c5cf5ee2c7f2b049cd722adab61a886ef
     restart: unless-stopped
     environment:
       PUID: "${PUID}"
@@ -70,7 +70,7 @@ services:
 
   # https://docs.linuxserver.io/images/docker-radarr
   radarr:
-    image: ghcr.io/linuxserver/radarr@sha256:3220f525fcdb6744820e7e661529fac5951b65b7daab59424b27e84d0f0576c1
+    image: ghcr.io/linuxserver/radarr@sha256:7070f4ff223d922deab5403745965abac451a024d4743b4f2d573e11e24c21fc
     restart: unless-stopped
     environment:
       PUID: "${PUID}"
@@ -88,7 +88,7 @@ services:
 
   # https://docs.linuxserver.io/images/docker-nzbhydra
   nzbhydra:
-    image: ghcr.io/linuxserver/nzbhydra2@sha256:d5f76a7682305de717bcca672d4b54b05f0f299b71e1bcc690058d918bc1724b
+    image: ghcr.io/linuxserver/nzbhydra2@sha256:c6746b908a601b65c564defd7afce34e64c5d2635fd67e3f1eaab14229e9492e
     restart: unless-stopped
     environment:
       PUID: "${PUID}"
@@ -102,7 +102,7 @@ services:
 
   # https://docs.linuxserver.io/images/docker-ombi
   ombi:
-    image: ghcr.io/linuxserver/ombi@sha256:471db51ad697f21833de90839c4be95107c838d42f732ae598df7218d6d1bffa
+    image: ghcr.io/linuxserver/ombi@sha256:6e8d9e896cfbde2f9457395aa7bd1189360cb3cd03a2060fa566ad0e29eaa522
     restart: unless-stopped
     environment:
       PUID: ${PUID}
@@ -119,7 +119,7 @@ services:
 
   # https://docs.linuxserver.io/images/docker-duplicati
   duplicati:
-    image: ghcr.io/linuxserver/duplicati@sha256:3d5e914711b3bfe7e50b61602d75c7d59cc398fd1fd0d5d4020104799baffcf9
+    image: ghcr.io/linuxserver/duplicati@sha256:e618a8eb6b3ad20ed8e558f38635f9fc94ca5237e928d79e1c2e0cffc97afe44
     restart: unless-stopped
     environment:
       PUID: ${PUID}
@@ -133,7 +133,7 @@ services:
 
   # https://hub.docker.com/r/netdata/netdata
   netdata:
-    image: netdata/netdata@sha256:5588c56262569252d568ff6137b6e35031f3870f4a68b56594efe3fc94e13c34
+    image: netdata/netdata@sha256:79defa6ad1c3367b5712fd98e6a45741faf02e1e0baf0638a46f197f5e869d1e
     restart: unless-stopped
     hostname: ${NETDATA_HOST}
     environment:
