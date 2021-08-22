@@ -35,6 +35,14 @@ services:
       traefik.http.routers.ombi.rule: Host(`${OMBI_HOST}`)
       traefik.http.routers.ombi.middlewares: hsts-header
 
+  prowlarr:
+    labels:
+      traefik.enable: "true"
+      traefik.docker.network: mediaserver_default
+      traefik.http.routers.prowlarr.tls.certresolver: prod
+      traefik.http.routers.prowlarr.rule: Host(`${PROWLARR_HOST}`)
+      traefik.http.routers.prowlarr.middlewares: hsts-header, ipallowlist
+
   nzbget:
     labels:
       traefik.enable: "true"

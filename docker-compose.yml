@@ -36,6 +36,19 @@ services:
       - "${CONFIG_DIR}/jellyfin:/config"
       - "${MEDIA_DIR}:/media"
 
+  # https://hub.docker.com/r/linuxserver/prowlarr
+  prowlarr:
+    image: ghcr.io/linuxserver/prowlarr@sha256:9f1dde7751262a98b11786436fcce9664ab78abcef7de827d918c97c209fdc57
+    restart: unless-stopped
+    environment:
+      PUID: "${PUID}"
+      PGID: "${PGID}"
+      TZ: "${TZ}"
+    networks:
+      - default
+    volumes:
+      - "${CONFIG_DIR}/prowlarr:/config"
+
   # https://docs.linuxserver.io/images/docker-nzbget
   nzbget:
     image: ghcr.io/linuxserver/nzbget@sha256:90f7d096d40e5609623930709ce4974bd0121b4683a4b1bfd78115243514aa9d
