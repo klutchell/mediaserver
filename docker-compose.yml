@@ -1,12 +1,10 @@
 version: "3.7"
-
 networks:
   default:
-
 services:
   # https://docs.linuxserver.io/images/docker-plex
   plex:
-    image: ghcr.io/linuxserver/plex@sha256:6bb7c9d8f51d5e30835efc172c42a4fd05e8e40e175ac7ec202ab769536bc021
+    image: linuxserver/plex:1.24.5.5173-8dcc73a59-ls83
     restart: unless-stopped
     environment:
       PUID: "${PUID}"
@@ -20,10 +18,9 @@ services:
       - "${MEDIA_DIR}:/media"
     tmpfs:
       - "/tmp"
-
   # https://docs.linuxserver.io/images/docker-jellyfin
   jellyfin:
-    image: ghcr.io/linuxserver/jellyfin@sha256:b3cd3b7b0b9cff3326d0615391f8ed627776853a1dd6f7d71684af9e0c2204da
+    image: linuxserver/jellyfin:10.7.7-1-ls136
     restart: unless-stopped
     environment:
       PUID: "${PUID}"
@@ -35,10 +32,9 @@ services:
     volumes:
       - "${CONFIG_DIR}/jellyfin:/config"
       - "${MEDIA_DIR}:/media"
-
   # https://hub.docker.com/r/linuxserver/prowlarr
   prowlarr:
-    image: ghcr.io/linuxserver/prowlarr@sha256:9f1dde7751262a98b11786436fcce9664ab78abcef7de827d918c97c209fdc57
+    image: linuxserver/prowlarr:1.2.1040
     restart: unless-stopped
     environment:
       PUID: "${PUID}"
@@ -48,10 +44,9 @@ services:
       - default
     volumes:
       - "${CONFIG_DIR}/prowlarr:/config"
-
   # https://docs.linuxserver.io/images/docker-nzbget
   nzbget:
-    image: ghcr.io/linuxserver/nzbget@sha256:90f7d096d40e5609623930709ce4974bd0121b4683a4b1bfd78115243514aa9d
+    image: linuxserver/nzbget:21.1.20211028
     restart: unless-stopped
     environment:
       PUID: "${PUID}"
@@ -62,10 +57,9 @@ services:
     volumes:
       - "${CONFIG_DIR}/nzbget:/config"
       - "${DOWNLOADS_DIR}:/downloads"
-
   # https://docs.linuxserver.io/images/docker-sonarr
   sonarr:
-    image: ghcr.io/linuxserver/sonarr@sha256:3d25319746b5b884c3007b2fec061a8c5cf5ee2c7f2b049cd722adab61a886ef
+    image: linuxserver/sonarr:3.0.6.1342-ls126
     restart: unless-stopped
     environment:
       PUID: "${PUID}"
@@ -80,10 +74,9 @@ services:
     links:
       - nzbhydra
       - nzbget
-
   # https://docs.linuxserver.io/images/docker-radarr
   radarr:
-    image: ghcr.io/linuxserver/radarr@sha256:7070f4ff223d922deab5403745965abac451a024d4743b4f2d573e11e24c21fc
+    image: linuxserver/radarr:3.2.2.5080-ls119
     restart: unless-stopped
     environment:
       PUID: "${PUID}"
@@ -98,10 +91,9 @@ services:
     links:
       - nzbhydra
       - nzbget
-
   # https://docs.linuxserver.io/images/docker-nzbhydra
   nzbhydra:
-    image: ghcr.io/linuxserver/nzbhydra2@sha256:c6746b908a601b65c564defd7afce34e64c5d2635fd67e3f1eaab14229e9492e
+    image: linuxserver/nzbhydra2:v3.17.3-ls35
     restart: unless-stopped
     environment:
       PUID: "${PUID}"
@@ -112,10 +104,9 @@ services:
     volumes:
       - "${CONFIG_DIR}/nzbhydra:/config"
       - "${DOWNLOADS_DIR}:/downloads"
-
   # https://docs.linuxserver.io/images/docker-ombi
   ombi:
-    image: ghcr.io/linuxserver/ombi@sha256:6e8d9e896cfbde2f9457395aa7bd1189360cb3cd03a2060fa566ad0e29eaa522
+    image: linuxserver/ombi:v4.0.1468-ls108
     restart: unless-stopped
     environment:
       PUID: ${PUID}
@@ -129,10 +120,9 @@ services:
       - sonarr
       - radarr
       - plex
-
   # https://docs.linuxserver.io/images/docker-duplicati
   duplicati:
-    image: ghcr.io/linuxserver/duplicati@sha256:e618a8eb6b3ad20ed8e558f38635f9fc94ca5237e928d79e1c2e0cffc97afe44
+    image: linuxserver/duplicati:v2.0.6.3-2.0.6.3_beta_2021-06-17-ls116
     restart: unless-stopped
     environment:
       PUID: ${PUID}
@@ -143,10 +133,9 @@ services:
       - ./:/source:rw
     networks:
       - default
-
   # https://hub.docker.com/r/netdata/netdata
   netdata:
-    image: netdata/netdata@sha256:79defa6ad1c3367b5712fd98e6a45741faf02e1e0baf0638a46f197f5e869d1e
+    image: netdata/netdata:v1.31.0
     restart: unless-stopped
     hostname: ${NETDATA_HOST}
     environment:
