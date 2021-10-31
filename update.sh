@@ -16,23 +16,20 @@ do
     service="$(yq eval ".services[].image | select(. == \"${image}\") | path | .[-2]" "${compose_file}")"
     image="${image%%:*}"
 
-    echo "############################################################"
-    echo "${service}: ${image}"
-    echo "############################################################"
-
-    for alias in "latest" "stable" "beta" "nightly"
+    for alias in "latest" "stable"
     do
+        echo "Searching for ${image}:${alias}..."
         tag="$(get_semver_from_alias "${image}" "${alias}")" || true
         [ -n "${tag}" ] && break
+        echo "Failed to find semver for ${image}:${alias}!"
     done
 
     if [ -z "${tag}" ]
     then
-        echo "Failed to find tag for ${service}: ${image}!"
-        exit 1
+        continue
     fi
 
-    echo "*${tag}"
+    echo "Saving as ${image}:${tag}..."
     yq eval -i ".services[\"${service}\"].image = \"${image}:${tag}\"" "${compose_file}"
 done
 

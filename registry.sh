@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
 
-set -euo pipefail
-
 # only supports hub.docker.com for now
 registry="${1:-"https://registry.hub.docker.com"}"
 # limited to 100 for hub.docker.com
@@ -22,7 +20,7 @@ get_tag_digest() {
 
     while :
     do
-        digest=$(curl -fsSL "${next}" | jq -r --arg TAG "${tag}" '.results[] | select(.name==$TAG) | .images[0].digest')
+        digest=$(curl -fsSL "${next}" | jq -r --arg TAG "${tag}" '.results[] | select(.name==$TAG) | .images[0].digest') || return
         [ -n "${digest}" ] && break
         
         results="$(curl -fsSL "${next}" | jq '.results | length')"
@@ -41,20 +39,19 @@ get_digest_tags() {
 
     local next
     local results
-    local count=0
+    local matches=()
 
     next="${registry}/v2/repositories/${repo}/tags/?page=1&page_size=${page_size}"
 
     while :
     do
-        mapfile -t matches < <(curl -fsSL "${next}" | jq -r --arg DIGEST "${digest}" '.results[] | select(.images[].digest==$DIGEST) | .name')
+        mapfile -t tmparr < <(curl -fsSL "${next}" | jq -r --arg DIGEST "${digest}" '.results[] | select(.images[].digest==$DIGEST) | .name') || return
 
-        if [ "${#matches[@]}" -gt 0 ]
+        if [ "${#tmparr[@]}" -lt 1 ]
         then
-            count+=${#matches[@]}
-            printf '%s\n' "${matches[@]}"
+            [ ${#matches[@]} -gt 0 ] && [ -n "${quick}" ] && break
         else
-            [ "${count}" -gt 0 ] && [ -n "${quick}" ] && break
+            matches=("${matches[@]}" "${tmparr[@]}")
         fi
         
         results="$(curl -fsSL "${next}" | jq '.results | length')"
@@ -63,16 +60,26 @@ get_digest_tags() {
         [ "${next}" = "null" ] && break
         sleep 2
     done
+
+    printf '%s\n' "${matches[@]}" | jq -R --slurp 'split("\n")[:-1]'
 }
 
 get_semver_from_alias() {
     local repo="${1}"
     local alias="${2}"
     local digest
+    local regex
+
+    case "${repo}" in 
+        linuxserver/*) regex="^(v)?[0-9]+\.[0-9]+(\.[0-9]+)?.*ls[0-9]+$" ;;
+        *) regex="^(v)?[0-9]+\.[0-9]+\.[0-9]+.*$" ;;
+    esac
 
     digest="$(get_tag_digest "${repo}" "${alias}")"
 
     [ -n "${digest}" ] || return
 
-    get_digest_tags "${repo}" "${digest}" | tee /dev/stderr | grep -Eo "^(v)?[0-9]+\.[0-9]+\.[0-9]+.*$" | sort -V | tail -n1
+    get_digest_tags "${repo}" "${digest}" | tee /dev/stderr | \
+        jq -r --arg REGEX "${regex}" '.[] | select(. | test($REGEX)) | @sh' | \
+        tr -d "'" | sort -V | tail -n1 || true   
 }

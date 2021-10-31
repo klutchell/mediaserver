@@ -34,7 +34,7 @@ services:
       - "${MEDIA_DIR}:/media"
   # https://hub.docker.com/r/linuxserver/prowlarr
   prowlarr:
-    image: linuxserver/prowlarr:1.2.1040
+    image: linuxserver/prowlarr:nightly-0.1.2.1042-ls166
     restart: unless-stopped
     environment:
       PUID: "${PUID}"
@@ -46,7 +46,7 @@ services:
       - "${CONFIG_DIR}/prowlarr:/config"
   # https://docs.linuxserver.io/images/docker-nzbget
   nzbget:
-    image: linuxserver/nzbget:21.1.20211028
+    image: linuxserver/nzbget:v21.1-ls99
     restart: unless-stopped
     environment:
       PUID: "${PUID}"
