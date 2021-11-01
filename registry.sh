@@ -8,44 +8,54 @@ page_size="${2:-100}"
 # avoid reading all pages if at least one match is found
 quick=1
 
-get_tag_digest() {
+# returns a json array of all the images associated with the provided tag
+get_manifest_images() {
 
     local repo="${1}"
     local tag="${2}"
 
     local next
-    local digest
+    local images
 
     next="${registry}/v2/repositories/${repo}/tags/?page=1&page_size=${page_size}"
 
     while :
     do
-        digest=$(curl -fsSL "${next}" | jq -r --arg TAG "${tag}" '.results[] | select(.name==$TAG) | .images[0].digest') || return
-        [ -n "${digest}" ] && break
+        images="$(curl -fsSL "${next}" | jq -r --arg TAG "${tag}" '.results[] | select(.name==$TAG) | .images | sort_by(.digest)')" || { printf "" ; return ; }
+
+        [ -n "${images}" ] && break
         
-        results="$(curl -fsSL "${next}" | jq '.results | length')"
+        results="$(curl -fsSL "${next}" | jq -r '.results | length')"
         [ "${results}" -lt 1 ] && break
         next=$(curl -fsSL "${next}" | jq -r '.next')
         [ "${next}" = "null" ] && break
-        sleep 2
+        sleep 1
     done
 
-    echo "${digest}"
+    echo "${images}"
 }
 
-get_digest_tags() {
+# returns a list of all identical manifests of the given tag
+get_aliases() {
     local repo="${1}"
-    local digest="${2}"
+    local tag="${2:-"latest"}"
+    local regexp="${3:-".*"}"
 
     local next
     local results
+    local images
     local matches=()
+
+    images="$(get_manifest_images "${repo}" "${tag}")"
+
+    [ -n "${images}" ] || { printf "" ; return ; }
 
     next="${registry}/v2/repositories/${repo}/tags/?page=1&page_size=${page_size}"
 
     while :
     do
-        mapfile -t tmparr < <(curl -fsSL "${next}" | jq -r --arg DIGEST "${digest}" '.results[] | select(.images[].digest==$DIGEST) | .name') || return
+        mapfile -t tmparr < <(curl -fsSL "${next}" | jq -r --arg REGEXP "${regexp}" --argjson IMAGES "${images}" '.results[] | 
+            select(.images | sort_by(.digest)==$IMAGES) | select(.name | test($REGEXP)) | .name') || { printf "" ; return ; }
 
         if [ "${#tmparr[@]}" -lt 1 ]
         then
@@ -58,28 +68,8 @@ get_digest_tags() {
         [ "${results}" -lt 1 ] && break
         next=$(curl -fsSL "${next}" | jq -r '.next')
         [ "${next}" = "null" ] && break
-        sleep 2
+        sleep 1
     done
 
-    printf '%s\n' "${matches[@]}" | jq -R --slurp 'split("\n")[:-1]'
-}
-
-get_semver_from_alias() {
-    local repo="${1}"
-    local alias="${2}"
-    local digest
-    local regex
-
-    case "${repo}" in 
-        linuxserver/*) regex="^(v)?[0-9]+\.[0-9]+(\.[0-9]+)?.*ls[0-9]+$" ;;
-        *) regex="^(v)?[0-9]+\.[0-9]+\.[0-9]+.*$" ;;
-    esac
-
-    digest="$(get_tag_digest "${repo}" "${alias}")"
-
-    [ -n "${digest}" ] || return
-
-    get_digest_tags "${repo}" "${digest}" | tee /dev/stderr | \
-        jq -r --arg REGEX "${regex}" '.[] | select(. | test($REGEX)) | @sh' | \
-        tr -d "'" | sort -V | tail -n1 || true   
+    printf '%s\n' "${matches[@]}"
 }

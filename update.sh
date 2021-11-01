@@ -16,21 +16,26 @@ do
     service="$(yq eval ".services[].image | select(. == \"${image}\") | path | .[-2]" "${compose_file}")"
     image="${image%%:*}"
 
+    case "${image}" in 
+        linuxserver/*) regexp="^(v)?[0-9]+\.[0-9]+(\.[0-9]+)?.*ls[0-9]+$" ;;
+        *) regexp="^(v)?[0-9]+\.[0-9]+\.[0-9]+.*$" ;;
+    esac
+
     for alias in "latest" "stable"
     do
-        echo "Searching for ${image}:${alias}..."
-        tag="$(get_semver_from_alias "${image}" "${alias}")" || true
-        [ -n "${tag}" ] && break
-        echo "Failed to find semver for ${image}:${alias}!"
+        echo "Searching for aliases of ${image}:${alias}..."
+        semver="$(get_aliases "${image}" "${alias}" "${regexp}" | sort -V | tail -n1)" || true
+
+        [ -n "${semver}" ] && break
+
+        echo "No aliases match filter: ${regexp}"
+        get_aliases "${image}" "${alias}"
     done
 
-    if [ -z "${tag}" ]
-    then
-        continue
-    fi
+    [ -n "${semver}" ] || continue
 
-    echo "Saving as ${image}:${tag}..."
-    yq eval -i ".services[\"${service}\"].image = \"${image}:${tag}\"" "${compose_file}"
+    echo "Saving as ${image}:${semver}..."
+    yq eval -i ".services[\"${service}\"].image = \"${image}:${semver}\"" "${compose_file}"
 done
 
 docker-compose up -d
