@@ -4,7 +4,7 @@ networks:
 services:
   # https://docs.linuxserver.io/images/docker-plex
   plex:
-    image: linuxserver/plex:1.25.2.5319-c43dc0277-ls94
+    image: linuxserver/plex:1.25.3.5409-f11334058-ls98
     restart: unless-stopped
     environment:
       PUID: "${PUID}"
@@ -20,7 +20,7 @@ services:
       - "/tmp"
   # https://docs.linuxserver.io/images/docker-jellyfin
   jellyfin:
-    image: linuxserver/jellyfin:10.7.7-1-ls146
+    image: linuxserver/jellyfin:10.7.7-1-ls150
     restart: unless-stopped
     environment:
       PUID: "${PUID}"
@@ -46,7 +46,7 @@ services:
       - "${CONFIG_DIR}/prowlarr:/config"
   # https://docs.linuxserver.io/images/docker-nzbget
   nzbget:
-    image: linuxserver/nzbget:v21.1-ls102
+    image: linuxserver/nzbget:v21.1-ls104
     restart: unless-stopped
     environment:
       PUID: "${PUID}"
@@ -59,7 +59,7 @@ services:
       - "${DOWNLOADS_DIR}:/downloads"
   # https://docs.linuxserver.io/images/docker-sonarr
   sonarr:
-    image: linuxserver/sonarr:3.0.6.1342-ls130
+    image: linuxserver/sonarr:3.0.6.1342-ls132
     restart: unless-stopped
     environment:
       PUID: "${PUID}"
@@ -76,7 +76,7 @@ services:
       - nzbget
   # https://docs.linuxserver.io/images/docker-radarr
   radarr:
-    image: linuxserver/radarr:3.2.2.5080-ls126
+    image: linuxserver/radarr:3.2.2.5080-ls129
     restart: unless-stopped
     environment:
       PUID: "${PUID}"
@@ -93,7 +93,7 @@ services:
       - nzbget
   # https://docs.linuxserver.io/images/docker-nzbhydra
   nzbhydra:
-    image: linuxserver/nzbhydra2:v3.18.4-ls40
+    image: linuxserver/nzbhydra2:v4.0.2-ls41
     restart: unless-stopped
     environment:
       PUID: "${PUID}"
@@ -106,7 +106,7 @@ services:
       - "${DOWNLOADS_DIR}:/downloads"
   # https://docs.linuxserver.io/images/docker-ombi
   ombi:
-    image: linuxserver/ombi:v4.3.3-ls112
+    image: linuxserver/ombi:v4.10.2-ls113
     restart: unless-stopped
     environment:
       PUID: ${PUID}
@@ -122,7 +122,7 @@ services:
       - plex
   # https://docs.linuxserver.io/images/docker-duplicati
   duplicati:
-    image: linuxserver/duplicati:v2.0.6.3-2.0.6.3_beta_2021-06-17-ls119
+    image: linuxserver/duplicati:v2.0.6.3-2.0.6.3_beta_2021-06-17-ls120
     restart: unless-stopped
     environment:
       PUID: ${PUID}
@@ -135,7 +135,7 @@ services:
       - default
   # https://hub.docker.com/r/netdata/netdata
   netdata:
-    image: netdata/netdata:v1.32.1
+    image: netdata/netdata:v1.33.0
     restart: unless-stopped
     hostname: ${NETDATA_HOST}
     environment:
