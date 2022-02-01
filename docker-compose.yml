@@ -4,7 +4,7 @@ networks:
 services:
   # https://docs.linuxserver.io/images/docker-plex
   plex:
-    image: linuxserver/plex:1.25.3.5409-f11334058-ls98
+    image: linuxserver/plex:1.25.4.5487-648a8f9f9-ls100
     restart: unless-stopped
     environment:
       PUID: "${PUID}"
@@ -76,7 +76,7 @@ services:
       - nzbget
   # https://docs.linuxserver.io/images/docker-radarr
   radarr:
-    image: linuxserver/radarr:3.2.2.5080-ls129
+    image: linuxserver/radarr:4.0.4.5922-ls129
     restart: unless-stopped
     environment:
       PUID: "${PUID}"
@@ -106,7 +106,7 @@ services:
       - "${DOWNLOADS_DIR}:/downloads"
   # https://docs.linuxserver.io/images/docker-ombi
   ombi:
-    image: linuxserver/ombi:v4.10.2-ls113
+    image: linuxserver/ombi:v4.10.2-ls114
     restart: unless-stopped
     environment:
       PUID: ${PUID}
