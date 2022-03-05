@@ -4,7 +4,7 @@ networks:
 services:
   # https://docs.linuxserver.io/images/docker-plex
   plex:
-    image: linuxserver/plex:1.25.4.5487-648a8f9f9-ls100
+    image: linuxserver/plex:latest
     restart: unless-stopped
     environment:
       PUID: "${PUID}"
@@ -20,7 +20,7 @@ services:
       - "/tmp"
   # https://docs.linuxserver.io/images/docker-jellyfin
   jellyfin:
-    image: linuxserver/jellyfin:10.7.7-1-ls150
+    image: linuxserver/jellyfin:latest
     restart: unless-stopped
     environment:
       PUID: "${PUID}"
@@ -34,7 +34,7 @@ services:
       - "${MEDIA_DIR}:/media"
   # https://hub.docker.com/r/linuxserver/prowlarr
   prowlarr:
-    image: linuxserver/prowlarr:develop-0.1.9.1313-ls35
+    image: linuxserver/prowlarr:develop
     restart: unless-stopped
     environment:
       PUID: "${PUID}"
@@ -46,7 +46,7 @@ services:
       - "${CONFIG_DIR}/prowlarr:/config"
   # https://docs.linuxserver.io/images/docker-nzbget
   nzbget:
-    image: linuxserver/nzbget:v21.1-ls104
+    image: linuxserver/nzbget:latest
     restart: unless-stopped
     environment:
       PUID: "${PUID}"
@@ -59,7 +59,7 @@ services:
       - "${DOWNLOADS_DIR}:/downloads"
   # https://docs.linuxserver.io/images/docker-sonarr
   sonarr:
-    image: linuxserver/sonarr:3.0.6.1342-ls132
+    image: linuxserver/sonarr:latest
     restart: unless-stopped
     environment:
       PUID: "${PUID}"
@@ -76,7 +76,7 @@ services:
       - nzbget
   # https://docs.linuxserver.io/images/docker-radarr
   radarr:
-    image: linuxserver/radarr:4.0.4.5922-ls129
+    image: linuxserver/radarr:latest
     restart: unless-stopped
     environment:
       PUID: "${PUID}"
@@ -93,7 +93,7 @@ services:
       - nzbget
   # https://docs.linuxserver.io/images/docker-nzbhydra
   nzbhydra:
-    image: linuxserver/nzbhydra2:v4.0.2-ls41
+    image: linuxserver/nzbhydra2:latest
     restart: unless-stopped
     environment:
       PUID: "${PUID}"
@@ -106,7 +106,7 @@ services:
       - "${DOWNLOADS_DIR}:/downloads"
   # https://docs.linuxserver.io/images/docker-ombi
   ombi:
-    image: linuxserver/ombi:v4.10.2-ls114
+    image: linuxserver/ombi:latest
     restart: unless-stopped
     environment:
       PUID: ${PUID}
@@ -122,7 +122,7 @@ services:
       - plex
   # https://docs.linuxserver.io/images/docker-duplicati
   duplicati:
-    image: linuxserver/duplicati:v2.0.6.3-2.0.6.3_beta_2021-06-17-ls120
+    image: linuxserver/duplicati:latest
     restart: unless-stopped
     environment:
       PUID: ${PUID}
@@ -135,7 +135,7 @@ services:
       - default
   # https://hub.docker.com/r/netdata/netdata
   netdata:
-    image: netdata/netdata:v1.33.0
+    image: netdata/netdata:latest
     restart: unless-stopped
     hostname: ${NETDATA_HOST}
     environment:
