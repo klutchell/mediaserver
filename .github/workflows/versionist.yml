@@ -3,7 +3,7 @@ name: versionist
 on:
   push:
     branches:
-      - "main"
+      - "master"
 
 jobs:
   versionist:
@@ -23,4 +23,4 @@ jobs:
           github_email: "versionist@users.noreply.github.com"
           github_username: "versionist"
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          branch: main
+          branch: master
