@@ -47,14 +47,6 @@ Pull and deploy containers with docker-compose.
 make deploy
 ```
 
-## Updates
-
-Update containers to the latest images and record digest in an override file for reference.
-
-```bash
-make update
-```
-
 ## Authorization
 
 There are currently two methods of authentication enabled, and I recommend using them
