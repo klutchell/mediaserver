@@ -31,40 +31,35 @@ docker-based plex & usenet media server using custom subdomains over https
 
 Copy `env.sample` to `.env` and populate all fields in the `COMMON` section.
 
-Generate a compose file by merging your environment with `common` and `direct`.
+Make sure to leave `ACME_EMAIL` blank for direct configuration.
 
-```bash
-docker-compose -f docker-compose.common.yml -f docker-compose.direct.yml config > docker-compose.yml
-```
+## Secure Configuration
 
-You may want to run the merge command again whenever you update `.env`.
+Copy `env.sample` to `.env` and populate all fields in the `COMMON` and `SECURE` sections.
 
-## Letsencrypt Configuration
-
-Copy `env.sample` to `.env` and populate all fields in the `COMMON` and `LETSENCRYPT` sections.
-
-Generate a compose file by merging your environment with `common` and `letsencrypt`.
-
-```bash
-docker-compose -f docker-compose.common.yml -f docker-compose.letsencrypt.yml config > docker-compose.yml
-```
-
-You may want to run the merge command again whenever you update `.env`.
+Make sure to set `ACME_EMAIL` for secure configuration.
 
 ## Deployment
 
 Pull and deploy containers with docker-compose.
 
 ```bash
-docker-compose pull
-docker-compose up -d
+make deploy
+```
+
+## Updates
+
+Update containers to the latest images and record digest in an override file for reference.
+
+```bash
+make update
 ```
 
 ## Authorization
 
 There are currently two methods of authentication enabled, and I recommend using them
-both if the Letsencrypt configuration is in use. If it's not exposed to the Internet you can
-remove one or both of these middlewares from `docker-compose.letsencrypt.yml`.
+both if the secure configuration is in use. If it's not exposed to the Internet you can
+remove one or both of these middlewares from `docker-compose.secure.yml`.
 
 ### ipallowlist
 
@@ -78,14 +73,14 @@ only IP ranges that we want to explictly allow access.
 
 Access from any other IP will result in "403 Forbidden" giving you some peice of mind!
 
-This functionality can be enabled/disabled per service in `docker-compose.letsencrypt.yml`
+This functionality can be enabled/disabled per service in `docker-compose.secure.yml`
 with the `ipallowlist` middleware.
 
 By default Plex, Jellyfin, Ombi, and NZBHydra2 will allow all traffic.
 
 ### basicauth
 
-This functionality can be enabled/disabled per service in `docker-compose.letsencrypt.yml`
+This functionality can be enabled/disabled per service in `docker-compose.secure.yml`
 with the `basicauth` middleware.
 
 Users can be added to basic auth in 2 ways. If both methods are used they are merged and the

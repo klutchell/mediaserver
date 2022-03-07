@@ -2,30 +2,46 @@
 
 set -euo pipefail
 
-compose_file="docker-compose.yml"
-override_file="docker-compose.override.yml"
+compose_file="${1:-"docker-compose.yml"}"
 
 yq() {
     docker run --rm -i -v "${PWD}":/workdir mikefarah/yq "$@"
 }
 
-skopeo() {
-    docker run --rm alexeiled/skopeo:latest sh -c "skopeo $*"
-}
+# shellcheck source=/dev/null
+source registry.sh
 
-echo "---" > "${override_file}"
+menu()
+{
+    select option in "$@"
+    do 
+        echo $option
+        break
+    done
+}
 
 for image in $(yq eval '.services[].image' "${compose_file}")
 do
     service="$(yq eval ".services[].image | select(. == \"${image}\") | path | .[-2]" "${compose_file}")"
+    image="${image%%:*}"
 
-    echo "inspecting $image..."
-    digest=$(skopeo "inspect docker://docker.io/$image" | jq '.Digest' | tr -d '"' )
+    for alias in "latest" "stable" "develop"
+    do
+        tag=
+        echo "Searching for aliases of ${image}:${alias}..."
+        mapfile -t aliases < <(get_aliases "${image}" "${alias}" | sort -V) || true
 
-    pinned_image="${image%%:*}@${digest}"
+        [ "${#aliases[@]}" -lt 2 ] && continue
 
-    echo "recording ${pinned_image}..."
-    yq eval -i ".services.${service}.image=\"${pinned_image}\"" ${override_file}
+        tag="$(menu "${aliases[@]}")"
+
+        [ -n "${tag}" ] && break
+    done
+
+    [ -n "${tag}" ] || continue
+
+    echo "Saving as ${image}:${tag}..."
+    yq eval -i ".services[\"${service}\"].image = \"${image}:${tag}\"" "${compose_file}"
 done
 
-docker-compose up -d
+# docker-compose up -d
