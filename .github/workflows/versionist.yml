@@ -18,7 +18,7 @@ jobs:
       # requires with 'repo' access.
       # using GITHUB_TOKEN will NOT trigger other workflows
       - id: versionist
-        uses: tmigone/versionist@v0.4.6
+        uses: tmigone/versionist@v0.4.7
         with:
           github_email: "versionist@users.noreply.github.com"
           github_username: "versionist"
