@@ -135,7 +135,7 @@ services:
       - default
   # https://hub.docker.com/r/netdata/netdata
   netdata:
-    image: netdata/netdata:1.34.0
+    image: netdata/netdata:v1.34.1
     restart: unless-stopped
     hostname: ${NETDATA_HOST}
     environment:
