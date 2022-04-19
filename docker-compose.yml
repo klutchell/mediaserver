@@ -106,7 +106,7 @@ services:
       - "${DOWNLOADS_DIR}:/downloads"
   # https://docs.linuxserver.io/images/docker-ombi
   ombi:
-    image: linuxserver/ombi:4.16.11
+    image: linuxserver/ombi:4.16.12
     restart: unless-stopped
     environment:
       PUID: ${PUID}
