@@ -46,7 +46,7 @@ services:
       - "${CONFIG_DIR}/prowlarr:/config"
   # https://docs.linuxserver.io/images/docker-nzbget
   nzbget:
-    image: linuxserver/nzbget:21.1.20220512
+    image: linuxserver/nzbget:21.1.20220707
     restart: unless-stopped
     environment:
       PUID: "${PUID}"
