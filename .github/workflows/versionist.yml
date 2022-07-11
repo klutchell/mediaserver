@@ -7,7 +7,8 @@ on:
 
 jobs:
   versionist:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
+    if: "!contains(github.event.head_commit.author.name, 'versionist')"   # Ignore push events made by the service account
 
     steps:
       - uses: actions/checkout@v3
@@ -15,12 +16,9 @@ jobs:
           fetch-depth: 0
           persist-credentials: false
 
-      # requires with 'repo' access.
-      # using GITHUB_TOKEN will NOT trigger other workflows
-      - id: versionist
-        uses: tmigone/versionist@v0.4.7
+      - uses: klutchell/versionist@v0.5.0
         with:
           github_email: "versionist@users.noreply.github.com"
           github_username: "versionist"
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+          github_token: ${{ secrets.GH_VERSIONIST_TOKEN }}
           branch: master
