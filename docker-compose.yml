@@ -20,7 +20,7 @@ services:
       - "/tmp"
   # https://docs.linuxserver.io/images/docker-jellyfin
   jellyfin:
-    image: linuxserver/jellyfin:10.8.1
+    image: linuxserver/jellyfin:10.8.2
     restart: unless-stopped
     environment:
       PUID: "${PUID}"
