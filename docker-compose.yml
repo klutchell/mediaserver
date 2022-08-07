@@ -59,7 +59,7 @@ services:
       - "${DOWNLOADS_DIR}:/downloads"
   # https://docs.linuxserver.io/images/docker-sonarr
   sonarr:
-    image: linuxserver/sonarr:3.0.8
+    image: linuxserver/sonarr:3.0.9
     restart: unless-stopped
     environment:
       PUID: "${PUID}"
