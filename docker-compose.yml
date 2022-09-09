@@ -34,7 +34,7 @@ services:
       - "${MEDIA_DIR}:/media"
   # https://hub.docker.com/r/linuxserver/prowlarr
   prowlarr:
-    image: linuxserver/prowlarr:0.4.4-develop
+    image: linuxserver/prowlarr:0.4.5-develop
     restart: unless-stopped
     environment:
       PUID: "${PUID}"
