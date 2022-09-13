@@ -18,6 +18,7 @@ services:
       - "${MEDIA_DIR}:/media"
     tmpfs:
       - "/tmp"
+
   # https://docs.linuxserver.io/images/docker-jellyfin
   jellyfin:
     image: linuxserver/jellyfin:10.8.4
@@ -32,6 +33,7 @@ services:
     volumes:
       - "${CONFIG_DIR}/jellyfin:/config"
       - "${MEDIA_DIR}:/media"
+
   # https://hub.docker.com/r/linuxserver/prowlarr
   prowlarr:
     image: linuxserver/prowlarr:0.4.5-develop
@@ -44,6 +46,7 @@ services:
       - default
     volumes:
       - "${CONFIG_DIR}/prowlarr:/config"
+
   # https://docs.linuxserver.io/images/docker-nzbget
   nzbget:
     image: linuxserver/nzbget:21.1.20220908
@@ -57,6 +60,7 @@ services:
     volumes:
       - "${CONFIG_DIR}/nzbget:/config"
       - "${DOWNLOADS_DIR}:/downloads"
+
   # https://docs.linuxserver.io/images/docker-sonarr
   sonarr:
     image: linuxserver/sonarr:3.0.9
@@ -74,6 +78,7 @@ services:
     links:
       - nzbhydra
       - nzbget
+
   # https://docs.linuxserver.io/images/docker-radarr
   radarr:
     image: linuxserver/radarr:4.1.0
@@ -91,6 +96,7 @@ services:
     links:
       - nzbhydra
       - nzbget
+
   # https://docs.linuxserver.io/images/docker-nzbhydra
   nzbhydra:
     image: linuxserver/nzbhydra2:4.6.1
@@ -104,6 +110,7 @@ services:
     volumes:
       - "${CONFIG_DIR}/nzbhydra:/config"
       - "${DOWNLOADS_DIR}:/downloads"
+
   # https://docs.linuxserver.io/images/docker-ombi
   ombi:
     image: linuxserver/ombi:4.22.5
@@ -120,6 +127,7 @@ services:
       - sonarr
       - radarr
       - plex
+
   # https://docs.linuxserver.io/images/docker-duplicati
   duplicati:
     image: linuxserver/duplicati:2.0.6
@@ -133,6 +141,7 @@ services:
       - ./:/source:rw
     networks:
       - default
+
   # https://hub.docker.com/r/netdata/netdata
   netdata:
     image: netdata/netdata:v1.36.1
@@ -153,3 +162,20 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock:ro
     networks:
       - default
+
+  # https://docs.overseerr.dev/getting-started/installation
+  # https://hub.docker.com/r/linuxserver/overseerr
+  overseerr:
+    image: lscr.io/linuxserver/overseerr:latest
+    environment:
+      PUID: ${PUID}
+      PGID: ${PGID}
+      TZ: ${TZ}
+    ports:
+      - 5055:5055
+    volumes:
+      - ${CONFIG_DIR}/overseerr:/config
+    links:
+      - sonarr
+      - radarr
+      - plex

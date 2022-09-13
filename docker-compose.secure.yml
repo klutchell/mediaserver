@@ -83,6 +83,14 @@ services:
       traefik.http.routers.netdata.rule: Host(`${NETDATA_HOST}`)
       traefik.http.routers.netdata.middlewares: hsts-header, basicauth, ipallowlist
 
+  overseerr:
+    labels:
+      traefik.enable: "true"
+      traefik.docker.network: mediaserver_default
+      traefik.http.routers.overseerr.tls.certresolver: prod
+      traefik.http.routers.overseerr.rule: Host(`${OVERSEERR_HOST}`)
+      traefik.http.routers.overseerr.middlewares: hsts-header, ipallowlist
+
   # https://hub.docker.com/_/traefik/
   traefik:
     image: traefik:v2.8.4

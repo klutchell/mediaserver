@@ -37,3 +37,7 @@ services:
   netdata:
     ports:
       - "19999:19999/tcp"
+
+  overseerr:
+    ports:
+      - "5055:5055/tcp"
