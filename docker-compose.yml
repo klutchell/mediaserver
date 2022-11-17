@@ -49,7 +49,7 @@ services:
 
   # https://docs.linuxserver.io/images/docker-nzbget
   nzbget:
-    image: linuxserver/nzbget:21.1.20221113
+    image: linuxserver/nzbget:21.1.20221117
     restart: unless-stopped
     environment:
       PUID: "${PUID}"
