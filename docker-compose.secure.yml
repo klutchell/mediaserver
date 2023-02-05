@@ -9,6 +9,8 @@ services:
       traefik.http.routers.plex.rule: Host(`${PLEX_HOST}`)
       traefik.http.services.plex.loadbalancer.server.port: 32400
       traefik.http.services.plex.loadbalancer.server.scheme: http
+    ports:
+      - "127.0.0.1:32400:32400/tcp"
 
   jellyfin:
     labels:
@@ -18,6 +20,9 @@ services:
       traefik.http.routers.jellyfin.rule: Host(`${JELLYFIN_HOST}`)
       traefik.http.services.jellyfin.loadbalancer.server.port: 8096
       traefik.http.services.jellyfin.loadbalancer.server.scheme: http
+    ports:
+      - "127.0.0.1:8096:8096/tcp"
+      - "127.0.0.1:7359:7359/udp"
 
   nzbhydra:
     labels:
@@ -26,6 +31,8 @@ services:
       traefik.http.routers.nzbhydra.tls.certresolver: prod
       traefik.http.routers.nzbhydra.rule: Host(`${NZBHYDRA_HOST}`)
       traefik.http.routers.nzbhydra.middlewares: hsts-header
+    ports:
+      - "127.0.0.1:5076:5076/tcp"
 
   ombi:
     labels:
@@ -34,6 +41,8 @@ services:
       traefik.http.routers.ombi.tls.certresolver: prod
       traefik.http.routers.ombi.rule: Host(`${OMBI_HOST}`)
       traefik.http.routers.ombi.middlewares: hsts-header
+    ports:
+      - "127.0.0.1:3579:3579/tcp"
 
   prowlarr:
     labels:
@@ -42,6 +51,8 @@ services:
       traefik.http.routers.prowlarr.tls.certresolver: prod
       traefik.http.routers.prowlarr.rule: Host(`${PROWLARR_HOST}`)
       traefik.http.routers.prowlarr.middlewares: hsts-header, ipallowlist
+    ports:
+      - "127.0.0.1:9696:9696/tcp"
 
   nzbget:
     labels:
@@ -50,6 +61,8 @@ services:
       traefik.http.routers.nzbget.tls.certresolver: prod
       traefik.http.routers.nzbget.rule: Host(`${NZBGET_HOST}`)
       traefik.http.routers.nzbget.middlewares: hsts-header, ipallowlist
+    ports:
+      - "127.0.0.1:6789:6789/tcp"
 
   sonarr:
     labels:
@@ -58,6 +71,8 @@ services:
       traefik.http.routers.sonarr.tls.certresolver: prod
       traefik.http.routers.sonarr.rule: Host(`${SONARR_HOST}`)
       traefik.http.routers.sonarr.middlewares: hsts-header, ipallowlist
+    ports:
+      - "127.0.0.1:8989:8989/tcp"
 
   radarr:
     labels:
@@ -66,6 +81,8 @@ services:
       traefik.http.routers.radarr.tls.certresolver: prod
       traefik.http.routers.radarr.rule: Host(`${RADARR_HOST}`)
       traefik.http.routers.radarr.middlewares: hsts-header, ipallowlist
+    ports:
+      - "127.0.0.1:7878:7878/tcp"
 
   duplicati:
     labels:
@@ -74,6 +91,8 @@ services:
       traefik.http.routers.duplicati.tls.certresolver: prod
       traefik.http.routers.duplicati.rule: Host(`${DUPLICATI_HOST}`)
       traefik.http.routers.duplicati.middlewares: hsts-header, basicauth, ipallowlist
+    ports:
+      - "127.0.0.1:8200:8200/tcp"
 
   netdata:
     labels:
@@ -82,6 +101,8 @@ services:
       traefik.http.routers.netdata.tls.certresolver: prod
       traefik.http.routers.netdata.rule: Host(`${NETDATA_HOST}`)
       traefik.http.routers.netdata.middlewares: hsts-header, basicauth, ipallowlist
+    ports:
+      - "127.0.0.1:19999:19999/tcp"
 
   overseerr:
     labels:
@@ -90,6 +111,8 @@ services:
       traefik.http.routers.overseerr.tls.certresolver: prod
       traefik.http.routers.overseerr.rule: Host(`${OVERSEERR_HOST}`)
       traefik.http.routers.overseerr.middlewares: hsts-header, ipallowlist
+    ports:
+      - "127.0.0.1:5055:5055/tcp"
 
   # https://hub.docker.com/_/traefik/
   traefik:
