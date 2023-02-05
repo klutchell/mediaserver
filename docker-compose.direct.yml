@@ -41,3 +41,7 @@ services:
   overseerr:
     ports:
       - "5055:5055/tcp"
+
+  prowlarr:
+    ports:
+      - "9696:9696/tcp"
