@@ -175,8 +175,6 @@ services:
       PUID: ${PUID}
       PGID: ${PGID}
       TZ: ${TZ}
-    ports:
-      - 5055:5055
     volumes:
       - ${CONFIG_DIR}/overseerr:/config
     links:
