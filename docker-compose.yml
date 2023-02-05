@@ -141,6 +141,9 @@ services:
       - ./:/source:rw
     networks:
       - default
+    tmpfs:
+      - /tmp
+      - /var/run/
 
   # https://hub.docker.com/r/netdata/netdata
   netdata:
