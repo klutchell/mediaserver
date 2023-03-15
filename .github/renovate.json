@@ -1,6 +1,14 @@
 {
-  "extends": [
-    "config:base"
-  ],
-  "commitBody": "Change-type: patch"
+  "extends": ["config:base"],
+  "commitBody": "Change-type: patch",
+  "packageRules": [
+    {
+      "matchUpdateTypes": ["major", "minor", "patch"],
+      "commitBody": "Change-type: {{updateType}}"
+    },
+    {
+      "matchUpdateTypes": ["patch"],
+      "automerge": true
+    }
+  ]
 }
