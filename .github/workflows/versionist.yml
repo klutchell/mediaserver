@@ -1,24 +1,31 @@
-name: versionist
-
+name: Versionist
 on:
   push:
-    branches:
-      - "master"
+    branches: ["master", "main"]
+  pull_request:
+    branches: ["master", "main"]
+
+# https://docs.github.com/en/actions/using-jobs/using-concurrency
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: false
 
 jobs:
   versionist:
+    name: Run versionist
     runs-on: ubuntu-22.04
-    if: "!contains(github.event.head_commit.author.name, 'versionist')"   # Ignore push events made by the service account
 
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout project
+        uses: actions/checkout@v3
         with:
-          fetch-depth: 0
-          persist-credentials: false
+          token: ${{ secrets.ACCESS_TOKEN }}
+          fetch-depth: 0 # versionist needs all commits and tags
 
-      - uses: klutchell/versionist@v0.5.0
+      - name: Run balena-versionist
+        id: versionist
+        uses: klutchell/balena-versionist-action@v0.0.3
         with:
-          github_email: "versionist@users.noreply.github.com"
-          github_username: "versionist"
-          github_token: ${{ secrets.GH_VERSIONIST_TOKEN }}
-          branch: master
+          github_token: ${{ secrets.ACCESS_TOKEN }}
+          gpg_private_key: ${{ secrets.GPG_PRIVATE_KEY }}
+          gpg_passphrase: ${{ secrets.GPG_PRIVATE_KEY }}
