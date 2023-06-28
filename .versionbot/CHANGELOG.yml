@@ -1,0 +1,1695 @@
+- commits:
+    - subject: Allow tracking of versionbot changelog directory
+      hash: e426800594173b58aaa3be1c5a459ec3b4f2a216
+      body: ""
+      footer:
+        Change-type: patch
+        change-type: patch
+        Signed-off-by: Kyle Harding <kyle@balena.io>
+        signed-off-by: Kyle Harding <kyle@balena.io>
+      author: Kyle Harding
+      nested: []
+  version: 4.12.2
+  title: ""
+  date: 2023-06-28T17:47:34.878Z
+- version: 4.12.1
+  date: 2023-06-28T16:55:16Z
+  commits:
+    - hash: d57edf5e7b88ac5a225f65d5d96000625f5a86ef
+      author: Renovate Bot
+      footers:
+        change-type: patch
+      subject: Update klutchell/balena-versionist-action action to v0.0.7
+      body: ""
+- version: 4.12.0
+  date: 2023-06-28T16:05:17Z
+  commits:
+    - hash: 5b14a29e3b262858d3f39201d85ab4950e2c6684
+      author: Renovate Bot
+      footers:
+        change-type: patch
+      subject: Update klutchell/balena-versionist-action action to v0.0.6
+      body: ""
+    - hash: eb97b762d8247bc60b7ba4f59913b5383730c848
+      author: Renovate Bot
+      footers:
+        change-type: patch
+      subject: Update linuxserver/prowlarr Docker tag to v1.6.3
+      body: ""
+    - hash: 399428fa85e1a08befab63a96e70f850d82df0aa
+      author: Renovate Bot
+      footers:
+        change-type: patch
+      subject: Update netdata/netdata Docker tag to v1.40.1
+      body: ""
+    - hash: b0d2dc4b1d3c7314ab8a273d28142251652172e7
+      author: Renovate Bot
+      footers:
+        change-type: minor
+      subject: Update tailscale/tailscale Docker tag to v1.44.0
+      body: ""
+    - hash: 9e9189da89b137447b6c84b8a46ebb6268720216
+      author: Renovate Bot
+      footers:
+        change-type: patch
+      subject: Update traefik Docker tag to v2.10.3
+      body: ""
+    - hash: b6008429afe3ca3da197d45dfe97b49e4318298b
+      author: Renovate Bot
+      footers:
+        change-type: patch
+      subject: Update linuxserver/plex Docker tag to v1.32.4
+      body: ""
+    - hash: b78777e3707a44cbbad2e5ff79d7eded1685abb2
+      author: Renovate Bot
+      footers:
+        change-type: patch
+      subject: Update linuxserver/prowlarr Docker tag to v1.6.1
+      body: ""
+    - hash: 58b32d5b4e16c1da2e711ce4f38b37ca7d8afe24
+      author: Renovate Bot
+      footers:
+        change-type: minor
+      subject: Update lscr.io/linuxserver/overseerr Docker tag to v1.33.0
+      body: ""
+    - hash: 078330f621e117ae505c64e152cf8fa9d49f3b78
+      author: Renovate Bot
+      footers:
+        change-type: minor
+      subject: Update netdata/netdata Docker tag to v1.40.0
+      body: ""
+    - hash: cf094a9bcecab7b9b8206c461ac969a97900139e
+      author: Renovate Bot
+      footers:
+        change-type: minor
+      subject: Update linuxserver/prowlarr Docker tag to v1.6.0
+      body: ""
+    - hash: ff0838ca284c48a84a29c2821be4d33b56e9f266
+      author: Renovate Bot
+      footers:
+        change-type: patch
+      subject: Update linuxserver/plex Docker tag to v1.32.3
+      body: ""
+    - hash: 60f176beaa9fb1e2d7c7a5fe8491db2588172c84
+      author: Renovate Bot
+      footers:
+        change-type: patch
+      subject: Update klutchell/balena-versionist-action action to v0.0.5
+      body: ""
+    - hash: 4119ac61da19c3dbf706ba6de2a7ab02b1c8f541
+      author: Renovate Bot
+      footers:
+        change-type: patch
+      subject: Update linuxserver/prowlarr Docker tag to v1.5.2
+      body: ""
+- version: 4.11.0
+  date: 2023-05-28T18:16:01Z
+  commits:
+    - hash: d87a662ab575593ccdcb3bd2038005b1ec79869c
+      author: Renovate Bot
+      footers:
+        change-type: minor
+      subject: Update linuxserver/radarr Docker tag to v4.5.2
+      body: ""
+- version: 4.10.1
+  date: 2023-05-28T16:35:22Z
+  commits:
+    - hash: 20878ddb86d2b4f8686c6c8516c2525d0109cd36
+      author: Renovate Bot
+      footers:
+        change-type: patch
+      subject: Update linuxserver/prowlarr Docker tag to v1.5.1
+      body: ""
+- version: 4.10.0
+  date: 2023-05-24T22:53:36Z
+  commits:
+    - hash: 020f2b539b2eabde5a8df8647b0fb3342ba7b39d
+      author: Renovate Bot
+      footers:
+        change-type: minor
+      subject: Update tailscale/tailscale Docker tag to v1.42.0
+      body: ""
+- version: 4.9.1
+  date: 2023-05-22T18:35:22Z
+  commits:
+    - hash: 6071c3a810b802c2233ddc3302cbdba3b4341d61
+      author: Renovate Bot
+      footers:
+        change-type: patch
+      subject: Update linuxserver/plex Docker tag to v1.32.2
+      body: ""
+- version: 4.9.0
+  date: 2023-05-18T19:51:40Z
+  commits:
+    - hash: 976e86a9478075d18b15353aa904a74b50d02b27
+      author: Renovate Bot
+      footers:
+        change-type: minor
+      subject: Update linuxserver/ombi Docker tag to v4.39.1
+      body: ""
+- version: 4.8.2
+  date: 2023-05-18T14:34:40Z
+  commits:
+    - hash: f2c8cc6edd3cdbe4cb7da6b9936b3fd73c3d8efd
+      author: Renovate Bot
+      footers:
+        change-type: patch
+      subject: Update netdata/netdata Docker tag to v1.39.1
+      body: ""
+- version: 4.8.1
+  date: 2023-05-17T10:34:34Z
+  commits:
+    - hash: e8d9e46f209a2974ae721760f56201d1701cc5db
+      author: Renovate Bot
+      footers:
+        change-type: patch
+      subject: Update linuxserver/ombi Docker tag to v4.35.11
+      body: ""
+- version: 4.8.0
+  date: 2023-05-13T19:17:00Z
+  commits:
+    - hash: 60e660d2899252add4924c5381794c779737290c
+      author: Renovate Bot
+      footers:
+        change-type: minor
+      subject: Update linuxserver/prowlarr Docker tag to v1.5.0
+      body: ""
+- version: 4.7.2
+  date: 2023-05-11T02:39:59Z
+  commits:
+    - hash: 332be7e2d90b7725877ea01d7c45fee2f825b5ef
+      author: Renovate Bot
+      footers:
+        change-type: patch
+      subject: Update tailscale/tailscale Docker tag to v1.40.1
+      body: ""
+- version: 4.7.1
+  date: 2023-05-08T18:06:27Z
+  commits:
+    - hash: 18b687b013adb3763aef16da9f69a346a5fb858e
+      author: Renovate Bot
+      footers:
+        change-type: patch
+      subject: Update linuxserver/plex Docker tag to v1.32.1
+      body: ""
+- version: 4.7.0
+  date: 2023-05-08T17:18:43Z
+  commits:
+    - hash: 3d6f2fad3f23ddcf269bd35a258d7bcf8fd36027
+      author: Renovate Bot
+      footers:
+        change-type: minor
+      subject: Update netdata/netdata Docker tag to v1.39.0
+      body: ""
+- version: 4.6.2
+  date: 2023-05-04T16:42:21Z
+  commits:
+    - hash: 51fc1e3f96166d93f8a6c49f21ed7500d9ca1eb2
+      author: Renovate Bot
+      footers:
+        change-type: patch
+      subject: Update linuxserver/prowlarr Docker tag to v1.4.1
+      body: ""
+- version: 4.6.1
+  date: 2023-04-27T19:34:11Z
+  commits:
+    - hash: 16829ec4b819c10254d6bcd14ef840cd332ac907
+      author: Renovate Bot
+      footers:
+        change-type: patch
+      subject: Update traefik Docker tag to v2.10.1
+      body: ""
+- version: 4.6.0
+  date: 2023-04-27T01:07:51Z
+  commits:
+    - hash: da6ef97f06cf76dfbc304488b76eba51cbbeba79
+      author: Renovate Bot
+      footers:
+        change-type: minor
+      subject: Update tailscale/tailscale Docker tag to v1.40.0
+      body: ""
+- version: 4.5.0
+  date: 2023-04-25T12:47:02Z
+  commits:
+    - hash: 2f1187feb8b1662575b36d5bac36198161fbd335
+      author: Renovate Bot
+      footers:
+        change-type: minor
+      subject: Update linuxserver/prowlarr Docker tag to v1.4.0
+      body: ""
+- version: 4.4.0
+  date: 2023-04-25T12:22:07Z
+  commits:
+    - hash: afc0dc73e95825b426f050fa0bb7d925064f9232
+      author: Renovate Bot
+      footers:
+        change-type: minor
+      subject: Update traefik Docker tag to v2.10.0
+      body: ""
+- version: 4.3.1
+  date: 2023-04-23T17:05:07Z
+  commits:
+    - hash: 76b99966f27b23985510019558dd25d96df71134
+      author: Renovate Bot
+      footers:
+        change-type: patch
+      subject: Update linuxserver/jellyfin Docker tag to v10.8.10
+      body: ""
+- version: 4.3.0
+  date: 2023-04-16T12:26:38Z
+  commits:
+    - hash: 980d1d904132b974e8d30ff51defe6bff3eb2577
+      author: Renovate Bot
+      footers:
+        change-type: minor
+      subject: Update linuxserver/radarr Docker tag to v4.4.4
+      body: ""
+- version: 4.2.0
+  date: 2023-04-11T12:56:31Z
+  commits:
+    - hash: 752557b7bbb23a52f1ed9997afec50178bbaaf97
+      author: Renovate Bot
+      footers:
+        change-type: minor
+      subject: Update linuxserver/plex Docker tag to v1.32.0
+      body: ""
+- version: 4.1.10
+  date: 2023-04-06T19:05:56Z
+  commits:
+    - hash: 59ae07500ceab12b03998b1a2f199d715acc04ae
+      author: Renovate Bot
+      footers:
+        change-type: patch
+      subject: Update traefik Docker tag to v2.9.10
+      body: ""
+- version: 4.1.9
+  date: 2023-04-06T10:34:33Z
+  commits:
+    - hash: 9068370e44b42b60d075a21b01f2eb2b4cb1ee27
+      author: Renovate Bot
+      footers:
+        change-type: patch
+      subject: Update tailscale/tailscale Docker tag to v1.38.4
+      body: ""
+- version: 4.1.7
+  date: 2023-03-29T21:34:30Z
+  commits:
+    - hash: d56b79072af2daefaa887aa8362dad8584fcdeb2
+      author: Renovate Bot
+      footers:
+        change-type: patch
+      subject: Update tailscale/tailscale Docker tag to v1.38.3
+      body: ""
+- version: 4.1.5
+  date: 2023-03-29T20:14:51Z
+  commits:
+    - hash: bb3b0cebaee257710a547417d38b44ceefb7f686
+      author: Kyle Harding
+      footers:
+        change-type: patch
+        signed-off-by: Kyle Harding <kmharding@pm.me>
+      subject: Switch to new versionist action
+      body: ""
+- version: 4.1.4
+  date: 2023-03-28T21:24:12Z
+  commits:
+    - hash: cfab3e273ee034afaea478ddab0eaf160c220956
+      author: Renovate Bot
+      footers:
+        change-type: patch
+      subject: Update linuxserver/prowlarr Docker tag to v1.3.2
+      body: ""
+- version: 4.1.3
+  date: 2023-03-28T20:47:37Z
+  commits:
+    - hash: aa7936dbe9648589d8e8b62f25fa94bd3add58f2
+      author: Renovate Bot
+      footers:
+        change-type: patch
+      subject: Update linuxserver/plex Docker tag to v1.31.3
+      body: ""
+- version: 4.1.2
+  date: 2023-03-28T20:21:18Z
+  commits:
+    - hash: a1fea21b0cecb6f13e496945c522ffbb2787803e
+      author: Renovate Bot
+      footers:
+        change-type: patch
+      subject: Update traefik Docker tag to v2.9.9
+      body: ""
+- version: 4.1.1
+  date: 2023-03-24T18:06:27Z
+  commits:
+    - hash: 0826bd52ee86edf098f794b46141cd8cd88a5440
+      author: Renovate Bot
+      footers:
+        change-type: patch
+      subject: Update tailscale/tailscale Docker tag to v1.38.2
+      body: ""
+- version: 4.1.0
+  date: 2023-03-15T16:33:34Z
+  commits:
+    - hash: a0c7e578244cb5489055cefdb50e848f4c06d57a
+      author: Renovate Bot
+      footers:
+        change-type: minor
+      subject: Update tailscale/tailscale Docker tag to v1.38.1
+      body: ""
+- version: 4.0.17
+  date: 2023-03-14T18:11:05Z
+  commits:
+    - hash: db670064920ff2278c29eb2a06080b0fbebcd033
+      author: Renovate Bot
+      footers:
+        change-type: patch
+      subject: Update linuxserver/plex Docker tag to v1.31.2
+      body: ""
+- version: 4.0.16
+  date: 2023-03-06T21:08:18Z
+  commits:
+    - hash: 691f4e0ded4cb3c701efe6fde636b71f5c9060e1
+      author: Renovate Bot
+      footers:
+        change-type: patch
+      subject: Update linuxserver/sonarr Docker tag to v3.0.10
+      body: ""
+- version: 4.0.15
+  date: 2023-02-27T19:10:59Z
+  commits:
+    - hash: 28101e6d414100eb7c114f4a2f261e20cb06d618
+      author: Renovate Bot
+      footers:
+        change-type: patch
+      subject: Update linuxserver/plex Docker tag to v1.31.1
+      body: ""
+- version: 4.0.14
+  date: 2023-02-26T12:15:26Z
+  commits:
+    - hash: 72e1156d1a55aaaf5109791bb8c9277f69844965
+      author: Renovate Bot
+      footers:
+        change-type: patch
+      subject: Update linuxserver/prowlarr Docker tag to v1.3.1
+      body: ""
+- version: 4.0.13
+  date: 2023-02-25T19:08:32Z
+  commits:
+    - hash: 1f0caf44e16c8b01508acff1cbf26524b68d0313
+      author: Renovate Bot
+      footers:
+        change-type: patch
+      subject: Update linuxserver/ombi Docker tag to v4.35.10
+      body: ""
+- version: 4.0.12
+  date: 2023-02-23T10:44:03Z
+  commits:
+    - hash: 4a4557e9480547cd194cb6bfd04211b08c72f585
+      author: Renovate Bot
+      footers:
+        change-type: patch
+      subject: Update linuxserver/prowlarr Docker tag to v1.3.0
+      body: ""
+- version: 4.0.11
+  date: 2023-02-23T01:39:55Z
+  commits:
+    - hash: 88f53c4038e6cd1d462ee366c4845c0b27980bec
+      author: Renovate Bot
+      footers:
+        change-type: patch
+      subject: Update tailscale/tailscale Docker tag to v1.36.2
+      body: ""
+- version: 4.0.10
+  date: 2023-02-20T02:37:58Z
+  commits:
+    - hash: eb1466418b4644d38a5218132795fa889565be39
+      author: Renovate Bot
+      footers:
+        change-type: patch
+      subject: Update linuxserver/prowlarr Docker tag to v1.2.2
+      body: ""
+- version: 4.0.9
+  date: 2023-02-15T23:09:56Z
+  commits:
+    - hash: e4c34e78bf6603dd899075236179477cd61f56f2
+      author: Renovate Bot
+      footers:
+        change-type: patch
+      subject: Update traefik Docker tag to v2.9.8
+      body: ""
+- version: 4.0.8
+  date: 2023-02-15T00:11:26Z
+  commits:
+    - hash: 3bd2c0841c3ab900b9b9171cbbfa8fd9e0777f84
+      author: Renovate Bot
+      footers:
+        change-type: patch
+      subject: Update traefik Docker tag to v2.9.7
+      body: ""
+- version: 4.0.7
+  date: 2023-02-13T22:05:37Z
+  commits:
+    - hash: 582c2f535c5a93b942ac5c7255214015085ec5ba
+      author: Renovate Bot
+      footers:
+        change-type: patch
+      subject: Update linuxserver/plex Docker tag to v1.31.0
+      body: ""
+- version: 4.0.6
+  date: 2023-02-13T16:47:55Z
+  commits:
+    - hash: 5867efd914ac987c160843df9c4d070f7c38d58b
+      author: Renovate Bot
+      footers:
+        change-type: patch
+      subject: Update netdata/netdata Docker tag to v1.38.1
+      body: ""
+- version: 4.0.5
+  date: 2023-02-13T11:43:43Z
+  commits:
+    - hash: 26c01a5cb40bc675862303cb762c4c38277b1543
+      author: Renovate Bot
+      footers:
+        change-type: patch
+      subject: Update linuxserver/prowlarr Docker tag to v1.2.0
+      body: ""
+- version: 4.0.4
+  date: 2023-02-09T11:05:39Z
+  commits:
+    - hash: e2585e37757e62c706e1dc42dc3cbf586bd278ee
+      author: Renovate Bot
+      footers:
+        change-type: patch
+      subject: Update tailscale/tailscale Docker tag to v1.36.1
+      body: ""
+- version: 4.0.3
+  date: 2023-02-06T16:06:51Z
+  commits:
+    - hash: ff53bd9071dd51834223fbf1f01ea8605bc7dd82
+      author: Renovate Bot
+      footers:
+        change-type: patch
+      subject: Update netdata/netdata Docker tag to v1.38.0
+      body: ""
+- version: 4.0.0
+  date: 2023-02-05T18:43:15Z
+  commits:
+    - hash: e8d99d3b408c075cb40ca396a41fc71812692585
+      author: Kyle Harding
+      footers:
+        change-type: major
+        signed-off-by: Kyle Harding <kmharding@pm.me>
+      subject: Add tailscale service
+      body: ""
+- version: 3.0.51
+  date: 2023-02-04T22:19:26Z
+  commits:
+    - hash: e5489bcf4fe9c708515994482c4fffae527d570c
+      author: Renovate Bot
+      footers:
+        change-type: patch
+      subject: Update linuxserver/prowlarr Docker tag to v1.1.3
+      body: ""
+- version: 3.0.50
+  date: 2023-01-31T02:22:30Z
+  commits:
+    - hash: a504f533885fb95399e6bd9e4490e3fb496823e7
+      author: Renovate Bot
+      footers:
+        change-type: patch
+      subject: Update linuxserver/prowlarr Docker tag to v1.1.2
+      body: ""
+- version: 3.0.49
+  date: 2023-01-25T12:12:38Z
+  commits:
+    - hash: b34190103f463716b1b3856791df5f965e911765
+      author: Renovate Bot
+      footers:
+        change-type: patch
+      subject: Update linuxserver/plex Docker tag to v1.30.2
+      body: ""
+- version: 3.0.48
+  date: 2023-01-23T14:36:41Z
+  commits:
+    - hash: 042fb37b0ffb1d0e8aee1275446d1c19dce6a9b4
+      author: Renovate Bot
+      footers:
+        change-type: patch
+      subject: Update linuxserver/prowlarr Docker tag to v1.1.1
+      body: ""
+- version: 3.0.47
+  date: 2023-01-22T21:49:15Z
+  commits:
+    - hash: fa4b82448e39ea22cd5bd9b01bfcc43c1510380d
+      author: Renovate Bot
+      footers:
+        change-type: patch
+      subject: Update linuxserver/jellyfin Docker tag to v10.8.9
+      body: ""
+- version: 3.0.46
+  date: 2023-01-19T20:00:48Z
+  commits:
+    - hash: 74b0ccd3caa3e3338ac3f240060afdbfbc9015eb
+      author: Renovate Bot
+      footers:
+        change-type: patch
+      subject: Update linuxserver/nzbget Docker tag to v21.1.20230119
+      body: ""
+- version: 3.0.45
+  date: 2023-01-17T10:54:08Z
+  commits:
+    - hash: a6b2cca62e9e9a6570bdfaec23cb8e9bc01e2024
+      author: Renovate Bot
+      footers:
+        change-type: patch
+      subject: Update linuxserver/prowlarr Docker tag to v1.1.0
+      body: ""
+- version: 3.0.44
+  date: 2023-01-10T21:06:12Z
+  commits:
+    - hash: 98fcc5250e1b5eec258b65eab31d0a07a48f1ee5
+      author: Renovate Bot
+      footers:
+        change-type: patch
+      subject: Update linuxserver/plex Docker tag to v1.30.1
+      body: ""
+- version: 3.0.43
+  date: 2023-01-05T11:42:52Z
+  commits:
+    - hash: 1f548da57c5e30350a730f10bdb7b0e148f222f2
+      author: Renovate Bot
+      footers:
+        change-type: patch
+      subject: Update linuxserver/nzbget Docker tag to v21.1.20230105
+      body: ""
+- version: 3.0.42
+  date: 2023-01-04T02:11:25Z
+  commits:
+    - hash: 34e0b9291ea6a680a7a09a219b67bac2d306d580
+      author: Renovate Bot
+      footers:
+        change-type: patch
+      subject: Update linuxserver/radarr Docker tag to v4.3.2
+      body: ""
+- version: 3.0.41
+  date: 2023-01-01T02:13:01Z
+  commits:
+    - hash: 6b2247416bd61e68c6c19b132fd8f4dbbcfe82e3
+      author: Renovate Bot
+      footers:
+        change-type: patch
+      subject: Update linuxserver/prowlarr Docker tag to v1.0.1
+      body: ""
+- version: 3.0.40
+  date: 2022-12-25T12:15:13Z
+  commits:
+    - hash: 83a66f4fb2b5c0b8c3f3d184e66736863c29feed
+      author: Renovate Bot
+      footers:
+        change-type: patch
+      subject: Update linuxserver/prowlarr Docker tag to v1
+      body: ""
+- version: 3.0.39
+  date: 2022-12-22T21:08:22Z
+  commits:
+    - hash: df40edac34be637846e4db683ab44630a4e16f68
+      author: Renovate Bot
+      footers:
+        change-type: patch
+      subject: Update linuxserver/nzbhydra2 Docker tag to v4.7.6
+      body: ""
+- version: 3.0.38
+  date: 2022-12-22T11:52:40Z
+  commits:
+    - hash: 0369307ab40f25da40d7ef94bcdd9a1587001eb8
+      author: Renovate Bot
+      footers:
+        change-type: patch
+      subject: Update linuxserver/nzbget Docker tag to v21.1.20221222
+      body: ""
+- version: 3.0.37
+  date: 2022-12-20T16:19:31Z
+  commits:
+    - hash: 75e86a26eb21336269087c2e84e71bbfb73b01c9
+      author: Renovate Bot
+      footers:
+        change-type: patch
+      subject: Update linuxserver/prowlarr Docker tag to v0.4.11
+      body: ""
+- version: 3.0.36
+  date: 2022-12-15T10:29:47Z
+  commits:
+    - hash: 36e2af31683fec9a83e3e3920ee6645cca746214
+      author: Renovate Bot
+      footers:
+        change-type: patch
+      subject: Update linuxserver/nzbget Docker tag to v21.1.20221215
+      body: ""
+- version: 3.0.35
+  date: 2022-12-14T10:37:56Z
+  commits:
+    - hash: 2ec7a59f60ae648bfcdb5249914be95c8eb503b4
+      author: Renovate Bot
+      footers:
+        change-type: patch
+      subject: Update linuxserver/nzbhydra2 Docker tag to v4.7.4
+      body: ""
+- version: 3.0.34
+  date: 2022-12-13T10:28:04Z
+  commits:
+    - hash: c7688205699e8790121e118307f13dbde9fb36cf
+      author: Renovate Bot
+      footers:
+        change-type: patch
+      subject: Update linuxserver/plex Docker tag to v1.30.0
+      body: ""
+- version: 3.0.33
+  date: 2022-12-10T11:52:37Z
+  commits:
+    - hash: b5845b0e1fd494b461dc6245c5bb9984a554b0c5
+      author: Renovate Bot
+      footers:
+        change-type: patch
+      subject: Update linuxserver/prowlarr Docker tag to v0.4.10
+      body: ""
+- version: 3.0.32
+  date: 2022-12-08T01:23:34Z
+  commits:
+    - hash: decb81609bcd160e3c5b9d4352b03a1a81752cf1
+      author: Renovate Bot
+      footers:
+        change-type: patch
+      subject: Update traefik Docker tag to v2.9.6
+      body: ""
+- version: 3.0.31
+  date: 2022-12-06T21:43:14Z
+  commits:
+    - hash: 97ae9c5ca88516b0bd5cd7d220f3eb1c735862d1
+      author: Renovate Bot
+      footers:
+        change-type: patch
+      subject: Update linuxserver/nzbhydra2 Docker tag to v4.7.3
+      body: ""
+- version: 3.0.30
+  date: 2022-12-05T16:06:07Z
+  commits:
+    - hash: adbab8a9255a74ed1537290e32440cf2eef8c5eb
+      author: Renovate Bot
+      footers:
+        change-type: patch
+      subject: Update netdata/netdata Docker tag to v1.37.1
+      body: ""
+- version: 3.0.29
+  date: 2022-12-01T11:01:59Z
+  commits:
+    - hash: fc33ca24eeda506826db038a34d92399a01aa526
+      author: Renovate Bot
+      footers:
+        change-type: patch
+      subject: Update linuxserver/nzbget Docker tag to v21.1.20221201
+      body: ""
+- version: 3.0.28
+  date: 2022-11-30T19:07:16Z
+  commits:
+    - hash: f599762294b19c9d44698146ac448bc83b6394ab
+      author: Renovate Bot
+      footers:
+        change-type: patch
+      subject: Update linuxserver/nzbhydra2 Docker tag to v4.7.2
+      body: ""
+- version: 3.0.27
+  date: 2022-11-30T14:35:25Z
+  commits:
+    - hash: ab0d5c5f90a0090cd533e7ddf34df4a9618c92a1
+      author: Renovate Bot
+      footers:
+        change-type: patch
+      subject: Update netdata/netdata Docker tag to v1.37.0
+      body: ""
+- version: 3.0.26
+  date: 2022-11-29T20:37:41Z
+  commits:
+    - hash: 108191a973ceb5316f669a594f2041d4556a2128
+      author: Renovate Bot
+      footers:
+        change-type: patch
+      subject: Update linuxserver/jellyfin Docker tag to v10.8.8
+      body: ""
+- version: 3.0.25
+  date: 2022-11-28T11:56:42Z
+  commits:
+    - hash: 5d4b971993ca1ceb1ca09aa91d018913f1a12d93
+      author: Renovate Bot
+      footers:
+        change-type: patch
+      subject: Update linuxserver/nzbget Docker tag to v21.1.20221128
+      body: ""
+- version: 3.0.24
+  date: 2022-11-17T22:16:28Z
+  commits:
+    - hash: 3b199cec369dc5312f812215d3748c5330116a22
+      author: Renovate Bot
+      footers:
+        change-type: patch
+      subject: Update traefik Docker tag to v2.9.5
+      body: ""
+- version: 3.0.23
+  date: 2022-11-17T11:54:57Z
+  commits:
+    - hash: 0295d74056affac17942c6401016359b1e92f63f
+      author: Renovate Bot
+      footers:
+        change-type: patch
+      subject: Update linuxserver/nzbget Docker tag to v21.1.20221117
+      body: ""
+- version: 3.0.22
+  date: 2022-11-13T19:09:11Z
+  commits:
+    - hash: 4cbec89ea3e04cc2819461efb8026bfb1a1fd998
+      author: Renovate Bot
+      footers:
+        change-type: patch
+      subject: Update linuxserver/nzbget Docker tag to v21.1.20221113
+      body: ""
+- version: 3.0.21
+  date: 2022-11-13T12:14:14Z
+  commits:
+    - hash: 59c4abf3a80b185ae395b15322cc161db12018aa
+      author: Renovate Bot
+      footers:
+        change-type: patch
+      subject: Update linuxserver/prowlarr Docker tag to v0.4.9
+      body: ""
+- version: 3.0.20
+  date: 2022-11-10T13:23:49Z
+  commits:
+    - hash: af9a6b2c999bc805992d0e90e8c6e84638c1468f
+      author: Renovate Bot
+      footers:
+        change-type: patch
+      subject: Update linuxserver/nzbget Docker tag to v21.1.20221110
+      body: ""
+- version: 3.0.19
+  date: 2022-11-08T14:48:30Z
+  commits:
+    - hash: 925d3bb1910c6f685146d5c7cf88e401ff313f75
+      author: Renovate Bot
+      footers:
+        change-type: patch
+      subject: Update linuxserver/prowlarr Docker tag to v0.4.8
+      body: ""
+- version: 3.0.18
+  date: 2022-11-08T11:41:20Z
+  commits:
+    - hash: b3fe0b4da958f33f6fa766dcaccee142c140fe15
+      author: Renovate Bot
+      footers:
+        change-type: patch
+      subject: Update linuxserver/plex Docker tag to v1.29.2
+      body: ""
+- version: 3.0.17
+  date: 2022-11-03T11:08:10Z
+  commits:
+    - hash: 5464c8b1ec355b7a7627cd69fcc2b00af7db8e9b
+      author: Renovate Bot
+      footers:
+        change-type: patch
+      subject: Update linuxserver/nzbget Docker tag to v21.1.20221103
+      body: ""
+- version: 3.0.16
+  date: 2022-11-01T10:33:31Z
+  commits:
+    - hash: 54ae7124ed9d4afc4792e9be58fe0b0aea86ce72
+      author: Renovate Bot
+      footers:
+        change-type: patch
+      subject: Update linuxserver/jellyfin Docker tag to v10.8.7
+      body: ""
+- version: 3.0.15
+  date: 2022-10-29T10:33:28Z
+  commits:
+    - hash: f441e9835c46ad7969b2900e8d0633fcefd44b9c
+      author: Renovate Bot
+      footers:
+        change-type: patch
+      subject: Update linuxserver/jellyfin Docker tag to v10.8.6
+      body: ""
+- version: 3.0.14
+  date: 2022-10-27T21:42:34Z
+  commits:
+    - hash: f1b4e8ab972a41c227d9eaf1e2e1299f2cef0bf3
+      author: Renovate Bot
+      footers:
+        change-type: patch
+      subject: Update traefik Docker tag to v2.9.4
+      body: ""
+- version: 3.0.13
+  date: 2022-10-27T11:21:19Z
+  commits:
+    - hash: a1467625a800c8464ce698eee4692afc0b4e2068
+      author: Renovate Bot
+      footers:
+        change-type: patch
+      subject: Update linuxserver/nzbget Docker tag to v21.1.20221027
+      body: ""
+- version: 3.0.12
+  date: 2022-10-20T11:31:53Z
+  commits:
+    - hash: c4c2b63395afaaec88f9e7052f188d00ba678d72
+      author: Renovate Bot
+      footers:
+        change-type: patch
+      subject: Update linuxserver/nzbget Docker tag to v21.1.20221020
+      body: ""
+- version: 3.0.11
+  date: 2022-10-19T14:23:43Z
+  commits:
+    - hash: 9b7b7b5cb5005b7bb89e9c09c82f929e67d64100
+      author: Renovate Bot
+      footers:
+        change-type: patch
+      subject: Update linuxserver/plex Docker tag to v1.29.1
+      body: ""
+- version: 3.0.10
+  date: 2022-10-17T11:16:31Z
+  commits:
+    - hash: 1bf9801cee2d1814f81b5300318518bf6d7751d3
+      author: Renovate Bot
+      footers:
+        change-type: patch
+      subject: Update linuxserver/prowlarr Docker tag to v0.4.7
+      body: ""
+- version: 3.0.9
+  date: 2022-10-03T23:26:15Z
+  commits:
+    - hash: 86c2d1caee28a50820ee7e68debe1bbebbbfd533
+      author: Renovate Bot
+      footers:
+        change-type: patch
+      subject: Update traefik Docker tag to v2.9.1
+      body: ""
+- version: 3.0.8
+  date: 2022-10-01T11:12:27Z
+  commits:
+    - hash: 20354c7b34301d137579504671a0822e7dde9a89
+      author: Renovate Bot
+      footers:
+        change-type: patch
+      subject: Update traefik Docker tag to v2.8.8
+      body: ""
+- version: 3.0.7
+  date: 2022-09-28T18:44:41Z
+  commits:
+    - hash: 4b550215bc7e61f7c88ae5dcae35d4592de070f5
+      author: Renovate Bot
+      footers:
+        change-type: patch
+      subject: Update linuxserver/plex Docker tag to v1.29.0
+      body: ""
+- version: 3.0.6
+  date: 2022-09-25T18:17:07Z
+  commits:
+    - hash: a11d3c3337aec6cd6c566859a7b265eaa2bceb52
+      author: Renovate Bot
+      footers:
+        change-type: patch
+      subject: Update linuxserver/radarr Docker tag to v4.2.4
+      body: ""
+- version: 3.0.5
+  date: 2022-09-25T10:44:11Z
+  commits:
+    - hash: 92646962b14b859865fdf8f3bb1e0cf9d276ad8a
+      author: Renovate Bot
+      footers:
+        change-type: patch
+      subject: Update linuxserver/jellyfin Docker tag to v10.8.5
+      body: ""
+- version: 3.0.4
+  date: 2022-09-23T20:48:06Z
+  commits:
+    - hash: dfacd138fa343888099e21196b41067841dad0bc
+      author: Renovate Bot
+      footers:
+        change-type: patch
+      subject: Update traefik Docker tag to v2.8.7
+      body: ""
+- version: 3.0.3
+  date: 2022-09-22T11:22:37Z
+  commits:
+    - hash: b43fb0022046ec67ecaffbf00dc40a8a95ae53ce
+      author: Renovate Bot
+      footers:
+        change-type: patch
+      subject: Update linuxserver/nzbget Docker tag to v21.1.20220922
+      body: ""
+- version: 3.0.2
+  date: 2022-09-18T21:07:27Z
+  commits:
+    - hash: b8ea80bfae14c1d7aa9f43639ed27abc81424596
+      author: Renovate Bot
+      footers:
+        change-type: patch
+      subject: Update linuxserver/prowlarr Docker tag to v0.4.6
+      body: ""
+- version: 3.0.1
+  date: 2022-09-13T18:30:43Z
+  commits:
+    - hash: 9f719ba2dece65f3d3af03b184f9f526e70c9dc6
+      author: Renovate Bot
+      footers:
+        change-type: patch
+      subject: Update traefik Docker tag to v2.8.5
+      body: ""
+- version: 2.1.49
+  date: 2022-09-09T10:24:23Z
+  commits:
+    - hash: 137a7a92608050b34dee6e0d25e897f1a967dc42
+      author: Renovate Bot
+      footers:
+        change-type: patch
+      subject: Update linuxserver/prowlarr Docker tag to v0.4.5
+      body: ""
+- version: 2.1.48
+  date: 2022-09-08T11:07:22Z
+  commits:
+    - hash: 2f0b4754fa88f33cc92836e953415deee49b35e9
+      author: Renovate Bot
+      footers:
+        change-type: patch
+      subject: Update linuxserver/nzbget Docker tag to v21.1.20220908
+      body: ""
+- version: 2.1.47
+  date: 2022-09-02T20:55:50Z
+  commits:
+    - hash: 79c8152d34ab68614d9ca61c46d2f1cd7c3bdc7f
+      author: Renovate Bot
+      footers:
+        change-type: patch
+      subject: Update traefik Docker tag to v2.8.4
+      body: ""
+- version: 2.1.46
+  date: 2022-09-01T11:00:14Z
+  commits:
+    - hash: 1bc2c4c47e9d9c332948f05faf60f62152dad75d
+      author: Renovate Bot
+      footers:
+        change-type: patch
+      subject: Update linuxserver/nzbget Docker tag to v21.1.20220901
+      body: ""
+- version: 2.1.45
+  date: 2022-08-29T18:09:15Z
+  commits:
+    - hash: 9d34baeecd33d91bc8d0143f744518132afa7130
+      author: Renovate Bot
+      footers:
+        change-type: patch
+      subject: Update linuxserver/plex Docker tag to v1.28.2
+      body: ""
+- version: 2.1.44
+  date: 2022-08-25T10:49:38Z
+  commits:
+    - hash: ac6e9cfa5c85f92e5fb090b50fc2a646ee9bb8bf
+      author: Renovate Bot
+      footers:
+        change-type: patch
+      subject: Update linuxserver/nzbget Docker tag to v21.1.20220825
+      body: ""
+- version: 2.1.43
+  date: 2022-08-23T17:13:31Z
+  commits:
+    - hash: 60ca976593ee84e170d245ef2001b7f28fab6342
+      author: Renovate Bot
+      footers:
+        change-type: patch
+      subject: Update linuxserver/nzbhydra2 Docker tag to v4.6.1
+      body: ""
+- version: 2.1.42
+  date: 2022-08-22T16:43:31Z
+  commits:
+    - hash: ace700cd3551b0b4668b2c88d012f362b88258de
+      author: Renovate Bot
+      footers:
+        change-type: patch
+      subject: Update linuxserver/nzbhydra2 Docker tag to v4.6.0
+      body: ""
+- version: 2.1.41
+  date: 2022-08-17T14:26:43Z
+  commits:
+    - hash: 08e2b1ba766e981f00476b8bb296011798de3bae
+      author: Renovate Bot
+      footers:
+        change-type: patch
+      subject: Update linuxserver/plex Docker tag to v1.28.1
+      body: ""
+- version: 2.1.40
+  date: 2022-08-16T11:34:17Z
+  commits:
+    - hash: 576a789075314b210024e8f77e7d78147773d690
+      author: Renovate Bot
+      footers:
+        change-type: patch
+      subject: Update linuxserver/prowlarr Docker tag to v0.4.4
+      body: ""
+- version: 2.1.39
+  date: 2022-08-15T16:59:54Z
+  commits:
+    - hash: 45fb99014fa56c946998ee8a45b1faccf9b4307f
+      author: Renovate Bot
+      footers:
+        change-type: patch
+      subject: Update netdata/netdata Docker tag to v1.36.1
+      body: ""
+- version: 2.1.38
+  date: 2022-08-14T10:37:03Z
+  commits:
+    - hash: d91ad3d675bf1b7afdf70e888436d3ee96158f36
+      author: Renovate Bot
+      footers:
+        change-type: patch
+      subject: Update dependency linuxserver/jellyfin to v10.8.4
+      body: ""
+- version: 2.1.37
+  date: 2022-08-12T23:51:14Z
+  commits:
+    - hash: f8d1d18c061afe1a9dbd520bacee176209b219de
+      author: Renovate Bot
+      footers:
+        change-type: patch
+      subject: Update dependency traefik to v2.8.3
+      body: ""
+- version: 2.1.36
+  date: 2022-08-12T12:54:49Z
+  commits:
+    - hash: 3a9df7dc2c59621c0d656bcbe4c4f0b9d43a398d
+      author: Renovate Bot
+      footers:
+        change-type: patch
+      subject: Update dependency linuxserver/nzbget to v21.1.20220812
+      body: ""
+- version: 2.1.35
+  date: 2022-08-11T19:29:27Z
+  commits:
+    - hash: cabd072f17ccb966872e5c5e74d53e190b1d6009
+      author: Renovate Bot
+      footers:
+        change-type: patch
+      subject: Update dependency traefik to v2.8.2
+      body: ""
+- version: 2.1.34
+  date: 2022-08-11T10:12:28Z
+  commits:
+    - hash: 756fbcca29028dbfa757426cef9e5bc1d57ac9a6
+      author: Renovate Bot
+      footers:
+        change-type: patch
+      subject: Update dependency linuxserver/nzbget to v21.1.20220811
+      body: ""
+- version: 2.1.33
+  date: 2022-08-10T14:28:26Z
+  commits:
+    - hash: 2dc7d595a617ab2dd389a8049e319a2221a9abb4
+      author: Renovate Bot
+      footers:
+        change-type: patch
+      subject: Update dependency netdata/netdata to v1.36.0
+      body: ""
+- version: 2.1.32
+  date: 2022-08-07T17:52:09Z
+  commits:
+    - hash: 197778f0908779f6e9bfbd70ebc85cfcd97fb647
+      author: Renovate Bot
+      footers:
+        change-type: patch
+      subject: Update dependency linuxserver/sonarr to v3.0.9
+      body: ""
+- version: 2.1.31
+  date: 2022-08-05T19:52:21Z
+  commits:
+    - hash: 028828b91dcfd107d7b140191b5e07a540876e1a
+      author: Renovate Bot
+      footers:
+        change-type: patch
+      subject: Update dependency linuxserver/ombi to v4.22.5
+      body: ""
+- version: 2.1.30
+  date: 2022-08-04T10:12:54Z
+  commits:
+    - hash: 00e2aaf7fe9b9ef2dd90d6e2f6b7a10310669900
+      author: Renovate Bot
+      footers:
+        change-type: patch
+      subject: Update dependency linuxserver/nzbget to v21.1.20220804
+      body: ""
+- version: 2.1.29
+  date: 2022-08-02T12:11:32Z
+  commits:
+    - hash: 832aafe07dff9f1e59273ea87ccf5db766928743
+      author: Renovate Bot
+      footers:
+        change-type: patch
+      subject: Update dependency traefik to v2.8.1
+      body: ""
+- version: 2.1.28
+  date: 2022-08-02T11:31:08Z
+  commits:
+    - hash: 5334931a49605588a29c2c4dfb5eece427113235
+      author: Renovate Bot
+      footers:
+        change-type: patch
+      subject: Update dependency linuxserver/jellyfin to v10.8.3
+      body: ""
+- version: 2.1.27
+  date: 2022-08-01T21:06:33Z
+  commits:
+    - hash: 3b9c467379ce3d657221d53343d7691381385b05
+      author: Renovate Bot
+      footers:
+        change-type: patch
+      subject: Update dependency linuxserver/jellyfin to v10.8.2
+      body: ""
+- version: 2.1.26
+  date: 2022-08-01T11:09:42Z
+  commits:
+    - hash: 2daedcdd538e87db4051f5b99ebb6106a66ee725
+      author: Renovate Bot
+      footers:
+        change-type: patch
+      subject: Update dependency linuxserver/plex to v1.28.0
+      body: ""
+- version: 2.1.25
+  date: 2022-07-30T16:37:14Z
+  commits:
+    - hash: 57e21e8ad11f838dc66567423b193b49c2606b4d
+      author: Renovate Bot
+      footers:
+        change-type: patch
+      subject: Update dependency linuxserver/prowlarr to v0.4.3
+      body: ""
+- version: 2.1.24
+  date: 2022-07-28T10:47:31Z
+  commits:
+    - hash: 9fb380796dcf0f836efb5e0d2f264bef729fd0c3
+      author: Renovate Bot
+      footers:
+        change-type: patch
+      subject: Update dependency linuxserver/nzbget to v21.1.20220728
+      body: ""
+- version: 2.1.23
+  date: 2022-07-21T11:08:41Z
+  commits:
+    - hash: 1a658aba89c0d9f04babf9eac465cc93fff6e969
+      author: Renovate Bot
+      footers:
+        change-type: patch
+      subject: Update dependency linuxserver/nzbget to v21.1.20220721
+      body: ""
+- version: 2.1.22
+  date: 2022-07-10T23:29:44Z
+  commits:
+    - hash: 7426c7be7c6cf81be381db22a420c2000b4d4d6f
+      author: Renovate Bot
+      footers:
+        change-type: patch
+      subject: Update dependency linuxserver/jellyfin to v10.8.1
+      body: ""
+- version: 2.1.21
+  date: 2022-07-10T17:42:28Z
+  commits:
+    - hash: 97e4c262f8e8e7311cd9195363466e4fac20d44e
+      author: Renovate Bot
+      footers:
+        change-type: patch
+      subject: Update dependency linuxserver/nzbhydra2 to v4.4.0
+      body: ""
+- version: 2.1.20
+  date: 2022-07-10T16:04:19Z
+  commits:
+    - hash: 01da6f6f4e3e68da3a609e6d8ff4f988b084654e
+      author: Renovate Bot
+      footers:
+        change-type: patch
+      subject: Update dependency linuxserver/prowlarr to v0.4.2
+      body: ""
+- version: 2.1.19
+  date: 2022-07-10T15:51:44Z
+  commits:
+    - hash: d315dee8d734686154467302bfd89f19b1e2456c
+      author: Renovate Bot
+      footers:
+        change-type: patch
+      subject: Update dependency linuxserver/nzbget to v21.1.20220707
+      body: ""
+- version: 2.1.18
+  date: 2022-07-10T15:41:32Z
+  commits:
+    - hash: 985b53a6b49f6e9eded9eefa929fa756d31bd04c
+      author: Renovate Bot
+      footers:
+        change-type: patch
+      subject: Update dependency linuxserver/plex to v1.27.2
+      body: ""
+- version: 2.1.17
+  date: 2022-06-23T18:41:22Z
+  commits:
+    - hash: da4e44993792423762a53be9078e986d3de55bc6
+      author: Renovate Bot
+      footers:
+        change-type: patch
+      subject: Update dependency linuxserver/plex to v1.27.1
+      body: ""
+- version: 2.1.16
+  date: 2022-06-17T16:36:31Z
+  commits:
+    - hash: 4b841657418306a17c7c3447590034e6e76ad21b
+      author: Renovate Bot
+      footers:
+        change-type: patch
+      subject: Update dependency linuxserver/nzbhydra2 to v4.3.3
+      body: ""
+    - hash: 5125e6f8a37a21600b0daf42514c8300c0fae7f0
+      author: Renovate Bot
+      footers:
+        change-type: patch
+      subject: Update dependency linuxserver/jellyfin to v10.8.0
+      body: ""
+    - hash: 054bbfcf433d056d43614495aa6a29e58c92cd9a
+      author: Renovate Bot
+      footers:
+        change-type: patch
+      subject: Update dependency netdata/netdata to v1.35.1
+      body: ""
+    - hash: 88e0bae506bd3b35645946827d793c8eabbc1da3
+      author: Renovate Bot
+      footers:
+        change-type: patch
+      subject: Update dependency traefik to v2.7.1
+      body: ""
+- version: 2.1.15
+  date: 2022-06-17T16:36:17Z
+  commits:
+    - hash: 1ba6e2597025dd91203f765c87e10c9b4a698d93
+      author: Renovate Bot
+      footers:
+        change-type: patch
+      subject: Update dependency linuxserver/plex to v1.27.0
+      body: ""
+- version: 2.1.14
+  date: 2022-05-28T19:35:11Z
+  commits:
+    - hash: cd2ead8a703e7753ad77de77c219a1a9cfbcd326
+      author: Renovate Bot
+      footers:
+        change-type: patch
+      subject: "chore(deps): update dependency linuxserver/plex to v1.26.2"
+      body: ""
+- version: 2.1.13
+  date: 2022-05-16T18:16:35Z
+  commits:
+    - hash: 279ca9ec753d42597dc7167fb452ec9ae7aba55c
+      author: Renovate Bot
+      footers:
+        change-type: patch
+      subject: "chore(deps): update dependency linuxserver/plex to v1.26.1"
+      body: ""
+- version: 2.1.12
+  date: 2022-05-12T12:24:51Z
+  commits:
+    - hash: 4e6a250e9bb0bd2d42a176dca0def19ac026049a
+      author: Renovate Bot
+      footers:
+        change-type: patch
+      subject: "chore(deps): update dependency linuxserver/nzbget to v21.1.20220512"
+      body: ""
+- version: 2.1.11
+  date: 2022-05-05T13:37:56Z
+  commits:
+    - hash: 683999379d4ff120ae7586422e37ee509e583ed6
+      author: Renovate Bot
+      footers:
+        change-type: patch
+      subject: "chore(deps): update dependency linuxserver/nzbget to v21.1.20220505"
+      body: ""
+- version: 2.1.10
+  date: 2022-05-04T13:45:22Z
+  commits:
+    - hash: 0e2232b2a30f9b099417d88fc8be5320f3214cca
+      author: Renovate Bot
+      footers:
+        change-type: patch
+      subject: "chore(deps): update dependency traefik to v2.6.6"
+      body: ""
+- version: 2.1.9
+  date: 2022-05-02T20:43:19Z
+  commits:
+    - hash: 61a42915f393056f66ac4fe7ef4bb955520a10a7
+      author: Renovate Bot
+      footers:
+        change-type: patch
+      subject: "chore(deps): update dependency linuxserver/nzbhydra2 to v4.3.1"
+      body: ""
+- version: 2.1.8
+  date: 2022-05-02T09:43:45Z
+  commits:
+    - hash: be1e03e352b6fefa67d16386ad0224291da5e7c6
+      author: Renovate Bot
+      footers:
+        change-type: patch
+      subject: "chore(deps): update dependency linuxserver/prowlarr to v0.3.0"
+      body: ""
+- version: 2.1.7
+  date: 2022-04-30T14:33:49Z
+  commits:
+    - hash: 27d93b56b68e2c309d949d98a95d6ff6d52acd56
+      author: Renovate Bot
+      footers:
+        change-type: patch
+      subject: "chore(deps): update dependency linuxserver/nzbhydra2 to v4.3.0"
+      body: ""
+- version: 2.1.6
+  date: 2022-04-30T14:32:04Z
+  commits:
+    - hash: 049b040a262d9f9f781cf4448e5bed202b4a94d6
+      author: Renovate Bot
+      footers:
+        change-type: patch
+      subject: "chore(deps): update dependency linuxserver/sonarr to v3.0.8"
+      body: ""
+- version: 2.1.5
+  date: 2022-04-28T11:37:27Z
+  commits:
+    - hash: 1e9276fa96f6fdcb7a8af9e14a34e5543755fb58
+      author: Renovate Bot
+      footers:
+        change-type: patch
+      subject: "chore(deps): update dependency linuxserver/nzbget to v21.1.20220428"
+      body: ""
+- version: 2.1.4
+  date: 2022-04-21T16:27:40Z
+  commits:
+    - hash: b212655efa7d92ad4ab1c327861f137126524ba1
+      author: Renovate Bot
+      footers:
+        change-type: patch
+      subject: "chore(deps): update dependency linuxserver/plex to v1.26.0"
+      body: ""
+- version: 2.1.2
+  date: 2022-04-19T14:00:35Z
+  commits:
+    - hash: 9e273927079199779c7fe3768821969e3ccf8012
+      author: Renovate Bot
+      footers:
+        change-type: patch
+      subject: "chore(deps): update dependency linuxserver/ombi to v4.16.12"
+      body: ""
+- version: 2.1.1
+  date: 2022-04-15T15:20:38Z
+  commits:
+    - hash: a58b0efbf208be63cc1ef68ee11210a574e32143
+      author: Renovate Bot
+      footers:
+        change-type: patch
+      subject: "chore(deps): update dependency netdata/netdata to v1.34.1"
+      body: ""
+- version: 2.0.14
+  date: 2022-04-15T09:57:06Z
+  commits:
+    - hash: 5175bd0f5515ef2c1a2140ee72c61b76a613930b
+      author: Renovate Bot
+      footers:
+        change-type: patch
+      subject: "chore(deps): update dependency linuxserver/radarr to v4.1.0"
+      body: ""
+- version: 2.0.13
+  date: 2022-04-14T19:20:40Z
+  commits:
+    - hash: 61007b119cadd112d4e374e016034036dded5ca3
+      author: Renovate Bot
+      footers:
+        change-type: patch
+      subject: "chore(deps): update dependency netdata/netdata to v1.34.0"
+      body: ""
+- version: 2.0.12
+  date: 2022-04-14T19:17:58Z
+  commits:
+    - hash: 420ce06eb698bb7cd8566229aa1b23977f4389fc
+      author: Renovate Bot
+      footers:
+        change-type: patch
+      subject: "chore(deps): update dependency linuxserver/ombi to v4.16.11"
+      body: ""
+- version: 2.0.11
+  date: 2022-04-14T15:26:55Z
+  commits:
+    - hash: ce6621dc97a8ef0e5ae4d79f0a90ac7478aeaded
+      author: Renovate Bot
+      footers:
+        change-type: patch
+      subject: "chore(deps): update dependency linuxserver/nzbget to v21.1.20220414"
+      body: ""
+- version: 2.0.10
+  date: 2022-04-06T15:25:25Z
+  commits:
+    - hash: 82d7415703bf58eea8e2a96bb023d86bc6008884
+      author: Renovate Bot
+      footers:
+        change-type: patch
+      subject: "chore(deps): update dependency linuxserver/plex to v1.25.9"
+      body: ""
+- version: 2.0.9
+  date: 2022-03-29T22:26:57Z
+  commits:
+    - hash: 0c3e6a0c1f76b6f9951ddd16288d7f8792ad654d
+      author: Renovate Bot
+      footers:
+        change-type: patch
+      subject: "chore(deps): update dependency traefik to v2.6.3"
+      body: ""
+- version: 2.0.7
+  date: 2022-03-25T13:33:19Z
+  commits:
+    - hash: c76e93d196fd3f763053a17f77298f6344382248
+      author: Renovate Bot
+      footers:
+        change-type: patch
+      subject: "chore(deps): update dependency linuxserver/nzbget to v21.1.20220324"
+      body: ""
+- version: 2.0.6
+  date: 2022-03-25T13:24:25Z
+  commits:
+    - hash: 638b84c5dea379898a6f13616b5d4125442cbf6f
+      author: Renovate Bot
+      footers:
+        change-type: patch
+      subject: "chore(deps): update dependency linuxserver/nzbhydra2 to v4.2.1"
+      body: ""
+- version: 2.0.5
+  date: 2022-03-25T13:20:32Z
+  commits:
+    - hash: 40ac58eabded89b23b4fe042484102552af07cc5
+      author: Renovate Bot
+      footers:
+        change-type: patch
+      subject: "chore(deps): update dependency linuxserver/plex to v1.25.8"
+      body: ""
+- version: 2.0.4
+  date: 2022-03-25T13:12:02Z
+  commits:
+    - hash: 0ec79da82adf4b495b6f617b835b5e56af507a10
+      author: Renovate Bot
+      footers:
+        change-type: patch
+      subject: "chore(deps): update tmigone/versionist action to v0.4.7"
+      body: ""
+- version: 2.0.3
+  date: 2022-03-25T11:05:58Z
+  commits:
+    - hash: 919602988c470687e323d1ed321549cd5a3e3317
+      author: Renovate Bot
+      footers:
+        change-type: patch
+      subject: "chore(deps): update dependency traefik to v2.6.2"
+      body: ""
+- version: 2.0.2
+  date: 2022-03-17T10:55:35Z
+  commits:
+    - hash: 83361d12ddd401a68a218a5578039faefae080f9
+      author: Renovate Bot
+      footers:
+        change-type: patch
+      subject: "chore(deps): update dependency linuxserver/nzbget to v21.1.20220317"
+      body: ""
+- version: 2.0.1
+  date: 2022-03-16T10:47:22Z
+  commits:
+    - hash: 858154cf89d46b485947a993a990d0b482e107a8
+      author: Renovate Bot
+      footers:
+        change-type: patch
+      subject: "chore(deps): update dependency linuxserver/plex to v1.25.7"
+      body: ""
+    - hash: ee2bc67f68d179cceb0f8f3d04f870172a281d03
+      author: Renovate Bot
+      subject: "chore(deps): update dependency traefik to v2.6.1"
+      body: ""
+    - hash: 7d09749d1705e1972e644317b36253799e429bf3
+      author: Renovate Bot
+      subject: "chore(deps): add renovate.json"
+      body: ""
+- version: 2.0.0
+  date: 2022-03-07T14:43:14Z
+  commits:
+    - hash: fe14006a7abede6ed31b85cc155276f85d545bd0
+      author: Kyle Harding
+      footers:
+        change-type: major
+      subject: Add makefile for override file management
+      body: ""
+    - hash: d7fd462b0e6fa470a608dcb42dfadc15ae2d7f30
+      author: dependabot[bot]
+      subject: "patch: bump actions/checkout from 2 to 3"
+      body: >-
+        Bumps [actions/checkout](https://github.com/actions/checkout) from 2 to
+        3.
+
+        - [Release notes](https://github.com/actions/checkout/releases)
+
+        - [Changelog](https://github.com/actions/checkout/blob/main/CHANGELOG.md)
+
+        - [Commits](https://github.com/actions/checkout/compare/v2...v3)
+
+        updated-dependencies:
+
+        - dependency-name: actions/checkout
+
+        dependency-type: direct:production
+
+        update-type: version-update:semver-major
+
+        ...
+
+        Signed-off-by: dependabot[bot] <support@github.com>
+- version: 1.0.0
+  date: 2022-03-05T20:43:18Z
+  commits:
+    - hash: ad6295e332809da1ddce093e292ff2e72625dac6
+      author: Kyle Harding
+      footers:
+        change-type: major
+      subject: Pin to arch-specific digests when running update
+      body: |-
+        Use docker-compose.yml as a personalized environment file and merge
+        settings from remaining files.
+- version: 0.0.1
+  date: 2022-03-05T15:14:00Z
+  commits:
+    - hash: 61e0b8b53fdb3764790e6151bdcae85b8d7b7f34
+      author: Kyle Harding
+      subject: update readme
+      body: ""
+    - hash: f42f286f5f268970ff21cd42fe8813466ad24c13
+      author: Kyle Harding
+      subject: restore port 80 since we allow redirecting from http to https
+      body: ""
+    - hash: 864da1da94ebde3fd3b325d94d448b066873917c
+      author: Kyle Harding
+      subject: restore backup dir
+      body: ""
+    - hash: ae50bc27fd6902300711c7f0bc0a508faeaeea8d
+      author: Kyle Harding
+      subject: improve ssl security by using mozilla recommended ciphers
+      body: ""
+    - hash: af6e38e435ca6ddfe31028f4a7e351795be79e61
+      author: Kyle Harding
+      subject: use env vars for volume paths
+      body: ""
+    - hash: 720ff230a74594733d2bcf7cc7a94af8bd37904d
+      author: Kyle Harding
+      subject: include optional backups mount
+      body: ""
+    - hash: fc0c27ca1c3b0df179df84be3fae8321d884e449
+      author: Kyle Harding
+      subject: remove entrypoint workaround for duplicati
+      body: ""
+    - hash: 6767d708a7481098c0a3de317c40acceff527349
+      author: Kyle Harding
+      subject: change traefik entrypoint to include domain and email
+      body: ""
+    - hash: 42eaca3ed6bff3c2a273d656cb520262a2008592
+      author: Kyle Harding
+      subject: add a noproxy yml
+      body: ""
+    - hash: b68ef7d4b5d184f13090a21c17b0441e451a29a3
+      author: Kyle Harding
+      subject: remove local duplicati backup mount
+      body: ""
+    - hash: cd66adc7636611754c01c351d711e4964e797641
+      author: Kyle Harding
+      subject: use local .env file for variables
+      body: ""
+    - hash: 9ff18b0c689702f1506b5437101185cd23d8a4ed
+      author: Kyle Harding
+      subject: update contributing steps
+      body: ""
+    - hash: 45ac6ba30653335f783e47099b7c058406c146e3
+      author: Kyle Harding
+      subject: update readme
+      body: ""
+    - hash: 383ad97e1351e691981c7c0fe017d6ddeae2357b
+      author: Kyle Harding
+      subject: switch from caddy to traefik
+      body: ""
+    - hash: e22ebda6aa59e08c677c78335e7a3facd20b3809
+      author: Kyle Harding
+      subject: remove github links
+      body: ""
+    - hash: 2326008c69c77d73b13b1001b7f795a9fbd31ded
+      author: Kyle Harding
+      subject: restore duplicati for backups
+      body: ""
+    - hash: 0a465a3e863d9b68ece7441a433fd36ae7ab7e21
+      author: Kyle Harding
+      subject: restore duplicati for backups
+      body: ""
+    - hash: 76f8e7c5ee8ab2d5525f4064d7a62c1f493df4e9
+      author: Kyle Harding
+      subject: update readme
+      body: ""
+    - hash: 3f9f1cef08a1bea661484e5181b030f4fe033ab9
+      author: Kyle Harding
+      subject: remove transmission and duplicati
+      body: ""
+    - hash: e09915870a12a1b76e5c6af3e697af1cb99a610e
+      author: Kyle Harding
+      subject: remove the ports from the hosted compose file
+      body: ""
+    - hash: 7f3b9a77c2351f3a7e08204241dc6ecffaf3dcdd
+      author: Kyle Harding
+      subject: fix ufw commands in readme
+      body: ""
+    - hash: 8c1128ed1a0e51b2fc7837c2a5a2100008b3be88
+      author: Kyle Harding
+      subject: add optional steps for running in local mode
+      body: ""
+    - hash: ecbe6a300112c2145e9d46fd5c9bf36cf59e914c
+      author: Kyle Harding
+      subject: include ports for each service in local mode, but comment them out
+      body: ""
+    - hash: a9613d4e03349240f74a674f47007b531fd87110
+      author: Kyle Harding
+      subject: remove duplicate TZ setting
+      body: ""
+    - hash: 6dfd9fd7edc9e0235c92c7e53f4de1df8bd6bf43
+      author: Kyle Harding
+      subject: update readme
+      body: ""
+    - hash: 12023bfdcd7b486622b1f593c113fb2f79e207c8
+      author: Kyle Harding
+      subject: remove tautulli since plex 1.14.1.5487 has built-in statistics
+      body: ""
+    - hash: 7d8701bdc4a02cb98b702cdb8c2a039c7847c672
+      author: Kyle Harding
+      subject: remove wait-for-it steps
+      body: ""
+    - hash: bbfea2c7ee2bf37e2a75f133b6efcd9b17e31a64
+      author: Kyle Harding
+      subject: create separate caddy.env file
+      body: ""
