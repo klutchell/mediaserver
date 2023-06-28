@@ -24,7 +24,7 @@ jobs:
 
       - name: Run balena-versionist
         id: versionist
-        uses: klutchell/balena-versionist-action@v0.0.6
+        uses: klutchell/balena-versionist-action@v0.0.7
         with:
           github_token: ${{ secrets.ACCESS_TOKEN }}
           gpg_private_key: ${{ secrets.GPG_PRIVATE_KEY }}
