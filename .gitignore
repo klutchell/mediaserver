@@ -2,3 +2,4 @@
 docker-compose.override.yml
 /*/
 !/.github/
+!/.versionbot/
