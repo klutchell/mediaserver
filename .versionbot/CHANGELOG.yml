@@ -1,4 +1,16 @@
 - commits:
+    - subject: Update linuxserver/prowlarr Docker tag to v1.7.0
+      hash: 8d49a7ee76b0b1fb28f6eb0ebfbbd1e070457c33
+      body: ""
+      footer:
+        Change-type: minor
+        change-type: minor
+      author: Renovate Bot
+      nested: []
+  version: 4.13.0
+  title: ""
+  date: 2023-07-02T11:19:53.214Z
+- commits:
     - subject: Allow tracking of versionbot changelog directory
       hash: e426800594173b58aaa3be1c5a459ec3b4f2a216
       body: ""
