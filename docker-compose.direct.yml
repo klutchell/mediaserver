@@ -4,7 +4,7 @@ services:
   plex:
     ports:
       - "32400:32400/tcp"
-  
+
   jellyfin:
     ports:
       - "8096:8096/tcp"
@@ -45,3 +45,10 @@ services:
   prowlarr:
     ports:
       - "9696:9696/tcp"
+
+  syncthing:
+    ports:
+      - "8384:8384/tcp"
+      - "22000:22000/tcp"
+      - "22000:22000/udp"
+      - "21027:21027/udp"

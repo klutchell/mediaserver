@@ -180,6 +180,8 @@ services:
       - sonarr
       - radarr
       - plex
+    networks:
+      - default
 
   # https://hub.docker.com/r/tailscale/tailscale
   tailscale:
@@ -201,3 +203,21 @@ services:
     tmpfs:
       - /tmp
       - /var/run/
+
+  # https://docs.linuxserver.io/images/docker-syncthing
+  syncthing:
+    image: lscr.io/linuxserver/syncthing:1.23.6
+    restart: unless-stopped
+    environment:
+      PUID: ${PUID}
+      PGID: ${PGID}
+      TZ: ${TZ}
+    volumes:
+      - "${CONFIG_DIR}/syncthing:/config"
+      - "${CONFIG_DIR}:/data/config"
+      - "${DOWNLOADS_DIR}:/data/downloads"
+      - "${MEDIA_DIR}:/data/media"
+    tmpfs:
+      - /tmp
+    networks:
+      - default
