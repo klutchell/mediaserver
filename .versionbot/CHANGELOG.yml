@@ -1,4 +1,18 @@
 - commits:
+    - subject: Add syncthing service
+      hash: 2a1bac122378559997e6f8f9d1c52c4ec384fe87
+      body: ""
+      footer:
+        Change-type: minor
+        change-type: minor
+        Signed-off-by: Kyle Harding <kmharding@pm.me>
+        signed-off-by: Kyle Harding <kmharding@pm.me>
+      author: Kyle Harding
+      nested: []
+  version: 4.15.0
+  title: ""
+  date: 2023-07-11T18:30:47.623Z
+- commits:
     - subject: Update linuxserver/prowlarr Docker tag to v1.7.1
       hash: 3f1c14acf612a8803216a5db1e94e3e5715edb73
       body: ""
