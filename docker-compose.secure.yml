@@ -114,6 +114,19 @@ services:
     ports:
       - "127.0.0.1:5055:5055/tcp"
 
+  syncthing:
+    labels:
+      traefik.enable: "true"
+      traefik.docker.network: mediaserver_default
+      traefik.http.routers.syncthing.tls.certresolver: prod
+      traefik.http.routers.syncthing.rule: Host(`${SYNCTHING_HOST}`)
+      traefik.http.routers.syncthing.middlewares: hsts-header, basicauth, ipallowlist
+    ports:
+      - "127.0.0.1:8384:8384/tcp"
+      - "22000:22000/tcp"
+      - "22000:22000/udp"
+      - "21027:21027/udp"
+
   # https://hub.docker.com/_/traefik/
   traefik:
     image: traefik:v2.10.3
