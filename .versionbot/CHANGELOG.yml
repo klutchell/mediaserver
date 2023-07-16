@@ -1,4 +1,16 @@
 - commits:
+    - subject: Update linuxserver/prowlarr Docker tag to v1.7.2
+      hash: 8542d7b066dc054217b3cdfe122cd2ad093220c8
+      body: ""
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Renovate Bot
+      nested: []
+  version: 4.15.1
+  title: ""
+  date: 2023-07-16T14:36:54.931Z
+- commits:
     - subject: Add syncthing service
       hash: 2a1bac122378559997e6f8f9d1c52c4ec384fe87
       body: ""
