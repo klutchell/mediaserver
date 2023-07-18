@@ -4,7 +4,7 @@ networks:
 services:
   # https://docs.linuxserver.io/images/docker-plex
   plex:
-    image: linuxserver/plex:1.32.4
+    image: linuxserver/plex:1.32.4@sha256:0542f64cc5ecc05c0c4e79a09d716e683e901b1a6db99dc2727e3f761a94d3c0
     restart: unless-stopped
     environment:
       PUID: "${PUID}"
@@ -21,7 +21,7 @@ services:
 
   # https://docs.linuxserver.io/images/docker-jellyfin
   jellyfin:
-    image: linuxserver/jellyfin:10.8.10
+    image: linuxserver/jellyfin:10.8.10@sha256:167fb73634860ef5506b1760838dcdb2870fdb24e3a27b5b53104c54a14e5991
     restart: unless-stopped
     environment:
       PUID: "${PUID}"
@@ -36,7 +36,7 @@ services:
 
   # https://hub.docker.com/r/linuxserver/prowlarr
   prowlarr:
-    image: linuxserver/prowlarr:1.7.2-develop
+    image: linuxserver/prowlarr:1.7.2-develop@sha256:e43f4564347ab7e89b6890645a9497919e8771062bf9b70ae4fe34904fabf36b
     restart: unless-stopped
     environment:
       PUID: "${PUID}"
@@ -49,7 +49,7 @@ services:
 
   # https://docs.linuxserver.io/images/docker-nzbget
   nzbget:
-    image: linuxserver/nzbget:21.1.20230119
+    image: linuxserver/nzbget:21.1.20230119@sha256:ed58a6471591126adee01e704d35264979640bede1fca7ffa13a21d6643c5a18
     restart: unless-stopped
     environment:
       PUID: "${PUID}"
@@ -63,7 +63,7 @@ services:
 
   # https://docs.linuxserver.io/images/docker-sonarr
   sonarr:
-    image: linuxserver/sonarr:3.0.10
+    image: linuxserver/sonarr:3.0.10@sha256:cdddb991ebdc97a6f6344fc46de8249c03a22f3f0ab17fcac652df20b587d1ee
     restart: unless-stopped
     environment:
       PUID: "${PUID}"
@@ -81,7 +81,7 @@ services:
 
   # https://docs.linuxserver.io/images/docker-radarr
   radarr:
-    image: linuxserver/radarr:4.6.4
+    image: linuxserver/radarr:4.6.4@sha256:c96d598ad21f5f1c2fb7b4718261af2899cb48206317402145cce4281d607830
     restart: unless-stopped
     environment:
       PUID: "${PUID}"
@@ -99,7 +99,7 @@ services:
 
   # https://docs.linuxserver.io/images/docker-nzbhydra
   nzbhydra:
-    image: linuxserver/nzbhydra2:4.7.6
+    image: linuxserver/nzbhydra2:4.7.6@sha256:ded588be5b2b0f405a7f34ba7279653e8fe288d0eea75b6d7de726cc765e7733
     restart: unless-stopped
     environment:
       PUID: "${PUID}"
@@ -113,7 +113,7 @@ services:
 
   # https://docs.linuxserver.io/images/docker-ombi
   ombi:
-    image: linuxserver/ombi:4.39.1
+    image: linuxserver/ombi:4.39.1@sha256:691e110450cec250bc7ace3b8075b81221b2668722745abd339498b8a45cb6fe
     restart: unless-stopped
     environment:
       PUID: ${PUID}
@@ -130,7 +130,7 @@ services:
 
   # https://docs.linuxserver.io/images/docker-duplicati
   duplicati:
-    image: lscr.io/linuxserver/duplicati:v2.0.6.3-2.0.6.3_beta_2021-06-17-ls160
+    image: lscr.io/linuxserver/duplicati:v2.0.6.3-2.0.6.3_beta_2021-06-17-ls160@sha256:9cf7c7a14bf1474d44aa29d329552bf32af58090f4cfa5e61e35a88b2cd4677e
     restart: unless-stopped
     environment:
       PUID: ${PUID}
@@ -146,7 +146,7 @@ services:
 
   # https://hub.docker.com/r/netdata/netdata
   netdata:
-    image: netdata/netdata:v1.40.1
+    image: netdata/netdata:v1.40.1@sha256:1ea7e10a6f11846105bc4576e125c27809b40d940e0bc8a014fc173943928ad5
     restart: unless-stopped
     hostname: ${NETDATA_HOST}
     environment:
@@ -168,7 +168,7 @@ services:
   # https://docs.overseerr.dev/getting-started/installation
   # https://hub.docker.com/r/linuxserver/overseerr
   overseerr:
-    image: lscr.io/linuxserver/overseerr:1.33.0
+    image: lscr.io/linuxserver/overseerr:1.33.0@sha256:7a3cf9a5519b087b9b97e0d235d3686568a038040829c3f129a9cdebb91bc704
     restart: unless-stopped
     environment:
       PUID: ${PUID}
@@ -185,7 +185,7 @@ services:
 
   # https://hub.docker.com/r/tailscale/tailscale
   tailscale:
-    image: tailscale/tailscale:v1.44.0
+    image: tailscale/tailscale:v1.44.0@sha256:a1a18e145f9dd0d67ede7ce88f2049eb5ae0c0706f1cea096147170410c2fb57
     restart: unless-stopped
     environment:
       TS_AUTH_KEY: ${TS_AUTH_KEY}
@@ -206,7 +206,7 @@ services:
 
   # https://docs.linuxserver.io/images/docker-syncthing
   syncthing:
-    image: lscr.io/linuxserver/syncthing:1.23.6
+    image: lscr.io/linuxserver/syncthing:1.23.6@sha256:4437694f86cef4dce5e78a1c2f609b9fbca8d6b19e1e69b93a17a238d7406fa7
     restart: unless-stopped
     environment:
       PUID: ${PUID}
