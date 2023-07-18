@@ -1,4 +1,16 @@
 - commits:
+    - subject: Pin dependencies
+      hash: 270dfb59ae0947461abbf1c2bd5e433fae8c4c81
+      body: ""
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Renovate Bot
+      nested: []
+  version: 4.15.2
+  title: ""
+  date: 2023-07-18T19:57:08.136Z
+- commits:
     - subject: Update linuxserver/prowlarr Docker tag to v1.7.2
       hash: 8542d7b066dc054217b3cdfe122cd2ad093220c8
       body: ""
