@@ -1,4 +1,16 @@
 - commits:
+    - subject: Update lscr.io/linuxserver/overseerr Docker tag to v1.33.2
+      hash: cfc88993d1688a5d09bc252eb7d218e8956bb14b
+      body: ""
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Renovate Bot
+      nested: []
+  version: 4.15.8
+  title: ""
+  date: 2023-07-28T12:45:35.344Z
+- commits:
     - subject: Update traefik Docker tag to v2.10.4
       hash: 3b26fd5e2a0408e5bf7c09109c405501ccac8972
       body: ""
