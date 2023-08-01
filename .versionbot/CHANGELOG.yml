@@ -1,4 +1,16 @@
 - commits:
+    - subject: Update netdata/netdata Docker tag to v1.41.0
+      hash: 0654257b790f2936ca7706e6b73323e2b358c911
+      body: ""
+      footer:
+        Change-type: minor
+        change-type: minor
+      author: Renovate Bot
+      nested: []
+  version: 4.17.0
+  title: ""
+  date: 2023-08-01T17:07:30.989Z
+- commits:
     - subject: Update linuxserver/radarr:4.6.4 Docker digest to db0f24f
       hash: dd3fdd0642a9750ba8709564e8cd54130fe70f80
       body: ""
