@@ -14,7 +14,8 @@
     },
     {
       "matchUpdateTypes": [
-        "patch"
+        "patch",
+        "digest"
       ],
       "automerge": true
     }
