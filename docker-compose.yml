@@ -146,7 +146,7 @@ services:
 
   # https://hub.docker.com/r/netdata/netdata
   netdata:
-    image: netdata/netdata:v1.40.1@sha256:1ea7e10a6f11846105bc4576e125c27809b40d940e0bc8a014fc173943928ad5
+    image: netdata/netdata:v1.41.0@sha256:2801d57b2050bc9071be8279d6f70a3ffe71a7881c84b524104080375ae0cb46
     restart: unless-stopped
     hostname: ${NETDATA_HOST}
     environment:
