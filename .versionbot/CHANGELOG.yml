@@ -1,4 +1,16 @@
 - commits:
+    - subject: Update linuxserver/prowlarr:1.8.0-develop Docker digest to 5c8ce5a
+      hash: 5cea7b7c1d4a748fd95d492774f44166afd5abaa
+      body: ""
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Renovate Bot
+      nested: []
+  version: 4.17.4
+  title: ""
+  date: 2023-08-02T04:07:44.685Z
+- commits:
     - subject: Update traefik:v2.10.4 Docker digest to bbdacc7
       hash: aa82781d90faf7213820c707e1c08bf97dff5a5a
       body: ""
