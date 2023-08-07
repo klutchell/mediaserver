@@ -1,4 +1,16 @@
 - commits:
+    - subject: Update linuxserver/plex:1.32.5 Docker digest to 4f79fb4
+      hash: 673739bf9516efb78b9d4e47391ac7e080a05283
+      body: ""
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Renovate Bot
+      nested: []
+  version: 4.17.11
+  title: ""
+  date: 2023-08-07T09:36:21.913Z
+- commits:
     - subject: Update linuxserver/radarr:4.6.4 Docker digest to aaebb10
       hash: 8a829ab2299cdfd40c442dfabc395af31a983857
       body: ""
