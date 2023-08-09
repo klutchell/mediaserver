@@ -1,4 +1,16 @@
 - commits:
+    - subject: Update lscr.io/linuxserver/syncthing Docker tag to v1.23.7
+      hash: 4cbd56c9390ea6df61d3897af780573ce98057d7
+      body: ""
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Renovate Bot
+      nested: []
+  version: 4.17.15
+  title: ""
+  date: 2023-08-09T11:37:55.317Z
+- commits:
     - subject: Update traefik:v2.10.4 Docker digest to 429f339
       hash: 95fa631716dbfe37a83e1a2d7af93d93ac1de459
       body: ""
