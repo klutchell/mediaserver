@@ -1,4 +1,16 @@
 - commits:
+    - subject: Update linuxserver/prowlarr Docker tag to v1.8.2
+      hash: 14257e0a3d2faabe059e3ffe17a411edf2d331fe
+      body: ""
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Renovate Bot
+      nested: []
+  version: 4.17.17
+  title: ""
+  date: 2023-08-13T10:37:48.819Z
+- commits:
     - subject: Update lscr.io/linuxserver/overseerr:1.33.2 Docker digest to 6c0e3ef
       hash: 9e23010cdb70c5f7abcdedb5717738b16563850c
       body: ""
