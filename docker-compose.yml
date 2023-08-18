@@ -185,7 +185,7 @@ services:
 
   # https://hub.docker.com/r/tailscale/tailscale
   tailscale:
-    image: tailscale/tailscale:v1.44.0@sha256:a1a18e145f9dd0d67ede7ce88f2049eb5ae0c0706f1cea096147170410c2fb57
+    image: tailscale/tailscale:v1.46.1@sha256:8abcbcfe179c454ab4c3b583626c4e5b2edcb7c0851fe09ba3313d4ca02aacdc
     restart: unless-stopped
     environment:
       TS_AUTH_KEY: ${TS_AUTH_KEY}
