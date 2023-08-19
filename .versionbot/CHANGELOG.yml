@@ -1,4 +1,16 @@
 - commits:
+    - subject: Update linuxserver/sonarr:3.0.10 Docker digest to bfc5bf9
+      hash: fb3c2e539253c82fd852d876c00c0431b715156b
+      body: ""
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Renovate Bot
+      nested: []
+  version: 4.20.1
+  title: ""
+  date: 2023-08-19T00:11:54.747Z
+- commits:
     - subject: Update netdata/netdata Docker tag to v1.42.1
       hash: 807a9787de6f56b404120a86441ce201b49401b8
       body: ""
