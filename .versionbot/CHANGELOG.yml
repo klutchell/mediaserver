@@ -1,4 +1,16 @@
 - commits:
+    - subject: Update linuxserver/jellyfin:10.8.10 Docker digest to 6d425c0
+      hash: 61bd2770b8a25c7d28c740d002b8e1c33e056406
+      body: ""
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Renovate Bot
+      nested: []
+  version: 4.20.6
+  title: ""
+  date: 2023-08-22T13:08:21.265Z
+- commits:
     - subject: Update linuxserver/radarr:4.7.5 Docker digest to 5e7615a
       hash: 16fed8c4d7696cb99db736215b3f77b7c26bd03d
       body: ""
