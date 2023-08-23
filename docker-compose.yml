@@ -168,7 +168,7 @@ services:
   # https://docs.overseerr.dev/getting-started/installation
   # https://hub.docker.com/r/linuxserver/overseerr
   overseerr:
-    image: lscr.io/linuxserver/overseerr:1.33.2@sha256:7a9c8e6a4ac9edfe6f1ef786e013efb5f5cf5a1095b9a94fb354765eca7ecef6
+    image: lscr.io/linuxserver/overseerr:1.33.2@sha256:f32808cc0d7446a7a8aa7feec8cd0664286daedae97067443386e802a486d178
     restart: unless-stopped
     environment:
       PUID: ${PUID}
