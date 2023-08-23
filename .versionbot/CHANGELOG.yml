@@ -1,4 +1,16 @@
 - commits:
+    - subject: Update lscr.io/linuxserver/overseerr:1.33.2 Docker digest to f32808c
+      hash: dc923c45f3edebd73ed6731ef776f7ef4d6ab64f
+      body: ""
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Renovate Bot
+      nested: []
+  version: 4.21.1
+  title: ""
+  date: 2023-08-23T19:37:25.608Z
+- commits:
     - subject: Update tailscale/tailscale Docker tag to v1.48.1
       hash: b821b7f07344ddf5537f25fdbf48eeaa78580b3c
       body: ""
