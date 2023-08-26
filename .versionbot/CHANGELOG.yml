@@ -1,4 +1,16 @@
 - commits:
+    - subject: Update linuxserver/sonarr:3.0.10 Docker digest to 995c251
+      hash: 9f7e1d4bceffde9cef5112a3e38b61360e7c4648
+      body: ""
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Renovate Bot
+      nested: []
+  version: 4.21.3
+  title: ""
+  date: 2023-08-26T00:10:22.836Z
+- commits:
     - subject: Update actions/checkout digest to f43a0e5
       hash: b557c489b2b2b7b9df206f2f82cfb55b8f9802f0
       body: ""
