@@ -1,4 +1,16 @@
 - commits:
+    - subject: Update actions/checkout action to v4
+      hash: 18f580921011f903d0ee0a20f0bfd92058fd82e0
+      body: ""
+      footer:
+        Change-type: major
+        change-type: major
+      author: Renovate Bot
+      nested: []
+  version: 5.0.0
+  title: ""
+  date: 2023-09-04T12:44:30.019Z
+- commits:
     - subject: Update linuxserver/radarr:4.7.5 Docker digest to 88b7810
       hash: e6861e42d532550a1a3006a7d05462b6089a2a03
       body: ""
