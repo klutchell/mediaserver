@@ -1,4 +1,16 @@
 - commits:
+    - subject: Update linuxserver/plex:1.32.5 Docker digest to 10a314a
+      hash: b57e0a3b9aaf6b6825445d3e9bd00111801abbe8
+      body: ""
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Renovate Bot
+      nested: []
+  version: 5.0.1
+  title: ""
+  date: 2023-09-05T08:36:17.253Z
+- commits:
     - subject: Update actions/checkout action to v4
       hash: 18f580921011f903d0ee0a20f0bfd92058fd82e0
       body: ""
