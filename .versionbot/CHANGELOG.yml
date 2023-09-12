@@ -1,4 +1,16 @@
 - commits:
+    - subject: Update linuxserver/jellyfin:10.8.10 Docker digest to 581c913
+      hash: 20a78d0256a7299384a314ae88ca514ae88e3511
+      body: ""
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Renovate Bot
+      nested: []
+  version: 5.1.4
+  title: ""
+  date: 2023-09-12T19:36:47.353Z
+- commits:
     - subject: Update netdata/netdata Docker tag to v1.42.3
       hash: 552365379ec8a1b7571bb8881e0a182322875bc6
       body: ""
