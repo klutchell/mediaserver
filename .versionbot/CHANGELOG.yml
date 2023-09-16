@@ -1,4 +1,16 @@
 - commits:
+    - subject: Update linuxserver/sonarr:3.0.10 Docker digest to 01ed3f3
+      hash: db166dcc4174fa955a25917386ef5f3f0b534eb3
+      body: ""
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Renovate Bot
+      nested: []
+  version: 5.1.6
+  title: ""
+  date: 2023-09-16T00:11:15.625Z
+- commits:
     - subject: Update linuxserver/plex Docker tag to v1.32.6
       hash: cf13ddab1c95ddbb4a0e37350c8ebd5bcd4d33b7
       body: ""
