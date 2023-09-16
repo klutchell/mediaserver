@@ -1,4 +1,16 @@
 - commits:
+    - subject: Update tailscale/tailscale Docker tag to v1.48.2
+      hash: 8140778e8e9167f43918031c3d4957aff0afbb2f
+      body: ""
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Renovate Bot
+      nested: []
+  version: 5.1.8
+  title: ""
+  date: 2023-09-16T23:38:18.442Z
+- commits:
     - subject: Update linuxserver/ombi:4.43.5 Docker digest to 0b51252
       hash: 47c91f9e27ec108c3d2140145f74d4ff1b365e47
       body: ""
