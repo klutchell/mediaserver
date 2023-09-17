@@ -1,4 +1,16 @@
 - commits:
+    - subject: Update linuxserver/prowlarr Docker tag to v1.9.0
+      hash: b3a7a2e465ceb6a8572b3c797ca628c9992ae00f
+      body: ""
+      footer:
+        Change-type: minor
+        change-type: minor
+      author: Renovate Bot
+      nested: []
+  version: 5.2.0
+  title: ""
+  date: 2023-09-17T16:36:44.534Z
+- commits:
     - subject: Update tailscale/tailscale Docker tag to v1.48.2
       hash: 8140778e8e9167f43918031c3d4957aff0afbb2f
       body: ""
