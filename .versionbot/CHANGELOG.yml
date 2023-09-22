@@ -1,4 +1,16 @@
 - commits:
+    - subject: Update actions/checkout digest to 8ade135
+      hash: fa4c6c38a884305ac0c38a41755a5ecdf51fef39
+      body: ""
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Renovate Bot
+      nested: []
+  version: 5.2.3
+  title: ""
+  date: 2023-09-22T18:08:38.676Z
+- commits:
     - subject: Update linuxserver/jellyfin:10.8.10 Docker digest to 0fdb69d
       hash: dd441f46569c0729ce985ea97a941861ea6dcf2f
       body: ""
