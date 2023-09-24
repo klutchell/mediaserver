@@ -1,4 +1,16 @@
 - commits:
+    - subject: Update linuxserver/jellyfin Docker tag to v10.8.11
+      hash: 684d6c4049232e9c0adb56c0a173b589c63dc481
+      body: ""
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Renovate Bot
+      nested: []
+  version: 5.2.4
+  title: ""
+  date: 2023-09-24T03:37:44.535Z
+- commits:
     - subject: Update actions/checkout digest to 8ade135
       hash: fa4c6c38a884305ac0c38a41755a5ecdf51fef39
       body: ""
