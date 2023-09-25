@@ -1,4 +1,16 @@
 - commits:
+    - subject: Update tailscale/tailscale Docker tag to v1.50.0
+      hash: ce4e42cca9e981808c770fa1baa61cd35dc6ad92
+      body: ""
+      footer:
+        Change-type: minor
+        change-type: minor
+      author: Renovate Bot
+      nested: []
+  version: 5.3.0
+  title: ""
+  date: 2023-09-25T21:37:07.278Z
+- commits:
     - subject: Update linuxserver/radarr:4.7.5 Docker digest to dffd4e1
       hash: 4054aeb7cb9dfa4fabfa0532a46f800cc126b933
       body: ""
