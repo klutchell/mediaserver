@@ -1,4 +1,16 @@
 - commits:
+    - subject: Update lscr.io/linuxserver/overseerr:1.33.2 Docker digest to 4e79535
+      hash: ed8ac0e89684bad99b4c32226b5bf968604a0595
+      body: ""
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Renovate Bot
+      nested: []
+  version: 5.3.2
+  title: ""
+  date: 2023-09-27T19:36:34.823Z
+- commits:
     - subject: Update linuxserver/plex:1.32.6 Docker digest to 76042b2
       hash: f7bb210b6a3f503c431f972dd6e9091e0fb49211
       body: ""
