@@ -1,4 +1,16 @@
 - commits:
+    - subject: Update linuxserver/plex:1.32.6 Docker digest to 76042b2
+      hash: f7bb210b6a3f503c431f972dd6e9091e0fb49211
+      body: ""
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Renovate Bot
+      nested: []
+  version: 5.3.1
+  title: ""
+  date: 2023-09-27T18:09:05.101Z
+- commits:
     - subject: Update tailscale/tailscale Docker tag to v1.50.0
       hash: ce4e42cca9e981808c770fa1baa61cd35dc6ad92
       body: ""
