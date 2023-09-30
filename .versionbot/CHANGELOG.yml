@@ -1,4 +1,16 @@
 - commits:
+    - subject: Update lscr.io/linuxserver/syncthing:1.24.0 Docker digest to baad594
+      hash: 08c748b7b625b438bc2460508ea72a485a5b120d
+      body: ""
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Renovate Bot
+      nested: []
+  version: 5.3.6
+  title: ""
+  date: 2023-09-30T01:50:16.104Z
+- commits:
     - subject: Update traefik:v2.10.4 Docker digest to 2392cd9
       hash: d45bc9262af5015f7a18f84fef937c851d2ec7c3
       body: ""
