@@ -1,4 +1,16 @@
 - commits:
+    - subject: Update tailscale/tailscale Docker tag to v1.50.1
+      hash: 60929226125c90ba2e479b756dbafbee2347f59c
+      body: ""
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Renovate Bot
+      nested: []
+  version: 5.4.4
+  title: ""
+  date: 2023-10-04T21:36:16.199Z
+- commits:
     - subject: Update lscr.io/linuxserver/overseerr:1.33.2 Docker digest to 37826a5
       hash: 6e973a005b415ef9260b3ad662ffd40774dca112
       body: ""
