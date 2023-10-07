@@ -1,4 +1,16 @@
 - commits:
+    - subject: Update linuxserver/sonarr:3.0.10 Docker digest to 477e045
+      hash: 8f6cbcf56dc99bc1c851e785304f09bd886ba7d1
+      body: ""
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Renovate Bot
+      nested: []
+  version: 5.4.5
+  title: ""
+  date: 2023-10-07T00:11:49.550Z
+- commits:
     - subject: Update tailscale/tailscale Docker tag to v1.50.1
       hash: 60929226125c90ba2e479b756dbafbee2347f59c
       body: ""
