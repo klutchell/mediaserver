@@ -1,4 +1,16 @@
 - commits:
+    - subject: Update linuxserver/radarr Docker tag to v5
+      hash: e7a644e2de0f07e2b43857caf82cb5e1c404df5c
+      body: ""
+      footer:
+        Change-type: major
+        change-type: major
+      author: Renovate Bot
+      nested: []
+  version: 6.0.0
+  title: ""
+  date: 2023-10-09T11:28:55.855Z
+- commits:
     - subject: Update linuxserver/plex:1.32.6 Docker digest to d523e21
       hash: c6ea1a41f9d5e4b9152346d6c79cc322b180a7b8
       body: ""
