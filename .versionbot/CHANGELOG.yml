@@ -1,4 +1,16 @@
 - commits:
+    - subject: Update lscr.io/linuxserver/overseerr:1.33.2 Docker digest to f53ff52
+      hash: 82a822a0a6da35f832703a5101bf7479ec8ff64b
+      body: ""
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Renovate Bot
+      nested: []
+  version: 6.0.5
+  title: ""
+  date: 2023-10-11T19:37:39.615Z
+- commits:
     - subject: Update traefik:v2.10.5 Docker digest to 948978f
       hash: e0589f79e217fc2fffbda2f9e8c066b05a05c760
       body: ""
