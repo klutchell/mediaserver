@@ -1,4 +1,16 @@
 - commits:
+    - subject: Update linuxserver/radarr:5.0.3 Docker digest to e660626
+      hash: 13f714b0616fca07854ce856beafebd8b88635e5
+      body: ""
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Renovate Bot
+      nested: []
+  version: 6.0.7
+  title: ""
+  date: 2023-10-15T17:36:02.181Z
+- commits:
     - subject: Update linuxserver/sonarr:3.0.10 Docker digest to b97eb98
       hash: dd52c6e3150285e49b08b2f37f438b324d7d2c55
       body: ""
