@@ -1,4 +1,16 @@
 - commits:
+    - subject: Update actions/checkout digest to b4ffde6
+      hash: 3840009ef97818fcb8c56ed63ab21029fcce5905
+      body: ""
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Renovate Bot
+      nested: []
+  version: 6.1.1
+  title: ""
+  date: 2023-10-17T16:08:24.818Z
+- commits:
     - subject: Update netdata/netdata Docker tag to v1.43.0
       hash: 065ac34273c3e97333f157728208268d30efcc8c
       body: ""
