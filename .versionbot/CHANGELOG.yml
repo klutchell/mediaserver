@@ -1,4 +1,16 @@
 - commits:
+    - subject: Update linuxserver/plex:1.32.6 Docker digest to daca6dd
+      hash: 8ff9dd9873b0f6b992baad7fa168477eb7faded3
+      body: ""
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Renovate Bot
+      nested: []
+  version: 6.1.2
+  title: ""
+  date: 2023-10-17T19:37:45.568Z
+- commits:
     - subject: Update actions/checkout digest to b4ffde6
       hash: 3840009ef97818fcb8c56ed63ab21029fcce5905
       body: ""
