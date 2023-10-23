@@ -1,4 +1,16 @@
 - commits:
+    - subject: Update linuxserver/plex:1.32.6 Docker digest to 5405786
+      hash: 57e58bf38d2cc94b20a44a49a2b6abbf4401324f
+      body: ""
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Renovate Bot
+      nested: []
+  version: 6.2.1
+  title: ""
+  date: 2023-10-23T09:37:51.185Z
+- commits:
     - subject: Update linuxserver/prowlarr Docker tag to v1.10.0
       hash: de0461e83794be24071454376a47481cb8b7ca35
       body: ""
