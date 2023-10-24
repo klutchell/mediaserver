@@ -21,7 +21,7 @@ services:
 
   # https://docs.linuxserver.io/images/docker-jellyfin
   jellyfin:
-    image: linuxserver/jellyfin:10.8.11@sha256:0399a4cc830672a472ba899beac5896d510b899ce223f53129720f87fd4642d4
+    image: linuxserver/jellyfin:10.8.11@sha256:0cbf45c0540d0eefdbf496c7226fe6d3ded0fd720f1c3ca4ed1a0c913b28db7e
     restart: unless-stopped
     environment:
       PUID: "${PUID}"
