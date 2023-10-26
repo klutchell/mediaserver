@@ -1,4 +1,16 @@
 - commits:
+    - subject: Update netdata/netdata Docker tag to v1.43.1
+      hash: d1d0df8746260f32deab8fc6d9198f1231572b63
+      body: ""
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Renovate Bot
+      nested: []
+  version: 6.2.4
+  title: ""
+  date: 2023-10-26T14:38:11.154Z
+- commits:
     - subject: Update linuxserver/prowlarr:1.10.0-develop Docker digest to 656f375
       hash: 08615b811eafe7860ca68662111443b37a21192f
       body: ""
