@@ -1,4 +1,16 @@
 - commits:
+    - subject: Update linuxserver/radarr:5.0.3 Docker digest to 9d963b1
+      hash: 7f28cdd994e81abee6edd0c8da90b5cf21f0fef7
+      body: ""
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Renovate Bot
+      nested: []
+  version: 6.2.8
+  title: ""
+  date: 2023-10-29T17:36:07.277Z
+- commits:
     - subject: Update linuxserver/prowlarr Docker tag to v1.10.1
       hash: 6213a8dc9f0a7920c51fa1670461eb51d33cd978
       body: ""
