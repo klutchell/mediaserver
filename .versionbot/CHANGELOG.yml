@@ -1,4 +1,16 @@
 - commits:
+    - subject: Update tailscale/tailscale Docker tag to v1.52.0
+      hash: df2e1332754e6cf59aa06627915b40d971e55143
+      body: ""
+      footer:
+        Change-type: minor
+        change-type: minor
+      author: Renovate Bot
+      nested: []
+  version: 6.3.0
+  title: ""
+  date: 2023-10-31T17:09:09.710Z
+- commits:
     - subject: Update linuxserver/jellyfin:10.8.11 Docker digest to 66cac19
       hash: ee989d75fd031f1c88fcea45c61a833501bf0dd9
       body: ""
