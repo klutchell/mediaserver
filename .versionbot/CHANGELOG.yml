@@ -1,4 +1,16 @@
 - commits:
+    - subject: Update linuxserver/sonarr:3.0.10 Docker digest to cb69545
+      hash: b9204aec4479d5fc2c00100c6a726fa22f54ca27
+      body: ""
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Renovate Bot
+      nested: []
+  version: 6.4.2
+  title: ""
+  date: 2023-11-11T00:10:32.642Z
+- commits:
     - subject: Update linuxserver/prowlarr:1.10.1-develop Docker digest to 18e1d68
       hash: 1468a5846a3fb2068a6602d1c43a3bb41c8cf30a
       body: ""
