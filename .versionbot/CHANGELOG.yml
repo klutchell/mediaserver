@@ -1,4 +1,16 @@
 - commits:
+    - subject: Update linuxserver/radarr Docker tag to v5.1.3
+      hash: 98aced7ffda55684a483270f361b6fdaee1c157d
+      body: ""
+      footer:
+        Change-type: minor
+        change-type: minor
+      author: Renovate Bot
+      nested: []
+  version: 6.5.0
+  title: ""
+  date: 2023-11-11T22:08:26.396Z
+- commits:
     - subject: Update linuxserver/sonarr:3.0.10 Docker digest to cb69545
       hash: b9204aec4479d5fc2c00100c6a726fa22f54ca27
       body: ""
