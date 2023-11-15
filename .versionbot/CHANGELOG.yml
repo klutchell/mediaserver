@@ -1,4 +1,16 @@
 - commits:
+    - subject: Update lscr.io/linuxserver/syncthing Docker tag to v1.26.1
+      hash: 17ac0b32da2f5f5862bbf78687c61c81c19408fb
+      body: ""
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Renovate Bot
+      nested: []
+  version: 6.5.3
+  title: ""
+  date: 2023-11-15T13:35:53.352Z
+- commits:
     - subject: Update linuxserver/jellyfin:10.8.12 Docker digest to 78a0828
       hash: 86632c2077c7f24bb8445bff78ca1fcef82a7bd6
       body: ""
