@@ -1,4 +1,16 @@
 - commits:
+    - subject: Update lscr.io/linuxserver/overseerr:1.33.2 Docker digest to b4ec9fc
+      hash: 8973b46e0e5c5a904b46b8bc057383b66bd124e3
+      body: ""
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Renovate Bot
+      nested: []
+  version: 6.5.4
+  title: ""
+  date: 2023-11-15T19:37:12.051Z
+- commits:
     - subject: Update lscr.io/linuxserver/syncthing Docker tag to v1.26.1
       hash: 17ac0b32da2f5f5862bbf78687c61c81c19408fb
       body: ""
