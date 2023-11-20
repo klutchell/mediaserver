@@ -1,4 +1,16 @@
 - commits:
+    - subject: Update tailscale/tailscale Docker tag to v1.54.0
+      hash: d6e78ef103c3e4c701358aa6903eae8c6ce2cb5a
+      body: ""
+      footer:
+        Change-type: minor
+        change-type: minor
+      author: Renovate Bot
+      nested: []
+  version: 6.6.0
+  title: ""
+  date: 2023-11-20T16:37:59.823Z
+- commits:
     - subject: Update linuxserver/plex:1.32.7 Docker digest to ead806c
       hash: 6f74c714a7f4b55063705e31e78db9f6def8ddec
       body: ""
