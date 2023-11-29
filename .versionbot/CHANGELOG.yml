@@ -1,4 +1,16 @@
 - commits:
+    - subject: Update traefik Docker tag to v2.10.6
+      hash: 2296e232c24f91be3a456ea6bc90f1cf5557060e
+      body: ""
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Renovate Bot
+      nested: []
+  version: 6.6.9
+  title: ""
+  date: 2023-11-29T01:30:19.740Z
+- commits:
     - subject: Update linuxserver/jellyfin:10.8.12 Docker digest to 9aeb585
       hash: a15801d86be6a6f10ac1af1ce5f8191bf0d52ff5
       body: ""
