@@ -1,4 +1,16 @@
 - commits:
+    - subject: Update lscr.io/linuxserver/syncthing Docker tag to v1.27.0
+      hash: e508420b62585007e67e2201eab7790bf26e2254
+      body: ""
+      footer:
+        Change-type: minor
+        change-type: minor
+      author: Renovate Bot
+      nested: []
+  version: 6.7.0
+  title: ""
+  date: 2023-12-05T07:36:50.403Z
+- commits:
     - subject: Update linuxserver/plex Docker tag to v1.32.8
       hash: 963da9338dd3bfd31de2751b4694cd404fe899f3
       body: ""
