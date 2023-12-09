@@ -1,4 +1,16 @@
 - commits:
+    - subject: Update linuxserver/sonarr:3.0.10 Docker digest to 13fbee7
+      hash: 5632cef22a94193a30c8c9b33fed806732f4fb43
+      body: ""
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Renovate Bot
+      nested: []
+  version: 6.8.3
+  title: ""
+  date: 2023-12-09T00:11:05.664Z
+- commits:
     - subject: Update traefik Docker tag to v2.10.7
       hash: 573413aee57b6cf22d037c5fc2af20c04ec83ab4
       body: ""
