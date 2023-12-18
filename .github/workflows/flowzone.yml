@@ -1,0 +1,26 @@
+name: Flowzone
+
+on:
+  pull_request:
+    types: [opened, synchronize, closed]
+    branches: [main, master]
+  pull_request_target:
+    types: [opened, synchronize, closed]
+    branches: [main, master]
+
+jobs:
+  flowzone:
+    name: Flowzone
+    uses: product-os/flowzone/.github/workflows/flowzone.yml@12eab3ce2dc6d6b16330fc124e543a75524bec9c # v5.15.15
+    if: |
+      (
+        github.event.pull_request.head.repo.full_name == github.repository &&
+        github.event_name == 'pull_request'
+      ) || (
+        github.event.pull_request.head.repo.full_name != github.repository &&
+        github.event_name == 'pull_request_target'
+      )
+    secrets:
+      FLOWZONE_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+    with:
+      protect_branch: false
