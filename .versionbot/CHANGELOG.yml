@@ -1,4 +1,18 @@
 - commits:
+    - subject: Switch to Flowzone for CI
+      hash: e44666678bb0bad61fb703b8a7439b10f5ba08b7
+      body: ""
+      footer:
+        Change-type: patch
+        change-type: patch
+        Signed-off-by: Kyle Harding <kyle@balena.io>
+        signed-off-by: Kyle Harding <kyle@balena.io>
+      author: Kyle Harding
+      nested: []
+  version: 6.10.5
+  title: ""
+  date: 2023-12-18T16:12:40.010Z
+- commits:
     - subject: Update linuxserver/plex:1.32.8 Docker digest to 5ab4302
       hash: aba6faace5b8dc3407b0d195dd1df62dde19e299
       body: ""
