@@ -1,4 +1,16 @@
 - commits:
+    - subject: Update linuxserver/prowlarr Docker tag to v1.11.4
+      hash: fbed4918c72163cc250943f823c2c1bcd112f033
+      body: ""
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Renovate Bot
+      nested: []
+  version: 7.0.1
+  title: ""
+  date: 2023-12-31T05:37:56.345Z
+- commits:
     - subject: Update linuxserver/sonarr Docker tag to v4
       hash: 5db62c608c4e5b85046a66b8ab67627ea81f656d
       body: ""
