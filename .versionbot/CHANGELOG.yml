@@ -1,4 +1,16 @@
 - commits:
+    - subject: Update linuxserver/sonarr:4.0.0 Docker digest to 56be5ed
+      hash: 4964e7f01d507c094360e4a6f886575e5268b164
+      body: ""
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Renovate Bot
+      nested: []
+  version: 7.0.3
+  title: ""
+  date: 2024-01-01T01:58:36.247Z
+- commits:
     - subject: Update linuxserver/radarr:5.2.6 Docker digest to 5712d21
       hash: 529f3505f44f223b73170c14e1b9742b9b0114c9
       body: ""
