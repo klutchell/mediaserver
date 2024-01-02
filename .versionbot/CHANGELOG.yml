@@ -1,4 +1,16 @@
 - commits:
+    - subject: Update lscr.io/linuxserver/syncthing Docker tag to v1.27.2
+      hash: 42480bb2ca75d8602a8987c7dff1c6a18eba3e87
+      body: ""
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Renovate Bot
+      nested: []
+  version: 7.0.4
+  title: ""
+  date: 2024-01-02T08:39:56.285Z
+- commits:
     - subject: Update linuxserver/sonarr:4.0.0 Docker digest to 56be5ed
       hash: 4964e7f01d507c094360e4a6f886575e5268b164
       body: ""
