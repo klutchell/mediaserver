@@ -1,4 +1,16 @@
 - commits:
+    - subject: Remove deprecated Flowzone setting
+      hash: d4e4cd4f02dfd426d03f65c9b0137b9474360305
+      body: ""
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Kyle Harding
+      nested: []
+  version: 8.1.11
+  title: ""
+  date: 2024-01-11T21:14:31.116Z
+- commits:
     - subject: Update lscr.io/linuxserver/overseerr:1.33.2 Docker digest to 4fda53f
       hash: 7191bb53dd8eb36a88756864d2cb65aa1499c598
       body: ""
