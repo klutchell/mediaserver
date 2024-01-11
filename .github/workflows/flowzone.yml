@@ -22,5 +22,3 @@ jobs:
       )
     secrets:
       FLOWZONE_TOKEN: ${{ secrets.ACCESS_TOKEN }}
-    with:
-      protect_branch: false
