@@ -1,4 +1,16 @@
 - commits:
+    - subject: Update linuxserver/plex:1.32.8 Docker digest to a239476
+      hash: ea6dbb674c3a90dbb335d58e83d05a0758eefe8b
+      body: ""
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Renovate Bot
+      nested: []
+  version: 9.0.5
+  title: ""
+  date: 2024-01-13T02:40:59.544Z
+- commits:
     - subject: Update lscr.io/linuxserver/syncthing:1.27.2 Docker digest to a63374a
       hash: fe2fe069cd1008e412fe85c4327ccc1e23160f5d
       body: ""
