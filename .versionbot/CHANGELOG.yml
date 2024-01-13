@@ -1,4 +1,16 @@
 - commits:
+    - subject: Update linuxserver/ombi:4.43.5 Docker digest to d365991
+      hash: 229ecb9ec3c04a69ede6e97f78c8c393c85bb3e4
+      body: ""
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Renovate Bot
+      nested: []
+  version: 9.0.6
+  title: ""
+  date: 2024-01-13T23:08:47.785Z
+- commits:
     - subject: Update linuxserver/plex:1.32.8 Docker digest to a239476
       hash: ea6dbb674c3a90dbb335d58e83d05a0758eefe8b
       body: ""
