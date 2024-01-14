@@ -1,4 +1,16 @@
 - commits:
+    - subject: Update linuxserver/prowlarr Docker tag to v1.12.1
+      hash: a29abdc3d5663f9ff4477f8d94ca139baa51d8fe
+      body: ""
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Renovate Bot
+      nested: []
+  version: 9.0.7
+  title: ""
+  date: 2024-01-14T05:37:55.413Z
+- commits:
     - subject: Update linuxserver/ombi:4.43.5 Docker digest to d365991
       hash: 229ecb9ec3c04a69ede6e97f78c8c393c85bb3e4
       body: ""
