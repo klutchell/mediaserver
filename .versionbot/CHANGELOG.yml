@@ -1,4 +1,16 @@
 - commits:
+    - subject: Update linuxserver/prowlarr:1.12.1-develop Docker digest to 564e501
+      hash: fc047796f61e6607649a77d55959b6e95d569861
+      body: ""
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Renovate Bot
+      nested: []
+  version: 9.0.15
+  title: ""
+  date: 2024-01-17T04:10:38.465Z
+- commits:
     - subject: Update linuxserver/jellyfin:10.8.13 Docker digest to b46667e
       hash: b2ae018ea6a00a6f429b0e2e619e85a523fcdd7c
       body: ""
