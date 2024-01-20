@@ -1,4 +1,16 @@
 - commits:
+    - subject: Update linuxserver/ombi:4.43.5 Docker digest to a4f9fba
+      hash: 4f2eb1ba27f314500ba3e6575c5c12627fe593c8
+      body: ""
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Renovate Bot
+      nested: []
+  version: 9.0.23
+  title: ""
+  date: 2024-01-20T23:08:20.699Z
+- commits:
     - subject: Update linuxserver/sonarr Docker tag to v4.0.1
       hash: 705f9683a66279812eeb27ea564ef52969c559bc
       body: ""
