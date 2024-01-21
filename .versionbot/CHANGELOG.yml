@@ -1,4 +1,16 @@
 - commits:
+    - subject: Update linuxserver/radarr:5.2.6 Docker digest to 5065337
+      hash: c92981b5c4da8d977b6057a760a7e60aa489cc43
+      body: ""
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Renovate Bot
+      nested: []
+  version: 9.0.24
+  title: ""
+  date: 2024-01-21T17:37:38.210Z
+- commits:
     - subject: Update linuxserver/ombi:4.43.5 Docker digest to a4f9fba
       hash: 4f2eb1ba27f314500ba3e6575c5c12627fe593c8
       body: ""
