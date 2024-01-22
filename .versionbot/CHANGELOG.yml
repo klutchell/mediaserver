@@ -1,4 +1,16 @@
 - commits:
+    - subject: Update linuxserver/plex:1.32.8 Docker digest to 9f87f22
+      hash: dc86b0b1374e87bf3b02c58c02156de7868f0392
+      body: ""
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Renovate Bot
+      nested: []
+  version: 9.0.29
+  title: ""
+  date: 2024-01-22T09:37:57.233Z
+- commits:
     - subject: Update product-os/flowzone action to v7.0.14
       hash: f8722394f0ac163dc19ed14763159eab8e1409ed
       body: ""
