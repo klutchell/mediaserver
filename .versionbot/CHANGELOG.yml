@@ -1,4 +1,16 @@
 - commits:
+    - subject: Update linuxserver/prowlarr:1.12.2-develop Docker digest to 7f4b586
+      hash: ba5ad856fcd127b1c8e543af9308d03027c51557
+      body: ""
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Renovate Bot
+      nested: []
+  version: 9.0.35
+  title: ""
+  date: 2024-01-24T04:09:53.677Z
+- commits:
     - subject: Update product-os/flowzone action to v7.0.18
       hash: 6dd03e9c72ea9cd95c27c24a6851e3d043d94ddd
       body: ""
