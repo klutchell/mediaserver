@@ -1,4 +1,16 @@
 - commits:
+    - subject: Update traefik:v2.10.7 Docker digest to e5b217c
+      hash: 2c4fc9dbe600044b83df5fed56ff25697bdd6a42
+      body: ""
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Renovate Bot
+      nested: []
+  version: 9.0.40
+  title: ""
+  date: 2024-01-27T04:38:26.376Z
+- commits:
     - subject: Update lscr.io/linuxserver/syncthing:1.27.2 Docker digest to 8085df5
       hash: 17414d5eda39204bfa839fa79f4e428e29d5b705
       body: ""
