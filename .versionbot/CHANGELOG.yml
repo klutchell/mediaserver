@@ -1,4 +1,16 @@
 - commits:
+    - subject: Update linuxserver/ombi:4.43.5 Docker digest to 7c0ae4a
+      hash: 64e38b12bb0f21f8e3b2569df8b22f4e2ad62e0f
+      body: ""
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Renovate Bot
+      nested: []
+  version: 9.0.43
+  title: ""
+  date: 2024-01-27T23:09:55.024Z
+- commits:
     - subject: Update traefik:v2.10.7 Docker digest to 6341b98
       hash: b4e894203a35fd78871e6b45a62df1ad14503708
       body: ""
