@@ -1,4 +1,16 @@
 - commits:
+    - subject: Update product-os/flowzone action to v8
+      hash: 7857300b31326a5bf0a4dd4143f66d604064c051
+      body: ""
+      footer:
+        Change-type: major
+        change-type: major
+      author: Renovate Bot
+      nested: []
+  version: 10.0.0
+  title: ""
+  date: 2024-01-29T16:08:58.498Z
+- commits:
     - subject: Update linuxserver/plex:1.32.8 Docker digest to 476c057
       hash: 09fba77b3788437753d8ac9656bf4b0e64651d50
       body: ""
