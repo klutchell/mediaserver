@@ -1,4 +1,16 @@
 - commits:
+    - subject: Update linuxserver/jellyfin:10.8.13 Docker digest to e667929
+      hash: ca3c5c5eb941d602e0bb0f4c7e98aa839910f2ee
+      body: ""
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Renovate Bot
+      nested: []
+  version: 10.0.1
+  title: ""
+  date: 2024-01-30T13:07:33.230Z
+- commits:
     - subject: Update product-os/flowzone action to v8
       hash: 7857300b31326a5bf0a4dd4143f66d604064c051
       body: ""
