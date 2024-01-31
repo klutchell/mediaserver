@@ -1,4 +1,16 @@
 - commits:
+    - subject: Update lscr.io/linuxserver/overseerr:1.33.2 Docker digest to ec7d421
+      hash: 955ed1191b22a25746dbe883e20da5e95fe646ac
+      body: ""
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Renovate Bot
+      nested: []
+  version: 10.0.2
+  title: ""
+  date: 2024-01-31T19:07:25.990Z
+- commits:
     - subject: Update linuxserver/jellyfin:10.8.13 Docker digest to e667929
       hash: ca3c5c5eb941d602e0bb0f4c7e98aa839910f2ee
       body: ""
