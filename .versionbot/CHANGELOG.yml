@@ -1,4 +1,16 @@
 - commits:
+    - subject: Update linuxserver/radarr:5.2.6 Docker digest to b461ecc
+      hash: 916ae5e21f6d1772364c3e9ab1a99cb1842a6793
+      body: ""
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Renovate Bot
+      nested: []
+  version: 10.1.6
+  title: ""
+  date: 2024-02-04T17:36:58.525Z
+- commits:
     - subject: Update linuxserver/prowlarr Docker tag to v1.13.2
       hash: 580ebf086e95221701c5c96c50c8a987872d02d8
       body: ""
