@@ -1,4 +1,16 @@
 - commits:
+    - subject: Update product-os/flowzone action to v9
+      hash: 04c5fc5e8576296fe8752deb499f95408291a597
+      body: ""
+      footer:
+        Change-type: major
+        change-type: major
+      author: Renovate Bot
+      nested: []
+  version: 11.0.0
+  title: ""
+  date: 2024-02-08T14:37:37.499Z
+- commits:
     - subject: Update lscr.io/linuxserver/overseerr:1.33.2 Docker digest to 884c81c
       hash: a28e292ca69ff9ebf1053308bf135c4e781f9efa
       body: ""
