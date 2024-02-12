@@ -1,4 +1,16 @@
 - commits:
+    - subject: Update netdata/netdata Docker tag to v1.44.3
+      hash: f2026dddb76da0493e01490c8965a26179878859
+      body: ""
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Renovate Bot
+      nested: []
+  version: 11.0.13
+  title: ""
+  date: 2024-02-12T18:11:18.986Z
+- commits:
     - subject: Update linuxserver/plex:1.32.8 Docker digest to a7df608
       hash: a40098ed1fe323575d0d0a56af009a77557f9250
       body: ""
