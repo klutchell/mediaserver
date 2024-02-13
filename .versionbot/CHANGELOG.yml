@@ -1,4 +1,16 @@
 - commits:
+    - subject: Update traefik:v2.11.0 Docker digest to 919b100
+      hash: b7c4f0184d08bd37f375045bcb62efe7ce24690f
+      body: ""
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Renovate Bot
+      nested: []
+  version: 11.1.1
+  title: ""
+  date: 2024-02-13T00:11:06.822Z
+- commits:
     - subject: Update traefik Docker tag to v2.11.0
       hash: 2b7ea5c1c785236627f85f6f8cad17e186ae1b61
       body: ""
