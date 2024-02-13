@@ -1,4 +1,16 @@
 - commits:
+    - subject: Update linuxserver/jellyfin:10.8.13 Docker digest to 9a2f8b1
+      hash: c17211e9560be7b1f6f404c231d7bf7ec0a5dda0
+      body: ""
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Renovate Bot
+      nested: []
+  version: 11.1.3
+  title: ""
+  date: 2024-02-13T13:11:47.071Z
+- commits:
     - subject: Update traefik:v2.11.0 Docker digest to 4be302e
       hash: 0bda2df71b3a90bf119bf0670f9e140f862b749e
       body: ""
