@@ -1,4 +1,16 @@
 - commits:
+    - subject: Update linuxserver/plex:1.32.8 Docker digest to e495036
+      hash: 862f5281c08d9b731d9fcf57af62069b43698638
+      body: ""
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Renovate Bot
+      nested: []
+  version: 11.1.5
+  title: ""
+  date: 2024-02-13T17:09:18.791Z
+- commits:
     - subject: Update linuxserver/jellyfin:10.8.13 Docker digest to 087ed10
       hash: 1a0768afef412bd4adfe38d73e5198a071519636
       body: ""
