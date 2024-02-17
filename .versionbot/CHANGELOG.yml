@@ -1,4 +1,16 @@
 - commits:
+    - subject: Update linuxserver/sonarr:4.0.1 Docker digest to 5d45dc9
+      hash: ed3f786e1f65e1eabc563d3cdc1c19bf6cdd79c2
+      body: ""
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Renovate Bot
+      nested: []
+  version: 12.0.5
+  title: ""
+  date: 2024-02-17T00:11:39.216Z
+- commits:
     - subject: Update product-os/flowzone action to v10.0.4
       hash: 5ac1227de075cc0e0180ffcaddb348890fdade49
       body: ""
