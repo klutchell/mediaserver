@@ -1,4 +1,16 @@
 - commits:
+    - subject: Update product-os/flowzone action to v10.0.5
+      hash: 1e1c5bb9bcedb1680be14df8cfe3dee2603dd283
+      body: ""
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Renovate Bot
+      nested: []
+  version: 12.1.1
+  title: ""
+  date: 2024-02-19T02:15:03.003Z
+- commits:
     - subject: Update linuxserver/radarr Docker tag to v5.3.6
       hash: 4c074f09f699c63cb926950c866eb0d976286285
       body: ""
