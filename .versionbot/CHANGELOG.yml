@@ -1,4 +1,24 @@
 - commits:
+    - subject: Update lscr.io/linuxserver/syncthing:1.27.3 Docker digest to 154fecd
+      hash: 6cabcdc9a2e530981bc22d366cfbd94199067e8f
+      body: ""
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Renovate Bot
+      nested: []
+    - subject: Update linuxserver/sonarr:4.0.1 Docker digest to e097383
+      hash: c6044ce70d752aadd33fe9f8a156477e31974730
+      body: ""
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Renovate Bot
+      nested: []
+  version: 12.2.4
+  title: ""
+  date: 2024-02-24T02:11:50.834Z
+- commits:
     - subject: Update linuxserver/sonarr:4.0.1 Docker digest to 1934803
       hash: 8ec79db1df5e72fcf33288361072d098b569fca5
       body: ""
