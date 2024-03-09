@@ -1,4 +1,16 @@
 - commits:
+    - subject: Update lscr.io/linuxserver/syncthing:1.27.4 Docker digest to 96e4e72
+      hash: 76ad649a829614fe82af6a3f4960b1cb542c076c
+      body: ""
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Renovate Bot
+      nested: []
+  version: 12.3.28
+  title: ""
+  date: 2024-03-09T02:09:54.887Z
+- commits:
     - subject: Update product-os/flowzone action to v10.0.21
       hash: d7fd230dced37aee2a09f41c34290a9bd480e604
       body: ""
