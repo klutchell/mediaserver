@@ -1,4 +1,16 @@
 - commits:
+    - subject: Update linuxserver/ombi:4.43.5 Docker digest to 50e48b1
+      hash: bdd089b8213c24a33eb3f5bab5097fd46b4a5fb2
+      body: ""
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Renovate Bot
+      nested: []
+  version: 12.3.29
+  title: ""
+  date: 2024-03-09T23:07:37.782Z
+- commits:
     - subject: Update lscr.io/linuxserver/syncthing:1.27.4 Docker digest to 96e4e72
       hash: 76ad649a829614fe82af6a3f4960b1cb542c076c
       body: ""
