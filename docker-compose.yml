@@ -4,7 +4,7 @@ networks:
 services:
   # https://docs.linuxserver.io/images/docker-plex
   plex:
-    image: linuxserver/plex:1.40.0@sha256:1242180c3f80dcaa6f15d481b3056ae62dfb25afcb0d3cd080c2fb6243f5cddd
+    image: linuxserver/plex:1.40.0@sha256:ecb029d589725f2f6e5eb044233cd628dca9cae0ad58190eb8d676e57496ae4c
     restart: unless-stopped
     environment:
       PUID: "${PUID}"
