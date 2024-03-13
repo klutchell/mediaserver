@@ -1,4 +1,16 @@
 - commits:
+    - subject: Update product-os/flowzone action to v10.0.38
+      hash: 186426851e1b0987a732751dc04440ad2beff416
+      body: ""
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Renovate Bot
+      nested: []
+  version: 12.3.48
+  title: ""
+  date: 2024-03-13T17:10:16.906Z
+- commits:
     - subject: Update linuxserver/prowlarr:1.14.1-develop Docker digest to ddf4909
       hash: 6c60ed192c7e5d812c6f36358ab036f0670aa889
       body: ""
