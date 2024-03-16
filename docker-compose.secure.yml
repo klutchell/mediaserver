@@ -129,7 +129,7 @@ services:
 
   # https://hub.docker.com/_/traefik/
   traefik:
-    image: traefik:v2.11.0@sha256:e1b92cac0de3d8866a5d2a8f41573a91d1c08101b4500ccd6fc19b467fdea40c
+    image: traefik:v2.11.0@sha256:20fe5e615810a39c162dcbc1ee526efce9aa0601e23113af218f7fedc49bd596
     restart: unless-stopped
     environment:
       TZ: "${TZ}"
