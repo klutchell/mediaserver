@@ -1,4 +1,16 @@
 - commits:
+    - subject: Update linuxserver/radarr:5.3.6 Docker digest to d5cd492
+      hash: 02f13b07eeb497842e4a74978edebb64ded5343d
+      body: ""
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Renovate Bot
+      nested: []
+  version: 12.4.11
+  title: ""
+  date: 2024-03-18T08:38:24.878Z
+- commits:
     - subject: Update product-os/flowzone action to v10.0.44
       hash: cabdd1c3c30c8886050f4b801ebfcd28f4ec9d44
       body: ""
