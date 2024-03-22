@@ -1,4 +1,16 @@
 - commits:
+    - subject: Update product-os/flowzone action to v10.0.50
+      hash: 95e9977b9c92c970141f9e51e3f50a4d6afd91cc
+      body: ""
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Renovate Bot
+      nested: []
+  version: 12.5.1
+  title: ""
+  date: 2024-03-22T00:51:06.202Z
+- commits:
     - subject: Update netdata/netdata Docker tag to v1.45.0
       hash: 3a5721070777fdd1bccdc9f176a1c1ee0367efce
       body: ""
