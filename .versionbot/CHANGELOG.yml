@@ -1,4 +1,16 @@
 - commits:
+    - subject: Update linuxserver/ombi:4.43.5 Docker digest to 4de6601
+      hash: a249cd0218500dbccdb66484e0bbdaa51a059c2b
+      body: ""
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Renovate Bot
+      nested: []
+  version: 12.5.3
+  title: ""
+  date: 2024-03-24T00:51:17.937Z
+- commits:
     - subject: Update product-os/flowzone action to v10.0.51
       hash: a1f9182b1980209503b9b3ab19978e8cafac70ee
       body: ""
