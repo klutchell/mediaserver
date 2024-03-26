@@ -1,4 +1,16 @@
 - commits:
+    - subject: Update product-os/flowzone action to v10.0.55
+      hash: 9fc5fac5bebe5214c5a1edb39fcb5c9ac2455469
+      body: ""
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Renovate Bot
+      nested: []
+  version: 12.5.7
+  title: ""
+  date: 2024-03-26T00:52:53.523Z
+- commits:
     - subject: Update linuxserver/plex:1.40.1 Docker digest to 34780a5
       hash: 0b6bacb9120e82195896102ddcd48b1c7c558ecf
       body: ""
