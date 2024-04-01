@@ -1,4 +1,16 @@
 - commits:
+    - subject: Update linuxserver/sonarr Docker tag to v4.0.3
+      hash: 15fdaa6ed914569ce3c3c60d7e210adf9977a098
+      body: ""
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Renovate Bot
+      nested: []
+  version: 12.7.8
+  title: ""
+  date: 2024-04-01T08:39:47.832Z
+- commits:
     - subject: Update linuxserver/radarr:5.3.6 Docker digest to 122cb0e
       hash: d7675eeaaa078ec89e3326231baf855542c31975
       body: ""
