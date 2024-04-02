@@ -1,4 +1,16 @@
 - commits:
+    - subject: Update linuxserver/nzbhydra2 Docker tag to v6
+      hash: 021d7c680f4ce1da75b0f33a21e010005da5970e
+      body: ""
+      footer:
+        Change-type: major
+        change-type: major
+      author: Renovate Bot
+      nested: []
+  version: 13.0.0
+  title: ""
+  date: 2024-04-02T00:51:33.628Z
+- commits:
     - subject: Update product-os/flowzone action to v10.1.4
       hash: 60da52a24116d1aefa67048d1b06d897629ed646
       body: ""
