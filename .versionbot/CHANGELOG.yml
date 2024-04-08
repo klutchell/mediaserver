@@ -1,4 +1,16 @@
 - commits:
+    - subject: Update linuxserver/plex:1.40.1 Docker digest to 817fb3e
+      hash: 839f7d89d86094a9c49edc57a0bef24db6ae1e96
+      body: ""
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Renovate Bot
+      nested: []
+  version: 14.1.2
+  title: ""
+  date: 2024-04-08T13:27:49.149Z
+- commits:
     - subject: Update linuxserver/ombi:4.43.5 Docker digest to b508a92
       hash: 9c7688acb5d4e732413da1dcb276b9f27595dfec
       body: ""
