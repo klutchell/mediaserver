@@ -1,4 +1,16 @@
 - commits:
+    - subject: Update linuxserver/prowlarr:1.15.0-develop Docker digest to 45f8cab
+      hash: a8866ba527f8d7775ca3724ab49fe5b133d05ac3
+      body: ""
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Renovate Bot
+      nested: []
+  version: 14.1.5
+  title: ""
+  date: 2024-04-11T13:28:20.812Z
+- commits:
     - subject: Update linuxserver/radarr:5.3.6 Docker digest to 1afb332
       hash: 450842c3a05d742f5b9f51d069f24f93d7ebc106
       body: ""
