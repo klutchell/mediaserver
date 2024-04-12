@@ -1,4 +1,16 @@
 - commits:
+    - subject: Update linuxserver/nzbhydra2:6.0.0 Docker digest to 453d755
+      hash: 8325ab04e2db53d667b1d5b1434bef2a1d878759
+      body: ""
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Renovate Bot
+      nested: []
+  version: 14.1.6
+  title: ""
+  date: 2024-04-12T13:27:57.231Z
+- commits:
     - subject: Update linuxserver/prowlarr:1.15.0-develop Docker digest to 45f8cab
       hash: a8866ba527f8d7775ca3724ab49fe5b133d05ac3
       body: ""
