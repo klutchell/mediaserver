@@ -1,4 +1,16 @@
 - commits:
+    - subject: Update linuxserver/sonarr:4.0.3 Docker digest to 7b0f3cd
+      hash: b387e1957bc7c715797055284ea9d3f0596a965d
+      body: ""
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Renovate Bot
+      nested: []
+  version: 14.1.7
+  title: ""
+  date: 2024-04-13T13:25:29.765Z
+- commits:
     - subject: Update linuxserver/nzbhydra2:6.0.0 Docker digest to 453d755
       hash: 8325ab04e2db53d667b1d5b1434bef2a1d878759
       body: ""
