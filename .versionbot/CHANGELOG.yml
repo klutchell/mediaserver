@@ -1,4 +1,16 @@
 - commits:
+    - subject: Update lscr.io/linuxserver/overseerr:1.33.2 Docker digest to ce5f943
+      hash: c32c0932e3a243e8040a51d749a6c241e167fdf2
+      body: ""
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Renovate Bot
+      nested: []
+  version: 14.1.9
+  title: ""
+  date: 2024-04-15T13:28:14.831Z
+- commits:
     - subject: Update linuxserver/sonarr Docker tag to v4.0.4
       hash: 8bcb2111b61c3554e539952e671b3cdcaeb7e094
       body: ""
