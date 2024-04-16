@@ -1,4 +1,16 @@
 - commits:
+    - subject: Update traefik Docker tag to v2.11.2
+      hash: 8dc079a2acca8b0e4d112b0c6a53b4106ed2d7a4
+      body: ""
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Renovate Bot
+      nested: []
+  version: 14.2.1
+  title: ""
+  date: 2024-04-16T14:25:26.606Z
+- commits:
     - subject: Update linuxserver/prowlarr Docker tag to v1.16.1
       hash: 23e591a8ede40b1104d92cee9be744cb69672d4b
       body: ""
