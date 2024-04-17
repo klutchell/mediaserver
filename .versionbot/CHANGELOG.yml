@@ -1,4 +1,16 @@
 - commits:
+    - subject: Update linuxserver/radarr Docker tag to v5.4.6
+      hash: a8e23cb7b6299c9ba4d77810cdfa3eff10796c47
+      body: ""
+      footer:
+        Change-type: minor
+        change-type: minor
+      author: Renovate Bot
+      nested: []
+  version: 14.3.0
+  title: ""
+  date: 2024-04-17T13:27:47.555Z
+- commits:
     - subject: Update product-os/flowzone action to v11.1.9
       hash: 62b4091af7d78646f58fdb2641bce25a5a4d0889
       body: ""
