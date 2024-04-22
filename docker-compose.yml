@@ -63,7 +63,7 @@ services:
 
   # https://docs.linuxserver.io/images/docker-sonarr
   sonarr:
-    image: linuxserver/sonarr:4.0.4@sha256:878f8538c5becb75bae4e2f010aaee85b4ec3792acedbeaf639e800995b6e6fe
+    image: linuxserver/sonarr:4.0.4@sha256:58fca88cafda8915f45b780124c767d5b63b7a1194d4781edc8c4b7fb0d6e9c3
     restart: unless-stopped
     environment:
       PUID: "${PUID}"
@@ -81,7 +81,7 @@ services:
 
   # https://docs.linuxserver.io/images/docker-radarr
   radarr:
-    image: linuxserver/radarr:5.4.6@sha256:de7e51182113b430d9b6cb93ebc3389e1c73f11e7eabf47d0af5de106cdc296a
+    image: linuxserver/radarr:5.4.6@sha256:e6bccb9bd69f3dba111716c6789152d5577217adc27f8f96642e511defaefbb6
     restart: unless-stopped
     environment:
       PUID: "${PUID}"
@@ -113,7 +113,7 @@ services:
 
   # https://docs.linuxserver.io/images/docker-ombi
   ombi:
-    image: linuxserver/ombi:4.43.5@sha256:b508a922907b38578de303c8035344630cdc9e948961a564f74c56dba6131a49
+    image: linuxserver/ombi:4.43.5@sha256:014ed9815d494fb95aa47fe4698a9a2a9c5371506bd04a1d5dbd8372b4ebf2c4
     restart: unless-stopped
     environment:
       PUID: ${PUID}
@@ -206,7 +206,7 @@ services:
 
   # https://docs.linuxserver.io/images/docker-syncthing
   syncthing:
-    image: lscr.io/linuxserver/syncthing:1.27.6@sha256:5dff1bcae36d3daf5959915607033f77ad8400a09e2c7592e30fb9feb18a8709
+    image: lscr.io/linuxserver/syncthing:1.27.6@sha256:0f69786427f711e506fefd6eb66645817dbf99c91b7d37860158bb504e63f756
     restart: unless-stopped
     environment:
       PUID: ${PUID}
