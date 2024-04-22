@@ -1,4 +1,16 @@
 - commits:
+    - subject: Update all digest updates
+      hash: 0f2184d4170ff5b7ea352cefb734888fb643c8a0
+      body: ""
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Renovate Bot
+      nested: []
+  version: 14.5.5
+  title: ""
+  date: 2024-04-22T14:26:28.465Z
+- commits:
     - subject: Update linuxserver/prowlarr Docker tag to v1.16.2
       hash: 8b1caa873c682b4b4d87fe88117874bd9ac495e6
       body: ""
