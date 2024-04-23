@@ -1,4 +1,16 @@
 - commits:
+    - subject: Update linuxserver/plex Docker tag to v1.40.2
+      hash: d701b334f22e56403b65e9999834fa63bde50958
+      body: ""
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Renovate Bot
+      nested: []
+  version: 14.5.8
+  title: ""
+  date: 2024-04-23T14:24:36.586Z
+- commits:
     - subject: Update linuxserver/jellyfin:10.8.13 Docker digest to 118835d
       hash: f024b3766ca7640adb2e46dd4c5495a45abacf0b
       body: ""
