@@ -11,7 +11,7 @@ on:
 jobs:
   flowzone:
     name: Flowzone
-    uses: product-os/flowzone/.github/workflows/flowzone.yml@39934b18cd98d4d9053f4bec8472ee325b4bd5a5 # v11.3.1
+    uses: product-os/flowzone/.github/workflows/flowzone.yml@81e2f0473fbfb4db77cf1a962bd2540d99ccfd2e # v11.3.2
     if: |
       (
         github.event.pull_request.head.repo.full_name == github.repository &&
