@@ -1,4 +1,16 @@
 - commits:
+    - subject: Update product-os/flowzone action to v11.3.2
+      hash: f75cb5c34bb22084ec704756285780f27e8839d3
+      body: ""
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Renovate Bot
+      nested: []
+  version: 14.6.2
+  title: ""
+  date: 2024-04-26T13:31:38.548Z
+- commits:
     - subject: Update linuxserver/nzbhydra2:6.0.0 Docker digest to d0e47b1
       hash: e9f853662f06882b8e3bbe7b82a194b7c486fc3a
       body: ""
