@@ -1,4 +1,16 @@
 - commits:
+    - subject: Update linuxserver/prowlarr Docker tag to v1.17.0
+      hash: 67e1fb3213a6499f6675bf2d84310bf9bf888135
+      body: ""
+      footer:
+        Change-type: minor
+        change-type: minor
+      author: Renovate Bot
+      nested: []
+  version: 14.7.0
+  title: ""
+  date: 2024-04-29T14:26:57.429Z
+- commits:
     - subject: Update product-os/flowzone action to v11.3.6
       hash: 97e30b7e9ef4f922e4f6b9635225eedb28976454
       body: ""
