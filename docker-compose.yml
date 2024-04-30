@@ -4,7 +4,7 @@ networks:
 services:
   # https://docs.linuxserver.io/images/docker-plex
   plex:
-    image: linuxserver/plex:1.40.2@sha256:15eaab9b1447e413b3f28df1cad8e5c87e4a06ac2b0eaf09aca8c6ae11feed3c
+    image: linuxserver/plex:1.40.2@sha256:e934dade4d3dd253836e0232e10eb1fce91047de3f988cbefe138fe23ac729df
     restart: unless-stopped
     environment:
       PUID: "${PUID}"
@@ -21,7 +21,7 @@ services:
 
   # https://docs.linuxserver.io/images/docker-jellyfin
   jellyfin:
-    image: linuxserver/jellyfin:10.8.13@sha256:118835d948e13fccba8c715d996e71cdfb74dc6a1ef9ec7634f55d2070b9688c
+    image: linuxserver/jellyfin:10.8.13@sha256:90a59dcb6c260cc7dc5d8f0f08a192d5d6303bf3336f21635383bf107b77b82a
     restart: unless-stopped
     environment:
       PUID: "${PUID}"
@@ -113,7 +113,7 @@ services:
 
   # https://docs.linuxserver.io/images/docker-ombi
   ombi:
-    image: linuxserver/ombi:4.43.5@sha256:014ed9815d494fb95aa47fe4698a9a2a9c5371506bd04a1d5dbd8372b4ebf2c4
+    image: linuxserver/ombi:4.43.5@sha256:40c0c4bfaefdb67e93656392d13cdc19fa5021705337bbd6d36fcdd1e3cd2f70
     restart: unless-stopped
     environment:
       PUID: ${PUID}
