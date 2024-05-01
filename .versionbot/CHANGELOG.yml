@@ -1,4 +1,16 @@
 - commits:
+    - subject: Update linuxserver/prowlarr:1.17.0-develop Docker digest to 9d5d117
+      hash: ef86f24892bed3e3a1acd632922685dba569a128
+      body: ""
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Renovate Bot
+      nested: []
+  version: 15.0.1
+  title: ""
+  date: 2024-05-01T13:25:22.787Z
+- commits:
     - subject: Update traefik Docker tag to v3
       hash: 0d2a82cbaa3caf786e581480f9d2266b2b3c52ef
       body: ""
