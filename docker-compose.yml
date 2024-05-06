@@ -4,7 +4,7 @@ networks:
 services:
   # https://docs.linuxserver.io/images/docker-plex
   plex:
-    image: linuxserver/plex:1.40.2@sha256:e934dade4d3dd253836e0232e10eb1fce91047de3f988cbefe138fe23ac729df
+    image: linuxserver/plex:1.40.2@sha256:114bc1566b442144552843fe43c45ca1a4fb023b46ce2c75485d611792e45519
     restart: unless-stopped
     environment:
       PUID: "${PUID}"
@@ -21,7 +21,7 @@ services:
 
   # https://docs.linuxserver.io/images/docker-jellyfin
   jellyfin:
-    image: linuxserver/jellyfin:10.8.13@sha256:90a59dcb6c260cc7dc5d8f0f08a192d5d6303bf3336f21635383bf107b77b82a
+    image: linuxserver/jellyfin:10.8.13@sha256:dc7ad66abf0a2c04d6e6f130647651b626c68a8530f49e9bff043a5b243b6c69
     restart: unless-stopped
     environment:
       PUID: "${PUID}"
@@ -63,7 +63,7 @@ services:
 
   # https://docs.linuxserver.io/images/docker-sonarr
   sonarr:
-    image: linuxserver/sonarr:4.0.4@sha256:58fca88cafda8915f45b780124c767d5b63b7a1194d4781edc8c4b7fb0d6e9c3
+    image: linuxserver/sonarr:4.0.4@sha256:230ebe3521fbfc5fd7b30e169e3219953a132bdfcca88ef595360e1364e477e8
     restart: unless-stopped
     environment:
       PUID: "${PUID}"
@@ -81,7 +81,7 @@ services:
 
   # https://docs.linuxserver.io/images/docker-radarr
   radarr:
-    image: linuxserver/radarr:5.4.6@sha256:e6bccb9bd69f3dba111716c6789152d5577217adc27f8f96642e511defaefbb6
+    image: linuxserver/radarr:5.4.6@sha256:1c2f2abbabd19c47549a4e7c3315402a3a4c37f141ba56cef3395ec6b292a015
     restart: unless-stopped
     environment:
       PUID: "${PUID}"
@@ -113,7 +113,7 @@ services:
 
   # https://docs.linuxserver.io/images/docker-ombi
   ombi:
-    image: linuxserver/ombi:4.43.5@sha256:40c0c4bfaefdb67e93656392d13cdc19fa5021705337bbd6d36fcdd1e3cd2f70
+    image: linuxserver/ombi:4.43.5@sha256:27d87cdc42bb915adbc8deb95e975e7ec550854ff9775215e98487fd6eccd4f7
     restart: unless-stopped
     environment:
       PUID: ${PUID}
@@ -206,7 +206,7 @@ services:
 
   # https://docs.linuxserver.io/images/docker-syncthing
   syncthing:
-    image: lscr.io/linuxserver/syncthing:1.27.6@sha256:0f69786427f711e506fefd6eb66645817dbf99c91b7d37860158bb504e63f756
+    image: lscr.io/linuxserver/syncthing:1.27.6@sha256:62eaa9802bcbeac1f5cc9cc1444a40318d4ea57ca5168a0c79689fb92a86761f
     restart: unless-stopped
     environment:
       PUID: ${PUID}
