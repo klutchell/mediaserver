@@ -1,4 +1,16 @@
 - commits:
+    - subject: Update product-os/flowzone action to v11.4.2
+      hash: e96c40270227069953fad9802cf5ddd61a2315a1
+      body: ""
+      footer:
+        Change-type: minor
+        change-type: minor
+      author: Renovate Bot
+      nested: []
+  version: 15.1.0
+  title: ""
+  date: 2024-05-08T14:39:19.719Z
+- commits:
     - subject: Update lscr.io/linuxserver/syncthing Docker tag to v1.27.7
       hash: 2afa35eea6d3484db253f400696b6d5bf30011e2
       body: ""
