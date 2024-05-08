@@ -1,4 +1,16 @@
 - commits:
+    - subject: Update lscr.io/linuxserver/syncthing Docker tag to v1.27.7
+      hash: 2afa35eea6d3484db253f400696b6d5bf30011e2
+      body: ""
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Renovate Bot
+      nested: []
+  version: 15.0.10
+  title: ""
+  date: 2024-05-08T14:09:07.724Z
+- commits:
     - subject: Update netdata/netdata Docker tag to v1.45.4
       hash: 4989e17813a22376e6bb85a30e1880379b38a59b
       body: ""
