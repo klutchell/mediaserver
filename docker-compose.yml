@@ -206,7 +206,7 @@ services:
 
   # https://docs.linuxserver.io/images/docker-syncthing
   syncthing:
-    image: lscr.io/linuxserver/syncthing:1.27.6@sha256:62eaa9802bcbeac1f5cc9cc1444a40318d4ea57ca5168a0c79689fb92a86761f
+    image: lscr.io/linuxserver/syncthing:1.27.7@sha256:506cba3653cee85971eb1e3dd5a52693b179201efff58e0f17c2c14da6789889
     restart: unless-stopped
     environment:
       PUID: ${PUID}
