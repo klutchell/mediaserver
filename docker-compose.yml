@@ -99,7 +99,7 @@ services:
 
   # https://docs.linuxserver.io/images/docker-nzbhydra
   nzbhydra:
-    image: linuxserver/nzbhydra2:6.0.0@sha256:d3c440c13bb8a907e1583235e168d97b19997bf674ec95b75a1fb884c1bb724a
+    image: linuxserver/nzbhydra2:6.0.0@sha256:6c52db7c1d0b8f4bcc7e1cc9fca72347d94c11f69a00872ad4e78fc7c9d050cd
     restart: unless-stopped
     environment:
       PUID: "${PUID}"
@@ -168,7 +168,7 @@ services:
   # https://docs.overseerr.dev/getting-started/installation
   # https://hub.docker.com/r/linuxserver/overseerr
   overseerr:
-    image: lscr.io/linuxserver/overseerr:1.33.2@sha256:711c465b65d36a01580f995043a240eedaac0aa31321a8d95fa8f29f0ff8299d
+    image: lscr.io/linuxserver/overseerr:1.33.2@sha256:ebbd85f5ada1de79fcd18410639c08b7bf1fdac1977e2b8718dad466747e145f
     restart: unless-stopped
     environment:
       PUID: ${PUID}
