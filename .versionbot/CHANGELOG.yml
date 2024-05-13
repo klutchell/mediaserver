@@ -1,4 +1,16 @@
 - commits:
+    - subject: Update linuxserver/nzbhydra2 Docker tag to v6.2.1
+      hash: 3d8e34613bcadf10f6c7acc7db68dad1588a7bc6
+      body: ""
+      footer:
+        Change-type: minor
+        change-type: minor
+      author: Renovate Bot
+      nested: []
+  version: 15.4.0
+  title: ""
+  date: 2024-05-13T14:38:40.296Z
+- commits:
     - subject: Update linuxserver/jellyfin Docker tag to v10.9.1
       hash: 76c8d40a82b9d54943f674f12317c7e1a8a79b46
       body: ""
