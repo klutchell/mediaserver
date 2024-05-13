@@ -4,7 +4,7 @@ networks:
 services:
   # https://docs.linuxserver.io/images/docker-plex
   plex:
-    image: linuxserver/plex:1.40.2@sha256:114bc1566b442144552843fe43c45ca1a4fb023b46ce2c75485d611792e45519
+    image: linuxserver/plex:1.40.2@sha256:55c6c1bbc40936f527dc684946c2c32fdc2f0669467c1f359a70ea911593ea6e
     restart: unless-stopped
     environment:
       PUID: "${PUID}"
@@ -63,7 +63,7 @@ services:
 
   # https://docs.linuxserver.io/images/docker-sonarr
   sonarr:
-    image: linuxserver/sonarr:4.0.4@sha256:230ebe3521fbfc5fd7b30e169e3219953a132bdfcca88ef595360e1364e477e8
+    image: linuxserver/sonarr:4.0.4@sha256:25e0f3b3741cf8df6c322d6c9016b5be91ca6e154653b4d01c8c125bf1ce75c0
     restart: unless-stopped
     environment:
       PUID: "${PUID}"
@@ -113,7 +113,7 @@ services:
 
   # https://docs.linuxserver.io/images/docker-ombi
   ombi:
-    image: linuxserver/ombi:4.43.5@sha256:27d87cdc42bb915adbc8deb95e975e7ec550854ff9775215e98487fd6eccd4f7
+    image: linuxserver/ombi:4.43.5@sha256:3539e80e12d09c70637e9e1b99606ca1d8fc98afc9ac43e9512117905a76f8a8
     restart: unless-stopped
     environment:
       PUID: ${PUID}
@@ -206,7 +206,7 @@ services:
 
   # https://docs.linuxserver.io/images/docker-syncthing
   syncthing:
-    image: lscr.io/linuxserver/syncthing:1.27.7@sha256:506cba3653cee85971eb1e3dd5a52693b179201efff58e0f17c2c14da6789889
+    image: lscr.io/linuxserver/syncthing:1.27.7@sha256:3d4796e288061222b2a73e51b760a30bbf9182f8b2c98769e4156c8a0c4ac470
     restart: unless-stopped
     environment:
       PUID: ${PUID}
