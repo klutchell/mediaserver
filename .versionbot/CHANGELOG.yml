@@ -1,4 +1,16 @@
 - commits:
+    - subject: Update linuxserver/jellyfin Docker tag to v10.9.1
+      hash: 76c8d40a82b9d54943f674f12317c7e1a8a79b46
+      body: ""
+      footer:
+        Change-type: minor
+        change-type: minor
+      author: Renovate Bot
+      nested: []
+  version: 15.3.0
+  title: ""
+  date: 2024-05-13T14:09:05.026Z
+- commits:
     - subject: Update linuxserver/radarr Docker tag to v5.5.3
       hash: e00fbe1ce5610daf263a0097b4adc594f8f67dd9
       body: ""
