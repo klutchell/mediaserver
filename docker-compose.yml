@@ -81,7 +81,7 @@ services:
 
   # https://docs.linuxserver.io/images/docker-radarr
   radarr:
-    image: linuxserver/radarr:5.5.3@sha256:e8903b7111428b75bf06e066f0e3bfcf4da7271ff6051565c3f97cba46ef7960
+    image: linuxserver/radarr:5.6.0@sha256:b84ed4a003c459df9675198e64053a2e9c0a3d5dd76587415b16c6902b8543f2
     restart: unless-stopped
     environment:
       PUID: "${PUID}"
