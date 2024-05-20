@@ -1,4 +1,16 @@
 - commits:
+    - subject: Update linuxserver/radarr Docker tag to v5.6.0
+      hash: 2cb342210fc855f85d573f58e3f7fa589341f4d1
+      body: ""
+      footer:
+        Change-type: minor
+        change-type: minor
+      author: Renovate Bot
+      nested: []
+  version: 15.5.0
+  title: ""
+  date: 2024-05-20T14:10:18.288Z
+- commits:
     - subject: Update all digest updates
       hash: 0e58b3301cced7d93095c410c0c1cc9b376d9a91
       body: ""
