@@ -1,4 +1,16 @@
 - commits:
+    - subject: Update linuxserver/nzbhydra2 Docker tag to v7.1.0
+      hash: d55f1f9fcec121fa90bb69489f78f4bdcc34228f
+      body: ""
+      footer:
+        Change-type: minor
+        change-type: minor
+      author: Renovate Bot
+      nested: []
+  version: 18.1.0
+  title: ""
+  date: 2024-05-27T15:38:23.904Z
+- commits:
     - subject: Update traefik Docker tag to v3.0.1
       hash: 5b462fc0af41e93ec9bce46bebc2f5817a623b76
       body: ""
