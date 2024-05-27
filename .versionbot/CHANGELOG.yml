@@ -1,4 +1,16 @@
 - commits:
+    - subject: Update traefik Docker tag to v3.0.1
+      hash: 5b462fc0af41e93ec9bce46bebc2f5817a623b76
+      body: ""
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Renovate Bot
+      nested: []
+  version: 18.0.2
+  title: ""
+  date: 2024-05-27T15:11:08.582Z
+- commits:
     - subject: Update linuxserver/jellyfin Docker tag to v10.9.3
       hash: 5f20f083c0941d52d6f8c95fb8160d9c93f008fb
       body: ""
