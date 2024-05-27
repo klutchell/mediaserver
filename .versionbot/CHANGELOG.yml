@@ -1,4 +1,16 @@
 - commits:
+    - subject: Update all digest updates
+      hash: 48d4ad2f224e07f257381ee08a327e485fd4e531
+      body: ""
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Renovate Bot
+      nested: []
+  version: 17.0.2
+  title: ""
+  date: 2024-05-27T13:41:35.646Z
+- commits:
     - subject: Update netdata/netdata Docker tag to v1.45.5
       hash: fdfd390584f2f471bd2e35d8f8e78e7662716d1b
       body: ""
