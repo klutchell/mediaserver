@@ -1,4 +1,16 @@
 - commits:
+    - subject: Update linuxserver/prowlarr Docker tag to v1.18.0
+      hash: 9eefd5e90b7e6734ebf37c635759f4dcd75dec69
+      body: ""
+      footer:
+        Change-type: minor
+        change-type: minor
+      author: Renovate Bot
+      nested: []
+  version: 18.3.0
+  title: ""
+  date: 2024-06-03T14:39:30.461Z
+- commits:
     - subject: Update all digest updates
       hash: c72fb584dfd3c0b4532db887c19d9dcb5f5db9fd
       body: ""
