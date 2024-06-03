@@ -1,4 +1,16 @@
 - commits:
+    - subject: Update tailscale/tailscale Docker tag to v1.66.4
+      hash: f8597d64698805a8743d2cb09f718436b3cf34b8
+      body: ""
+      footer:
+        Change-type: minor
+        change-type: minor
+      author: Renovate Bot
+      nested: []
+  version: 18.4.0
+  title: ""
+  date: 2024-06-03T15:38:47.043Z
+- commits:
     - subject: Update linuxserver/sonarr Docker tag to v4.0.5
       hash: ad8c3f2c27e04c1a5964bf01bd542f3f10ebd041
       body: ""
