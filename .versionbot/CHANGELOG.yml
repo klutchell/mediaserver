@@ -1,4 +1,16 @@
 - commits:
+    - subject: Update all digest updates
+      hash: 2c6136740d487a28da4e9439ba7a44d224b0869c
+      body: ""
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Renovate Bot
+      nested: []
+  version: 18.4.1
+  title: ""
+  date: 2024-06-10T13:18:10.316Z
+- commits:
     - subject: Update tailscale/tailscale Docker tag to v1.66.4
       hash: f8597d64698805a8743d2cb09f718436b3cf34b8
       body: ""
