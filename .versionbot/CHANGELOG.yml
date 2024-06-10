@@ -1,4 +1,16 @@
 - commits:
+    - subject: Update netdata/netdata Docker tag to v1.45.6
+      hash: 5873ad594bb08c602baf1879b802ba7591ba8013
+      body: ""
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Renovate Bot
+      nested: []
+  version: 18.4.4
+  title: ""
+  date: 2024-06-10T14:40:12.876Z
+- commits:
     - subject: Update linuxserver/jellyfin Docker tag to v10.9.6
       hash: 1536efed0222b5d32333f972ce9420f87f07cd0b
       body: ""
