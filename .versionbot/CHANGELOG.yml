@@ -1,4 +1,16 @@
 - commits:
+    - subject: Update traefik Docker tag to v3.0.2
+      hash: e500bf608ddd9e504d3709535b1de52887845c99
+      body: ""
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Renovate Bot
+      nested: []
+  version: 19.0.2
+  title: ""
+  date: 2024-06-17T13:40:45.585Z
+- commits:
     - subject: Update all digest updates
       hash: 239c7f59c9c36bd849dfcf219b4b82a2b6ad224d
       body: ""
