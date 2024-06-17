@@ -36,7 +36,7 @@ services:
 
   # https://hub.docker.com/r/linuxserver/prowlarr
   prowlarr:
-    image: linuxserver/prowlarr:1.18.0-develop@sha256:4378a50403d88a8b471a5d262a88eab0f963515643cec74c29d788a2cfa4eb42
+    image: linuxserver/prowlarr:1.18.0-develop@sha256:cd5690c624481167f4a69cc00dad11a7f99f3e041b1928c8fead39404327555a
     restart: unless-stopped
     environment:
       PUID: "${PUID}"
@@ -63,7 +63,7 @@ services:
 
   # https://docs.linuxserver.io/images/docker-sonarr
   sonarr:
-    image: linuxserver/sonarr:4.0.5@sha256:30432d9faf9e8fbb7c6336806ee061ed426204e1f9718d9659a2642a6e3a7c59
+    image: linuxserver/sonarr:4.0.5@sha256:275467ba17d990bbc6301dec3cc76b042969836749de39067818759d0f3b407f
     restart: unless-stopped
     environment:
       PUID: "${PUID}"
@@ -81,7 +81,7 @@ services:
 
   # https://docs.linuxserver.io/images/docker-radarr
   radarr:
-    image: linuxserver/radarr:5.6.0@sha256:594fab7afdb1de2f61a82835f3f2377a6220d4940d4b49bfa95e82d8a6b13a95
+    image: linuxserver/radarr:5.6.0@sha256:79053c07400eec909d04ac97db760c30bf61471ec37465a50f126a3c825a92bc
     restart: unless-stopped
     environment:
       PUID: "${PUID}"
@@ -168,7 +168,7 @@ services:
   # https://docs.overseerr.dev/getting-started/installation
   # https://hub.docker.com/r/linuxserver/overseerr
   overseerr:
-    image: lscr.io/linuxserver/overseerr:1.33.2@sha256:9e13ecb96ed4507385f97b0cbe85f3204f1d87bd35792034021308ff7463217b
+    image: lscr.io/linuxserver/overseerr:1.33.2@sha256:a21b9f6cce4fa7040a32a9feb77a1902e792cd3716acf695ee416862dc22c6a4
     restart: unless-stopped
     environment:
       PUID: ${PUID}
@@ -206,7 +206,7 @@ services:
 
   # https://docs.linuxserver.io/images/docker-syncthing
   syncthing:
-    image: lscr.io/linuxserver/syncthing:1.27.8@sha256:71db49de13f2d0a963fa43c10427972ace94135525d7072c94c63d846f57a7e6
+    image: lscr.io/linuxserver/syncthing:1.27.8@sha256:6e70dd0cc0ddb038a8f58cf0945d6659b13c984f11d708407469bf16d520574c
     restart: unless-stopped
     environment:
       PUID: ${PUID}
