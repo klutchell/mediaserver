@@ -1,4 +1,16 @@
 - commits:
+    - subject: Update product-os/flowzone action to v15
+      hash: 3c8af0bf71030e6bd3221ad3bb6557261acd1c80
+      body: ""
+      footer:
+        Change-type: major
+        change-type: major
+      author: Renovate Bot
+      nested: []
+  version: 20.0.0
+  title: ""
+  date: 2024-06-24T14:10:46.382Z
+- commits:
     - subject: Update linuxserver/prowlarr Docker tag to v1.19.0
       hash: 07295b37bc3ff39ccc79ccb9eed31c80699b6cf7
       body: ""
