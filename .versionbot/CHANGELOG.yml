@@ -1,4 +1,16 @@
 - commits:
+    - subject: Update linuxserver/radarr Docker tag to v5.7.0
+      hash: ec0f5d5a543a2c0ea342876c9fbfd3183a6dd138
+      body: ""
+      footer:
+        Change-type: minor
+        change-type: minor
+      author: Renovate Bot
+      nested: []
+  version: 20.1.0
+  title: ""
+  date: 2024-06-24T15:09:31.129Z
+- commits:
     - subject: Update traefik Docker tag to v3.0.3
       hash: 1cf9a9d551691e5c4723059a70e3acb00ac9448d
       body: ""
