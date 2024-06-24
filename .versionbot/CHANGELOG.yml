@@ -1,4 +1,16 @@
 - commits:
+    - subject: Update traefik Docker tag to v3.0.3
+      hash: 1cf9a9d551691e5c4723059a70e3acb00ac9448d
+      body: ""
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Renovate Bot
+      nested: []
+  version: 20.0.1
+  title: ""
+  date: 2024-06-24T14:39:25.912Z
+- commits:
     - subject: Update product-os/flowzone action to v15
       hash: 3c8af0bf71030e6bd3221ad3bb6557261acd1c80
       body: ""
