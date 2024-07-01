@@ -1,4 +1,16 @@
 - commits:
+    - subject: Update linuxserver/jellyfin Docker tag to v10.9.7
+      hash: 7c0107199458707f102ff231b5ea4e0503a8094a
+      body: ""
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Renovate Bot
+      nested: []
+  version: 20.2.1
+  title: ""
+  date: 2024-07-01T13:13:11.458Z
+- commits:
     - subject: Update netdata/netdata Docker tag to v1.46.1
       hash: e5ad4882ab82c20afa91bcd068e1a276d84c2a39
       body: ""
