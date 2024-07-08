@@ -1,4 +1,16 @@
 - commits:
+    - subject: Update traefik Docker tag to v3.0.4
+      hash: a1a2f8a3278d1a3049145af6556450850b2f4ec0
+      body: ""
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Renovate Bot
+      nested: []
+  version: 20.4.6
+  title: ""
+  date: 2024-07-08T15:08:50.289Z
+- commits:
     - subject: Update linuxserver/sonarr Docker tag to v4.0.6
       hash: 3194a947e4dac3bfdd74fc2712e4931fee7e1351
       body: ""
