@@ -1,4 +1,16 @@
 - commits:
+    - subject: Update lscr.io/linuxserver/overseerr:1.33.2 Docker digest to dafb573
+      hash: 1b044a9990a21502eca767bdacd1afab0bce4f55
+      body: ""
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Renovate Bot
+      nested: []
+  version: 20.4.7
+  title: ""
+  date: 2024-07-08T15:38:00.294Z
+- commits:
     - subject: Update traefik Docker tag to v3.0.4
       hash: a1a2f8a3278d1a3049145af6556450850b2f4ec0
       body: ""
