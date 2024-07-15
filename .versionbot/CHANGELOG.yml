@@ -1,4 +1,16 @@
 - commits:
+    - subject: Update linuxserver/prowlarr Docker tag to v1.21.0
+      hash: b4c40d1ac7d70cbce254db8dcdb29ccf68694cc7
+      body: ""
+      footer:
+        Change-type: minor
+        change-type: minor
+      author: Renovate Bot
+      nested: []
+  version: 20.6.0
+  title: ""
+  date: 2024-07-15T15:41:29.863Z
+- commits:
     - subject: Update linuxserver/plex Docker tag to v1.40.4
       hash: 3b24a4bffea1ca58cbf20ecf6ee904762d35240f
       body: ""
