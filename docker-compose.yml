@@ -21,7 +21,7 @@ services:
 
   # https://docs.linuxserver.io/images/docker-jellyfin
   jellyfin:
-    image: linuxserver/jellyfin:10.9.7@sha256:1574f396ec9a235c980a6e2e2e1a297eaef4d561b4eade522eb1143e79441332
+    image: linuxserver/jellyfin:10.9.7@sha256:d3d20076f277fd958c799e75f6f6bfdbf9a2c5a8f5b354b11223071d0691ad6a
     restart: unless-stopped
     environment:
       PUID: "${PUID}"
@@ -81,7 +81,7 @@ services:
 
   # https://docs.linuxserver.io/images/docker-radarr
   radarr:
-    image: linuxserver/radarr:5.7.0@sha256:bf5aaf1577edbc3ba33db069676e7f8324eda33761ca59721942bc8ef56c015c
+    image: linuxserver/radarr:5.7.0@sha256:1eaf9e83fca2b9170d4f49f6c0e55ba38693718e7815743a9ec297d199ab1e73
     restart: unless-stopped
     environment:
       PUID: "${PUID}"
@@ -99,7 +99,7 @@ services:
 
   # https://docs.linuxserver.io/images/docker-nzbhydra
   nzbhydra:
-    image: linuxserver/nzbhydra2:7.2.3@sha256:43bc051804f1fa35363d240509f06d56d0466c2e5f7c2742fd2a30970a81ed77
+    image: linuxserver/nzbhydra2:7.2.3@sha256:475092ffd9527ff12691a77ca656b6fe3e7bfafcb7af189eca17bff1e3c02239
     restart: unless-stopped
     environment:
       PUID: "${PUID}"
@@ -113,7 +113,7 @@ services:
 
   # https://docs.linuxserver.io/images/docker-ombi
   ombi:
-    image: linuxserver/ombi:4.43.5@sha256:6ce75698f6a96fc4a527852a3147e24f28d662fa9ba015ce639f312516d76873
+    image: linuxserver/ombi:4.43.5@sha256:b85407d9f13163dfdd9d8d38ed71a292898150e8863bd6d8fa13e39d31ec7ed6
     restart: unless-stopped
     environment:
       PUID: ${PUID}
@@ -206,7 +206,7 @@ services:
 
   # https://docs.linuxserver.io/images/docker-syncthing
   syncthing:
-    image: lscr.io/linuxserver/syncthing:1.27.9@sha256:bc97605a1d7d07ca221a05949ea0f56a0585feb5db375b756b1f2bca0354600f
+    image: lscr.io/linuxserver/syncthing:1.27.9@sha256:6fb87abe19730aad01b6511d660a0664be424986ae662b85eb76f0ce585c4890
     restart: unless-stopped
     environment:
       PUID: ${PUID}
