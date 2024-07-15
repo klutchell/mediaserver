@@ -63,7 +63,7 @@ services:
 
   # https://docs.linuxserver.io/images/docker-sonarr
   sonarr:
-    image: linuxserver/sonarr:4.0.6@sha256:8414846e440ca34c1cbed96daf7d5b3bcde20aab79761aaaaef496f24cec8d20
+    image: linuxserver/sonarr:4.0.7@sha256:746601dcc9dd95b3e2703c0244e453653d29b064281f7a9174d2d24d2aba81ef
     restart: unless-stopped
     environment:
       PUID: "${PUID}"
