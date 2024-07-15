@@ -1,4 +1,16 @@
 - commits:
+    - subject: Update linuxserver/nzbhydra2 Docker tag to v7.3.0
+      hash: 224e6ebfeeaed0fa5eb24d10969a6a4a2c0da231
+      body: ""
+      footer:
+        Change-type: minor
+        change-type: minor
+      author: Renovate Bot
+      nested: []
+  version: 20.5.0
+  title: ""
+  date: 2024-07-15T14:38:45.783Z
+- commits:
     - subject: Update netdata/netdata Docker tag to v1.46.2
       hash: c527de7a13a0cb7dccf0baa96e0f8bc666c78f9b
       body: ""
