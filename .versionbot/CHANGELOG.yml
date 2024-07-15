@@ -1,4 +1,16 @@
 - commits:
+    - subject: Update linuxserver/sonarr Docker tag to v4.0.7
+      hash: de1e0021041de11bcd98e1e87ec67d0050ac0836
+      body: ""
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Renovate Bot
+      nested: []
+  version: 20.4.8
+  title: ""
+  date: 2024-07-15T13:15:08.771Z
+- commits:
     - subject: Update lscr.io/linuxserver/overseerr:1.33.2 Docker digest to dafb573
       hash: 1b044a9990a21502eca767bdacd1afab0bce4f55
       body: ""
