@@ -4,7 +4,7 @@ networks:
 services:
   # https://docs.linuxserver.io/images/docker-plex
   plex:
-    image: linuxserver/plex:1.40.4@sha256:e06a8af0b30250f4efd8392b55a3d56578919f94fa2ac9eaee14998f9d22af56
+    image: linuxserver/plex:1.40.4@sha256:97d5d64e10850c67a2a694374b536a02f0e62bfae3b292ccfb8c07d6b1f0a79f
     restart: unless-stopped
     environment:
       PUID: "${PUID}"
@@ -99,7 +99,7 @@ services:
 
   # https://docs.linuxserver.io/images/docker-nzbhydra
   nzbhydra:
-    image: linuxserver/nzbhydra2:7.3.0@sha256:a59e15cb311a382cd1a263586936ec53b7954a77d72d3b1d75b01da29d9bfc24
+    image: linuxserver/nzbhydra2:7.3.0@sha256:ed9c42e7425676809581c0a5057f538b88e7436a5cc3fff7163c90395b24d569
     restart: unless-stopped
     environment:
       PUID: "${PUID}"
@@ -113,7 +113,7 @@ services:
 
   # https://docs.linuxserver.io/images/docker-ombi
   ombi:
-    image: linuxserver/ombi:4.43.5@sha256:b85407d9f13163dfdd9d8d38ed71a292898150e8863bd6d8fa13e39d31ec7ed6
+    image: linuxserver/ombi:4.43.5@sha256:fb7c936fffbd0e9ac2e803392d56773fc7a806f43062f60f296029ae12b1d491
     restart: unless-stopped
     environment:
       PUID: ${PUID}
@@ -168,7 +168,7 @@ services:
   # https://docs.overseerr.dev/getting-started/installation
   # https://hub.docker.com/r/linuxserver/overseerr
   overseerr:
-    image: lscr.io/linuxserver/overseerr:1.33.2@sha256:dafb573df69dcdc9e354e53ca7e70f664e0a6d9f3caa021c991046b8bd76989b
+    image: lscr.io/linuxserver/overseerr:1.33.2@sha256:aaba9e51b62a17e914de79e8eda4616f12e9bf4bce115cda6d0ad8178daea102
     restart: unless-stopped
     environment:
       PUID: ${PUID}
@@ -206,7 +206,7 @@ services:
 
   # https://docs.linuxserver.io/images/docker-syncthing
   syncthing:
-    image: lscr.io/linuxserver/syncthing:1.27.9@sha256:6fb87abe19730aad01b6511d660a0664be424986ae662b85eb76f0ce585c4890
+    image: lscr.io/linuxserver/syncthing:1.27.9@sha256:84e9cd99d247d6ef31fc8c1a6967f068a8352a530095bb402bf3bb298aa10696
     restart: unless-stopped
     environment:
       PUID: ${PUID}
