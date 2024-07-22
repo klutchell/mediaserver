@@ -1,4 +1,16 @@
 - commits:
+    - subject: Update linuxserver/jellyfin Docker tag to v10.9.8
+      hash: 2c56d0d89cc4aa3fd20eaae04036dbbf85ffb5b5
+      body: ""
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Renovate Bot
+      nested: []
+  version: 20.6.1
+  title: ""
+  date: 2024-07-22T13:17:14.083Z
+- commits:
     - subject: Update linuxserver/prowlarr Docker tag to v1.21.0
       hash: b4c40d1ac7d70cbce254db8dcdb29ccf68694cc7
       body: ""
