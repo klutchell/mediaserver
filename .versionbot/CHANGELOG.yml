@@ -1,4 +1,16 @@
 - commits:
+    - subject: Update linuxserver/radarr Docker tag to v5.8.3
+      hash: 95d688e228cdd60f0a63326397018f08a359bad1
+      body: ""
+      footer:
+        Change-type: minor
+        change-type: minor
+      author: Renovate Bot
+      nested: []
+  version: 20.8.0
+  title: ""
+  date: 2024-07-22T15:39:23.930Z
+- commits:
     - subject: Update linuxserver/ombi Docker tag to v4.44.1
       hash: e47b8080bb2e262d445adcb8444f75e341ad044f
       body: ""
