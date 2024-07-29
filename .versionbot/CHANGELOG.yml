@@ -1,4 +1,16 @@
 - commits:
+    - subject: Update traefik Docker tag to v3.1.0
+      hash: 09041aa6ef7748cdccfa0dbc7a0d249c7f59b93d
+      body: ""
+      footer:
+        Change-type: minor
+        change-type: minor
+      author: Renovate Bot
+      nested: []
+  version: 20.10.0
+  title: ""
+  date: 2024-07-29T14:08:50.199Z
+- commits:
     - subject: Update tailscale/tailscale Docker tag to v1.70.0
       hash: 2f1c0c0c8c9682c64a9434cbb952a50efe37c5eb
       body: ""
