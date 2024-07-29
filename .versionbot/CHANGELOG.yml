@@ -1,4 +1,16 @@
 - commits:
+    - subject: Update linuxserver/radarr:5.8.3 Docker digest to 9d6f054
+      hash: 939e921272d682160d566dba13f54024bb839881
+      body: ""
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Renovate Bot
+      nested: []
+  version: 21.0.1
+  title: ""
+  date: 2024-07-29T15:07:55.503Z
+- commits:
     - subject: Update product-os/flowzone action to v17
       hash: 13b527069757d29d3c28dcead286b0fb6973042e
       body: ""
