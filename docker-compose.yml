@@ -36,7 +36,7 @@ services:
 
   # https://hub.docker.com/r/linuxserver/prowlarr
   prowlarr:
-    image: linuxserver/prowlarr:1.21.1-develop@sha256:ea33c39fc13aaeccb2f7e6afd079d674a7aa5447bef921d0f4d3fa4caf209a35
+    image: linuxserver/prowlarr:1.21.2-develop@sha256:bfcef09d786066fb74565a8ea11fced8ace3bc9b19e7ee7146cab97dcd08ee2b
     restart: unless-stopped
     environment:
       PUID: "${PUID}"
