@@ -1,4 +1,16 @@
 - commits:
+    - subject: Update product-os/flowzone action to v17
+      hash: 13b527069757d29d3c28dcead286b0fb6973042e
+      body: ""
+      footer:
+        Change-type: major
+        change-type: major
+      author: Renovate Bot
+      nested: []
+  version: 21.0.0
+  title: ""
+  date: 2024-07-29T14:39:49.738Z
+- commits:
     - subject: Update traefik Docker tag to v3.1.0
       hash: 09041aa6ef7748cdccfa0dbc7a0d249c7f59b93d
       body: ""
