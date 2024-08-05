@@ -1,4 +1,16 @@
 - commits:
+    - subject: Update product-os/flowzone action to v17.3.7
+      hash: 9dc4609bd795672b92407eb946db7c8509ddf1e4
+      body: ""
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Renovate Bot
+      nested: []
+  version: 21.0.5
+  title: ""
+  date: 2024-08-05T14:08:49.436Z
+- commits:
     - subject: Update linuxserver/jellyfin Docker tag to v10.9.9
       hash: ceccdfb1dcdaa9a1103b013d277095a78e74dd8d
       body: ""
