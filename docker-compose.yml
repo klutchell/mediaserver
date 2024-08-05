@@ -4,7 +4,7 @@ networks:
 services:
   # https://docs.linuxserver.io/images/docker-plex
   plex:
-    image: linuxserver/plex:1.40.4@sha256:97d5d64e10850c67a2a694374b536a02f0e62bfae3b292ccfb8c07d6b1f0a79f
+    image: linuxserver/plex:1.40.4@sha256:f15541bfa94eae032cb3c8392f800aba6b6068cb663b5bd1d12f559b5308f9eb
     restart: unless-stopped
     environment:
       PUID: "${PUID}"
@@ -21,7 +21,7 @@ services:
 
   # https://docs.linuxserver.io/images/docker-jellyfin
   jellyfin:
-    image: linuxserver/jellyfin:10.9.8@sha256:843878f35dc700e502798b39edb24b84b7b7ff0788f1b7b9b1e71d4f8d34f951
+    image: linuxserver/jellyfin:10.9.8@sha256:eadf16cadd823a5cbe1b92750ee74111f9b2cac894834477ab4a43a5fc835ebe
     restart: unless-stopped
     environment:
       PUID: "${PUID}"
@@ -36,7 +36,7 @@ services:
 
   # https://hub.docker.com/r/linuxserver/prowlarr
   prowlarr:
-    image: linuxserver/prowlarr:1.21.2-develop@sha256:bfcef09d786066fb74565a8ea11fced8ace3bc9b19e7ee7146cab97dcd08ee2b
+    image: linuxserver/prowlarr:1.21.2-develop@sha256:ae264e2f673c1a2e5aac48d87f661c598c4c29052a6785ed7a39daed423d3cf2
     restart: unless-stopped
     environment:
       PUID: "${PUID}"
@@ -63,7 +63,7 @@ services:
 
   # https://docs.linuxserver.io/images/docker-sonarr
   sonarr:
-    image: linuxserver/sonarr:4.0.8@sha256:fbee5770f688e4f89dd073534feda11251bfde0e0a4e6ac74dd8c33bb856b505
+    image: linuxserver/sonarr:4.0.8@sha256:f0c1fe322671a5c4a302e27ee7aac622fb3c7ba6da231f6c378fe07ab900d6eb
     restart: unless-stopped
     environment:
       PUID: "${PUID}"
@@ -168,7 +168,7 @@ services:
   # https://docs.overseerr.dev/getting-started/installation
   # https://hub.docker.com/r/linuxserver/overseerr
   overseerr:
-    image: lscr.io/linuxserver/overseerr:1.33.2@sha256:aaba9e51b62a17e914de79e8eda4616f12e9bf4bce115cda6d0ad8178daea102
+    image: lscr.io/linuxserver/overseerr:1.33.2@sha256:3543bcc57aaa74842d8d88c6a0a6805b166d89e2dfc0db74b703ee59f8d7266e
     restart: unless-stopped
     environment:
       PUID: ${PUID}
@@ -206,7 +206,7 @@ services:
 
   # https://docs.linuxserver.io/images/docker-syncthing
   syncthing:
-    image: lscr.io/linuxserver/syncthing:1.27.9@sha256:84e9cd99d247d6ef31fc8c1a6967f068a8352a530095bb402bf3bb298aa10696
+    image: lscr.io/linuxserver/syncthing:1.27.9@sha256:bfcd4a3081bad466f914e40b4e10a6544944ae9c6f5bf4f54345c312d55a8d2a
     restart: unless-stopped
     environment:
       PUID: ${PUID}
