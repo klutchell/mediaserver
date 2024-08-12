@@ -4,7 +4,7 @@ networks:
 services:
   # https://docs.linuxserver.io/images/docker-plex
   plex:
-    image: linuxserver/plex:1.40.4@sha256:f15541bfa94eae032cb3c8392f800aba6b6068cb663b5bd1d12f559b5308f9eb
+    image: linuxserver/plex:1.40.4@sha256:7dfc133dcd0e5f30a795f2fa68545f504400eeb5e57852235d2ae8d01e6e63d8
     restart: unless-stopped
     environment:
       PUID: "${PUID}"
@@ -36,7 +36,7 @@ services:
 
   # https://hub.docker.com/r/linuxserver/prowlarr
   prowlarr:
-    image: linuxserver/prowlarr:1.21.2-develop@sha256:ae264e2f673c1a2e5aac48d87f661c598c4c29052a6785ed7a39daed423d3cf2
+    image: linuxserver/prowlarr:1.21.2-develop@sha256:f94e8065039ae6475a1aa3e6b5a90f03c898b662cb9d26166d57067148fb2167
     restart: unless-stopped
     environment:
       PUID: "${PUID}"
@@ -63,7 +63,7 @@ services:
 
   # https://docs.linuxserver.io/images/docker-sonarr
   sonarr:
-    image: linuxserver/sonarr:4.0.8@sha256:f0c1fe322671a5c4a302e27ee7aac622fb3c7ba6da231f6c378fe07ab900d6eb
+    image: linuxserver/sonarr:4.0.8@sha256:bffa87787eacff9023df4400f521c159566d14b5a280caec8b54196071e6038e
     restart: unless-stopped
     environment:
       PUID: "${PUID}"
@@ -81,7 +81,7 @@ services:
 
   # https://docs.linuxserver.io/images/docker-radarr
   radarr:
-    image: linuxserver/radarr:5.8.3@sha256:9d6f0548fd805edb30108fdd06d0fc5a4436c9bd708b57bd4119d7aefa815fe4
+    image: linuxserver/radarr:5.8.3@sha256:71e29caebf16da4701fc7a6c04d5f34c6b01753549900edf4ecfa585263ea1d4
     restart: unless-stopped
     environment:
       PUID: "${PUID}"
@@ -99,7 +99,7 @@ services:
 
   # https://docs.linuxserver.io/images/docker-nzbhydra
   nzbhydra:
-    image: linuxserver/nzbhydra2:7.3.0@sha256:ed9c42e7425676809581c0a5057f538b88e7436a5cc3fff7163c90395b24d569
+    image: linuxserver/nzbhydra2:7.3.0@sha256:036040c57b77204416fab192b8adbde5617ef99ba3e8b0385d445ebbcd85085a
     restart: unless-stopped
     environment:
       PUID: "${PUID}"
@@ -113,7 +113,7 @@ services:
 
   # https://docs.linuxserver.io/images/docker-ombi
   ombi:
-    image: linuxserver/ombi:4.44.1@sha256:f7eabee4800cd7a4716391aca11770563f5045f55cb10f2a397d94ac33d5f0b1
+    image: linuxserver/ombi:4.44.1@sha256:639b15e89c6f1a3322f6f82c2945ab0a2c069e60a7bda087364b3e5de4ae44c2
     restart: unless-stopped
     environment:
       PUID: ${PUID}
