@@ -81,7 +81,7 @@ services:
 
   # https://docs.linuxserver.io/images/docker-radarr
   radarr:
-    image: linuxserver/radarr:5.8.3@sha256:938281e82a91da0115d0f8b0a2260acf0f07052c8c78dfaf7e407c843ae242f5
+    image: linuxserver/radarr:5.9.1@sha256:b034531ff81d3e5e1f9fd70c969746040b40e6484c88981ea5d0dee732c10bc3
     restart: unless-stopped
     environment:
       PUID: "${PUID}"
@@ -146,7 +146,7 @@ services:
 
   # https://hub.docker.com/r/netdata/netdata
   netdata:
-    image: netdata/netdata:v1.46.3@sha256:fa9580f5c2291b2a1bbd4eca0451877c75c265c15e92c8d1209e2234ddb356c8
+    image: netdata/netdata:v1.47.0@sha256:84ae61184a74d2c777c44d010b777d7bfa2a251c9cea4bf84880fb232ef93b57
     restart: unless-stopped
     hostname: ${NETDATA_HOST}
     environment:
@@ -185,7 +185,7 @@ services:
 
   # https://hub.docker.com/r/tailscale/tailscale
   tailscale:
-    image: tailscale/tailscale:v1.70.0@sha256:19c66f261912cd19fa5362d36cf6f4770ad6f273b410f940a0eba39b376fe326
+    image: tailscale/tailscale:v1.72.1@sha256:83a6faec34866f70914a7d241d6ca749e6914f08f4f9059d942e1c3088dc001b
     restart: unless-stopped
     environment:
       TS_AUTH_KEY: ${TS_AUTH_KEY}
