@@ -4,7 +4,7 @@ networks:
 services:
   # https://docs.linuxserver.io/images/docker-plex
   plex:
-    image: linuxserver/plex:1.40.5@sha256:4bc88efb49059e0d98254c4fcf680de996873b2c5d732604ebbccc4ac952fec9
+    image: linuxserver/plex:1.40.5@sha256:968263aa295c92bbc4ad6a1cc848d0275a5154cecc1d88e5f2f3fed3123be523
     restart: unless-stopped
     environment:
       PUID: "${PUID}"
@@ -81,7 +81,7 @@ services:
 
   # https://docs.linuxserver.io/images/docker-radarr
   radarr:
-    image: linuxserver/radarr:5.9.1@sha256:b034531ff81d3e5e1f9fd70c969746040b40e6484c88981ea5d0dee732c10bc3
+    image: linuxserver/radarr:5.9.1@sha256:47acec85a0d92d107096088aebe83d1d0a434def34e5bac317fff18ca28741ae
     restart: unless-stopped
     environment:
       PUID: "${PUID}"
@@ -99,7 +99,7 @@ services:
 
   # https://docs.linuxserver.io/images/docker-nzbhydra
   nzbhydra:
-    image: linuxserver/nzbhydra2:7.5.0@sha256:8494e09aa4a85f9667ee8ba191ebfda9cb4d7740348268579292456e28704ec7
+    image: linuxserver/nzbhydra2:7.5.0@sha256:81f85d076bb13411dae707e4ca8eabe1164b180ffe6031e797cb02741807994f
     restart: unless-stopped
     environment:
       PUID: "${PUID}"
@@ -113,7 +113,7 @@ services:
 
   # https://docs.linuxserver.io/images/docker-ombi
   ombi:
-    image: linuxserver/ombi:4.44.1@sha256:122cf483c736128a3eaf7c01e1512141d2b2e41a97381bcad733047d0dfcb316
+    image: linuxserver/ombi:4.44.1@sha256:2df9aba8533ce892b7b7cff3e49f095e5fa2900ac05d035607219cef721af94a
     restart: unless-stopped
     environment:
       PUID: ${PUID}
