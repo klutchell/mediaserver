@@ -21,7 +21,7 @@ services:
 
   # https://docs.linuxserver.io/images/docker-jellyfin
   jellyfin:
-    image: linuxserver/jellyfin:10.9.10@sha256:266a8e1a6dc8e01270935a358effee2b0711af23e0e5479985a6501ce1978da7
+    image: linuxserver/jellyfin:10.9.11@sha256:01cd85925160e4ed20d74cc7c59fd4b166d7ff6349788f6ce390f5672b6c019b
     restart: unless-stopped
     environment:
       PUID: "${PUID}"
@@ -206,7 +206,7 @@ services:
 
   # https://docs.linuxserver.io/images/docker-syncthing
   syncthing:
-    image: lscr.io/linuxserver/syncthing:1.27.10@sha256:d5481de808a1de5a13b814a922b1f6de5fcde64c1ca95b0a065218b56570fae3
+    image: lscr.io/linuxserver/syncthing:1.27.12@sha256:2339cd2967d886ef16d9ba3c332060330915b53111aa022eba7313a1136f0a4a
     restart: unless-stopped
     environment:
       PUID: ${PUID}
