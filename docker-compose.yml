@@ -4,7 +4,7 @@ networks:
 services:
   # https://docs.linuxserver.io/images/docker-plex
   plex:
-    image: linuxserver/plex:1.40.5@sha256:968263aa295c92bbc4ad6a1cc848d0275a5154cecc1d88e5f2f3fed3123be523
+    image: linuxserver/plex:1.40.5@sha256:5604745534016668a7a7debf2ad06eb95d06e0e27c99e8a10daf05c0a26f9559
     restart: unless-stopped
     environment:
       PUID: "${PUID}"
@@ -21,7 +21,7 @@ services:
 
   # https://docs.linuxserver.io/images/docker-jellyfin
   jellyfin:
-    image: linuxserver/jellyfin:10.9.10@sha256:0da2fb716f6e7eaeea082d81418f80c4d2adab9407801629790ef3c2d0b743ab
+    image: linuxserver/jellyfin:10.9.10@sha256:266a8e1a6dc8e01270935a358effee2b0711af23e0e5479985a6501ce1978da7
     restart: unless-stopped
     environment:
       PUID: "${PUID}"
@@ -63,7 +63,7 @@ services:
 
   # https://docs.linuxserver.io/images/docker-sonarr
   sonarr:
-    image: linuxserver/sonarr:4.0.9@sha256:879f5f35b05566f71296bad0f3704709103568a6b4f42f5959543f5322728723
+    image: linuxserver/sonarr:4.0.9@sha256:138998077a802c18b76c26636301fcd5517b7bfaf75db025d457199176078a12
     restart: unless-stopped
     environment:
       PUID: "${PUID}"
@@ -81,7 +81,7 @@ services:
 
   # https://docs.linuxserver.io/images/docker-radarr
   radarr:
-    image: linuxserver/radarr:5.9.1@sha256:47acec85a0d92d107096088aebe83d1d0a434def34e5bac317fff18ca28741ae
+    image: linuxserver/radarr:5.9.1@sha256:5ab12592e768d04d94bc04877bee194f372ea3946abc6de689311f4d8559ee2f
     restart: unless-stopped
     environment:
       PUID: "${PUID}"
@@ -99,7 +99,7 @@ services:
 
   # https://docs.linuxserver.io/images/docker-nzbhydra
   nzbhydra:
-    image: linuxserver/nzbhydra2:7.5.0@sha256:81f85d076bb13411dae707e4ca8eabe1164b180ffe6031e797cb02741807994f
+    image: linuxserver/nzbhydra2:7.5.0@sha256:794a0ecb12ce4dc9b4b40fbb064ff633812cb058544dd20f5bf4442e8fb530ca
     restart: unless-stopped
     environment:
       PUID: "${PUID}"
@@ -113,7 +113,7 @@ services:
 
   # https://docs.linuxserver.io/images/docker-ombi
   ombi:
-    image: linuxserver/ombi:4.44.1@sha256:2df9aba8533ce892b7b7cff3e49f095e5fa2900ac05d035607219cef721af94a
+    image: linuxserver/ombi:4.44.1@sha256:aee4dd25114b771e0eca5a0163753cba1f2b38ebad99530c39504c6f286ca1dd
     restart: unless-stopped
     environment:
       PUID: ${PUID}
@@ -168,7 +168,7 @@ services:
   # https://docs.overseerr.dev/getting-started/installation
   # https://hub.docker.com/r/linuxserver/overseerr
   overseerr:
-    image: lscr.io/linuxserver/overseerr:1.33.2@sha256:24c902e4091f442aae63931663e4eaf95bb2c8a345a66936c2f6b81b281a4c3b
+    image: lscr.io/linuxserver/overseerr:1.33.2@sha256:d07a41c68b1bac3b58069ee17f454fa09c2667b1621bdcc4b121adcf91e55f15
     restart: unless-stopped
     environment:
       PUID: ${PUID}
