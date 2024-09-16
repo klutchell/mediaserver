@@ -4,7 +4,7 @@ networks:
 services:
   # https://docs.linuxserver.io/images/docker-plex
   plex:
-    image: linuxserver/plex:1.40.5@sha256:5604745534016668a7a7debf2ad06eb95d06e0e27c99e8a10daf05c0a26f9559
+    image: linuxserver/plex:1.41.0@sha256:0c4e1981b23c3bdf2892cb9b85c299137af55390044dd5cfdd33bdbc4e32ee1f
     restart: unless-stopped
     environment:
       PUID: "${PUID}"
@@ -99,7 +99,7 @@ services:
 
   # https://docs.linuxserver.io/images/docker-nzbhydra
   nzbhydra:
-    image: linuxserver/nzbhydra2:7.5.0@sha256:794a0ecb12ce4dc9b4b40fbb064ff633812cb058544dd20f5bf4442e8fb530ca
+    image: linuxserver/nzbhydra2:7.6.0@sha256:e49a3dd7243a5065e93e15f44c76fa765504f9e84d79efcb7a028253081680ac
     restart: unless-stopped
     environment:
       PUID: "${PUID}"
