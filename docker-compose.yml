@@ -63,7 +63,7 @@ services:
 
   # https://docs.linuxserver.io/images/docker-sonarr
   sonarr:
-    image: linuxserver/sonarr:4.0.9@sha256:138998077a802c18b76c26636301fcd5517b7bfaf75db025d457199176078a12
+    image: linuxserver/sonarr:4.0.9@sha256:28cc44346fc87805b52a4376a89edc12cf082a5530cffee800a6c05dee482734
     restart: unless-stopped
     environment:
       PUID: "${PUID}"
@@ -81,7 +81,7 @@ services:
 
   # https://docs.linuxserver.io/images/docker-radarr
   radarr:
-    image: linuxserver/radarr:5.9.1@sha256:5ab12592e768d04d94bc04877bee194f372ea3946abc6de689311f4d8559ee2f
+    image: linuxserver/radarr:5.9.1@sha256:3bee8fb8eb4bb93b77eb4e0c5d755f25649223965af59f5f0363ddda03c6d10c
     restart: unless-stopped
     environment:
       PUID: "${PUID}"
@@ -168,7 +168,7 @@ services:
   # https://docs.overseerr.dev/getting-started/installation
   # https://hub.docker.com/r/linuxserver/overseerr
   overseerr:
-    image: lscr.io/linuxserver/overseerr:1.33.2@sha256:d07a41c68b1bac3b58069ee17f454fa09c2667b1621bdcc4b121adcf91e55f15
+    image: lscr.io/linuxserver/overseerr:1.33.2@sha256:51cc0140a896591aee450170c9cf7af07a8a282cc43b8db8396f93186ab54425
     restart: unless-stopped
     environment:
       PUID: ${PUID}
@@ -206,7 +206,7 @@ services:
 
   # https://docs.linuxserver.io/images/docker-syncthing
   syncthing:
-    image: lscr.io/linuxserver/syncthing:1.27.12@sha256:2339cd2967d886ef16d9ba3c332060330915b53111aa022eba7313a1136f0a4a
+    image: lscr.io/linuxserver/syncthing:1.27.12@sha256:cd9ec0abcab9eb51a5f1d2fd19cad2d5e84e479e6589d809121614080b37c4f2
     restart: unless-stopped
     environment:
       PUID: ${PUID}
