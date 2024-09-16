@@ -10,21 +10,21 @@ SECURE_FILE := docker-compose.secure.yml
 
 config: ## Write environment configuration to override file
 ifneq ($(ACME_EMAIL),)
-	docker-compose -f $(COMMON_FILE) -f $(SECURE_FILE) config --resolve-image-digests > $(OVERRIDE_FILE)
+	docker compose -f $(COMMON_FILE) -f $(SECURE_FILE) config --resolve-image-digests > $(OVERRIDE_FILE)
 else
-	docker-compose -f $(COMMON_FILE) -f $(DIRECT_FILE) config --resolve-image-digests > $(OVERRIDE_FILE)
+	docker compose -f $(COMMON_FILE) -f $(DIRECT_FILE) config --resolve-image-digests > $(OVERRIDE_FILE)
 endif
 
 pull: config ## Pull tagged container images and record digests
-	docker-compose pull
+	docker compose pull
 
 up: config ## Create all networks, containers, and volumes
-	docker-compose up --detach --remove-orphans
+	docker compose up --detach --remove-orphans
 
 deploy: up ## Alias for 'up'
 
 down: ## Remove all networks, containers, and images
-	docker-compose down --remove-orphans --rmi all
+	docker compose down --remove-orphans --rmi all
 
 clean: ## Remove local override file
 	-rm $(OVERRIDE_FILE)

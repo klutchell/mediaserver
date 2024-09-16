@@ -3,3 +3,8 @@ docker-compose.override.yml
 /*/
 !/.github/
 !/.versionbot/
+
+*.swp
+.smbcredentials
+config
+downloads

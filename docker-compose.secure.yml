@@ -1,16 +1,6 @@
 version: "3.7"
 
 services:
-  plex:
-    labels:
-      traefik.enable: "true"
-      traefik.docker.network: mediaserver_default
-      traefik.http.routers.plex.tls.certresolver: prod
-      traefik.http.routers.plex.rule: Host(`${PLEX_HOST}`)
-      traefik.http.services.plex.loadbalancer.server.port: 32400
-      traefik.http.services.plex.loadbalancer.server.scheme: http
-    ports:
-      - "127.0.0.1:32400:32400/tcp"
 
   jellyfin:
     labels:
@@ -24,25 +14,15 @@ services:
       - "127.0.0.1:8096:8096/tcp"
       - "127.0.0.1:7359:7359/udp"
 
-  nzbhydra:
+  navidrome:
     labels:
       traefik.enable: "true"
       traefik.docker.network: mediaserver_default
-      traefik.http.routers.nzbhydra.tls.certresolver: prod
-      traefik.http.routers.nzbhydra.rule: Host(`${NZBHYDRA_HOST}`)
-      traefik.http.routers.nzbhydra.middlewares: hsts-header
+      traefik.http.routers.jellyfin.tls.certresolver: prod
+      traefik.http.routers.jellyfin.rule: Host(`${NAVIDROME_HOST}`)
+      traefik.http.routers.prowlarr.middlewares: hsts-header, basicauth, ipallowlist
     ports:
-      - "127.0.0.1:5076:5076/tcp"
-
-  ombi:
-    labels:
-      traefik.enable: "true"
-      traefik.docker.network: mediaserver_default
-      traefik.http.routers.ombi.tls.certresolver: prod
-      traefik.http.routers.ombi.rule: Host(`${OMBI_HOST}`)
-      traefik.http.routers.ombi.middlewares: hsts-header
-    ports:
-      - "127.0.0.1:3579:3579/tcp"
+      - "127.0.0.1:4533:4533/tcp"
 
   prowlarr:
     labels:
@@ -50,7 +30,7 @@ services:
       traefik.docker.network: mediaserver_default
       traefik.http.routers.prowlarr.tls.certresolver: prod
       traefik.http.routers.prowlarr.rule: Host(`${PROWLARR_HOST}`)
-      traefik.http.routers.prowlarr.middlewares: hsts-header, ipallowlist
+      traefik.http.routers.prowlarr.middlewares: hsts-header, basicauth, ipallowlist
     ports:
       - "127.0.0.1:9696:9696/tcp"
 
@@ -60,7 +40,7 @@ services:
       traefik.docker.network: mediaserver_default
       traefik.http.routers.nzbget.tls.certresolver: prod
       traefik.http.routers.nzbget.rule: Host(`${NZBGET_HOST}`)
-      traefik.http.routers.nzbget.middlewares: hsts-header, ipallowlist
+      traefik.http.routers.nzbget.middlewares: hsts-header, basicauth, ipallowlist
     ports:
       - "127.0.0.1:6789:6789/tcp"
 
@@ -70,7 +50,7 @@ services:
       traefik.docker.network: mediaserver_default
       traefik.http.routers.sonarr.tls.certresolver: prod
       traefik.http.routers.sonarr.rule: Host(`${SONARR_HOST}`)
-      traefik.http.routers.sonarr.middlewares: hsts-header, ipallowlist
+      traefik.http.routers.sonarr.middlewares: hsts-header, basicauth, ipallowlist
     ports:
       - "127.0.0.1:8989:8989/tcp"
 
@@ -80,29 +60,9 @@ services:
       traefik.docker.network: mediaserver_default
       traefik.http.routers.radarr.tls.certresolver: prod
       traefik.http.routers.radarr.rule: Host(`${RADARR_HOST}`)
-      traefik.http.routers.radarr.middlewares: hsts-header, ipallowlist
+      traefik.http.routers.radarr.middlewares: hsts-header, basicauth, ipallowlist
     ports:
       - "127.0.0.1:7878:7878/tcp"
-
-  duplicati:
-    labels:
-      traefik.enable: "true"
-      traefik.docker.network: mediaserver_default
-      traefik.http.routers.duplicati.tls.certresolver: prod
-      traefik.http.routers.duplicati.rule: Host(`${DUPLICATI_HOST}`)
-      traefik.http.routers.duplicati.middlewares: hsts-header, basicauth, ipallowlist
-    ports:
-      - "127.0.0.1:8200:8200/tcp"
-
-  netdata:
-    labels:
-      traefik.enable: "true"
-      traefik.docker.network: mediaserver_default
-      traefik.http.routers.netdata.tls.certresolver: prod
-      traefik.http.routers.netdata.rule: Host(`${NETDATA_HOST}`)
-      traefik.http.routers.netdata.middlewares: hsts-header, basicauth, ipallowlist
-    ports:
-      - "127.0.0.1:19999:19999/tcp"
 
   overseerr:
     labels:
@@ -110,22 +70,9 @@ services:
       traefik.docker.network: mediaserver_default
       traefik.http.routers.overseerr.tls.certresolver: prod
       traefik.http.routers.overseerr.rule: Host(`${OVERSEERR_HOST}`)
-      traefik.http.routers.overseerr.middlewares: hsts-header, ipallowlist
+      traefik.http.routers.overseerr.middlewares: hsts-header, basicauth, ipallowlist
     ports:
       - "127.0.0.1:5055:5055/tcp"
-
-  syncthing:
-    labels:
-      traefik.enable: "true"
-      traefik.docker.network: mediaserver_default
-      traefik.http.routers.syncthing.tls.certresolver: prod
-      traefik.http.routers.syncthing.rule: Host(`${SYNCTHING_HOST}`)
-      traefik.http.routers.syncthing.middlewares: hsts-header, basicauth, ipallowlist
-    ports:
-      - "127.0.0.1:8384:8384/tcp"
-      - "22000:22000/tcp"
-      - "22000:22000/udp"
-      - "21027:21027/udp"
 
   # https://hub.docker.com/_/traefik/
   traefik:
