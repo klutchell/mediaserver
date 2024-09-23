@@ -81,7 +81,7 @@ services:
 
   # https://docs.linuxserver.io/images/docker-radarr
   radarr:
-    image: linuxserver/radarr:5.9.1@sha256:3bee8fb8eb4bb93b77eb4e0c5d755f25649223965af59f5f0363ddda03c6d10c
+    image: linuxserver/radarr:5.10.4@sha256:df843d96b812d858b94377ffed1918424ece6735038a19e8ff93730277757b65
     restart: unless-stopped
     environment:
       PUID: "${PUID}"
@@ -185,7 +185,7 @@ services:
 
   # https://hub.docker.com/r/tailscale/tailscale
   tailscale:
-    image: tailscale/tailscale:v1.72.1@sha256:83a6faec34866f70914a7d241d6ca749e6914f08f4f9059d942e1c3088dc001b
+    image: tailscale/tailscale:v1.74.1@sha256:a013ce5266e5c796efe31c7cf9562deb21423f8586361d7faadaf675fa4296ac
     restart: unless-stopped
     environment:
       TS_AUTH_KEY: ${TS_AUTH_KEY}
